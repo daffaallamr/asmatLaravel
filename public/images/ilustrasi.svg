@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="312" height="892.086" viewBox="0 0 312 892.086">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #2c2c30;
+        font-size: 28px;
+        font-family: SegoeUI, Segoe UI;
+      }
+    </style>
+  </defs>
+  <g id="Group_156" data-name="Group 156" transform="translate(-349 -2446)">
+    <ellipse id="Ellipse_2" data-name="Ellipse 2" class="cls-1" cx="103.594" cy="16.692" rx="103.594" ry="16.692" transform="translate(401.406 2446)"/>
+    <g id="Group_155" data-name="Group 155" transform="translate(0 -0.618)">
+      <rect id="Rectangle_24" data-name="Rectangle 24" class="cls-1" width="207.188" height="248.519" transform="translate(401.406 2463.31)"/>
+      <path id="Path_1" data-name="Path 1" class="cls-1" d="M0,0H312V645.408H0Z" transform="translate(349 2693.296)"/>
+      <text id="illustrasi_produk_asmat" data-name="illustrasi
+produk
+asmat" class="cls-2" transform="translate(505 2935)"><tspan x="-50.101" y="0">illustrasi</tspan><tspan x="-44.427" y="37">produk</tspan><tspan x="-36.989" y="74">asmat</tspan></text>
+    </g>
+  </g>
+</svg>
