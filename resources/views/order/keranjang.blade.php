@@ -59,39 +59,39 @@
                     <td>Harga</td>
                     <td style="border-right: none;"></td>
                 </tr>
-                @foreach ($orders as $order)
-                @foreach ($order->orderDetails as $detail)
-                <form action="{{ route('data-diri') }}" method="post">
-                    @csrf
-                <tr class="table-mid">
-                    <td>
-                        <div class="produk">
-                            <img src="{{ Storage::url($detail->product->gambar) }}" alt="">
-                            <label for="">{{ $detail->product->nama }}</label>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="quantity2">
-                            <button class="btn minus-btn2" type="button" disabled="disabled">-</button>
-                            <input type="text" id="quantity2" value="{{ $detail->jumlah_barang }}">
-                            <button class="btn plus-btn2" type="button">+</button>
-                        </div>
-                    </td>
-                    <td>
-                        <label for="">IDR {{ number_format(($detail->harga * $detail->jumlah_barang), 0, '.', '.') }}</label>
-                    </td>
-                    <td style="border-right: none;">
-                        <a id="hapus">Hapus</a>
-                    </td>
-                </tr>   
-                <tr class="tabel-bot">
-                    @endforeach
-                    <td colspan="4" style="border-top:rgba(236, 179, 144, 0.6) 2px solid;">
-                        <label>Total Belanja:</label>
-                        <label>IDR {{ number_format($detail->sum('jumlah_harga'), 0, '.', '.') }}</label>
-                    </td>
-                </tr>
-                @endforeach
+                    @foreach ($order->orderDetails as $detail)
+                    <form action="{{ route('data-diri') }}" method="post">
+                        @csrf
+                    <input type="hidden" name="order_id" value="{{ $order->id }}">
+                    <tr class="table-mid">
+                        <td>
+                            <div class="produk">
+                                <img src="{{ Storage::url($detail->product->gambar) }}" alt="">
+                                <label for="">{{ $detail->product->nama }}</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="quantity2">
+                                <button class="btn minus-btn2" type="button" disabled="disabled">-</button>
+                                <input type="text" id="quantity2" value="{{ $detail->jumlah_barang }}">
+                                <button class="btn plus-btn2" type="button">+</button>
+                            </div>
+                        </td>
+                        <td>
+                            <label for="">IDR {{ number_format(($detail->harga * $detail->jumlah_barang), 0, '.', '.') }}</label>
+                        </td>
+                        <td style="border-right: none;">
+                            <a id="hapus">Hapus</a>
+                        </td>
+                    </tr>   
+                    <tr class="tabel-bot">
+                        @endforeach
+                        <td colspan="4" style="border-top:rgba(236, 179, 144, 0.6) 2px solid;">
+                            <label>Total Belanja:</label>
+                            <label>IDR {{ number_format($order->orderDetails->sum('jumlah_harga'), 0, '.', '.') }}</label>
+                            <input type="hidden" name="jumlah_harga_barang" value="{{ $order->orderDetails->sum('jumlah_harga') }}">
+                        </td>
+                    </tr>
             </table>
         </div>
         <div class="foot">

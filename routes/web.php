@@ -53,15 +53,16 @@ Route::get('profil-alamat', [CustomerController::class, 'alamat'])->name('profil
 // Belanjan (Produk)
 Route::resource('belanja', ProductController::class);
 
-// Keranjang
-Route::resource('keranjang', KeranjangController::class);
-
 // Order
 Route::resource('order', OrderController::class);
-Route::post('data-diri', [CheckoutController::class, 'afterKeranjang'])->name('data-diri');
 
 // Checkout
+Route::get('/keranjang/{orderId}', [CheckoutController::class, 'keranjang'])->name('keranjang');
+Route::post('data-diri', [CheckoutController::class, 'afterKeranjang'])->name('data-diri');
 Route::post('simpan-data-diri', [CheckoutController::class, 'storeDataDiri'])->name('simpan-data-diri');
+Route::get('pilih-kurir', [CheckoutController::class, 'pilihKurir'])->name('pilih-kurir');
+Route::post('ongkir', [CheckoutController::class, 'storeOngkir'])->name('ongkir');
+Route::get('pembayaran', [CheckoutController::class, 'pembayaran'])->name('pembayaran');
 
 // Ongkir API
 Route::get('/kota/{id}',[CheckoutController::class, 'get_city']);

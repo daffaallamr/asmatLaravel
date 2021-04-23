@@ -15,6 +15,7 @@ class Order extends Model
         'payment_id',
         'shipper_id',
         'is_paid',
+        'ongkir',
         'jumlah_pembayaran',       
         'tanggal_pembayaran'       
     ];

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -35,7 +38,48 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->middleware('auth');
+
+        $orderSementara = new Order();
+        $orderDetail = new OrderDetail();
+
+        $hasData = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
+
+        if (!empty ($hasData)) {
+            $orderSementara = $hasData;
+
+            // order detail yang sudah ada
+            $orderDetailLama = OrderDetail::where('order_id', $orderSementara->id)->where('produk_id', $request->produk_id)->first();
+
+            if (empty($orderDetailLama)) {
+                $newOrderDetail = new OrderDetail;
+
+                $newOrderDetail->produk_id = $request->produk_id;
+                $newOrderDetail->harga = $request->harga;
+                $newOrderDetail->order_id = $orderSementara->id;
+                $newOrderDetail->jumlah_barang = $request->jumlah_barang;
+                $newOrderDetail->jumlah_harga = $request->jumlah_barang * $request->harga;
+                $newOrderDetail->save();
+            } else {
+                $orderDetailLama->jumlah_barang = $orderDetailLama->jumlah_barang + $request->jumlah_barang;
+                $orderDetailLama->jumlah_harga = $orderDetailLama->jumlah_harga + $request->jumlah_barang * $request->harga;
+                $orderDetailLama->save();   
+            }
+
+        } else {
+            $orderSementara->customer_id = $request->customer_id;
+            $orderSementara->is_checkout = false;
+            $orderSementara->save();
+
+            $orderDetail->produk_id = $request->produk_id;
+            $orderDetail->harga = $request->harga;
+            $orderDetail->order_id = $orderSementara->id;
+            $orderDetail->jumlah_barang = $request->jumlah_barang;
+            $orderDetail->jumlah_harga = $request->jumlah_barang * $request->harga;
+            $orderDetail->save();
+        }
+
+        return redirect()->route('keranjang', [$hasData->id]);
     }
 
     /**

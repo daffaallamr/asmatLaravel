@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -101,58 +103,113 @@ class CheckoutController extends Controller
         }
     }
 
-    public function afterKeranjang(Request $request)
+    public function keranjang($orderId)
     {
-        // $orderSementara = new Order;
-        // $orderDetail = new OrderDetail;
+        // ke keranjang
+        $orderSementara = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
+        dd($orderId);
 
-        // $hasData = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
-
-        // if (!empty ($hasData)) {
-        //     $orderSementara = $hasData;
-
-        //     $orderDetailLama = OrderDetail::where('order_id', $hasData->id)->where('produk_id', $request->produk_id)->first();
-        //     // dd($orderDetailLama);
-
-        //     $orderDetailLama->jumlah_barang = $orderDetailLama->jumlah_barang + $request->jumlah_barang;
-        //     $orderDetailLama->jumlah_harga = $orderDetailLama->jumlah_harga + $request->jumlah_barang * $request->harga;
-        //     $orderDetailLama->save();
-
-        // } else {
-        //     $orderSementara->customer_id = $request->customer_id;
-        //     $orderSementara->is_checkout = false;
-        //     $orderSementara->save();
-
-        //     $orderDetail->produk_id = $request->produk_id;
-        //     $orderDetail->harga = $request->harga;
-        //     $orderDetail->order_id = $orderSementara->id;
-        //     $orderDetail->jumlah_barang = $request->jumlah_barang;
-        //     $orderDetail->jumlah_harga = $request->jumlah_barang * $request->harga;
-        //     $orderDetail->save();
-        // }
-
-        //memanggil function get_province
-        $provinsi = $this->get_province();
-
-        return view('order.dataDiri', [
-            'provinsi' => $provinsi
+        return view('order.keranjang', [
+            'order' => $orderSementara
         ]);
     }
 
+    public function afterKeranjang(Request $request)
+    {
+        $hasAddress = Address::where('costumer_id', Auth::id())->first();
+        $orderUser = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
+
+        if (empty ($hasAddress)) {
+            //memanggil function get_province
+            $provinsi = $this->get_province();
+
+            return view('order.dataDiri', [
+                'provinsi' => $provinsi
+            ]);
+        } else {
+            $orderUser->jumlah_harga_barang = $request->jumlah_harga_barang;
+            $orderUser->save();
+
+            return redirect('pilih-kurir');
+        }
+
+    }
+
     public function storeDataDiri(Request $request) {
+
         $address = new Address;
 
         $address->costumer_id = Auth::id();
         $address->nama_depan = $request->nama_depan;
         $address->nama_belakang = $request->nama_belakang;
         $address->email = $request->email;
-        $address->telepon = $request->nama_depan;
-        $address->alamat_lengkap = $request->nama_depan;
+        $address->telepon = $request->telepon;
+        $address->alamat_lengkap = $request->alamat_lengkap;
         $address->provinsi_id = $request->province_id;
         $address->kota_id = $request->kota_id;
         $address->kecamatan_id = $request->kecamatan_id;
         $address->kode_pos = $request->kode_pos;
         $address->is_main = 1;
         $address->save();
+
+        return redirect('pilih-kurir');
+    }
+
+    public function pilihKurir() {
+        $userAddress = Customer::find(Auth::id())->addresses->where('is_main', 1)->first();
+        $userKecamatan = $userAddress->kecamatan_id;
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://pro.rajaongkir.com/api/cost",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "origin=151&originType=city&destination=$userKecamatan&destinationType=subdistrict&weight=1000&courier=jne",
+        CURLOPT_HTTPHEADER => array(
+            "content-type: application/x-www-form-urlencoded",
+            "key: 271fc7c631677fe6b27686dc2e65dad6"
+        ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+        echo "cURL Error #:" . $err;
+        } else {
+            $response=json_decode($response,true);
+            $jne_result = $response['rajaongkir']['results'][0]['costs'];
+        }
+
+        return view('order.kurir', [
+            'kurirJne' => $jne_result
+        ]);
+    }
+
+    public function storeOngkir(Request $request) {
+        $orderId = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
+        
+        $orderId->ongkir = $request->ongkir;
+        $orderId->ekspedisi = $request->ekspedisi;
+        $orderId->jumlah_pembayaran_akhir = $orderId->jumlah_harga_barang + $request->ongkir;
+
+        $orderId->save();
+
+        return redirect('pembayaran');
+    }   
+
+    public function pembayaran () {
+        $orderInfo = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
+
+        return view('order.pembayaran', [
+            'orderInfos' => $orderInfo
+        ]);
     }
 }

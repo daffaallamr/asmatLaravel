@@ -22,11 +22,11 @@ class OrderController extends Controller
     public function index()
     {
         // ke keranjang
-        $orderSementara = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->get();
-        // dd($orderSementara);
+        $orderSementara = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
+        // dd($orderId);
 
         return view('order.keranjang', [
-            'orders' => $orderSementara
+            'order' => $orderSementara
         ]);
     }
 
@@ -56,12 +56,23 @@ class OrderController extends Controller
         if (!empty ($hasData)) {
             $orderSementara = $hasData;
 
-            $orderDetailLama = OrderDetail::where('order_id', $hasData->id)->where('produk_id', $request->produk_id)->first();
-            // dd($orderDetailLama);
+            // order detail yang sudah ada
+            $orderDetailLama = OrderDetail::where('order_id', $orderSementara->id)->where('produk_id', $request->produk_id)->first();
 
-            $orderDetailLama->jumlah_barang = $orderDetailLama->jumlah_barang + $request->jumlah_barang;
-            $orderDetailLama->jumlah_harga = $orderDetailLama->jumlah_harga + $request->jumlah_barang * $request->harga;
-            $orderDetailLama->save();
+            if (empty($orderDetailLama)) {
+                $newOrderDetail = new OrderDetail;
+
+                $newOrderDetail->produk_id = $request->produk_id;
+                $newOrderDetail->harga = $request->harga;
+                $newOrderDetail->order_id = $orderSementara->id;
+                $newOrderDetail->jumlah_barang = $request->jumlah_barang;
+                $newOrderDetail->jumlah_harga = $request->jumlah_barang * $request->harga;
+                $newOrderDetail->save();
+            } else {
+                $orderDetailLama->jumlah_barang = $orderDetailLama->jumlah_barang + $request->jumlah_barang;
+                $orderDetailLama->jumlah_harga = $orderDetailLama->jumlah_harga + $request->jumlah_barang * $request->harga;
+                $orderDetailLama->save();   
+            }
 
         } else {
             $orderSementara->customer_id = $request->customer_id;
@@ -76,7 +87,7 @@ class OrderController extends Controller
             $orderDetail->save();
         }
 
-        return redirect('order');
+        return redirect()->route('order.index', [$hasData->id]);
     }
 
 
