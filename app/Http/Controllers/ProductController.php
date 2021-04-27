@@ -54,13 +54,16 @@ class ProductController extends Controller
             if (empty($orderDetailLama)) {
                 $newOrderDetail = new OrderDetail;
 
+                $newOrderDetail->order_id = $orderSementara->id;
                 $newOrderDetail->produk_id = $request->produk_id;
                 $newOrderDetail->harga = $request->harga;
-                $newOrderDetail->order_id = $orderSementara->id;
+                $newOrderDetail->berat = $request->berat;
+                $newOrderDetail->jumlah_berat = $request->jumlah_barang * $request->berat;
                 $newOrderDetail->jumlah_barang = $request->jumlah_barang;
                 $newOrderDetail->jumlah_harga = $request->jumlah_barang * $request->harga;
                 $newOrderDetail->save();
             } else {
+                $orderDetailLama->jumlah_berat = $orderDetailLama->berat * $request->jumlah_barang;
                 $orderDetailLama->jumlah_barang = $orderDetailLama->jumlah_barang + $request->jumlah_barang;
                 $orderDetailLama->jumlah_harga = $orderDetailLama->jumlah_harga + $request->jumlah_barang * $request->harga;
                 $orderDetailLama->save();   
@@ -71,14 +74,18 @@ class ProductController extends Controller
             $orderSementara->is_checkout = false;
             $orderSementara->save();
 
+            $orderDetail->order_id = $orderSementara->id;
             $orderDetail->produk_id = $request->produk_id;
             $orderDetail->harga = $request->harga;
-            $orderDetail->order_id = $orderSementara->id;
+            $orderDetail->berat = $request->berat;
+            $orderDetail->jumlah_berat = $request->jumlah_barang * $request->berat;
             $orderDetail->jumlah_barang = $request->jumlah_barang;
             $orderDetail->jumlah_harga = $request->jumlah_barang * $request->harga;
             $orderDetail->save();
-        }
 
+            return redirect()->route('keranjang', [$orderSementara->id]);
+        }
+        
         return redirect()->route('keranjang', [$hasData->id]);
     }
 

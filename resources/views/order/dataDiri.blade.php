@@ -36,7 +36,7 @@
                         <select name="province_id" id="province_id">
                             <option value="">--- Provinsi Tujuan ---</option>
                             @foreach ($provinsi  as $row)
-                            <option value="{{$row['province_id']}}" namaprovinsi="{{$row['province']}}">{{$row['province']}}</option>
+                            <option value="{{ $row['province_id']}}" namaprovinsi="{{$row['province']}}">{{$row['province']}}</option>
                             @endforeach
                         </select>
                     <label for="">Kota</label>

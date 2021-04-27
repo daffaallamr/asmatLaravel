@@ -9,16 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'customer_id',
-        'is_checkout',
-        'payment_id',
-        'shipper_id',
-        'is_paid',
-        'ongkir',
-        'jumlah_pembayaran',       
-        'tanggal_pembayaran'       
-    ];
+    protected $guarded = [];
 
     public function orderDetails()
     {
@@ -38,5 +29,26 @@ class Order extends Model
     // payment_id
     public function payment() {
         return $this->hasOne(Payment::class);
+    }
+
+    // midtrans status_payment function
+    public function setStatusPending() {
+        $this->attributes['status_payment'] = 'pending';
+        $this->save();
+    }
+
+    public function setStatusSuccess() {
+        $this->attributes['status_payment'] = 'sucess';
+        $this->save();
+    }
+
+    public function setStatusFailed() {
+        $this->attributes['status_payment'] = 'failed';
+        $this->save();
+    }
+
+    public function setStatusExpired() {
+        $this->attributes['status_payment'] = 'expired';
+        $this->save();
     }
 }

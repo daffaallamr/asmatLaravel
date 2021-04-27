@@ -19,6 +19,7 @@
 
                 <input type="hidden" name="produk_id" value="{{ $product->id }}">
                 <input type="hidden" name="harga" value="{{ $product->harga}}">
+                <input type="hidden" name="berat" value="{{ $product->berat}}">
 
                 <div class="quantity">
                     <button class="btn minus-btn" type="button" disabled="disabled">-</button>

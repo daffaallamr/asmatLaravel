@@ -58,7 +58,7 @@ Route::resource('order', OrderController::class);
 
 // Checkout
 Route::get('/keranjang/{orderId}', [CheckoutController::class, 'keranjang'])->name('keranjang');
-Route::post('data-diri', [CheckoutController::class, 'afterKeranjang'])->name('data-diri');
+Route::post('proses-keranjang-selanjutnya', [CheckoutController::class, 'afterKeranjang'])->name('proses-keranjang-selanjutnya');
 Route::post('simpan-data-diri', [CheckoutController::class, 'storeDataDiri'])->name('simpan-data-diri');
 Route::get('pilih-kurir', [CheckoutController::class, 'pilihKurir'])->name('pilih-kurir');
 Route::post('ongkir', [CheckoutController::class, 'storeOngkir'])->name('ongkir');

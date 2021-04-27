@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asmat</title>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('js/observer.js') }}">
+
 </head>
 <body class="container-data">
     <header>
@@ -30,43 +30,41 @@
                     <input name="pembayaran" type="radio">
                     <label for="">Indomaret</label> 
                 </td>
-                <td class="totbel"><div class="keterangan"><label for="">Total Belanja: </label><label for="">IDR 10.000</label></div></td>
+                <td class="totbel"><div class="keterangan"><label for="">Total Belanja: </label><label for="">IDR {{ number_format($orderInfo->jumlah_harga_barang, 0, '.', '.') }}</label></div></td>
             </tr>
             <tr>
-                <td class="biakir"><div class="keterangan"><label for="">Biaya Kirim: </label><label for="">IDR 10.000</label></div></td>
+                <td class="biakir"><div class="keterangan"><label for="">Biaya Kirim: </label><label for="">IDR {{ number_format($orderInfo->ongkir, 0, '.', '.') }}</label></div></td>
             </tr>
             <tr class="total">
                 <td colspan="2" >
                     <div class="keterangan" style="font-weight: 500;">
+                    
                     <label for="" style="margin-right: 150px;">Total Pembayaran</label>
-                    <label for="">IDR 20.000</label>
+                    <label for="">IDR {{ number_format($orderInfo->jumlah_pembayaran_akhir, 0, '.', '.') }}</label>
                     </div>
                 </td>
             </tr>
         </table>
-        <div class="nav-bot">
-            <div class="exit">
-                <a href="pengiriman.html"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>
-            <button class="cta-submit" id="konfirmasi" href="#">Konfirmasi</button>
-        </div>
+            <input type="hidden" id="snap_token" value="{{ $orderInfo->snap_token }}">
+            <div class="nav-bot">
+                <div class="exit">
+                    <a href="pengiriman.html"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>
+                <button type="submit" class="cta-submit" id="pay-button">Konfirmasi</button>
+            </div>
     </section>
-    <div class="popup-ubah">
-        <h2>Apakah anda yakin &quest;</h2>
-        <div class="nav-bot">
-            <div class="exit">
-            <a href="pembayaran.html"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>
-            <button class="cta-submit" href="pengiriman.html">Ya</button>
-        </div>
-    </div>
-    <div class="popup-bg">
-    </div>
-    <script>
-        document.getElementById('konfirmasi').addEventListener('click',function() {
-        document.querySelector('.popup-ubah').style.display = 'block';
-        document.querySelector('.popup-ubah').style.opacity = '1';
-        document.querySelector('.popup-bg').style.display = 'block';
-        document.querySelector('.popup-bg').style.opacity = '0.2'; 
-});
-    </script>
+
+    <script src="{{
+        !config('services.midtrans.isProduction') ? 'https://app.sandbox.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}"
+        data-client-key="{{ config('services.midtrans.clientKey')
+    }}"></script>
+
+    <script type="text/javascript">
+    var payButton = document.getElementById('pay-button');
+    var snapToken = document.getElementById('snap_token').value;
+    // For example trigger on button clicked, or any time you need
+    payButton.addEventListener('click', function () {
+      snap.pay(snapToken); // Replace it with your transaction token
+    });
+  </script>
 </body>
 </html>

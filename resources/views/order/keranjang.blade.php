@@ -60,7 +60,7 @@
                     <td style="border-right: none;"></td>
                 </tr>
                     @foreach ($order->orderDetails as $detail)
-                    <form action="{{ route('data-diri') }}" method="post">
+                    <form action="{{ route('proses-keranjang-selanjutnya') }}" method="post">
                         @csrf
                     <input type="hidden" name="order_id" value="{{ $order->id }}">
                     <tr class="table-mid">

@@ -22,13 +22,13 @@ class CreateStoriesTable extends Migration
             $table->string('judul')->unique();
             $table->string('judul_paragraf_1');
             $table->text('paragraf_1');
-            $table->string('judul_paragraf_2');
-            $table->text('paragraf_2');
-            $table->string('judul_paragraf_3');
-            $table->text('paragraf_3');
+            $table->string('judul_paragraf_2')->nullable();
+            $table->text('paragraf_2')->nullable();;
+            $table->string('judul_paragraf_3')->nullable();;
+            $table->text('paragraf_3')->nullable();;
             $table->text('gambar_1');
-            $table->text('gambar_2');
-            $table->text('gambar_3');
+            $table->text('gambar_2')->nullable();;
+            $table->text('gambar_3')->nullable();;
 
             $table->foreign('admin_id')->references('id')->on('admins');
 

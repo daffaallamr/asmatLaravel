@@ -17,11 +17,13 @@ class CreateOrderDetailsTable extends Migration
             $table->id()->autoIncrement();
             $table->timestamps();
 
-            $table->unsignedBigInteger('produk_id')->index();
             $table->unsignedBigInteger('order_id')->index();
+            $table->unsignedBigInteger('produk_id')->index();
 
             $table->integer('harga');
-            $table->integer('jumlah_barang');   
+            $table->integer('berat')->default(500);
+            $table->integer('jumlah_berat');
+            $table->integer('jumlah_barang');
             $table->integer('jumlah_harga');   
 
             $table->foreign('produk_id')->references('id')->on('products')->onUpdate('cascade');

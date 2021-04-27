@@ -24,10 +24,10 @@ class CreateAddressesTable extends Migration
             $table->string('email');
             $table->string('telepon', 20);
             $table->text('alamat_lengkap');
-            $table->string('provinsi');
-            $table->string('kota');
-            $table->string('kecamatan');
-            $table->string('kode_pos', 20);
+            $table->integer('provinsi_id');
+            $table->integer('kota_id');
+            $table->integer('kecamatan_id');
+            $table->string('kode_pos');
             $table->boolean('is_main');
 
             $table->foreign('costumer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');

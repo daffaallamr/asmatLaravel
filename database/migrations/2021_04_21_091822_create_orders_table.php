@@ -17,16 +17,17 @@ class CreateOrdersTable extends Migration
             $table->id()->autoIncrement();
             $table->timestamps();
 
+            $table->string('order_unique_id')->unique()->nullable();;
             $table->unsignedBigInteger('customer_id')->index();
-            
-            $table->boolean('is_checkout');
-
-            $table->unsignedBigInteger('payment_id')->index()->nullable();
-            $table->unsignedBigInteger('shipper_id')->index()->nullable();
-
+            $table->boolean('is_checkout')->nullable();
+            $table->string('ekspedisi')->nullable();
+            $table->integer('ongkir')->nullable();;
+            $table->integer('jumlah_harga_barang')->nullable();
+            $table->integer('jumlah_pembayaran_akhir')->nullable();
             $table->boolean('is_paid')->nullable();
-            $table->integer('jumlah_pembayaran')->nullable();
             $table->dateTime('tanggal_pembayaran')->nullable();
+            $table->string('status_payment')->nullable();
+            $table->string('snap_token')->nullable();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade');
         });

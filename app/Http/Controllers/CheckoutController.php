@@ -4,12 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Customer;
+use App\Models\Donation;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CheckoutController extends Controller
 {
+
+    public function __construct()
+    {
+        \Midtrans\Config::$serverKey = config('services.midtrans.serverKey');
+        \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');
+        \Midtrans\Config::$isSanitized = config('services.midtrans.isSanitized');
+        \Midtrans\Config::$is3ds = config('services.midtrans.is3ds');
+    }
+
+
     public function get_province(){
         $curl = curl_init();
 
@@ -106,8 +120,7 @@ class CheckoutController extends Controller
     public function keranjang($orderId)
     {
         // ke keranjang
-        $orderSementara = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
-        dd($orderId);
+        $orderSementara = Order::find($orderId);
 
         return view('order.keranjang', [
             'order' => $orderSementara
@@ -117,9 +130,12 @@ class CheckoutController extends Controller
     public function afterKeranjang(Request $request)
     {
         $hasAddress = Address::where('costumer_id', Auth::id())->first();
-        $orderUser = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
+        $orderUser = Order::find($request->order_id);
 
         if (empty ($hasAddress)) {
+            $orderUser->jumlah_harga_barang = $request->jumlah_harga_barang;
+            $orderUser->save();
+
             //memanggil function get_province
             $provinsi = $this->get_province();
 
@@ -127,6 +143,7 @@ class CheckoutController extends Controller
                 'provinsi' => $provinsi
             ]);
         } else {
+
             $orderUser->jumlah_harga_barang = $request->jumlah_harga_barang;
             $orderUser->save();
 
@@ -195,21 +212,103 @@ class CheckoutController extends Controller
 
     public function storeOngkir(Request $request) {
         $orderId = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
+        $customer = Customer::find(Auth::id());
         
         $orderId->ongkir = $request->ongkir;
         $orderId->ekspedisi = $request->ekspedisi;
         $orderId->jumlah_pembayaran_akhir = $orderId->jumlah_harga_barang + $request->ongkir;
+        
+        // bagian payment
+        $uniqueId = 'ASMAT-' . rand();
 
+        $orderId->order_unique_id = $uniqueId;
+        $orderId->tanggal_pembayaran = Carbon::now();
+        $orderId->save();
+
+
+        $payload = [
+            'transaction_details' => [
+                'order_id'      => $uniqueId,
+                'gross_amount'  => $orderId->jumlah_pembayaran_akhir,
+            ],
+            'customer_details' => [
+                'first_name'    => $customer->nama_depan,
+                'last_name'     => $customer->nama_belakang,
+                'email'         => $customer->email,
+                'phone'         => $customer->telepon,
+                // 'address'       => '',
+            ],
+            // 'item_details' => [
+            //     [
+            //         'id'       => $donation->donation_type,
+            //         'price'    => $donation->amount,
+            //         'quantity' => 1,
+            //         'name'     => ucwords(str_replace('_', ' ', $donation->donation_type))
+            //     ]
+            // ]
+        ];
+
+        $snapToken = \Midtrans\Snap::getSnapToken($payload);
+        $orderId->snap_token = $snapToken;
         $orderId->save();
 
         return redirect('pembayaran');
     }   
 
     public function pembayaran () {
-        $orderInfo = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
+        $orderId = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
 
         return view('order.pembayaran', [
-            'orderInfos' => $orderInfo
+            'orderInfo' => $orderId
         ]);
+    }
+
+    public function notification(Request $request)
+    {
+        $notif = new \Midtrans\Notification();
+
+        DB::transaction(function() use($notif) {
+
+          $transaction = $notif->transaction_status;
+          $type = $notif->payment_type;
+          $orderId = $notif->order_id;
+          $fraud = $notif->fraud_status;
+          $order = Order::where('order_unique_id', $orderId)->first();
+
+          if ($transaction == 'capture') {
+            if ($type == 'credit_card') {
+
+              if($fraud == 'challenge') {
+                $order->setStatusPending();
+              } else {
+                $order->setStatusSuccess();
+              }
+
+            }
+          } elseif ($transaction == 'settlement') {
+
+            $order->setStatusSuccess();
+
+          } elseif($transaction == 'pending'){
+
+              $order->setStatusPending();
+
+          } elseif ($transaction == 'deny') {
+
+              $order->setStatusFailed();
+
+          } elseif ($transaction == 'expire') {
+
+              $order->setStatusExpired();
+
+          } elseif ($transaction == 'cancel') {
+
+              $order->setStatusFailed();
+
+          }
+
+        });
+
+        return;
     }
 }
