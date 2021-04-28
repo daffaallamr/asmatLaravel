@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asmat</title>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('js/observer.js') }}">
 </head>
 <body>
 

@@ -1,14 +1,18 @@
 <?php
 
+use App\Http\Controllers\AdminAddressController;
+use App\Http\Controllers\AdminCustomerController;
+use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminStoryController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoryController;
-use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,4 +83,17 @@ Route::get('login', [AuthController::class, 'showFormLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::get('register', [AuthController::class, 'showFormRegister'])->name('register');
 Route::post('register', [AuthController::class, 'register']);
+
+
+// Web Admin Route
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+
+Route::resource('adminCustomer', AdminCustomerController::class);
+Route::resource('adminAddress', AdminAddressController::class);
+Route::resource('adminOrder', AdminOrderController::class);
+Route::resource('adminProduct', AdminProductController::class);
+Route::resource('adminStory', AdminStoryController::class);
+Route::resource('adminUser', AdminUserController::class);
 
