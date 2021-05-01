@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('admin.layout.main')
 @section('content')
 
     <!-- Begin Page Content -->
@@ -11,53 +11,50 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <form class="forms-sample">
+                <form class="forms-sample" action="{{ URL::to('adminStory/' . $story->id) }}" method="post" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
+                  <input type="hidden" name="admin_id" value="{{ Auth::user()->id }}">
                   <div class="form-group">
-                    <label for="exampleInputName1">Judul Cerita</label>
-                    <input type="text" class="form-control" id="exampleInputName1" value="Apa Itu Asmat?">
+                    <label for="judul">Judul Cerita</label>
+                    <input type="text" class="form-control" id="judul" name="judul" value="{{ $story->judul }}">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputName1">Judul Paragraf - 1</label>
-                    <input type="text" class="form-control" id="exampleInputName1" value="Asmat adalah:">
+                    <label for="judul_paragraf_1">Judul Paragraf - 1</label>
+                    <input type="text" class="form-control" id="judul_paragraf_1" name="judul_paragraf_1" value="{{ $story->judul_paragraf_1 }}">
                   </div>
                   <div class="form-group">
-                    <label for="exampleTextarea1">Paragraf - 1</label>
-                    <textarea class="form-control" id="exampleTextarea1" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia at quis risus sed vulputate odio. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Blandit aliquam etiam erat velit scelerisque in. Mattis molestie a iaculis at erat. Sapien faucibus et molestie ac feugiat sed lectus. Leo vel orci porta non pulvinar neque laoreet. Lacus laoreet non curabitur gravida arcu ac tortor. At tempor commodo ullamcorper a. Eu nisl nunc mi ipsum faucibus vitae aliquet nec. In aliquam sem fringilla ut morbi tincidunt. Vestibulum lectus mauris ultrices eros in cursus turpis massa. Accumsan tortor posuere ac ut consequat semper. Eget magna fermentum iaculis eu. Justo donec enim diam vulputate ut pharetra sit. Suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Donec ac odio tempor orci dapibus ultrices in iaculis nunc. Et malesuada fames ac turpis egestas integer eget. Malesuada fames ac turpis egestas. Nisl condimentum id venenatis a condimentum vitae.</textarea>
+                    <label for="paragraf_1">Paragraf - 1</label>
+                    <textarea class="form-control" id="paragraf_1" rows="5" name="paragraf_1">{{ $story->paragraf_1 }}</textarea>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputName1">Judul Paragraf - 2</label>
-                    <input type="text" class="form-control" id="exampleInputName1" value="Apa Itu Asmat?">
+                    <label for="judul_paragraf_2">Judul Paragraf - 2</label>
+                    <input type="text" class="form-control" id="judul_paragraf_2" name="judul_paragraf_2" value="{{ $story->judul_paragraf_2 }}">
                   </div>
                   <div class="form-group">
-                    <label for="exampleTextarea1">Paragraf - 2</label>
-                    <textarea class="form-control" id="exampleTextarea1" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia at quis risus sed vulputate odio. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Blandit aliquam etiam erat velit scelerisque in. Mattis molestie a iaculis at erat. Sapien faucibus et molestie ac feugiat sed lectus. Leo vel orci porta non pulvinar neque laoreet. Lacus laoreet non curabitur gravida arcu ac tortor. At tempor commodo ullamcorper a. Eu nisl nunc mi ipsum faucibus vitae aliquet nec. In aliquam sem fringilla ut morbi tincidunt. Vestibulum lectus mauris ultrices eros in cursus turpis massa. Accumsan tortor posuere ac ut consequat semper. Eget magna fermentum iaculis eu. Justo donec enim diam vulputate ut pharetra sit. Suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Donec ac odio tempor orci dapibus ultrices in iaculis nunc. Et malesuada fames ac turpis egestas integer eget. Malesuada fames ac turpis egestas. Nisl condimentum id venenatis a condimentum vitae.</textarea>
+                    <label for="paragraf_2">Paragraf - 2</label>
+                    <textarea class="form-control" id="paragraf_2" rows="5" name="paragraf_2">{{ $story->paragraf_2 }}</textarea>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputName1">Judul Paragraf - 3</label>
-                    <input type="text" class="form-control" id="exampleInputName1" value="Apa Itu Asmat?">
+                    <label for="judul_paragraf_3">Judul Paragraf - 3</label>
+                    <input type="text" class="form-control" id="judul_paragraf_3" name="judul_paragraf_3" value="{{ $story->judul_paragraf_3 }}">
                   </div>
                   <div class="form-group">
-                    <label for="exampleTextarea1">Paragraf - 3</label>
-                    <textarea class="form-control" id="exampleTextarea1" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia at quis risus sed vulputate odio. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Blandit aliquam etiam erat velit scelerisque in. Mattis molestie a iaculis at erat. Sapien faucibus et molestie ac feugiat sed lectus. Leo vel orci porta non pulvinar neque laoreet. Lacus laoreet non curabitur gravida arcu ac tortor. At tempor commodo ullamcorper a. Eu nisl nunc mi ipsum faucibus vitae aliquet nec. In aliquam sem fringilla ut morbi tincidunt. Vestibulum lectus mauris ultrices eros in cursus turpis massa. Accumsan tortor posuere ac ut consequat semper. Eget magna fermentum iaculis eu. Justo donec enim diam vulputate ut pharetra sit. Suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Donec ac odio tempor orci dapibus ultrices in iaculis nunc. Et malesuada fames ac turpis egestas integer eget. Malesuada fames ac turpis egestas. Nisl condimentum id venenatis a condimentum vitae.</textarea>
+                    <label for="paragraf_3">Paragraf - 3</label>
+                    <textarea class="form-control" id="paragraf_3" rows="5" name="paragraf_3">{{ $story->paragraf_3 }}</textarea>
                   </div>
                   <div class="form-group">
                     <label>Gambar - 1 (Landscape)</label>
-                    <input type="file" name="img[]" class="file-upload-default" style="opacity: 0;">
-                    <div class="input-group col-xs-12">
-                      <input type="text" class="form-control file-upload-info" disabled">
-                      <span class="input-group-append">
-                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                      </span>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile" name="gambar_1" value="{{ $story->gambar_1 }}">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                   </div>
                   <div class="form-group">
                     <label>Gambar - 2 (Potrait dan Tidak wajib)</label>
-                    <input type="file" name="img[]" class="file-upload-default" style="opacity: 0;">
-                    <div class="input-group col-xs-12">
-                      <input type="text" class="form-control file-upload-info" disabled">
-                      <span class="input-group-append">
-                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                      </span>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile" name="gambar_2" value="{{ $story->gambar_2 }}">
+                      <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2">Edit</button>

@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index() {
         $products = Product::all()->take(3);
-        $stories = Story::all()->take(3);
+        $stories = Story::all()->take(2);
 
         $user = Auth::id();
 

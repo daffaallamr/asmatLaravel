@@ -20,7 +20,6 @@ class CreateAdminsTable extends Migration
             $table->string('nama')->unique();
             $table->string('username')->unique();
             $table->string('password');
-            $table->boolean('is_super')->default(false);
         });
     }
 

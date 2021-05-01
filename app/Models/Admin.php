@@ -14,5 +14,16 @@ class Admin extends Authenticable
 
     protected $guard = 'admin';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'nama', 'username', 'password',
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
+
+    public function stories()
+    {
+        return $this->hasMany(Story::class);
+    }
 }

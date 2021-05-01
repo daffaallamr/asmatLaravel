@@ -8,15 +8,45 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AuthController extends Controller
 {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/';
+
+    public function __construct()
+    {
+            $this->middleware('guest')->except('logout');
+            $this->middleware('guest:customer')->except('logout');
+    }
+
     public function showFormLogin()
     {
-        if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
-            //Login Success
-            return redirect()->route('home');
-        }
+        // if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
+        //     //Login Success
+        //     return redirect()->route('home');
+        // }
+        // return view('login');
+
         return view('login');
     }
  

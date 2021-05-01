@@ -57,31 +57,32 @@
                             </tr>
                         </tfoot>
                         <tbody>
+                            @foreach ($stories as $story)
                             <tr>
-                                <td>1.</td>
-                                <td>Admin Satu</td>
-                                <td>Apa Itu Asmat?</td>
-                                <td>Asmat adalah:</td>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia at quis risus sed vulputate odio. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Blandit aliquam etiam erat velit scelerisque in. Mattis molestie a iaculis at erat. Sapien faucibus et molestie ac feugiat sed lectus. Leo vel orci porta non pulvinar neque laoreet. Lacus laoreet non curabitur gravida arcu ac tortor. At tempor commodo ullamcorper a. Eu nisl nunc mi ipsum faucibus vitae aliquet nec. In aliquam sem fringilla ut morbi tincidunt. Vestibulum lectus mauris ultrices eros in cursus turpis massa. Accumsan tortor posuere ac ut consequat semper. Eget magna fermentum iaculis eu. Justo donec enim diam vulputate ut pharetra sit. Suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Donec ac odio tempor orci dapibus ultrices in iaculis nunc. Et malesuada fames ac turpis egestas integer eget. Malesuada fames ac turpis egestas. Nisl condimentum id venenatis a condimentum vitae.</td>
-                                <td>Kenapa Asmat?</td>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia at quis risus sed vulputate odio. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Blandit aliquam etiam erat velit scelerisque in. Mattis molestie a iaculis at erat. Sapien faucibus et molestie ac feugiat sed lectus. Leo vel orci porta non pulvinar neque laoreet. Lacus laoreet non curabitur gravida arcu ac tortor. At tempor commodo ullamcorper a. Eu nisl nunc mi ipsum faucibus vitae aliquet nec. In aliquam sem fringilla ut morbi tincidunt. Vestibulum lectus mauris ultrices eros in cursus turpis massa. Accumsan tortor posuere ac ut consequat semper. Eget magna fermentum iaculis eu. Justo donec enim diam vulputate ut pharetra sit. Suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Donec ac odio tempor orci dapibus ultrices in iaculis nunc. Et malesuada fames ac turpis egestas integer eget. Malesuada fames ac turpis egestas. Nisl condimentum id venenatis a condimentum vitae.</td>
-                                <td>Lalu?</td>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacinia at quis risus sed vulputate odio. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Blandit aliquam etiam erat velit scelerisque in. Mattis molestie a iaculis at erat. Sapien faucibus et molestie ac feugiat sed lectus. Leo vel orci porta non pulvinar neque laoreet. Lacus laoreet non curabitur gravida arcu ac tortor. At tempor commodo ullamcorper a. Eu nisl nunc mi ipsum faucibus vitae aliquet nec. In aliquam sem fringilla ut morbi tincidunt. Vestibulum lectus mauris ultrices eros in cursus turpis massa. Accumsan tortor posuere ac ut consequat semper. Eget magna fermentum iaculis eu. Justo donec enim diam vulputate ut pharetra sit. Suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Donec ac odio tempor orci dapibus ultrices in iaculis nunc. Et malesuada fames ac turpis egestas integer eget. Malesuada fames ac turpis egestas. Nisl condimentum id venenatis a condimentum vitae.</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $story->admin->nama }}</td>
+                                <td>{{ $story->judul }}</td>
+                                <td>{{ $story->judul_paragraf_1 }}</td>
+                                <td>{{ $story->paragraf_1 }}</td>
+                                <td>{{ $story->judul_paragraf_2 }}</td>
+                                <td>{{ $story->paragraf_2 }}</td>
+                                <td>{{ $story->judul_paragraf_3 }}</td>
+                                <td>{{ $story->paragraf_3 }}</td>
                                 <td>
-                                    <img src="{{ asset('images/cerita_2.jpg') }}" alt="" style="width: 300px; height: auto;">
+                                    <img src="{{ url('images/' . $story->gambar_1) }}" alt="" style="width: 300px; height: auto;">
                                 </td>
                                 <td>
-                                    <img src="{{ asset('images/cerita_1.jpg') }}" alt="" style="width: 200px; height: auto;">
+                                    <img src="{{ url('images/' . $story->gambar_3) }}" alt="" style="width: 200px; height: auto;">
                                 </td>
-                                <td>12/10/2021</td>
+                                <td>{{ date('d / m / Y', strtotime($story->created_at)) }}</td>
                                 <td>
                                     <span>
-                                        <a class="btn btn-success btn-circle" href="{{ URL::to('adminStory/' . 2) }}"> 
+                                        <a class="btn btn-success btn-circle" href="{{ URL::to('adminStory/' . $story->id . '/edit') }}"> 
                                             <i class="fas fa-pen"></i>
                                         </a>
                                     </span>
                                     <span>
-                                        <a class="btn btn-danger btn-circle" data-toggle="modal" data-target="#exampleModal">
+                                        <a class="btn btn-danger btn-circle" data-toggle="modal" data-target="#modalHapus{{ $story->id }}" >
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </span>
@@ -89,22 +90,28 @@
                             </tr>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalHapus{{ $story->id }}" tabindex="-1" role="dialog" aria-labelledby="#exampleModalLabel{{ $story->id }}" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus Data</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel{{ $story->id }}">Konfirmasi Hapus Data</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                         </div>
                                         <div class="modal-body text-center">
-                                            <button type="button" class="btn btn-danger">Hapus</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                            <form action="{{ route('adminStory.destroy', $story->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            {{-- End modal --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

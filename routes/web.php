@@ -4,8 +4,10 @@ use App\Http\Controllers\AdminAddressController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminCustomerController;
 use App\Http\Controllers\AdminHomeController;
+use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminRegisterController;
 use App\Http\Controllers\AdminStoryController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
@@ -15,6 +17,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoryController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +31,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Auth routes
+Auth::routes();
+
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Web publik Route
+Route::group(['middleware' => 'auth:customer'], function () {
+
+    // Profil
+    Route::get('profil-pembelian', [CustomerController::class, 'pembelian'])->name('profil-pembelian');
+    Route::get('profil-informasi-akun', [CustomerController::class, 'informasiAkun'])->name('profil-informasi-akun');
+    Route::get('profil-alamat', [CustomerController::class, 'alamat'])->name('profil-alamat');
+
+    // Order
+    Route::resource('order', OrderController::class);
+});
+
+// Auth
+Route::get('/login', [AuthController::class, 'showFormLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('register', [AuthController::class, 'showFormRegister'])->name('register');
+Route::post('register', [AuthController::class, 'register']);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
@@ -53,14 +77,8 @@ Route::get('FAQ', function() {
 // Cerita Controller
 Route::resource('cerita', StoryController::class);
 
-// Profil
-Route::get('profil-alamat', [CustomerController::class, 'alamat'])->name('profil-alamat');
-
 // Belanjan (Produk)
 Route::resource('belanja', ProductController::class);
-
-// Order
-Route::resource('order', OrderController::class);
 
 // Checkout
 Route::get('/keranjang/{orderId}', [CheckoutController::class, 'keranjang'])->name('keranjang');
@@ -74,29 +92,30 @@ Route::get('pembayaran', [CheckoutController::class, 'pembayaran'])->name('pemba
 Route::get('/kota/{id}',[CheckoutController::class, 'get_city']);
 Route::get('/kecamatan/{id}',[CheckoutController::class, 'get_kecamatan']);
 
-// Profil
-Route::get('profil-pembelian', [CustomerController::class, 'pembelian'])->name('profil-pembelian');
-Route::get('profil-informasi-akun', [CustomerController::class, 'informasiAkun'])->name('profil-informasi-akun');
-Route::get('profil-alamat', [CustomerController::class, 'alamat'])->name('profil-alamat');
 
-
-// Auth
-Route::get('login', [AuthController::class, 'showFormLogin'])->name('login');
-Route::post('login', [AuthController::class, 'login']);
-Route::get('register', [AuthController::class, 'showFormRegister'])->name('register');
-Route::post('register', [AuthController::class, 'register']);
 
 
 // Web Admin Route
-Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login');
-Route::post('admin/login', [AdminAuthController::class, 'login']);
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::view('/admin', 'admin.index')->name('admin.home');
 
-Route::get('/admin', [AdminHomeController::class, 'index'])->name('admin.home');
+    Route::resource('adminCustomer', AdminCustomerController::class);
+    Route::resource('adminAddress', AdminAddressController::class);
+    Route::resource('adminOrder', AdminOrderController::class);
+    Route::resource('adminProduct', AdminProductController::class);
+    Route::resource('adminStory', AdminStoryController::class);
+    Route::resource('adminUser', AdminUserController::class);
+    
+    // Route::get('/logout/admin', [AdminLoginController::class, 'logoutAdmin'])->name('adminLogout');
+});
 
-Route::resource('adminCustomer', AdminCustomerController::class);
-Route::resource('adminAddress', AdminAddressController::class);
-Route::resource('adminOrder', AdminOrderController::class);
-Route::resource('adminProduct', AdminProductController::class);
-Route::resource('adminStory', AdminStoryController::class);
-Route::resource('adminUser', AdminUserController::class);
+// Admin login
+Route::get('/login/admin', [AdminLoginController::class, 'showAdminLoginForm'])->name('admin.login');
+Route::post('/login/admin', [AdminLoginController::class, 'adminLogin'])->name('adminLogin');
+
+Route::get('/register/admin', [AdminRegisterController::class, 'showAdminRegisterForm'])->name('admin.register');
+Route::post('/register/admin', [AdminRegisterController::class, 'createAdmin'])->name('adminRegister');
+
+Route::get('/logout/admin', [AdminLoginController::class,'logout'])->name('adminLogout');
+
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Story;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminStoryController extends Controller
 {
@@ -14,7 +15,10 @@ class AdminStoryController extends Controller
      */
     public function index()
     {
-        return view('admin.story.index');
+        $stories = Story::all();
+        return view('admin.story.index', [
+            'stories' => $stories,
+        ]);
     }
 
     /**
@@ -35,7 +39,30 @@ class AdminStoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $imageName_1 = Auth::id() . '_' . time() . '_' . $request->gambar_1->getClientOriginalName();
+        $imageName_2 = Auth::id() . '_' . time() . '_' . $request->gambar_2->getClientOriginalName();
+        $request->gambar_1->move(public_path('images'), $imageName_1); 
+        $request->gambar_2->move(public_path('images'), $imageName_2);
+
+        $story = new Story;
+        $story->admin_id = $request->admin_id;
+
+        $story->judul = $request->judul;
+        $story->judul_paragraf_1 = $request->judul_paragraf_1;
+        $story->paragraf_1 = $request->paragraf_1;
+
+        $story->judul_paragraf_2 = $request->judul_paragraf_2;
+        $story->paragraf_2 = $request->paragraf_2;
+
+        $story->judul_paragraf_3 = $request->judul_paragraf_3;
+        $story->paragraf_3 = $request->paragraf_3;
+
+        $story->gambar_1 = $imageName_1;
+        $story->gambar_2 = $imageName_1;
+        $story->gambar_3 = $imageName_2;
+        $story->save();
+
+        return redirect()->route('adminStory.index');
     }
 
     /**
@@ -46,9 +73,7 @@ class AdminStoryController extends Controller
      */
     public function show($id)
     {
-        return view('admin.story.editData', [
-            'story' => Story::findOrFail($id)
-        ]);
+        // 
     }
 
     /**
@@ -59,7 +84,9 @@ class AdminStoryController extends Controller
      */
     public function edit($id)
     {
-        // 
+        return view('admin.story.editData', [
+            'story' => Story::findOrFail($id)
+        ]);
     }
 
     /**
@@ -71,7 +98,30 @@ class AdminStoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $imageName_1 = Auth::id() . '_' . time() . '_' . $request->gambar_1->getClientOriginalName();
+        $imageName_2 = Auth::id() . '_' . time() . '_' . $request->gambar_2->getClientOriginalName();
+        $request->gambar_1->move(public_path('images'), $imageName_1); 
+        $request->gambar_2->move(public_path('images'), $imageName_2);
+
+        $story = Story::where('id', $id)->first();
+        $story->admin_id = $request->admin_id;
+
+        $story->judul = $request->judul;
+        $story->judul_paragraf_1 = $request->judul_paragraf_1;
+        $story->paragraf_1 = $request->paragraf_1;
+
+        $story->judul_paragraf_2 = $request->judul_paragraf_2;
+        $story->paragraf_2 = $request->paragraf_2;
+
+        $story->judul_paragraf_3 = $request->judul_paragraf_3;
+        $story->paragraf_3 = $request->paragraf_3;
+
+        $story->gambar_1 = $imageName_1;
+        $story->gambar_2 = $imageName_1;
+        $story->gambar_3 = $imageName_2;
+        $story->save();
+
+        return redirect()->route('adminStory.index');
     }
 
     /**
@@ -82,6 +132,9 @@ class AdminStoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Story::where('id', $id)->first();
+        $product->delete();
+
+        return redirect()->route('adminStory.index');
     }
 }

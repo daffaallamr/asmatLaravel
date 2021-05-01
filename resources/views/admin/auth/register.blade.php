@@ -42,12 +42,16 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900">Selamat Datang!</h1>
+                                        <h1 class="h4 text-gray-900">Selamat Mendaftar!</h1>
                                         <h1 class="h4 text-gray-900 mb-5">Admin Asmat</h1>
                                     </div>
                                     <br>
-                                    <form action="{{ route('adminLogin') }}" method="post">
+                                    <form action="{{ route('adminRegister') }}" method="post">
                                         @csrf
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                                name="nama" placeholder="nama" value="{{ old('nama') }}">
+                                        </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 name="username" placeholder="Username" value="{{ old('username') }}">
@@ -55,6 +59,10 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" name="password" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" name="password_confirmation" placeholder="Password">
                                         </div>
                                         @if ($errors->any())
                                             <p class="error">{{ $errors->first() }}</p> 
@@ -70,7 +78,7 @@
                                         <hr>
                                         <br>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
+                                            Daftar
                                         </button>
                                     </form>
                                 </div>
