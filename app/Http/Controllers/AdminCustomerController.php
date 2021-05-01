@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminCustomerController extends Controller
 {
@@ -14,7 +16,10 @@ class AdminCustomerController extends Controller
      */
     public function index()
     {
-        return view('admin.customer.index');
+        $customer = Customer::all();
+        return view('admin.customer.index', [
+            'customers' => $customer
+        ]);
     }
 
     /**
@@ -35,7 +40,15 @@ class AdminCustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new Customer;
+        $user->nama_depan = $request->nama_depan;
+        $user->nama_belakang = $request->nama_belakang;
+        $user->email = strtolower($request->email);
+        $user->telepon = $request->telepon;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('adminCustomer.index');
     }
 
     /**
@@ -46,9 +59,7 @@ class AdminCustomerController extends Controller
      */
     public function show($id)
     {
-        return view('admin.customer.editData', [
-            'customer' => Customer::findOrFail($id)
-        ]);
+        // 
     }
 
     /**
@@ -59,7 +70,9 @@ class AdminCustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.customer.editData', [
+            'customer' => Customer::findOrFail($id)
+        ]);
     }
 
     /**
@@ -71,7 +84,15 @@ class AdminCustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Customer::where('id', $id)->first();
+        $user->nama_depan = $request->nama_depan;
+        $user->nama_belakang = $request->nama_belakang;
+        $user->email = strtolower($request->email);
+        $user->telepon = $request->telepon;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('adminCustomer.index');
     }
 
     /**
@@ -82,6 +103,10 @@ class AdminCustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = Customer::where('id', $id)->first();
+        $customer->orders()->delete();
+        $customer->delete();
+
+        return redirect()->route('adminCustomer.index');
     }
 }

@@ -43,20 +43,21 @@
                             </tr>
                         </tfoot>
                         <tbody>
+                            @foreach ($customers as $customer)
                             <tr>
-                                <td>1.</td>
-                                <td>Ari</td>
-                                <td>Kurniawan Rosidiq</td>
-                                <td>arikurniawan@gmail.com</td>
-                                <td>081999000888</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $customer->nama_depan}}</td>
+                                <td>{{ $customer->nama_belakang}}</td>
+                                <td>{{ $customer->email}}</td>
+                                <td>{{ $customer->telepon}}</td>
                                 <td>
                                     <span>
-                                        <a class="btn btn-success btn-circle" href="{{ URL::to('adminCustomer/' . 1) }}">
+                                        <a class="btn btn-success btn-circle" href="{{ URL::to('adminCustomer/' . $customer->id . '/edit') }}">
                                             <i class="fas fa-pen"></i>
                                         </a>
                                     </span>
                                     <span>
-                                        <a class="btn btn-danger btn-circle" data-toggle="modal" data-target="#exampleModal">
+                                        <a class="btn btn-danger btn-circle" data-toggle="modal" data-target="#modalHapus{{ $customer->id }}">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </span>
@@ -64,60 +65,26 @@
                             </tr>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalHapus{{ $customer->id }}" tabindex="-1" role="dialog" aria-labelledby="#exampleModalLabel{{ $customer->id }}" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus Data</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel{{ $customer->id }}">Konfirmasi Hapus Data</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                         </div>
                                         <div class="modal-body text-center">
-                                            <button type="button" class="btn btn-danger">Hapus</button>
+                                            <form action="{{ route('adminCustomer.destroy', $customer->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submitusto" class="btn btn-danger">Hapus</button>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <tr>
-                                <td>3.</td>
-                                <td>Daffa</td>
-                                <td>Allam Renanda</td></td>
-                                <td>alamatpalsu@gmail.com</td>
-                                <td>081999000888</td>
-                                <td>
-                                    <span>
-                                        <a class="btn btn-success btn-circle" href="tambah_produk.html">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
-                                    </span>
-                                    <span>
-                                        <a class="btn btn-danger btn-circle" href="tambah_produk.html">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Nana</td>
-                                <td>Salahantun</td>
-                                <td>alamatbenar@gmail.com</td>
-                                <td>081999000888</td>
-                                <td>
-                                    <span>
-                                        <a class="btn btn-success btn-circle" href="#">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
-                                    </span>
-                                    <span>
-                                        <a class="btn btn-danger btn-circle" href="tambah_produk.html">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </span>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

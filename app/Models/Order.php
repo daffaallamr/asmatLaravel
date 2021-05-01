@@ -18,7 +18,7 @@ class Order extends Model
 
     // customer_id
     public function customer() {
-        return $this->hasOne(Customer::class);
+        return $this->hasOne(Customer::class, 'id', 'id');
     }
 
     // shipper_id

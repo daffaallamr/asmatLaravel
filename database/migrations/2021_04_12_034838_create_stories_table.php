@@ -30,7 +30,7 @@ class CreateStoriesTable extends Migration
             $table->text('gambar_2')->nullable();;
             $table->text('gambar_3')->nullable();;
 
-            $table->foreign('admin_id')->references('id')->on('admins');
+            $table->foreign('admin_id')->references('id')->on('admins')->onUpdate('cascade');
 
         });
     }

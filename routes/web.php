@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminAddressController;
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminCustomerController;
+use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminStoryController;
@@ -86,9 +88,10 @@ Route::post('register', [AuthController::class, 'register']);
 
 
 // Web Admin Route
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login');
+Route::post('admin/login', [AdminAuthController::class, 'login']);
+
+Route::get('/admin', [AdminHomeController::class, 'index'])->name('admin.home');
 
 Route::resource('adminCustomer', AdminCustomerController::class);
 Route::resource('adminAddress', AdminAddressController::class);

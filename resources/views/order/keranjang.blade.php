@@ -66,7 +66,7 @@
                     <tr class="table-mid">
                         <td>
                             <div class="produk">
-                                <img src="{{ Storage::url($detail->product->gambar) }}" alt="">
+                                <img src="{{ asset('images/' . $detail->product->gambar) }}" alt="">
                                 <label for="">{{ $detail->product->nama }}</label>
                             </div>
                         </td>

@@ -14,7 +14,10 @@ class AdminAddressController extends Controller
      */
     public function index()
     {
-        return view('admin.address.index');
+        $address = Address::all();
+        return view('admin.address.index', [
+            'addresses' => $address
+        ]);
     }
 
     /**
@@ -46,10 +49,7 @@ class AdminAddressController extends Controller
      */
     public function show($id)
     {
-        return view('admin.address.editData', [
-            'address' => Address::findOrFail($id)
-            
-        ]);
+        //
     }
 
     /**
@@ -60,7 +60,9 @@ class AdminAddressController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.address.editData', [
+            'address' => Address::findOrFail($id)
+        ]);
     }
 
     /**
@@ -72,7 +74,19 @@ class AdminAddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $address = Address::where('id', $id)->first();
+        $address->nama_depan = $request->nama_depan;
+        $address->nama_belakang = $request->nama_belakang;
+        $address->email = $request->email;
+        $address->telepon = $request->telepon;
+        $address->alamat_lengkap = $request->alamat_lengkap;
+        $address->provinsi_id = $request->provinsi_id;
+        $address->kota_id = $request->kota_id;
+        $address->kecamatan_id = $request->kecamatan_id;
+        $address->kode_pos = $request->kode_pos;
+        $address->save();
+
+        return redirect()->route('adminAddress.index');
     }
 
     /**

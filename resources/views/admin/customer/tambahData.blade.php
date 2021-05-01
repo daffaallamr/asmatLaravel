@@ -11,30 +11,31 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <form class="forms-sample">
+                <form class="forms-sample" action="{{ route('adminCustomer.store') }}" method="post">
+                  @csrf
                   <div class="form-group">
-                    <label for="exampleInputName1">Nama Depan</label>
-                    <input type="text" class="form-control" id="exampleInputName1">
+                    <label for="nama_depan">Nama Depan</label>
+                    <input type="text" class="form-control" id="nama_depan" name="nama_depan">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputName1">Nama Belakang</label>
-                    <input type="text" class="form-control" id="exampleInputName1">
+                    <label for="nama_belakang">Nama Belakang</label>
+                    <input type="text" class="form-control" id="nama_belakang" name="nama_belakang">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail3">Email</label>
-                    <input type="text" class="form-control" id="exampleInputEmail3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail3">Telepon</label>
-                    <input type="text" class="form-control" id="exampleInputEmail3">
+                    <label for="telepon">Telepon</label>
+                    <input type="number" class="form-control" id="telepon" name="telepon">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail3">Password</label>
-                    <input type="password" class="form-control" id="exampleInputEmail3">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail3">Konfirmasi Password</label>
-                    <input type="password" class="form-control" id="exampleInputEmail3">
+                    <label for="konfirmasi_password">Konfirmasi Password</label>
+                    <input type="password" class="form-control" id="konfirmasi_password" name="password_confirmation">
                   </div>
                   <button type="submit" class="btn btn-primary mr-2">Tambah</button>
                 </form>

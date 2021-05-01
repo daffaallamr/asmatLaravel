@@ -63,24 +63,36 @@
                             </tr>
                         </tfoot>
                         <tbody>
+                            @foreach ($orders as $order)
                             <tr>
-                                <td>1.</td>
-                                <td>ASMT-00001</td>
-                                <td>Ari Kurniawan</td>
-                                <td>20 / 12 / 2020</td>
-                                <td>Daffa Allam Renanda</td>
-                                <td>alamatbenar@gmail.com</td>
-                                <td>085222111333</td>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-                                <td>Jawa Timur</td>
-                                <td>Kota Surabaya</td>
-                                <td>Jambangan</td>
-                                <td>64122</td>
-                                <td>JNE Reguler</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $order->order_unique_id }}</td>
+                                <td>{{ $order->customer->nama_depan . ' ' .  $order->customer->nama_belakang }}</td>
+                                <td>{{ date('d / m / Y', strtotime($order->created_at)) }}</td>
+                            @if ($order->customer->addresses[0]->is_main == 1)
+                                <td>{{ $order->customer->addresses[0]->nama_depan . ' ' .  $order->customer->addresses[0]->nama_belakang }}</td>
+                                <td>{{ $order->customer->addresses[0]->email }}</td>
+                                <td>{{ $order->customer->addresses[0]->telepon }}</td>
+                                <td>{{ $order->customer->addresses[0]->alamat_lengkap }}</td>
+                                <td>{{ $order->customer->addresses[0]->provinsi_id }}</td>
+                                <td>{{ $order->customer->addresses[0]->kota_id }}</td>
+                                <td>{{ $order->customer->addresses[0]->kecamatan_id }}</td>
+                                <td>{{ $order->customer->addresses[0]->kode_pos }}</td>
+                            @else
+                            <td>{{ $order->customer->addresses[1]->nama_depan . ' ' .  $order->customer->addresses[1]->nama_belakang }}</td>
+                            <td>{{ $order->customer->addresses[1]->email }}</td>
+                            <td>{{ $order->customer->addresses[1]->telepon }}</td>
+                            <td>{{ $order->customer->addresses[1]->alamat_lengkap }}</td>
+                            <td>{{ $order->customer->addresses[1]->provinsi_id }}</td>
+                            <td>{{ $order->customer->addresses[1]->kota_id }}</td>
+                            <td>{{ $order->customer->addresses[1]->kecamatan_id }}</td>
+                            <td>{{ $order->customer->addresses[1]->kode_pos }}</td>
+                            @endif
+                                <td>{{ strtoupper($order->ekspedisi) }}</td>
                                 <td>180512140022</td>
-                                <td>Dibayar</td>
+                                <td>{{ $order->status_payment }}</td>
                                 <td>Indomaret</td>
-                                <td>IDR 50.000</td>
+                                <td>IDR {{ number_format($order->jumlah_pembayaran_akhir, 0, '.', '.') }}</td>
                                 <td>21 / 12 / 2020</td>
                                 <td>Diterima</td>
                                 <td>Dikirim</td>
@@ -92,6 +104,7 @@
                                     </span>
                                 </td>
                             </tr>
+                            @endforeach
                             <tr>
                                 <td>2.</td>
                                 <td>ASMT-00002</td>

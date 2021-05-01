@@ -132,7 +132,7 @@
                     // jika ada kita looping dengan each
                     $.each(data, function(key, value){
                         // perhtikan dimana kita akan menampilkan data select nya, di sini saya memberi name select kota adalah kota_id
-                        $('select[name="kecamatan_id"]').append('<option value="'+ value.subdistrict_id +'" namakota="'+ value.type +' ' +value.subdistrict_name+ '">' + value.type + ' ' + value.subdistrict_name + '</option>');
+                        $('select[name="kecamatan_id"]').append('<option value="'+ value.subdistrict_id +'" namakecamatan="' +value.subdistrict_name+ '">' + 'Kecamatan' + ' ' + value.subdistrict_name + '</option>');
                     });
                 }
             });

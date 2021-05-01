@@ -26,7 +26,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('jumlah_barang');
             $table->integer('jumlah_harga');   
 
-            $table->foreign('produk_id')->references('id')->on('products')->onUpdate('cascade');
+            $table->foreign('produk_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
         });
     }

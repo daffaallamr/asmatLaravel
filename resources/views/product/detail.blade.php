@@ -4,7 +4,7 @@
 @include('layouts.navbar')
 <div class="detail-barang">
     <div class="showcase">
-        <img src="{{ Storage::url($product->gambar) }}" alt="">
+        <img src="{{ asset('images/' . $product->gambar) }}" alt="">
     </div>
     <div class="detail">
         <div class="top">
