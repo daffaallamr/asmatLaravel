@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminAddressController;
-use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminCustomerController;
-use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
@@ -35,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 // Home
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home-customer');
 
 // Web publik Route
 Route::group(['middleware' => 'auth:customer'], function () {
@@ -49,15 +47,14 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::resource('order', OrderController::class);
 });
 
-// Auth
-Route::get('/login', [AuthController::class, 'showFormLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::get('register', [AuthController::class, 'showFormRegister'])->name('register');
+// Customer Auth
+Route::get('login', [AuthController::class, 'showFormLogin'])->name('login-customer');
+Route::post('login', [AuthController::class, 'login']);
+Route::get('register', [AuthController::class, 'showFormRegister'])->name('register-customer');
 Route::post('register', [AuthController::class, 'register']);
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-});
+Route::get('logout', [AuthController::class,'logout'])->name('logout-customer');
+
 
 // Tentang Kami
 Route::get('tentang-kami', function() {
@@ -81,7 +78,7 @@ Route::resource('cerita', StoryController::class);
 Route::resource('belanja', ProductController::class);
 
 // Checkout
-Route::get('/keranjang/{orderId}', [CheckoutController::class, 'keranjang'])->name('keranjang');
+Route::get('keranjang/{orderId}', [CheckoutController::class, 'keranjang'])->name('keranjang');
 Route::post('proses-keranjang-selanjutnya', [CheckoutController::class, 'afterKeranjang'])->name('proses-keranjang-selanjutnya');
 Route::post('simpan-data-diri', [CheckoutController::class, 'storeDataDiri'])->name('simpan-data-diri');
 Route::get('pilih-kurir', [CheckoutController::class, 'pilihKurir'])->name('pilih-kurir');
@@ -89,10 +86,11 @@ Route::post('ongkir', [CheckoutController::class, 'storeOngkir'])->name('ongkir'
 Route::get('pembayaran', [CheckoutController::class, 'pembayaran'])->name('pembayaran');
 
 // Ongkir API
-Route::get('/kota/{id}',[CheckoutController::class, 'get_city']);
-Route::get('/kecamatan/{id}',[CheckoutController::class, 'get_kecamatan']);
+Route::get('kota/{id}',[CheckoutController::class, 'get_city']);
+Route::get('kecamatan/{id}',[CheckoutController::class, 'get_kecamatan']);
 
 
+// -----------------------------------------------------------------------------
 
 
 // Web Admin Route
@@ -110,12 +108,12 @@ Route::group(['middleware' => 'auth:admin'], function () {
 });
 
 // Admin login
-Route::get('/login/admin', [AdminLoginController::class, 'showAdminLoginForm'])->name('admin.login');
-Route::post('/login/admin', [AdminLoginController::class, 'adminLogin'])->name('adminLogin');
+Route::get('login/admin', [AdminLoginController::class, 'showAdminLoginForm'])->name('login-admin');
+Route::post('login/admin', [AdminLoginController::class, 'adminLogin']);
 
-Route::get('/register/admin', [AdminRegisterController::class, 'showAdminRegisterForm'])->name('admin.register');
-Route::post('/register/admin', [AdminRegisterController::class, 'createAdmin'])->name('adminRegister');
+Route::get('register/admin', [AdminRegisterController::class, 'showAdminRegisterForm'])->name('register-admin');
+Route::post('register/admin', [AdminRegisterController::class, 'createAdmin']);
 
-Route::get('/logout/admin', [AdminLoginController::class,'logout'])->name('adminLogout');
+Route::get('logout/admin', [AdminLoginController::class,'logout'])->name('logout-admin');
 
 

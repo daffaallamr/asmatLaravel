@@ -12,7 +12,7 @@
             <h2>Mulai <br> mendaftar&excl;</h2>
         </div>   
         <div class="container-reg">
-            <form action="{{ route('register') }}" method="post">
+            <form action="{{ route('register-customer') }}" method="post">
                 @csrf
                 <div class="nama-depan">
                     <label for="">Nama depan</label> <br>
@@ -42,7 +42,7 @@
                     <p class="error">{{ $errors->first() }}</p> 
                 @endif
                 <div class="exit">
-                    <a href="{{ route('login') }}"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Batal</span></a> 
+                    <a href="{{ route('login-customer') }}"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Batal</span></a> 
                     <input type="submit" class="cta-submit" value="Daftar"></div>
                 </div>
             </form>

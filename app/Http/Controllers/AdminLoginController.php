@@ -51,7 +51,7 @@ class AdminLoginController extends Controller
     public function adminLogin(Request $request)
     {
         $rules = [
-            'username'                 => 'required',
+            'username'              => 'required',
             'password'              => 'required'
         ];
  
@@ -90,6 +90,7 @@ class AdminLoginController extends Controller
     public function logout(Request $request)
     {
         $this->performLogout($request);
-        return redirect()->route('admin.login');
+        Auth::guard('admin')->logout();
+        return redirect()->route('login-admin');
     }
 }

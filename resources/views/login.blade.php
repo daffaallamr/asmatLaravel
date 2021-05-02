@@ -12,9 +12,9 @@
                 <img src="images/logo-footer.png" alt="">
                 <h2>Selamat datang di Asmat&excl;</h2>
             </div>
-            <form action="{{ route('login') }}" method="post">
+            <form action="{{ route('login-customer') }}" method="post">
                 @csrf
-                    <label for="" >Email</label>
+                <label for="" >Email</label>
                     <input type="text" name="email" value="{{ old('email') }}">
                 <label for="">Kata Sandi</label>
                     <input type="password" name="password"> 
@@ -22,7 +22,7 @@
                     <p class="error">{{ $errors->first() }}</p> 
                 @endif
                 <button type="submit" class="cta-submit">Masuk</button>
-                <p>Belum punya akun? <a href="{{ route('register') }}"><strong> <span class="underline">Daftar sekarang</span> </strong></a></p>
+                <p>Belum punya akun? <a href="{{ route('register-customer') }}"><strong> <span class="underline">Daftar sekarang</span> </strong></a></p>
             </form>
 
         </div>

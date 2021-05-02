@@ -4,21 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Story;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
     public function index() {
-        $products = Product::all()->take(3);
-        $stories = Story::all()->take(2);
+        $productsCache = Cache::remember('home-cache-product', 10, function() {
+            return Product::all()->sortDesc()->take(3);
+        });
 
-        $user = Auth::id();
+        $storiesCache = Cache::remember('home-cache-story', 10, function() {
+            return Story::all()->sortDesc()->take(2);
+        });
 
         return view('index', [
-            'products' => $products,
-            'stories' => $stories,
-            'user' => $user,
+            'products' => $productsCache,
+            'stories' => $storiesCache,
         ]);
     }
 }

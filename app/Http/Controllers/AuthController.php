@@ -41,12 +41,6 @@ class AuthController extends Controller
 
     public function showFormLogin()
     {
-        // if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
-        //     //Login Success
-        //     return redirect()->route('home');
-        // }
-        // return view('login');
-
         return view('login');
     }
  
@@ -54,13 +48,14 @@ class AuthController extends Controller
     {
         $rules = [
             'email'                 => 'required|email',
-            'password'              => 'required'
+            'password'              => 'required|min:8'
         ];
  
         $messages = [
             'email.required'        => 'Email tidak boleh kosong',
             'email.email'           => 'Email tidak valid',
             'password.required'     => 'Kata sandi tidak boleh kosong',
+            'password.min'          => 'Kata sandi kurang dari 8 karakter',
         ];
  
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -77,11 +72,12 @@ class AuthController extends Controller
             'password'  => $request->input('password'),
         ];
  
-        Auth::attempt($data);
+        Auth::guard('customer')->attempt($data);
  
-        if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
+        if (Auth::check()) {
+            // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
-            return redirect()->route('home');
+            return redirect()->route('home-customer');
  
         } else { // false
  
@@ -99,25 +95,29 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $rules = [
-            'nama_depan'            => 'required|min:3|max:15',
-            'nama_belakang'         => 'required|min:3|max:30',
+            'nama_depan'            => 'required|min:2|max:15',
+            'nama_belakang'         => 'required|min:2|max:30',
             'email'                 => 'required|email|unique:customers,email',
-            'telepon'               => 'required|min:10|max:20',
-            'password'              => 'required|confirmed'
+            'telepon'               => 'required|min:9|max:20',
+            'password'              => 'required|confirmed|min:8'
         ];
  
         $messages = [
             'nama_depan.required'   => 'Nama Depan wajib diisi',
-            'nama_depan.min'        => 'Nama Depan minimal 3 karakter',
+            'nama_depan.min'        => 'Nama Depan minimal 2 karakter',
             'nama_depan.max'        => 'Nama Depan maksimal 15 karakter',
-            'nama_belakang.required'=> 'Nama Belakang wajib diisi!',
-            'nama_belakang.min'     => 'Nama Belakang minimal 3 karakter',
+            'nama_belakang.required'=> 'Nama Belakang wajib diisi',
+            'nama_belakang.min'     => 'Nama Belakang minimal 2 karakter',
             'nama_belakang.max'     => 'Nama Belakang maksimal 30 karakter',
             'email.required'        => 'Email wajib diisi',
             'email.email'           => 'Email tidak valid',
             'email.unique'          => 'Email sudah terdaftar',
-            'password.required'     => 'Password wajib diisi',
-            'password.confirmed'    => 'Password tidak sama dengan konfirmasi password'
+            'telepon.required'      => 'Telepon wajib diisi',
+            'telepon.min'           => 'Telepon minimal 9 nomer',
+            'telepon.max'           => 'Telepon maksimal 20 nomer',
+            'password.required'     => 'Kata sandi wajib diisi',
+            'password.min'          => 'Kata sandi  minimal 8 karakter',
+            'password.confirmed'    => 'Kata sandi tidak sama dengan konfirmasi kata sandi'
         ];
  
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -137,7 +137,7 @@ class AuthController extends Controller
  
         if($simpan){
             // Session::flash('success', 'Register berhasil! Silahkan login untuk mengakses data');
-            return redirect()->route('login');
+            return redirect()->route('login-customer');
         } else {
             // Session::flash('errors', ['' => 'Register gagal! Silahkan ulangi beberapa saat lagi']);
             return redirect()->route('register');
@@ -146,7 +146,7 @@ class AuthController extends Controller
  
     public function logout()
     {
-        Auth::logout(); // menghapus session yang aktif
-        return redirect()->route('login');
+        Auth::guard('customer')->logout(); // menghapus session yang aktif
+        return redirect()->route('login-customer');
     }
 }
