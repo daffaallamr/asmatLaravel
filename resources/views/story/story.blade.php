@@ -7,7 +7,7 @@
     <div class="container">
         @foreach ($stories as $story)
         <div class="card-cerita">
-            <img src="{{ Storage::url($story->gambar_1) }}" alt="">
+            <img src="{{ asset('images/' . $story->gambar_1) }}" alt="">
             <p>{{ $story->judul }}</p>
             <div class="bot-card">
             <label for="">{{ date('d / m / Y', strtotime($story->created_at)) }}</label>
@@ -17,16 +17,7 @@
     </div>
 </div>    
 <div class="nav-baca-footer">
-    <div class="left">
-        <a href="our-story-2.html">&lt;Sebelumnya</a>
-    </div>
-    <div class="center">
-        <a href="our-story.html" class="underline">1</a>
-        <a href="our-story-2.html">2</a>
-    </div>
-    <div class="right">
-        <a href="our-story-2.html">Sesudahnya&gt;</a>
-    </div>
+    {{ $stories->links() }}
 </div>
 @include('layouts.footer')
 @endsection

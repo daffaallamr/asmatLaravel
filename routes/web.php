@@ -12,8 +12,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\StoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,21 +30,39 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth routes
-Auth::routes();
+// Auth::routes();
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home-customer');
 
-// Web publik Route
+// Web publik Route Customer middleware
 Route::group(['middleware' => 'auth:customer'], function () {
 
     // Profil
     Route::get('profil-pembelian', [CustomerController::class, 'pembelian'])->name('profil-pembelian');
     Route::get('profil-informasi-akun', [CustomerController::class, 'informasiAkun'])->name('profil-informasi-akun');
     Route::get('profil-alamat', [CustomerController::class, 'alamat'])->name('profil-alamat');
+    
+    // Checkout
+    Route::post('storeOrder', [CheckoutController::class, 'storeOrder'])->name('storeOrder');
+    Route::get('keranjang', [CheckoutController::class, 'keranjang'])->name('keranjang');
+    Route::post('hapusKeranjang', [CheckoutController::class, 'hapusKeranjang'])->name('hapusKeranjang');
+    Route::post('simpanKeranjang', [CheckoutController::class, 'simpanKeranjang'])->name('simpanKeranjang');
 
-    // Order
-    Route::resource('order', OrderController::class);
+    Route::post('data-diri', [CheckoutController::class, 'dataDiri'])->name('data-diri');
+    Route::post('storeDataDiri', [CheckoutController::class, 'storeDataDiri'])->name('storeDataDiri');
+    Route::get('pilih-kurir', [CheckoutController::class, 'pilihKurir'])->name('pilih-kurir');
+    Route::post('ongkir', [CheckoutController::class, 'storeOngkir'])->name('ongkir');
+    Route::get('pembayaran', [CheckoutController::class, 'pembayaran'])->name('pembayaran');
+
+    // Raja Ongkir API
+    Route::get('nama-provinsi/{id}',[RajaOngkirController::class, 'get_province_name']);
+    Route::get('nama-kota/{id_kota}/{id_provinsi}',[RajaOngkirController::class, 'get_city_name']);
+    Route::get('nama-kecamatan/{id_kecamatan}/{id_kota}',[RajaOngkirController::class, 'get_kecamatan_name']);
+
+    Route::get('kota/{id}',[RajaOngkirController::class, 'get_city']);
+    Route::get('kecamatan/{id}',[RajaOngkirController::class, 'get_kecamatan']);
+
 });
 
 // Customer Auth
@@ -72,22 +90,11 @@ Route::get('FAQ', function() {
 })->name('FAQ');
 
 // Cerita Controller
-Route::resource('cerita', StoryController::class);
+Route::resource('cerita', StoryController::class)->only(['index', 'show']);
 
 // Belanjan (Produk)
-Route::resource('belanja', ProductController::class);
+Route::resource('belanja', ProductController::class)->only(['index', 'show']);
 
-// Checkout
-Route::get('keranjang/{orderId}', [CheckoutController::class, 'keranjang'])->name('keranjang');
-Route::post('proses-keranjang-selanjutnya', [CheckoutController::class, 'afterKeranjang'])->name('proses-keranjang-selanjutnya');
-Route::post('simpan-data-diri', [CheckoutController::class, 'storeDataDiri'])->name('simpan-data-diri');
-Route::get('pilih-kurir', [CheckoutController::class, 'pilihKurir'])->name('pilih-kurir');
-Route::post('ongkir', [CheckoutController::class, 'storeOngkir'])->name('ongkir');
-Route::get('pembayaran', [CheckoutController::class, 'pembayaran'])->name('pembayaran');
-
-// Ongkir API
-Route::get('kota/{id}',[CheckoutController::class, 'get_city']);
-Route::get('kecamatan/{id}',[CheckoutController::class, 'get_kecamatan']);
 
 
 // -----------------------------------------------------------------------------

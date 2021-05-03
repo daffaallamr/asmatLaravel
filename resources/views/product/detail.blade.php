@@ -13,9 +13,9 @@
             <p>{{ $product->deskripsi }}</p>
         </div>
         <div class="bot">
-            <form action="{{ route('belanja.store') }}" method="POST">
+            <form action="{{ route('storeOrder') }}" method="POST">
             @csrf
-                <input type="hidden" name="customer_id" value="{{ Auth::id() }}">
+                <input type="hidden" name="customer_id" value="{{ Auth('customer')->id() }}">
 
                 <input type="hidden" name="produk_id" value="{{ $product->id }}">
                 <input type="hidden" name="harga" value="{{ $product->harga}}">

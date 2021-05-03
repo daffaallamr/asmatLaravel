@@ -13,7 +13,7 @@
                         <li class="profile"><a href="{{ route('login-customer') }}">Masuk</a></li>
                     @endif
                     <li class="belanja"><a href="{{ route('belanja.index') }}">Belanja</a></li>
-                    <li class="sekarang"><a href="">Keranjang ({{ $isiKeranjang }})</a></li>
+                    <li class="sekarang"><a href="">Keranjang (0)</a></li>
                 </ul>
         </div>
         <div class="container-mobile">

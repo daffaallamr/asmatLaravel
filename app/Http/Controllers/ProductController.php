@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\OrderDetail;
 use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -17,76 +14,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view ('product.belanja', ['products' => Product::all()]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->middleware('auth');
-
-        $orderSementara = new Order();
-        $orderDetail = new OrderDetail();
-
-        $hasData = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
-
-        if (!empty ($hasData)) {
-            $orderSementara = $hasData;
-
-            // order detail yang sudah ada
-            $orderDetailLama = OrderDetail::where('order_id', $orderSementara->id)->where('produk_id', $request->produk_id)->first();
-
-            if (empty($orderDetailLama)) {
-                $newOrderDetail = new OrderDetail;
-
-                $newOrderDetail->order_id = $orderSementara->id;
-                $newOrderDetail->produk_id = $request->produk_id;
-                $newOrderDetail->harga = $request->harga;
-                $newOrderDetail->berat = $request->berat;
-                $newOrderDetail->jumlah_berat = $request->jumlah_barang * $request->berat;
-                $newOrderDetail->jumlah_barang = $request->jumlah_barang;
-                $newOrderDetail->jumlah_harga = $request->jumlah_barang * $request->harga;
-                $newOrderDetail->save();
-            } else {
-                $orderDetailLama->jumlah_berat = $orderDetailLama->berat * $request->jumlah_barang;
-                $orderDetailLama->jumlah_barang = $orderDetailLama->jumlah_barang + $request->jumlah_barang;
-                $orderDetailLama->jumlah_harga = $orderDetailLama->jumlah_harga + $request->jumlah_barang * $request->harga;
-                $orderDetailLama->save();   
-            }
-
-        } else {
-            $orderSementara->customer_id = $request->customer_id;
-            $orderSementara->is_checkout = false;
-            $orderSementara->save();
-
-            $orderDetail->order_id = $orderSementara->id;
-            $orderDetail->produk_id = $request->produk_id;
-            $orderDetail->harga = $request->harga;
-            $orderDetail->berat = $request->berat;
-            $orderDetail->jumlah_berat = $request->jumlah_barang * $request->berat;
-            $orderDetail->jumlah_barang = $request->jumlah_barang;
-            $orderDetail->jumlah_harga = $request->jumlah_barang * $request->harga;
-            $orderDetail->save();
-
-            return redirect()->route('keranjang', [$orderSementara->id]);
-        }
+        $productsCache = Cache::remember('semua-cerita-cache', 10, function() {
+            return Product::all();
+        });
         
-        return redirect()->route('keranjang', [$hasData->id]);
+        return view ('product.belanja', ['products' => $productsCache]);
     }
 
     /**
@@ -100,39 +32,5 @@ class ProductController extends Controller
         return view('product.detail', [
             'product' => Product::findOrFail($id)
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -26,7 +26,6 @@
             <p>IDR {{ number_format($product->harga, 0, '.', '.') }}</p>
         </div>
         @endforeach
-        
     </div>
     <div class="cta-lainnya">
             <a href="{{ route('belanja.index') }}" alt="">Lihat produk lainnya<img src="images/arrow.svg"></a>

@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Customer;
-use App\Models\Donation;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
-class CheckoutController extends Controller
+class CheckoutController extends RajaOngkirController
 {
 
     public function __construct()
@@ -23,153 +23,195 @@ class CheckoutController extends Controller
         \Midtrans\Config::$is3ds = config('services.midtrans.is3ds');
     }
 
+    public function storeOrder(Request $request)
+    {
+        $orderSementara = new Order();
+        $orderDetailBaru = new OrderDetail();
 
-    public function get_province(){
-        $curl = curl_init();
+        // Mencari data order customer, apakah customer punya data keranjang atau belum
+        $dataCustomer = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
 
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://pro.rajaongkir.com/api/province",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => array(
-            "key: 271fc7c631677fe6b27686dc2e65dad6"
-        ),
-        ));
+        // Jika customer sudah mempunyai keranjang maka data itu menjadi orderSementara
+        if (!empty ($dataCustomer)) {
+            $orderSementara = $dataCustomer;
 
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
+            // Order detail yang sudah ada
+            $orderDetailLama = OrderDetail::where('order_id', $orderSementara->id)->where('produk_id', $request->produk_id)->first();
 
-        curl_close($curl);
+            // Jika Order Detail belum ada produk terkait, maka buat data Order Detail baru
+            if (empty($orderDetailLama)) {
 
-        if ($err) {
-            echo "cURL Error #:" . $err;
+                $orderDetailBaru->order_id = $orderSementara->id;
+                $orderDetailBaru->produk_id = $request->produk_id;
+                $orderDetailBaru->harga = $request->harga;
+                $orderDetailBaru->berat = $request->berat;
+                $orderDetailBaru->jumlah_berat = $request->jumlah_barang * $request->berat;
+                $orderDetailBaru->jumlah_barang = $request->jumlah_barang;
+                $orderDetailBaru->jumlah_harga = $request->jumlah_barang * $request->harga;
+                $orderDetailBaru->save();
+
+            } else {
+                // Jika Order detail yang sudah ada produknya sama, maka hanya tambahkan jumlah
+
+                $orderDetailLama->jumlah_berat = $orderDetailLama->berat + ($request->jumlah_barang * $request->berat);
+                $orderDetailLama->jumlah_barang = $orderDetailLama->jumlah_barang + $request->jumlah_barang;
+                $orderDetailLama->jumlah_harga = $orderDetailLama->jumlah_harga + ($request->jumlah_barang * $request->harga);
+                $orderDetailLama->save();  
+
+            }
+
+        // Jika customer belum  mempunyai keranjang maka dibuat data Order    
         } else {
-            //ini kita decode data nya terlebih dahulu
-            $response=json_decode($response,true);
+            $orderSementara->customer_id = $request->customer_id;
+            $orderSementara->is_checkout = false;
+            $orderSementara->save();
 
-            //ini untuk mengambil data provinsi yang ada di dalam rajaongkir resul
-            $data_pengirim = $response['rajaongkir']['results'];
-            return $data_pengirim;
+            $orderDetailBaru->order_id = $orderSementara->id;
+            $orderDetailBaru->produk_id = $request->produk_id;
+            $orderDetailBaru->harga = $request->harga;
+            $orderDetailBaru->berat = $request->berat;
+            $orderDetailBaru->jumlah_berat = $request->jumlah_barang * $request->berat;
+            $orderDetailBaru->jumlah_barang = $request->jumlah_barang;
+            $orderDetailBaru->jumlah_harga = $request->jumlah_barang * $request->harga;
+            $orderDetailBaru->save();
+
+            return redirect()->route('keranjang');
         }
+        
+        return redirect()->route('keranjang');
     }
 
-    public function get_city($id){
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://pro.rajaongkir.com/api/city?&province=$id",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => array(
-            "key: 271fc7c631677fe6b27686dc2e65dad6"
-        ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            $response=json_decode($response,true);
-            $data_kota = $response['rajaongkir']['results'];
-            return json_encode($data_kota);
-        }
-    }
-
-    public function get_kecamatan($id) {
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://pro.rajaongkir.com/api/subdistrict?city=$id",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => array(
-            "key: 271fc7c631677fe6b27686dc2e65dad6"
-        ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            $response=json_decode($response,true);
-            $data_kecamatan = $response['rajaongkir']['results'];
-            return json_encode($data_kecamatan);
-        }
-    }
-
-    public function keranjang($orderId)
+    public function keranjang()
     {
         // ke keranjang
-        $orderSementara = Order::find($orderId);
+        $orderSementara = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
 
         return view('order.keranjang', [
             'order' => $orderSementara
         ]);
     }
 
-    public function afterKeranjang(Request $request)
+    public function simpanKeranjang(Request $request)
     {
-        $hasAddress = Address::where('costumer_id', Auth::id())->first();
+        // Mencari data Order
+        $orderDetail = OrderDetail::where('id', $request->orderDetail_id)->first();
+
+        $orderDetail->jumlah_barang = $request->jumlah_barang;
+        $orderDetail->jumlah_berat = $request->berat * $request->jumlah_barang;
+        $orderDetail->jumlah_harga = $request->harga * $request->jumlah_barang;
+        $orderDetail->save();
+
+        return redirect()->route('keranjang');
+    }
+
+    public function hapusKeranjang(Request $request) 
+    {
+        $orderDetail = OrderDetail::where('id', $request->orderDetail_id)->first();
+        $orderDetail->delete();
+
+        return redirect()->route('keranjang');
+    }
+
+    public function dataDiri(Request $request)
+    {
+        $hasAddress = Address::where('costumer_id', Auth('customer')->id())->first();
         $orderUser = Order::find($request->order_id);
 
-        if (empty ($hasAddress)) {
+        if ($request->jumlah_harga_barang == 0) {
+
             $orderUser->jumlah_harga_barang = $request->jumlah_harga_barang;
             $orderUser->save();
 
-            //memanggil function get_province
-            $provinsi = $this->get_province();
+            return redirect()->back()->withErrors('Keranjang belanja anda masih kosong');
 
-            return view('order.dataDiri', [
-                'provinsi' => $provinsi
-            ]);
         } else {
+            if (empty ($hasAddress)) {
+            
+                $orderUser->jumlah_harga_barang = $request->jumlah_harga_barang;
+                $orderUser->save();
+    
+                //memanggil function get_province
+                $provinsi = $this->get_province();
+    
+                return view('order.dataDiri', [
+                    'provinsi' => $provinsi
+                ]);
 
-            $orderUser->jumlah_harga_barang = $request->jumlah_harga_barang;
-            $orderUser->save();
-
-            return redirect('pilih-kurir');
+            } else {
+    
+                $orderUser->jumlah_harga_barang = $request->jumlah_harga_barang;
+                $orderUser->save();
+    
+                return redirect('pilih-kurir');
+            }
         }
 
     }
 
-    public function storeDataDiri(Request $request) {
+    public function storeDataDiri(Request $request)
+    {
+        // dd($request->all());
+        $rules = [
+            'nama_depan'            => 'required|min:2|max:15',
+            'nama_belakang'         => 'required|min:2|max:30',
+            'email'                 => 'required|email',
+            'telepon'               => 'required|min:9|max:20',
+            'alamat_lengkap'        => 'required|min:5',
+            'province_id'           => 'required',
+            'nama_provinsi'         => 'required',
+            'kota_id'               => 'required',
+            'nama_kota'             => 'required',
+            'kecamatan_id'          => 'required',
+            'nama_kecamatan'        => 'required',
+            'kode_pos'              => 'required|digits:5',
+        ];
+ 
+        $messages = [
+            'nama_depan.required'   => 'Nama Depan wajib diisi',
+            'nama_depan.min'        => 'Nama Depan minimal 2 karakter',
+            'nama_depan.max'        => 'Nama Depan maksimal 15 karakter',
+            'nama_belakang.required'=> 'Nama Belakang wajib diisi',
+            'nama_belakang.min'     => 'Nama Belakang minimal 2 karakter',
+            'nama_belakang.max'     => 'Nama Belakang maksimal 30 karakter',
+            'email.required'        => 'Email wajib diisi',
+            'email.email'           => 'Email tidak valid',
+            'telepon.required'      => 'Telepon wajib diisi',
+            'telepon.min'           => 'Telepon minimal 9 nomer',
+            'telepon.max'           => 'Telepon maksimal 20 nomer',
+            'alamat_lengkap.required'   => 'Alamat lengkap wajib diisi',
+            'alamat_lengkap.min'        => 'Alamat lengkap kurang terperinci',
+            'province_id.required'      => 'Tunggu beberapa detik sebelum konfirmasi',
+            'nama_provinsi.required'    => 'Tunggu beberapa detik sebelum konfirmasi',
+            'kota_id.required'          => 'Tunggu beberapa detik sebelum konfirmasi',
+            'nama_kota.required'        => 'Tunggu beberapa detik sebelum konfirmasi',
+            'kecamatan_id.required'     => 'Tunggu beberapa detik sebelum konfirmasi',
+            'nama_kecamatan.required'   => 'Tunggu beberapa detik sebelum konfirmasi',
+            'kode_pos.required'     => 'Kode pos wajib diisi',
+            'kode_pos.digits'       => 'Kode pos harus 5 digit',
+        ];
 
-        $address = new Address;
+        $validator = Validator::make($request->all(), $rules, $messages);
+ 
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        }
 
-        $address->costumer_id = Auth::id();
-        $address->nama_depan = $request->nama_depan;
-        $address->nama_belakang = $request->nama_belakang;
-        $address->email = $request->email;
-        $address->telepon = $request->telepon;
-        $address->alamat_lengkap = $request->alamat_lengkap;
-        $address->provinsi_id = $request->province_id;
-        $address->kota_id = $request->kota_id;
-        $address->kecamatan_id = $request->kecamatan_id;
-        $address->kode_pos = $request->kode_pos;
-        $address->is_main = 1;
-        $address->save();
+        // $address = new Address;
 
-        return redirect('pilih-kurir');
+        // $address->costumer_id = Auth::id();
+        // $address->nama_depan = $request->nama_depan;
+        // $address->nama_belakang = $request->nama_belakang;
+        // $address->email = $request->email;
+        // $address->telepon = $request->telepon;
+        // $address->alamat_lengkap = $request->alamat_lengkap;
+        // $address->provinsi_id = $request->province_id;
+        // $address->kota_id = $request->kota_id;
+        // $address->kecamatan_id = $request->kecamatan_id;
+        // $address->kode_pos = $request->kode_pos;
+        // $address->is_main = 1;
+        // $address->save();
+
+        // return redirect('pilih-kurir');
     }
 
     public function pilihKurir() {
