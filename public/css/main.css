@@ -1605,6 +1605,9 @@ ul {
     display: block !important;
     margin-left: 0 !important;
   }
+  footer .container .nav-footer ul li {
+    margin: 20px 0 !important;
+  }
   footer .container .nav-footer ul li a {
     margin: 0 !important;
     color: white !important;
@@ -1635,13 +1638,8 @@ ul {
     color: white;
     padding: 10px 0;
   }
-  footer .copyright p {
-    max-width: 91% !important;
-    margin: auto;
-    font-size: 1.6vw !important;
-  }
   .copyright p {
-    font-size: 10px !important;
+    font-size: 2vw !important;
   }
 }
 
@@ -1823,9 +1821,63 @@ footer .container .contact-footer ul li span {
       flex-wrap: wrap;
 }
 
+.section-about .container .penjelasan-produk {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  margin: auto;
+  margin-right: -1.2%;
+}
+
+.section-about .container .penjelasan-produk .berbagai {
+  margin-top: 0 !important;
+}
+
+.section-about .container .penjelasan-produk .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.section-about .container .penjelasan-produk .item label {
+  margin-right: 10px;
+}
+
+.section-about .container .penjelasan-produk .item p {
+  margin-bottom: 30px;
+  line-height: 1.2em;
+  font-size: 1.5vw;
+}
+
+.section-about .container .penjelasan-produk .item label {
+  font-size: 1.5vw;
+}
+
+.section-about .container .penjelasan-produk p {
+  margin-bottom: 30px;
+  line-height: 1.2em;
+  font-size: 1.5vw;
+}
+
+.section-about .container p {
+  text-align: justify;
+}
+
 .section-about .container .left-col {
   -ms-flex-preferred-size: 45%;
       flex-basis: 45%;
+  text-align: justify;
+  text-justify: auto;
+}
+
+.section-about .container .left-col .berbagai-mobile {
+  display: none;
 }
 
 .section-about .container .left-col h1 {
@@ -1840,6 +1892,27 @@ footer .container .contact-footer ul li span {
   font-size: 1.5vw;
 }
 
+.section-about .container .left-col label {
+  font-size: 1.5vw;
+}
+
+.section-about .container .left-col .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.section-about .container .left-col .item label {
+  margin-right: 10px;
+}
+
 .section-about .container .right-col {
   -ms-flex-preferred-size: 55%;
       flex-basis: 55%;
@@ -1849,6 +1922,7 @@ footer .container .contact-footer ul li span {
 .section-about .container .right-col img {
   margin-top: 60px;
   width: 100%;
+  margin-bottom: 0px;
 }
 
 @media (max-width: 800px) {
@@ -1860,10 +1934,24 @@ footer .container .contact-footer ul li span {
     margin: auto;
     margin-bottom: -50px;
   }
+  .section-about .container .penjelasan-produk .berbagai {
+    display: none;
+  }
+  .section-about .container .penjelasan-produk label, .section-about .container .penjelasan-produk p {
+    font-size: 3vw;
+  }
+  .section-about .container .penjelasan-produk .item label, .section-about .container .penjelasan-produk .item p {
+    font-size: 3vw;
+  }
+  .section-about .container .penjelasan-produk h3 {
+    margin-bottom: 50px;
+  }
   .section-about .container .left-col {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
-    text-align: center;
+  }
+  .section-about .container .left-col .berbagai-mobile {
+    display: block;
   }
   .section-about .container .left-col h1 {
     font-weight: 400;
@@ -1876,6 +1964,7 @@ footer .container .contact-footer ul li span {
   .section-about .container .right-col {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
+    margin-right: 0 !important;
   }
   .section-about .container .right-col img {
     width: 100%;
@@ -1892,10 +1981,11 @@ footer .container .contact-footer ul li span {
     margin: auto;
     margin-bottom: -50px;
   }
-  .section-about .container .left-col {
-    -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
-    text-align: center;
+  .section-about .container .penjelasan-produk h3 {
+    font-size: 12px;
+  }
+  .section-about .container .penjelasan-produk label, .section-about .container .penjelasan-produk p {
+    font-size: 1em !important;
   }
   .section-about .container .left-col h1 {
     font-weight: 400;
@@ -1911,7 +2001,6 @@ footer .container .contact-footer ul li span {
   }
   .section-about .container .right-col img {
     width: 100%;
-    margin-top: 0;
   }
 }
 
@@ -2072,7 +2161,7 @@ footer .container .contact-footer ul li span {
   opacity: 0.9;
   margin: 0;
   position: absolute;
-  top: 69.5%;
+  top: 70%;
 }
 
 .logreg .login-right form p {
@@ -2226,6 +2315,9 @@ footer .container .contact-footer ul li span {
   .logreg .login-right .container .logo img {
     margin-bottom: 0;
   }
+  .logreg .login-right .container form .error {
+    top: 84%;
+  }
   .logreg .login-right .container form label {
     font-size: 1em;
   }
@@ -2292,6 +2384,7 @@ footer .container .contact-footer ul li span {
         flex-basis: 100%;
     max-width: 70%;
     margin: 20px auto 0 auto !important;
+    min-height: 0 !important;
   }
   .logreg .login-left .container img {
     width: 100%;
@@ -2325,6 +2418,10 @@ footer .container .contact-footer ul li span {
     display: flex;
     -ms-flex-pack: distribute;
         justify-content: space-around;
+  }
+  .logreg .login-right form .error {
+    top: 138% !important;
+    left: 15%;
   }
   .logreg .login-right form label {
     font-weight: 400;
@@ -2485,6 +2582,9 @@ footer .container .contact-footer ul li span {
     -ms-flex-pack: distribute;
         justify-content: space-around;
   }
+  .logreg .login-right form .error {
+    top: 76% !important;
+  }
   .logreg .login-right form label {
     font-weight: 400;
   }
@@ -2641,6 +2741,7 @@ footer .container .contact-footer ul li span {
   width: 80%;
   margin: auto;
   color: var(--primary-color);
+  margin-bottom: 100px;
 }
 
 .paragraf-origin-a h1 {
@@ -2668,13 +2769,18 @@ footer .container .contact-footer ul li span {
 .paragraf-origin-b .left-col {
   -ms-flex-preferred-size: 30%;
       flex-basis: 30%;
-  margin-top: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .paragraf-origin-b .left-col img {
   width: 100%;
   height: auto;
   margin-top: 3vw;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .paragraf-origin-b .right-col {
@@ -2685,7 +2791,6 @@ footer .container .contact-footer ul li span {
 
 .paragraf-origin-b .right-col h1 {
   font-weight: 500;
-  margin-top: 100px;
   font-size: 3vw;
   margin-bottom: 50px;
 }
@@ -3929,32 +4034,33 @@ footer .container .contact-footer ul li span {
           justify-content: space-between;
   color: #DF7861;
   width: 90%;
-  margin: 100px auto 0 auto;
+  margin: 150px auto 100px auto;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
 }
 
 .detail-barang .showcase {
-  -ms-flex-preferred-size: 30%;
-      flex-basis: 30%;
+  -ms-flex-preferred-size: 27%;
+      flex-basis: 27%;
   height: auto;
+  background-color: #ECB390;
+  border-radius: 5px;
+  padding: 2% 0;
 }
 
 .detail-barang .showcase img {
-  background-color: #ECB390;
-  padding: 10% 30%;
-  border-radius: 5px;
-  max-height: 70%;
-  width: auto;
+  max-width: auto;
+  height: 450px;
   margin: auto;
+  border-radius: 5px;
 }
 
 .detail-barang .detail {
   -ms-flex-preferred-size: 55%;
       flex-basis: 55%;
   float: left;
-  margin-top: 5%;
+  margin-top: 0%;
 }
 
 .detail-barang .detail .top {
@@ -4051,22 +4157,22 @@ footer .container .contact-footer ul li span {
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    margin-top: 175px !important;
   }
   .detail-barang .showcase {
-    -ms-flex-preferred-size: 100% !important;
-        flex-basis: 100% !important;
-    max-height: 200px !important;
-    margin-bottom: 80px;
+    -ms-flex-preferred-size: 40% !important;
+        flex-basis: 40% !important;
+    height: 475px;
+    margin-bottom: 50px;
+    border-radius: 5px;
   }
   .detail-barang .showcase img {
-    padding: 5% 7%;
-    height: 200%;
-    width: 30%;
+    height: 400px;
+    width: 50%;
     margin: 10% auto 0% auto;
     max-height: none;
   }
   .detail-barang .detail {
-    margin-top: 50%;
     -ms-flex-preferred-size: 90%;
         flex-basis: 90%;
   }
@@ -4083,6 +4189,7 @@ footer .container .contact-footer ul li span {
   .detail-barang .detail .quantity {
     min-width: 35vw;
     min-height: 5vw;
+    border-radius: 5px !important;
   }
   .detail-barang .detail .cta-submit {
     -webkit-box-align: center;
@@ -4099,7 +4206,8 @@ footer .container .contact-footer ul li span {
     margin-bottom: 10%;
   }
   .detail-barang .detail .cta-submit button {
-    font-size: 2.6vw;
+    font-size: 1.5em !important;
+    border-radius: 5px !important;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -4114,7 +4222,7 @@ footer .container .contact-footer ul li span {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    height: 20% !important;
+    height: 45px !important;
   }
 }
 
@@ -4125,29 +4233,30 @@ footer .container .contact-footer ul li span {
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    margin-top: 100px;
+    margin-bottom: 20px;
   }
   .detail-barang .showcase {
-    -ms-flex-preferred-size: 100% !important;
-        flex-basis: 100% !important;
-    max-height: 200px !important;
+    -ms-flex-preferred-size: 40% !important;
+        flex-basis: 40% !important;
+    max-height: 250px !important;
     margin-bottom: 0;
   }
   .detail-barang .showcase img {
-    max-height: 100% !important;
+    max-height: 200px !important;
     padding: 10% 17%;
   }
   .detail-barang .detail {
     -ms-flex-preferred-size: 80% !important;
         flex-basis: 80% !important;
-    margin-top: auto !important;
     width: 80% !important;
   }
   .detail-barang .detail .top {
-    margin-top: 40% !important;
     margin-bottom: 15% !important;
   }
   .detail-barang .detail .top h2 {
     margin-bottom: 5px !important;
+    font-size: 1.4em !important;
   }
   .detail-barang .detail .top h4 {
     font-size: 1em !important;
@@ -4162,6 +4271,13 @@ footer .container .contact-footer ul li span {
     max-width: 100% !important;
     font-size: 14px;
   }
+  .detail-barang .detail .quantity {
+    width: 170px !important;
+    height: 30px !important;
+  }
+  .detail-barang .detail .quantity button {
+    height: 30px !important;
+  }
   .detail-barang .detail .cta-submit {
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -4173,7 +4289,7 @@ footer .container .contact-footer ul li span {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    width: 69%;
+    width: 100;
     margin-bottom: 10%;
   }
   .detail-barang .detail .cta-submit button {
@@ -4182,8 +4298,9 @@ footer .container .contact-footer ul li span {
     display: -ms-flexbox;
     display: flex;
     margin: 0 !important;
-    width: 100% !important;
-    height: 22px;
+    width: 174px !important;
+    border-radius: 4px !important;
+    height: 34px !important;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -4456,23 +4573,71 @@ footer .container .contact-footer ul li span {
 }
 
 .keranjang-belanja .foot {
-  margin-top: 40px;
   margin-bottom: 40px;
   -ms-flex-preferred-size: 65%;
       flex-basis: 65%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  float: right;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 3%;
 }
 
 .keranjang-belanja .foot .cta-selanjutnya button {
   background-color: var(--primary-color);
-  width: 10vw;
+  width: 14vw;
   text-align: center;
   height: 40px;
   border-radius: 3px;
   float: right;
   color: white;
-  font-size: 1.4vw;
+  font-size: 1.2vw;
   border: 0;
   cursor: pointer;
+  border: 1px solid var(--primary-color);
+}
+
+.keranjang-belanja .foot .cta-selanjutnya button:hover {
+  color: var(--primary-color);
+  background-color: #F7F7E8;
+}
+
+.keranjang-belanja .foot .cta-simpan {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-right: 5%;
+}
+
+.keranjang-belanja .foot .cta-simpan button {
+  background-color: #ECB390;
+  width: 9.5vw;
+  text-align: center;
+  height: 40px;
+  border-radius: 3px;
+  float: right;
+  color: white;
+  font-size: 1.2vw;
+  border: 0;
+  cursor: pointer;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  border: 1px solid #ECB390;
+}
+
+.keranjang-belanja .foot .cta-simpan button:hover {
+  background-color: #F7F7E8;
+  color: #ECB390;
 }
 
 @media (max-width: 800px) {
@@ -4629,25 +4794,38 @@ footer .container .contact-footer ul li span {
     font-size: 3vw;
   }
   .keranjang-belanja .foot {
-    margin-top: 40px;
-    margin-bottom: 40px;
     -ms-flex-preferred-size: 90%;
         flex-basis: 90%;
+    margin-top: 7%;
+    margin-bottom: 7%;
   }
   .keranjang-belanja .foot .cta-selanjutnya button {
     background-color: var(--primary-color);
-    width: 30vw;
-    height: 10%;
-    text-align: center;
-    padding: 1.5vw 3vw;
+    width: 35vw;
+    height: 6vw;
     border-radius: 5px;
-    float: right;
-    color: white;
-    font-size: 3.5vw;
+    font-size: 3vw;
+  }
+  .keranjang-belanja .foot .cta-simpan button {
+    width: 25vw;
+    height: 6vw;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 3vw;
+    margin: 2% 0;
   }
 }
 
 @media (max-width: 425px) {
+  .keranjang-belanja .foot .cta-selanjutnya button {
+    width: 40vw;
+  }
+  .keranjang-belanja .foot .cta-simpan button {
+    width: 28vw;
+  }
+  .keranjang-belanja .foot button {
+    border-radius: 3px !important;
+  }
   .keranjang-belanja .head {
     -ms-flex-preferred-size: 85% !important;
         flex-basis: 85% !important;
@@ -4834,14 +5012,29 @@ footer .container .contact-footer ul li span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal !important;
-  -webkit-box-direction: normal !important;
-      -ms-flex-direction: row !important;
-          flex-direction: row !important;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -ms-flex-preferred-size: 30% !important;
-      flex-basis: 30% !important;
+}
+
+.container-data section .container-metode {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container-data section .container-metode .metode {
+  -ms-flex-preferred-size: 30%;
+      flex-basis: 30%;
+}
+
+.container-data section .container-metode .metode table {
+  margin: 0;
+  width: 100%;
 }
 
 .container-data section h2 {
@@ -4861,12 +5054,19 @@ footer .container .contact-footer ul li span {
 }
 
 .container-data section .pembayaran label {
-  margin: 0 20px 0 0;
+  margin: 0 0px 0 0;
   text-align: right;
 }
 
 .container-data section .pembayaran .keterangan {
-  text-align: right;
+  max-width: 80%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .container-data section .nav-bot {
@@ -4876,7 +5076,7 @@ footer .container .contact-footer ul li span {
   max-width: 280px;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
-  margin: 0 0 0 auto;
+  margin: 5% auto 0 auto;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -4980,6 +5180,33 @@ footer .container .contact-footer ul li span {
 
 .container-data section .met2 {
   border-right: 2px solid rgba(223, 121, 98, 0.6);
+  padding: 0;
+}
+
+.container-data section .met2 .pesanan {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 80%;
+  margin: 30px auto;
+}
+
+.container-data section .met2 .pesanan label {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.container-data section .met2 .pesanan h5 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 400;
 }
 
 .container-data section .ket {
@@ -4988,6 +5215,11 @@ footer .container .contact-footer ul li span {
 
 .container-data section .total {
   border-top: 2px solid rgba(223, 121, 98, 0.6);
+}
+
+.container-data section .total .keterangan-total {
+  float: right;
+  margin-right: 4.5%;
 }
 
 .container-data section .totbel {
@@ -5001,7 +5233,7 @@ footer .container .contact-footer ul li span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: -20px 0 0 -5.5%;
+  margin: -20px -1.5% 0 0;
   color: var(--primary-color);
 }
 
@@ -5144,6 +5376,19 @@ footer .container .contact-footer ul li span {
     min-width: 100%;
     margin-top: 50px;
   }
+  .container-data section .container-metode {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .container-data section .container-metode .metode {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
+  .container-data section .container-metode .metode h3 {
+    font-size: 5vw;
+    margin: 6% 0 6% 7%;
+  }
   .container-data section h2 {
     text-align: center;
     min-width: 100%;
@@ -5156,9 +5401,25 @@ footer .container .contact-footer ul li span {
   }
   .container-data section .pembayaran .met2 {
     border-bottom: 3px solid #df7962;
+    padding: 0px !important;
   }
   .container-data section .pembayaran .met2 input {
     margin-left: 10%;
+  }
+  .container-data section .pembayaran .met2 .pesanan {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin: 20px auto;
+    max-width: 75%;
+  }
+  .container-data section .pembayaran .met2 .pesanan h5 {
+    font-size: 1.4em;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
+  .container-data section .pembayaran .met2 .pesanan label {
+    text-align: left;
+    font-size: 1.4em;
   }
   .container-data section .pembayaran .ket {
     border-top: 3px solid #df7962;
@@ -5168,7 +5429,7 @@ footer .container .contact-footer ul li span {
   }
   .container-data section .nav-bot {
     max-width: 60% !important;
-    margin-right: 7%;
+    margin: 5% 6% 7% auto;
   }
   .container-data section .nav-bot .exit {
     display: -webkit-box;
@@ -5186,7 +5447,7 @@ footer .container .contact-footer ul li span {
     background-color: var(--primary-color);
     color: white;
     padding: 10px 5px;
-    border-radius: 3px;
+    border-radius: 7px;
     -ms-flex-preferred-size: 40%;
         flex-basis: 40%;
     display: -webkit-box;
@@ -5363,14 +5624,16 @@ footer .container .contact-footer ul li span {
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    max-width: 70% !important;
   }
   .container-data section table tbody tr .keterangan label {
-    -ms-flex-preferred-size: 60% !important;
-        flex-basis: 60% !important;
+    -ms-flex-preferred-size: 100% !important;
+        flex-basis: 100% !important;
+    text-align: left;
   }
   .container-data section table tbody tr .keterangan label:last-child {
     margin-left: auto !important;
-    margin-right: 10% !important;
+    text-align: right;
   }
   .container-data section table tbody tr td {
     padding: 10px 0 !important;
@@ -5390,21 +5653,38 @@ footer .container .contact-footer ul li span {
   .container-data {
     width: 100% !important;
   }
+  .container-data header {
+    border-bottom: 2px solid #ECB390;
+    margin: 0 0 50px 0 !important;
+    padding: 20px 0 !important;
+  }
+  .container-data header img {
+    display: none !important;
+  }
   .container-data section {
     min-width: 100%;
     margin-top: 0px;
   }
+  .container-data section .container-metode {
+    margin-top: 0;
+  }
+  .container-data section .pembayaran .pesanan h5 {
+    font-size: 14px !important;
+  }
+  .container-data section .pembayaran .pesanan label {
+    font-size: 14px !important;
+  }
   .container-data section .pembayaran .met {
     border-top: 3px solid #df7962;
     width: 60%;
-    height: 40px;
+    height: 30px;
   }
   .container-data section .pembayaran .met h2 {
     font-size: 1em !important;
   }
   .container-data section .pembayaran .met2 {
     border-bottom: 3px solid rgba(223, 121, 98, 0.6);
-    height: 100px !important;
+    padding: 0;
   }
   .container-data section .pembayaran .met2 input {
     margin-left: 10%;
@@ -5472,8 +5752,10 @@ footer .container .contact-footer ul li span {
         flex-wrap: wrap;
   }
   .container-data section table tbody tr .keterangan label {
-    -ms-flex-preferred-size: 60% !important;
-        flex-basis: 60% !important;
+    -ms-flex-preferred-size: 100% !important;
+        flex-basis: 100% !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
   }
   .container-data section table tbody tr .keterangan label:last-child {
     margin-left: auto !important;
@@ -5494,37 +5776,39 @@ footer .container .contact-footer ul li span {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin: 10px 25px 0 auto !important;
+    margin: 10px 25px 30px auto !important;
     -webkit-box-align: baseline !important;
         -ms-flex-align: baseline !important;
             align-items: baseline !important;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
+    max-width: 70% !important;
   }
   .container-data section .nav-bot .exit {
     margin: 0 !important;
   }
   .container-data section .nav-bot .exit a {
-    font-size: 12px !important;
+    font-size: 14px !important;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
   }
   .container-data section .nav-bot .exit a img {
     max-height: 12px;
   }
   .container-data section .nav-bot .cta-submit {
-    padding: 5px 20px !important;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    padding: 7px 30px 5px 30px !important;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     font-size: 12px !important;
     -ms-flex-preferred-size: 10% !important;
         flex-basis: 10% !important;
+    border-radius: 4px;
   }
   .container-data section .nav-bot-2 {
     display: -webkit-box;
@@ -5546,8 +5830,8 @@ footer .container .contact-footer ul li span {
   }
   .container-data section .nav-bot-2 .exit a {
     font-size: 14px !important;
-    -ms-flex-preferred-size: 50%;
-        flex-basis: 50%;
+    -ms-flex-preferred-size: 60%;
+        flex-basis: 60%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -5562,14 +5846,6 @@ footer .container .contact-footer ul li span {
     border-bottom: 3px solid var(--primary-color) !important;
     border-top: 3px solid var(--primary-color) !important;
     padding-bottom: 2px;
-  }
-  .container-data section header {
-    border-bottom: 2px solid #ECB390;
-    margin: 0 0 !important;
-    padding: 20px 0 !important;
-  }
-  .container-data section header img {
-    display: none !important;
   }
   .container-data section .container .right-col h3 {
     font-size: 11px !important;

@@ -8,12 +8,12 @@
                 <a href="{{ route('home-customer') }}" class="logo"><img src="{{ URL::asset('images/logo.png') }}" alt="Logo"></a>
                 <ul class="secondary-nav">
                     @if (Auth('customer')->check())
-                        <li class="profile"><a href="{{ route('profil-alamat') }}">Profil</a></li>
+                        <li class="profile"><a href="{{ route('profilAlamat') }}">Profil</a></li>
                     @else
                         <li class="profile"><a href="{{ route('login-customer') }}">Masuk</a></li>
                     @endif
                     <li class="belanja"><a href="{{ route('belanja.index') }}">Belanja</a></li>
-                    <li class="sekarang"><a href="">Keranjang (0)</a></li>
+                    <li class="sekarang"><a href="{{ route('keranjang') }}">Keranjang (0)</a></li>
                 </ul>
         </div>
         <div class="container-mobile">
@@ -28,7 +28,7 @@
                         <li><a href="keranjang-belanja.html">Keranjang (0)</a></li>
                         <li><a href="{{ route('belanja.index') }}">Belanja</a></li>
                         @if (Auth::check())
-                            <li><a href="{{ route('profil-alamat') }}">Profil</a></li>
+                            <li><a href="{{ route('profilAlamat') }}">Profil</a></li>
                         @else
                             <li><a href="{{ route('login-customer') }}">Masuk</a></li>
                         @endif

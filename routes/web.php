@@ -39,18 +39,25 @@ Route::get('/', [HomeController::class, 'index'])->name('home-customer');
 Route::group(['middleware' => 'auth:customer'], function () {
 
     // Profil
-    Route::get('profil-pembelian', [CustomerController::class, 'pembelian'])->name('profil-pembelian');
-    Route::get('profil-informasi-akun', [CustomerController::class, 'informasiAkun'])->name('profil-informasi-akun');
-    Route::get('profil-alamat', [CustomerController::class, 'alamat'])->name('profil-alamat');
+    Route::get('profil-pembelian', [CustomerController::class, 'pembelian'])->name('profilPembelian');
+    
+    Route::get('profil-informasi-akun', [CustomerController::class, 'informasiAkun'])->name('profilInformasiAkun');
+
+    Route::get('profil-alamat', [CustomerController::class, 'alamat'])->name('profilAlamat');
+    Route::post('store-alamat', [CustomerController::class, 'storeAlamat'])->name('storeAlamat');
+    Route::post('sunting-alamat', [CustomerController::class, 'suntingAlamat'])->name('suntingAlamat');
     
     // Checkout
-    Route::post('storeOrder', [CheckoutController::class, 'storeOrder'])->name('storeOrder');
+    Route::post('store-order', [CheckoutController::class, 'storeOrder'])->name('storeOrder');
     Route::get('keranjang', [CheckoutController::class, 'keranjang'])->name('keranjang');
-    Route::post('hapusKeranjang', [CheckoutController::class, 'hapusKeranjang'])->name('hapusKeranjang');
-    Route::post('simpanKeranjang', [CheckoutController::class, 'simpanKeranjang'])->name('simpanKeranjang');
+    Route::post('hapus-keranjang', [CheckoutController::class, 'hapusKeranjang'])->name('hapusKeranjang');
+    Route::post('simpan-keranjang', [CheckoutController::class, 'simpanKeranjang'])->name('simpanKeranjang');
+    
+    Route::post('proses-keranjang-selanjutnya', [CheckoutController::class, 'setelahKeranjang'])->name('prosesKeranjangSelanjutnya');
 
-    Route::post('data-diri', [CheckoutController::class, 'dataDiri'])->name('data-diri');
-    Route::post('storeDataDiri', [CheckoutController::class, 'storeDataDiri'])->name('storeDataDiri');
+    Route::get('form-data-diri', [CheckoutController::class, 'formDataDiri'])->name('formDataDiri');
+    Route::post('store-data-diri', [CheckoutController::class, 'storeDataDiri'])->name('storeDataDiri');
+    
     Route::get('pilih-kurir', [CheckoutController::class, 'pilihKurir'])->name('pilih-kurir');
     Route::post('ongkir', [CheckoutController::class, 'storeOngkir'])->name('ongkir');
     Route::get('pembayaran', [CheckoutController::class, 'pembayaran'])->name('pembayaran');

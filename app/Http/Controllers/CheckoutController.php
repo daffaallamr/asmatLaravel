@@ -112,7 +112,7 @@ class CheckoutController extends RajaOngkirController
         return redirect()->route('keranjang');
     }
 
-    public function dataDiri(Request $request)
+    public function setelahKeranjang(Request $request)
     {
         $hasAddress = Address::where('costumer_id', Auth('customer')->id())->first();
         $orderUser = Order::find($request->order_id);
@@ -130,12 +130,7 @@ class CheckoutController extends RajaOngkirController
                 $orderUser->jumlah_harga_barang = $request->jumlah_harga_barang;
                 $orderUser->save();
     
-                //memanggil function get_province
-                $provinsi = $this->get_province();
-    
-                return view('order.dataDiri', [
-                    'provinsi' => $provinsi
-                ]);
+                return redirect()->route('formDataDiri');
 
             } else {
     
@@ -145,17 +140,25 @@ class CheckoutController extends RajaOngkirController
                 return redirect('pilih-kurir');
             }
         }
+    }
 
+    public function formDataDiri(Request $request)
+    {
+        //memanggil function get_province
+        $provinsi = $this->get_province();
+    
+        return view('order.dataDiri', [
+            'provinsi' => $provinsi
+        ]);
     }
 
     public function storeDataDiri(Request $request)
     {
-        // dd($request->all());
         $rules = [
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
             'email'                 => 'required|email',
-            'telepon'               => 'required|min:9|max:20',
+            'telepon'               => 'required|min:10',
             'alamat_lengkap'        => 'required|min:5',
             'province_id'           => 'required',
             'nama_provinsi'         => 'required',
@@ -176,8 +179,7 @@ class CheckoutController extends RajaOngkirController
             'email.required'        => 'Email wajib diisi',
             'email.email'           => 'Email tidak valid',
             'telepon.required'      => 'Telepon wajib diisi',
-            'telepon.min'           => 'Telepon minimal 9 nomer',
-            'telepon.max'           => 'Telepon maksimal 20 nomer',
+            'telepon.min'           => 'Telepon minimal 10 digit',
             'alamat_lengkap.required'   => 'Alamat lengkap wajib diisi',
             'alamat_lengkap.min'        => 'Alamat lengkap kurang terperinci',
             'province_id.required'      => 'Tunggu beberapa detik sebelum konfirmasi',
@@ -193,78 +195,66 @@ class CheckoutController extends RajaOngkirController
         $validator = Validator::make($request->all(), $rules, $messages);
  
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput($request->all);
+            return redirect()->route('formDataDiri')->withErrors($validator)->withInput($request->all);
         }
 
-        // $address = new Address;
+        $address = new Address;
 
-        // $address->costumer_id = Auth::id();
-        // $address->nama_depan = $request->nama_depan;
-        // $address->nama_belakang = $request->nama_belakang;
-        // $address->email = $request->email;
-        // $address->telepon = $request->telepon;
-        // $address->alamat_lengkap = $request->alamat_lengkap;
-        // $address->provinsi_id = $request->province_id;
-        // $address->kota_id = $request->kota_id;
-        // $address->kecamatan_id = $request->kecamatan_id;
-        // $address->kode_pos = $request->kode_pos;
-        // $address->is_main = 1;
-        // $address->save();
+        $address->costumer_id = Auth('customer')->id();
+        $address->nama_depan = $request->nama_depan;
+        $address->nama_belakang = $request->nama_belakang;
+        $address->email = $request->email;
+        $address->telepon = $request->telepon;
+        $address->alamat_lengkap = $request->alamat_lengkap;
+        $address->provinsi_id = $request->province_id;
+        $address->provinsi = $request->nama_provinsi;
+        $address->kota_id = $request->kota_id;
+        $address->kota = $request->nama_kota;
+        $address->kecamatan_id = $request->kecamatan_id;
+        $address->kecamatan = $request->nama_kecamatan;
+        $address->kode_pos = $request->kode_pos;
+        $address->is_main = true;
+        $address->save();
 
-        // return redirect('pilih-kurir');
+        return redirect()->route('pilih-kurir');
     }
 
     public function pilihKurir() {
-        $userAddress = Customer::find(Auth::id())->addresses->where('is_main', 1)->first();
+        $userAddress = Customer::find(Auth('customer')->id())->addresses->where('is_main', 1)->first();
         $userKecamatan = $userAddress->kecamatan_id;
 
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://pro.rajaongkir.com/api/cost",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "origin=151&originType=city&destination=$userKecamatan&destinationType=subdistrict&weight=1000&courier=jne",
-        CURLOPT_HTTPHEADER => array(
-            "content-type: application/x-www-form-urlencoded",
-            "key: 271fc7c631677fe6b27686dc2e65dad6"
-        ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-        echo "cURL Error #:" . $err;
-        } else {
-            $response=json_decode($response,true);
-            $jne_result = $response['rajaongkir']['results'][0]['costs'];
-        }
+        $ongkirJNE = $this->ongkirJNE($userKecamatan);
+        $ongkirTIKI = $this->ongkirTIKI($userKecamatan);
+        $ongkirPOS = $this->ongkirPOS($userKecamatan);
 
         return view('order.kurir', [
-            'kurirJne' => $jne_result
+            'ongkirJNE' => $ongkirJNE,
+            'ongkirTIKI' => $ongkirTIKI,
+            'ongkirPOS' => $ongkirPOS,
         ]);
     }
 
     public function storeOngkir(Request $request) {
-        $orderId = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
-        $customer = Customer::find(Auth::id());
+        $orderId = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
+        $customer = Customer::find(Auth('customer')->id());
+
+        if ($request->ekspedisi == null) {
+            return redirect()->route('pilih-kurir')->withErrors('Belum memilih metode pengiriman');
+        }
+
+        $ekspedisi = explode('|', $request->ekspedisi);
+        $valueEkspedisi = $ekspedisi[0];
+        $valueOngkir = $ekspedisi[1];
         
-        $orderId->ongkir = $request->ongkir;
-        $orderId->ekspedisi = $request->ekspedisi;
-        $orderId->jumlah_pembayaran_akhir = $orderId->jumlah_harga_barang + $request->ongkir;
+        $orderId->ongkir = $valueOngkir;
+        $orderId->ekspedisi = $valueEkspedisi;
+        $orderId->jumlah_pembayaran_akhir = $orderId->jumlah_harga_barang + $valueOngkir;
         
         // bagian payment
         $uniqueId = 'ASMAT-' . rand();
 
         $orderId->order_unique_id = $uniqueId;
-        $orderId->tanggal_pembayaran = Carbon::now();
+        // $orderId->tanggal_pembayaran = Carbon::now();
         $orderId->save();
 
 
@@ -278,16 +268,7 @@ class CheckoutController extends RajaOngkirController
                 'last_name'     => $customer->nama_belakang,
                 'email'         => $customer->email,
                 'phone'         => $customer->telepon,
-                // 'address'       => '',
             ],
-            // 'item_details' => [
-            //     [
-            //         'id'       => $donation->donation_type,
-            //         'price'    => $donation->amount,
-            //         'quantity' => 1,
-            //         'name'     => ucwords(str_replace('_', ' ', $donation->donation_type))
-            //     ]
-            // ]
         ];
 
         $snapToken = \Midtrans\Snap::getSnapToken($payload);
@@ -298,7 +279,7 @@ class CheckoutController extends RajaOngkirController
     }   
 
     public function pembayaran () {
-        $orderId = Order::where('customer_id', Auth::id())->where('is_checkout', 0)->first();
+        $orderId = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
 
         return view('order.pembayaran', [
             'orderInfo' => $orderId

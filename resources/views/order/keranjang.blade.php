@@ -107,7 +107,7 @@
                         </tr>
             </table>
         </div>
-        <form action="{{ route('data-diri') }}" method="post">
+        <form action="{{ route('prosesKeranjangSelanjutnya') }}" method="post">
         @csrf
         <input type="hidden" name="order_id" value="{{ $order->id }}">
         <input type="hidden" name="jumlah_harga_barang" value="{{ $order->orderDetails->sum('jumlah_harga') }}">

@@ -1,46 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asmat</title>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('js/observer.js') }}">
-</head>
-<body class="container-data">
+@extends('layouts.mainCheckout')
+
+@section('content')
     <header>
         <img src="images/logo-2.png" alt="">
         <nav>
-            <a href="#">Data diri</a>  -  <span><a href="pengiriman.html">Pengiriman</a></span>  -  <a href="#">Pembayaran</a>
+            <a href="{{ route('profil-alamat') }}">Data diri</a>  -  <span><a href="{{ route('pilih-kurir') }}">Pengiriman</a></span>  -  <a aria-disabled="true">Pembayaran</a>
         </nav>
     </header>
+    <form action="{{ route('ongkir') }}" method="POST">
+    @csrf
     <section>
         <h2>
             Metode Pengiriman
         </h2>
-        <table>
-            <form action="{{ route('ongkir') }}" method="POST">
-                @csrf
-                <h1>JNE</h1>
-                @foreach ($kurirJne as $jne)
-                <tr>
-                    <td class="Table-1">
-                        <input type="hidden" name="ekspedisi" value="jne">
-                        <input type="radio" name="ongkir" value="{{ $jne['cost'][0]['value'] }}">
-                        <label for="">{{ $jne['service'] }} {{ $jne['cost'][0]['etd'] }} Hari</label>
-                    </td>
-                    <td class="Table-2">IDR {{ number_format($jne['cost'][0]['value'], 0, '.', '.') }}</td>
-                </tr>
-                @endforeach
-            </table>
-                <div class="nav-bot">
-                    <div class="exit">
-                        <a href="informasi-user.html"> <img src="images/arrow.svg" alt="" class="exit-arrow"> <span class="underline">Kembali</span></a>
-                    </div>
-                    <button type="submit" class="cta-submit" href="pembayaran.html">Selanjutnya</button>
+            <div class="container-metode">
+                <div class="metode">
+                    <h3>
+                        JNE
+                    </h3>
+                <table>
+                    @foreach ($ongkirJNE as $jne)
+                    <tr>
+                        <td class="Table-1">
+                            <input type="radio" name="ekspedisi" value="JNE - {{ $jne['service'] }}|{{ $jne['cost'][0]['value'] }}">
+                            <label for="">{{ $jne['service'] }} ({{ $jne['cost'][0]['etd'] }} hari)</label>
+                        </td>
+                        <td class="Table-2">IDR {{ number_format($jne['cost'][0]['value'], 0, '.', '.') }}</td>
+                    </tr>
+                    @endforeach
+                </table>
                 </div>
-            </form>
-    </section>
-</body>
-</html>
+                <div class="metode">
+                    <h3>
+                        TIKI
+                    </h3>
+                <table>
+                    @foreach ($ongkirTIKI as $tiki)
+                    <tr>
+                        <td class="Table-1">
+                            <input type="radio" name="ekspedisi" value="TIKI - {{ $tiki['service'] }}|{{ $tiki['cost'][0]['value'] }}">
+                            <label for="">{{ $tiki['service'] }} ({{ $tiki['cost'][0]['etd'] }} hari)</label>
+                        </td>
+                        <td class="Table-2">IDR {{ number_format($tiki['cost'][0]['value'], 0, '.', '.') }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+                </div>
+                <div class="metode">
+                    <h3>
+                        POS
+                    </h3>
+                <table>
+                    @foreach ($ongkirPOS as $pos)
+                    <tr>
+                        <td class="Table-1">
+                            <input type="radio" name="ekspedisi" value="POS - {{ $pos['service'] }}|{{ $pos['cost'][0]['value'] }}">
+                            <label for="">{{ $pos['service'] }} ({{ $pos['cost'][0]['etd'] }} hari)</label>
+                        </td>
+                        <td class="Table-2">IDR {{ number_format($pos['cost'][0]['value'], 0, '.', '.') }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+                </div>
+            </div>
+            @if ($errors->any())
+                    <p class="error">{{ $errors->first() }}</p> 
+            @endif
+        <div class="nav-bot">
+            <div class="exit">
+                <a href="{{ route('profil-alamat') }}">
+                    <img src="images/arrow.svg" alt="" class="exit-arrow">
+                    <span class="underline">Kembali</span>
+                </a>
+                </div>
+                <button type="submit" class="cta-submit">Selanjutnya</button>
+            </div>
+        </section>
+    </form>
+@endsection

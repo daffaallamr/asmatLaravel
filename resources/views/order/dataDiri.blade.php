@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asmat</title>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
-</head>
-<body class="container-data">
+@extends('layouts.mainCheckout')
+
+@section('content')
     <header>
         <img src="images/logo-2.png" alt="">
         <nav>
-            <span><a href="#">Data diri</a></span>  <label>-</label>  <a href="pengiriman.html">Pengiriman</a>  <label>-</label>  <a href="#">Pembayaran</a>
+            <span><a aria-disabled="true">Data diri</a></span>  <label>-</label>  <a aria-disabled="true">Pengiriman</a>  <label>-</label>  <a aria-disabled="true">Pembayaran</a>
         </nav>
     </header>
     <section>
@@ -61,7 +54,7 @@
                     @endif
                     <div class="nav-bot-2">
                         <div class="exit">
-                        <a href="profil.html"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>
+                        <a href="{{ route('keranjang') }}"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>
                         <button type="submit" class="cta-submit">Selanjutnya</button>
                     </div>
                 </div>
@@ -73,7 +66,6 @@
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="{{ URL::asset('js/dataDiri.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/rajaOngkir.js') }}"></script>
 
-</body>
-</html>
+@endsection
