@@ -43,7 +43,12 @@
                                     <a id="button-sunting-main">Sunting</a>
                                 </div>
                                 <div class="hapus">
-                                <a href="Hapus">Hapus</a>
+                                    <form action="{{ route('hapusAlamatUtama') }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $isMain->id }}">
+                                        <button type="submit">Hapus</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +72,12 @@
                                     <a id="button-sunting-main">Sunting</a>
                                 </div>
                                 <div class="hapus">
-                                <a href="Hapus">Hapus</a>
+                                    <form action="{{ route('hapusAlamatUtama') }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $isMain->id }}">
+                                        <button type="submit">Hapus</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -97,8 +107,8 @@
                             <div class="right-col">
                                 <label for="">Provinsi</label>
                                 {{-- Mengambil data default --}}
-                                <input type="text" id="provinsi_id" value="{{ $isMain->provinsi_id }}">
-                                    <select name="province_id" id="province_id" required>
+                                <input type="hidden" id="default_sunting_1_provinsi_id" value="{{ $isMain->provinsi_id }}">
+                                    <select name="province_id" id="sunting_1_province_id" required>
                                         <option value="">--- Provinsi Tujuan ---</option>
                                         @foreach ($provinsi  as $row)
                                         <option value="{{ $row['province_id'] }}" namaprovinsi="{{ $row['province'] }}">
@@ -107,19 +117,23 @@
                                         @endforeach
                                     </select>
                                     {{--  Mengambil data nama provinsi  --}}
-                                    <input type="hidden" id="nama_provinsi" name="nama_provinsi">
+                                    <input type="hidden" id="sunting_1_nama_provinsi" name="nama_provinsi">
                                 <label for="">Kota</label>
-                                    <select name="kota_id" id="kota_id" required>
+                                {{-- Mengambil data default --}}
+                                <input type="hidden" id="default_sunting_1_kota_id" value="{{ $isMain->kota_id }}">
+                                    <select name="kota_id" id="sunting_1_kota_id" required>
                                         <option value="">--- Kota Tujuan ---</option>
                                     </select>
                                     {{--  Mengambil data nama kota  --}}
-                                    <input type="hidden" id="nama_kota" name="nama_kota">
+                                    <input type="hidden" id="sunting_1_nama_kota" name="nama_kota">
                                 <label for="">Kecamatan</label>
-                                    <select name="kecamatan_id" id="kecamatan_id" required>
+                                {{-- Mengambil data default --}}
+                                <input type="hidden" id="default_sunting_1_kecamatan_id" value="{{ $isMain->kecamatan_id }}">
+                                    <select name="kecamatan_id" id="sunting_1_kecamatan_id" required>
                                         <option value="">--- Kecamatan Tujuan ---</option>
                                     </select>
                                     {{--  Mengambil data nama kecamatan  --}}
-                                    <input type="hidden" id="nama_kecamatan" name="nama_kecamatan" required>
+                                    <input type="hidden" id="sunting_1_nama_kecamatan" name="nama_kecamatan" required>
                                 <label for="">Kode pos</label>
                                 <input type="text" name="kode_pos" required>
                                 @if ($errors->any())
@@ -154,13 +168,24 @@
                                     <a id="button-sunting-2">Sunting</a>
                                 </div>
                                 <div class="hapus">
-                                    <a href="Hapus">Hapus</a>
+                                    <form action="{{ route('hapusAlamatCadangan') }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $notMain->id }}">
+                                        <button type="submit">Hapus</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="cta-jadikan-utama">
-                            <a href="">Jadikan alamat utama</a>
-                        </div>
+                        <form action="{{ route('jadikanAlamatUtama') }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="cta-jadikan-utama">
+                                <input type="hidden" name="id_utama" value="{{ $isMain->id }}">
+                                <input type="hidden" name="id_cadangan" value="{{ $notMain->id }}">
+                                <button type="submit">Jadikan alamat utama</button>
+                            </div>
+                        </form>
                     </div>
                 @endif
             </div>
@@ -234,15 +259,25 @@
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="{{ URL::asset('js/profilAlamat.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/profil.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/rajaOngkir.js') }}"></script>
     {{--  <script type="text/javascript" src="{{ URL::asset('js/formAlamatValidation.js') }}"></script>  --}}
     
     <script>
         $(function() {
-            var temp = $("#provinsi_id").val(); 
-            $("#province_id").val(temp);
+            var temp = $("#default_sunting_1_provinsi_id").val(); 
+            $("#sunting_1_province_id").val(temp);
         });
+
+        // $(function() {
+        //     var temp = $("#default_kota_id").val(); 
+        //     $("#kota_id").val(temp);
+        // });
+
+        // $(function() {
+        //     var temp = $("#default_kecamatan_id").val(); 
+        //     $("#kecamatan_id").val(temp);
+        // });
     </script>
 
 @include('layouts.footer')

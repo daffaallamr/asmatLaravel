@@ -39,18 +39,21 @@ Route::get('/', [HomeController::class, 'index'])->name('home-customer');
 Route::group(['middleware' => 'auth:customer'], function () {
 
     // Profil
-    Route::get('profil-pembelian', [CustomerController::class, 'pembelian'])->name('profilPembelian');
-    
-    Route::get('profil-informasi-akun', [CustomerController::class, 'informasiAkun'])->name('profilInformasiAkun');
-
     Route::get('profil-alamat', [CustomerController::class, 'alamat'])->name('profilAlamat');
     Route::post('store-alamat', [CustomerController::class, 'storeAlamat'])->name('storeAlamat');
     Route::post('sunting-alamat', [CustomerController::class, 'suntingAlamat'])->name('suntingAlamat');
+    Route::delete('hapus-alamat-utama', [CustomerController::class, 'hapusAlamatUtama'])->name('hapusAlamatUtama');
+    Route::delete('hapus-alamat-cadangan', [CustomerController::class, 'hapusAlamatCadangan'])->name('hapusAlamatCadangan');
+    Route::put('jadikan-alamat-utama', [CustomerController::class, 'jadikanAlamatUtama'])->name('jadikanAlamatUtama');
     
+    Route::get('profil-pembelian', [CustomerController::class, 'pembelian'])->name('profilPembelian');
+
+    Route::get('profil-informasi-akun', [CustomerController::class, 'informasiAkun'])->name('profilInformasiAkun');
+    Route::put('ubah-password', [CustomerController::class, 'ubahPassword'])->name('ubahPassword');
+
     // Checkout
     Route::post('store-order', [CheckoutController::class, 'storeOrder'])->name('storeOrder');
     Route::get('keranjang', [CheckoutController::class, 'keranjang'])->name('keranjang');
-    Route::post('hapus-keranjang', [CheckoutController::class, 'hapusKeranjang'])->name('hapusKeranjang');
     Route::post('simpan-keranjang', [CheckoutController::class, 'simpanKeranjang'])->name('simpanKeranjang');
     
     Route::post('proses-keranjang-selanjutnya', [CheckoutController::class, 'setelahKeranjang'])->name('prosesKeranjangSelanjutnya');

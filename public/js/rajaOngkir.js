@@ -122,3 +122,27 @@ $(document).ready(function(){
         }
     });
 });
+
+// {{--  Script mendapat ID Kota default --}}
+$(document).ready(function(){
+    $('select[id="sunting_1_province_id"]').on('change', function(){
+        console.log('Ya masuk');
+        let provinceid = $(this).val();
+
+        if(provinceid){
+            jQuery.ajax({
+                url:"/kota/"+provinceid,
+                type:'GET',
+                dataType:'json',
+                success:function(data){
+                    $('select[id="sunting_1_kota_id"]').empty();
+                    $.each(data, function(key, value){
+                        $('select[name="sunting_1_kota_id"]').append('<option value="'+ value.city_id +'" namakota="'+ value.type +' ' +value.city_name+ '">' + value.type + ' ' + value.city_name + '</option>');
+                    });
+                }
+            });
+        } else {
+            $('select[name="sunting_1_kota_id"]').empty();
+        }
+    });
+});

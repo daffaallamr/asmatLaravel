@@ -12,12 +12,12 @@
             <a href="index.html"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
             </div>
             <ul>
-                <li><a href="{{ route('profil-alamat') }}">Alamat</a></li>
-                <li><a href="{{ route('profil-pembelian') }}">Pembelian</a></li>
-                <li><a href="{{ route('profil-informasi-akun') }}"><span class="bold">Informasi Akun</span></a></li>
+                <li><a href="{{ route('profilAlamat') }}">Alamat</a></li>
+                <li><a href="{{ route('profilPembelian') }}">Pembelian</a></li>
+                <li><a href="{{ route('profilInformasiAkun') }}"><span class="bold">Informasi Akun</span></a></li>
             </ul>
             <div class="exit">
-            <a href="{{ route('logout') }}"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
+            <a href="{{ route('logout-customer') }}"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
         </div>
         <div class="alamat">
             <div class="top">
@@ -28,55 +28,46 @@
                         <div class="info">
                             <div class="nama-depan">
                                 <label for="">Nama depan:</label>
-                                <p>{{ $data->nama_depan }}</p>
+                                <p>{{ $customer->nama_depan }}</p>
                             </div>
                             <div class="nama-belakang">
                                 <label for="">Nama belakang:</label>
-                                <p>{{ $data->nama_belakang }}</p>                               
+                                <p>{{ $customer->nama_belakang }}</p>                               
                             </div>
                             <div class="email">
                                 <label for="">Email:</label>
-                                <p>{{ $data->email }}</p>                               
+                                <p>{{ $customer->email }}</p>                               
                             </div>
                             <div class="telepon">
                                 <label for="">Telepon</label>
-                                <p>{{ $data->telepon }}</p>                                  
+                                <p>{{ $customer->telepon }}</p>                                  
                             </div>
                         </div>
                         <div class="password">
-                            <label for="">Kata sandi sekarang:</label>
-                            <input type="text">  
-                            <label for="">Kata sandi baru:</label>
-                            <input type="text"> 
-                            <label for="">Konfirmasi kata sandi:</label>
-                            <input type="text"> 
-
-                            <h4>Kata sandi lama salah!</h4>
-                            <input type="submit" class="cta-submit" id="ubah" value="Ubah">
+                            <form action="{{ route('ubahPassword') }}" method="post">
+                            @csrf
+                            @method('PUT')
+                                <label for="">Kata sandi sekarang:</label>
+                                    <input type="password" name="password_sekarang">  
+                                <label for="">Kata sandi baru:</label>
+                                    <input type="password" name="password"> 
+                                <label for="">Konfirmasi kata sandi:</label>
+                                    <input type="password" name="password_confirmation"> 
+                                @if ($errors->any())
+                                    <h4>{{ $errors->first() }}</h4>
+                                @endif
+                                <button type="submit" class="cta-submit" id="ubah">Ubah</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            
-        </div>
-    </div>
-    <div class="popup-ubah">
-        <h2>Apakah anda yakin &quest;</h2>
-        <div class="nav-bot">
-            <div class="exit">
-            <a href="akun.html"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>
-            <a class="cta-submit" href="pengiriman.html" style="padding: 10px 31px;">Ya</a>
         </div>
     </div>
     <div class="popup-bg">
     </div>
-<script>
-    document.getElementById('ubah').addEventListener('click',function() {
-    document.querySelector('.popup-ubah').style.display = 'block';
-    document.querySelector('.popup-ubah').style.opacity = '1';
-    document.querySelector('.popup-bg').style.display = 'block';
-    document.querySelector('.popup-bg').style.opacity = '0.2'; 
-    });
-</script>
+
+    <script type="text/javascript" src="{{ URL::asset('js/profil.js') }}"></script>
+
 @include('layouts.footer')
 @endsection
 

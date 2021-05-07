@@ -4,7 +4,7 @@
     <header>
         <img src="images/logo-2.png" alt="">
         <nav>
-            <a href="{{ route('profil-alamat') }}">Data diri</a>  -  <span><a href="{{ route('pilih-kurir') }}">Pengiriman</a></span>  -  <a aria-disabled="true">Pembayaran</a>
+            <a href="{{ route('profilAlamat') }}">Data diri</a>  -  <span><a href="{{ route('pilih-kurir') }}">Pengiriman</a></span>  -  <a aria-disabled="true">Pembayaran</a>
         </nav>
     </header>
     <form action="{{ route('ongkir') }}" method="POST">
@@ -68,7 +68,7 @@
             @endif
         <div class="nav-bot">
             <div class="exit">
-                <a href="{{ route('profil-alamat') }}">
+                <a href="{{ route('profilAlamat') }}">
                     <img src="images/arrow.svg" alt="" class="exit-arrow">
                     <span class="underline">Kembali</span>
                 </a>

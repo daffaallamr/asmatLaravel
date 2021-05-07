@@ -4,7 +4,7 @@
     <header>
         <img src="images/logo-2.png" alt="">
         <nav>
-            <a href="{{ route('profil-alamat') }}">Data diri</a>  -  <a href="{{ route('pilih-kurir') }}">Pengiriman</a>  -  <span><a href="{{ route('pembayaran') }}">Pembayaran</a></span>
+            <a href="{{ route('profilAlamat') }}">Data diri</a>  -  <a href="{{ route('pilih-kurir') }}">Pengiriman</a>  -  <span><a href="{{ route('pembayaran') }}">Pembayaran</a></span>
         </nav>
     </header>
     <section style="flex-basis: 60%!important;">

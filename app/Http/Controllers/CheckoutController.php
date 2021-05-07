@@ -93,22 +93,28 @@ class CheckoutController extends RajaOngkirController
 
     public function simpanKeranjang(Request $request)
     {
-        // Mencari data Order
-        $orderDetail = OrderDetail::where('id', $request->orderDetail_id)->first();
+        $countRequest = (count($request->all()) - 3) / 4;
+        // dd($request->all());
+        
+        for ($i = 1; $i <= $countRequest; $i++) {
+            $orderDetailId = $request->input('orderDetail_id_'.$i);
+            $orderDetail = OrderDetail::where('id', $orderDetailId)->first();
+            
+            $berat = $request->input('berat_'.$i);
+            $harga = $request->input('harga_'.$i);
+            $jumlahBarang = $request->input('jumlah_barang_'.$i);
+             
+            if ($harga == 0) {
+                $orderDetail->delete();
+            } else {
+                $orderDetail->jumlah_barang = $jumlahBarang;
+                $orderDetail->jumlah_berat = $berat * $jumlahBarang;
+                $orderDetail->jumlah_harga = $harga * $jumlahBarang;
+                $orderDetail->save();
+            }
 
-        $orderDetail->jumlah_barang = $request->jumlah_barang;
-        $orderDetail->jumlah_berat = $request->berat * $request->jumlah_barang;
-        $orderDetail->jumlah_harga = $request->harga * $request->jumlah_barang;
-        $orderDetail->save();
-
-        return redirect()->route('keranjang');
-    }
-
-    public function hapusKeranjang(Request $request) 
-    {
-        $orderDetail = OrderDetail::where('id', $request->orderDetail_id)->first();
-        $orderDetail->delete();
-
+        }
+        
         return redirect()->route('keranjang');
     }
 
@@ -116,6 +122,7 @@ class CheckoutController extends RajaOngkirController
     {
         $hasAddress = Address::where('costumer_id', Auth('customer')->id())->first();
         $orderUser = Order::find($request->order_id);
+        // dd($request->all());
 
         if ($request->jumlah_harga_barang == 0) {
 

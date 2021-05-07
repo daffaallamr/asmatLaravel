@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Customer;
 use App\Models\Order;
-use App\Models\OrderDetail;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends RajaOngkirController
 {
@@ -139,17 +139,83 @@ class CustomerController extends RajaOngkirController
         dd($request->all());
     }
 
+    public function hapusAlamatUtama(Request $request)
+    {
+        $address = Address::where('id', $request->id)->first();
+        $address->delete();
+
+        $addressCadangan = Address::where('costumer_id', Auth('customer')->id())->where('is_main', 0)->first();
+        
+        if(!empty($addressCadangan)) {
+            $addressCadangan->is_main = true;
+            $addressCadangan->save();
+        }
+
+        return redirect()->route('profilAlamat');
+    }
+
+    public function hapusAlamatCadangan(Request $request)
+    {
+        $address = Address::where('id', $request->id)->first();
+        $address->delete();
+
+        return redirect()->route('profilAlamat');
+    }
+
+    public function jadikanAlamatUtama(Request $request)
+    {
+        $utama = Address::where('id', $request->id_utama)->first();
+        $cadangan = Address::where('id', $request->id_cadangan)->first();
+
+        $utama->is_main = false;
+        $utama->save();
+
+        $cadangan->is_main = true;
+        $cadangan->save();
+
+        return redirect()->route('profilAlamat');
+    }
+
 
     public function pembelian() {
-        $dataOrder = Order::where('customer_id', 1)->get();
-        $orderDetail = OrderDetail::where('order_id', '=', [1])->get();
+        $orders = Order::where('customer_id', Auth('customer')->id())->get();
         
         return view ('profil.pembelian', [
-            'data' => $orderDetail
+            'orders' => $orders
             ]);
     }
 
     public function informasiAkun() {
-        return view ('profil.informasiAkun', ['data' => Customer::find(1)]);
+        $customer = Customer::where('id', Auth('customer')->id())->first();
+
+        return view ('profil.informasiAkun', ['customer' => $customer]);
+    }
+
+    public function ubahPassword(Request $request) 
+    {
+        $rules = [
+            'password_sekarang'         => ['required', new MatchOldPassword],
+            'password_confirmation'     => ['required', 'min:8'],
+            'password'                  => ['required', 'min:8', 'confirmed'],
+        ];
+ 
+        $messages = [
+            'password_sekarang.required'    => 'Kata sandi masih kosong',
+            'password.required'             => 'Kata sandi baru masih kosong',
+            'password.min'                  => 'Kata sandi baru minimal 8 karakter',
+            'password_confirmation.required'             => 'Konfirmasi kata sandi baru masih kosong',
+            'password_confirmation.min'                  => 'Konfirmasi kata sandi baru minimal 8 karakter',
+            'password.confirmed'                         => 'Konfirmasi kata sandi tidak cocok',
+        ];
+ 
+        $validator = Validator::make($request->all(), $rules, $messages);
+ 
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator);
+        }
+        
+        Customer::find(Auth('customer')->id())->update(['password'=> Hash::make($request->password)]);
+
+        return redirect()->route('profilInformasiAkun')->withErrors('Kata sandi berhasil diubah');
     }
 }
