@@ -121,7 +121,7 @@ class CheckoutController extends RajaOngkirController
 
     public function setelahKeranjang(Request $request)
     {
-        $hasAddress = Address::where('costumer_id', Auth('customer')->id())->first();
+        $hasAddress = Address::where('customer_id', Auth('customer')->id())->first();
         $orderUser = Order::find($request->order_id);
         // dd($request->all());
 
@@ -208,7 +208,7 @@ class CheckoutController extends RajaOngkirController
 
         $address = new Address;
 
-        $address->costumer_id = Auth('customer')->id();
+        $address->customer_id = Auth('customer')->id();
         $address->nama_depan = $request->nama_depan;
         $address->nama_belakang = $request->nama_belakang;
         $address->email = $request->email;
@@ -245,7 +245,7 @@ class CheckoutController extends RajaOngkirController
     public function storeOngkir(Request $request) {
         $orderId = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
         $customer = Customer::find(Auth('customer')->id());
-        $alamatCustomer = Address::where('costumer_id', Auth('customer')->id())->where('is_main', 1)->first();
+        $alamatCustomer = Address::where('customer_id', Auth('customer')->id())->where('is_main', 1)->first();
 
         if ($request->ekspedisi == null) {
             return redirect()->route('pilih-kurir')->withErrors('Belum memilih metode pengiriman');

@@ -46,7 +46,7 @@
                                         <h1 class="h4 text-gray-900 mb-5">Admin Asmat</h1>
                                     </div>
                                     <br>
-                                    <form action="{{ route('adminRegister') }}" method="post">
+                                    <form action="{{ route('register-admin') }}" method="post">
                                         @csrf
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"

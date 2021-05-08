@@ -4,7 +4,9 @@
     <header>
         <img src="images/logo-2.png" alt="">
         <nav>
-            <a href="{{ route('profilAlamat') }}">Data diri</a>  -  <span><a href="{{ route('pilih-kurir') }}">Pengiriman</a></span>  -  <a aria-disabled="true">Pembayaran</a>
+            <a href="{{ route('profilAlamat') }}">Data diri</a>  -  <span>
+                <a href="{{ route('pilih-kurir') }}">Pengiriman</a>
+            </span>  -  <a aria-disabled="true" style="cursor: default">Pembayaran</a>
         </nav>
     </header>
     <form action="{{ route('ongkir') }}" method="POST">

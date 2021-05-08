@@ -100,7 +100,7 @@ class CustomerController extends RajaOngkirController
         $address = new Address();
 
         if (empty($hasAddress)) {
-            $address->costumer_id = Auth('customer')->id();
+            $address->customer_id = Auth('customer')->id();
             $address->nama_depan = $request->nama_depan;
             $address->nama_belakang = $request->nama_belakang;
             $address->email = $request->email;
@@ -116,7 +116,7 @@ class CustomerController extends RajaOngkirController
             $address->is_main = true;
             $address->save();
         } else {
-            $address->costumer_id = Auth('customer')->id();
+            $address->customer_id = Auth('customer')->id();
             $address->nama_depan = $request->nama_depan;
             $address->nama_belakang = $request->nama_belakang;
             $address->email = $request->email;
@@ -146,7 +146,7 @@ class CustomerController extends RajaOngkirController
         $address = Address::where('id', $request->id)->first();
         $address->delete();
 
-        $addressCadangan = Address::where('costumer_id', Auth('customer')->id())->where('is_main', 0)->first();
+        $addressCadangan = Address::where('customer_id', Auth('customer')->id())->where('is_main', 0)->first();
         
         if(!empty($addressCadangan)) {
             $addressCadangan->is_main = true;

@@ -1,6 +1,14 @@
-@extends('layouts.mainCheckout')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asmat</title>
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
+</head>
+<body class="container-data" style="display: flex;">
 
-@section('content')
     <header>
         <img src="images/logo-2.png" alt="">
         <nav>
@@ -41,7 +49,11 @@
         <input type="hidden" id="snap_token" value="{{ $orderInfo->snap_token }}">
             <div class="nav-bot">
                 <div class="exit">
-                    <a href="{{ route('pilih-kurir') }}"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>
+                    <a href="{{ route('pilih-kurir') }}">
+                        <img src="images/arrow.svg" alt="" class="exit-arrow">
+                        <span class="underline">Kembali</span>
+                    </a>
+                </div>
                 <button type="submit" class="cta-submit" id="pay-button">Konfirmasi</button>
             </div>
     </section>
@@ -52,4 +64,6 @@
     }}"></script>
 
     <script type="text/javascript" src="{{ URL::asset('js/midtransSnapPayment.js') }}"></script>
-@endsection
+
+</body>
+</html>

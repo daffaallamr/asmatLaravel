@@ -4,24 +4,30 @@
     <header>
         <img src="images/logo-2.png" alt="">
         <nav>
-            <span><a aria-disabled="true">Data diri</a></span>  <label>-</label>  <a aria-disabled="true">Pengiriman</a>  <label>-</label>  <a aria-disabled="true">Pembayaran</a>
+            <span>
+                <a aria-disabled="true" style="cursor: default">Data diri</a>
+            </span>
+            <label>-</label>
+                <a aria-disabled="true" style="cursor: default">Pengiriman</a> 
+            <label>-</label>
+                <a aria-disabled="true" style="cursor: default">Pembayaran</a>
         </nav>
     </header>
-    <section>
-        <form action="{{ route('storeDataDiri') }}" method="POST">
-            @csrf
+    <form action="{{ route('storeDataDiri') }}" method="POST">
+        @csrf
+        <section style="justify-content: space-around;">
             <div class="container">
                 <div class="left-col">
                     <label for="">Nama depan</label>
-                    <input  type="text" name="nama_depan">
+                        <input  type="text" name="nama_depan">
                     <label for="">Nama belakang</label>
-                    <input type="text" name="nama_belakang">
+                        <input type="text" name="nama_belakang">
                     <label for="">Telepon</label>
-                    <input type="text" name="telepon">
+                        <input type="text" name="telepon">
                     <label for="">Email</label>
-                    <input type="text" name="email"> 
+                        <input type="text" name="email"> 
                     <label for="">Alamat lengkap</label>
-                    <input type="text" name="alamat_lengkap">
+                        <input type="text" name="alamat_lengkap">
                 </div>
                 <div class="right-col">
                     <label for="">Provinsi</label>
@@ -59,8 +65,8 @@
                     </div>
                 </div>
             </div>
-        </form>
-    </section>
+        </section>
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="

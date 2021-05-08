@@ -6,13 +6,13 @@
             <img src="images/log-reg.png" alt="">
         </div>
     </div>
-    <form action="{{ route('register-customer') }}" method="post">
     <div class="login-right">
         <div class="logo">
             <img src="images/logo-footer.png" alt="">
             <h2>Mulai <br> mendaftar&excl;</h2>
         </div>   
-            <div class="container-reg">
+        <div class="container-reg">
+                <form action="{{ route('register-customer') }}" method="post">
                 @csrf
                 <div class="nama-depan">
                     <label for="">Nama depan</label> <br>
