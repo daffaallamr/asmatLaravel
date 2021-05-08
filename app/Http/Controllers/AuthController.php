@@ -102,12 +102,12 @@ class AuthController extends Controller
         ];
  
         $messages = [
-            'nama_depan.required'   => 'Nama Depan wajib diisi',
-            'nama_depan.min'        => 'Nama Depan minimal 2 karakter',
-            'nama_depan.max'        => 'Nama Depan maksimal 15 karakter',
-            'nama_belakang.required'=> 'Nama Belakang wajib diisi',
-            'nama_belakang.min'     => 'Nama Belakang minimal 2 karakter',
-            'nama_belakang.max'     => 'Nama Belakang maksimal 30 karakter',
+            'nama_depan.required'   => 'Nama depan wajib diisi',
+            'nama_depan.min'        => 'Nama depan minimal 2 karakter',
+            'nama_depan.max'        => 'Nama depan maksimal 15 karakter',
+            'nama_belakang.required'=> 'Nama belakang wajib diisi',
+            'nama_belakang.min'     => 'Nama belakang minimal 2 karakter',
+            'nama_belakang.max'     => 'Nama belakang maksimal 30 karakter',
             'email.required'        => 'Email wajib diisi',
             'email.email'           => 'Email tidak valid',
             'email.unique'          => 'Email sudah terdaftar',

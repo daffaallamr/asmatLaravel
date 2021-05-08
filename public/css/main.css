@@ -2145,7 +2145,6 @@ footer .container .contact-footer ul li span {
   font-weight: 300;
   padding: 10px 5px;
   border: 1px solid var(--primary-color);
-  margin-top: 9%;
 }
 
 .logreg .login-right form .cta-submit:hover {
@@ -2154,14 +2153,12 @@ footer .container .contact-footer ul li span {
 }
 
 .logreg .login-right form .error {
-  color: black;
+  color: rgba(0, 0, 0, 0.7);
   font-size: 0.9vw;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
-  opacity: 0.9;
-  margin: 0;
-  position: absolute;
-  top: 70%;
+  opacity: 1;
+  margin: 10px 0;
 }
 
 .logreg .login-right form p {
@@ -2239,7 +2236,6 @@ footer .container .contact-footer ul li span {
   letter-spacing: 1.2px;
   font-family: 'Commissioner';
   margin-left: -150px;
-  margin-top: 15px;
   z-index: 100;
 }
 
@@ -2285,12 +2281,17 @@ footer .container .contact-footer ul li span {
 }
 
 .logreg .login-right .container-reg .error {
-  top: 76.5%;
-  color: black;
+  color: rgba(0, 0, 0, 0.7);
   font-size: 0.9vw;
-  opacity: 0.9;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  opacity: 1;
   z-index: -100;
-  position: absolute;
+  width: 100%;
+  margin: 0;
+  margin-top: -10px;
 }
 
 @media (max-width: 1280px) {
@@ -2314,9 +2315,6 @@ footer .container .contact-footer ul li span {
   }
   .logreg .login-right .container .logo img {
     margin-bottom: 0;
-  }
-  .logreg .login-right .container form .error {
-    top: 84%;
   }
   .logreg .login-right .container form label {
     font-size: 1em;
@@ -2385,6 +2383,7 @@ footer .container .contact-footer ul li span {
     max-width: 70%;
     margin: 20px auto 0 auto !important;
     min-height: 0 !important;
+    background: none;
   }
   .logreg .login-left .container img {
     width: 100%;
@@ -2420,8 +2419,7 @@ footer .container .contact-footer ul li span {
         justify-content: space-around;
   }
   .logreg .login-right form .error {
-    top: 138% !important;
-    left: 15%;
+    margin: 20px 0 40px 0;
   }
   .logreg .login-right form label {
     font-weight: 400;
@@ -2454,6 +2452,9 @@ footer .container .contact-footer ul li span {
     max-width: 16vw !important;
     padding: 1vw 1.5vw !important;
     border-radius: .8vw;
+  }
+  .logreg .login-right .container-reg .error {
+    margin: 20px 0 40px 0;
   }
   .logreg .login-right .container-reg input {
     height: 6vw !important;
@@ -2583,7 +2584,7 @@ footer .container .contact-footer ul li span {
         justify-content: space-around;
   }
   .logreg .login-right form .error {
-    top: 76% !important;
+    margin: 10px 0 20px 0;
   }
   .logreg .login-right form label {
     font-weight: 400;
@@ -2603,6 +2604,9 @@ footer .container .contact-footer ul li span {
   }
   .logreg .login-right form p a strong span {
     text-decoration: none;
+  }
+  .logreg .login-right .container-reg .error {
+    margin: 5px 0 10px 0 !important;
   }
   .logreg .login-right .container-reg input {
     height: 30px !important;
@@ -2939,6 +2943,10 @@ footer .container .contact-footer ul li span {
   /*Informasi Akun*/
 }
 
+.profil .alamat .lacak {
+  text-decoration: underline;
+}
+
 .profil .alamat .riwayat-mobile {
   display: none;
 }
@@ -3007,7 +3015,7 @@ footer .container .contact-footer ul li span {
       flex-basis: 75%;
   margin-left: auto;
   margin-right: auto;
-  font-weight: 400 !important;
+  font-weight: 500 !important;
   font-size: 1.6vw;
 }
 
@@ -3035,32 +3043,49 @@ footer .container .contact-footer ul li span {
   cursor: pointer;
 }
 
+.profil .alamat .kartu-alamat .alamat-ganti .card .cta-sunting-hapus button {
+  width: 100%;
+  height: 4vw;
+  font-weight: 500;
+  background-color: #F7F7E8;
+}
+
 .profil .alamat .kartu-alamat .alamat-ganti .card .cta-sunting-hapus .sunting {
-  padding: 1.2vw 0;
   -ms-flex-preferred-size: 50%;
       flex-basis: 50%;
   text-align: center;
 }
 
 .profil .alamat .kartu-alamat .alamat-ganti .card .cta-sunting-hapus .hapus {
-  padding: 1.2vw 0;
   -ms-flex-preferred-size: 50%;
       flex-basis: 50%;
   text-align: center;
   border-left: #ECB390  solid 1px;
 }
 
+.profil .alamat .kartu-alamat .alamat-ganti button {
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+}
+
 .profil .alamat .kartu-alamat .alamat-ganti .cta-jadikan-utama {
   text-align: center;
+}
+
+.profil .alamat .kartu-alamat .alamat-ganti .cta-jadikan-utama button {
   text-decoration: underline;
   margin-top: 10px;
-  font-weight: 400;
 }
 
 .profil .alamat .kartu-alamat .alamat-ganti .cta-alamat-utama {
   text-align: center;
+}
+
+.profil .alamat .kartu-alamat .alamat-ganti .cta-alamat-utama button {
   margin-top: 10px;
-  font-weight: 500;
 }
 
 .profil .alamat .tabel {
@@ -3085,18 +3110,20 @@ footer .container .contact-footer ul li span {
 }
 
 .profil .alamat .tabel table tbody tr td {
-  border-top: var(--primary-color) 2px solid;
+  border-bottom: rgba(223, 120, 97, 0.4) 2px solid;
   border-left: var(--primary-color) 2px solid;
   border-right: var(--primary-color) 2px solid;
   padding: 20px 20px 3em 20px;
 }
 
-.profil .alamat .tabel table tfoot tr td {
-  border-top: #ECB390 2px solid;
-  padding: 20px 20px 20px 20px;
-  border-left: var(--primary-color) 2px solid;
-  border-bottom: var(--primary-color) 2px solid;
-  border-right: var(--primary-color) 2px solid;
+.profil .alamat .tabel table tbody tr td button {
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.profil .alamat .tabel table tbody:last-child tr td {
+  border-bottom: 2px var(--primary-color) solid !important;
 }
 
 .profil .alamat .tabel table a {
@@ -3153,12 +3180,16 @@ footer .container .contact-footer ul li span {
 }
 
 .profil .alamat .informasi-akun .container .password h4 {
-  color: black;
+  color: rgba(0, 0, 0, 0.7);
   font-weight: 400;
   font-size: 14px;
   margin-top: -10px;
-  opacity: 0.8;
-  position: absolute;
+  opacity: 1;
+  margin-bottom: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .profil .alamat .informasi-akun .container .password .cta-submit {
@@ -3174,7 +3205,9 @@ footer .container .contact-footer ul li span {
   z-index: 100;
   float: right;
   cursor: pointer;
-  margin-top: 30px;
+  margin: 30px 0;
+  border: 0;
+  width: 60%;
 }
 
 @media (max-width: 800px) {
@@ -3286,18 +3319,18 @@ footer .container .contact-footer ul li span {
   .alamat .kartu-alamat .alamat-ganti .card {
     min-width: 90%;
     margin: auto;
-    min-height: 80vh;
   }
   .alamat .kartu-alamat .alamat-ganti .card h2 {
-    font-size: 5vw !important;
-    margin-bottom: 0;
+    font-size: 4vw !important;
+    margin-bottom: 40px;
   }
   .alamat .kartu-alamat .alamat-ganti .card label {
     font-size: 3vw !important;
-    margin-bottom: 1px !important;
+    margin-bottom: 15px !important;
   }
-  .alamat .kartu-alamat .alamat-ganti .card .cta-sunting-hapus a {
-    font-size: 3vw;
+  .alamat .kartu-alamat .alamat-ganti .card .cta-sunting-hapus {
+    height: 12vw;
+    border-top: 2px solid #ECB390 !important;
   }
   .alamat .kartu-alamat .alamat-ganti .card .cta-sunting-hapus .sunting {
     -webkit-box-align: center;
@@ -3321,16 +3354,25 @@ footer .container .contact-footer ul li span {
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .alamat .kartu-alamat .alamat-ganti .cta-jadikan-utama {
-    margin: 50px 0;
+  .alamat .kartu-alamat .alamat-ganti .card .cta-sunting-hapus button {
+    margin: 0 !important;
+    font-size: 3vw;
+    height: 100% !important;
   }
-  .alamat .kartu-alamat .alamat-ganti .cta-jadikan-utama a {
+  .alamat .kartu-alamat .alamat-ganti button {
+    margin: 30px 0 80px 0 !important;
+    background-color: #F7F7E8;
+  }
+  .alamat .kartu-alamat .alamat-ganti .cta-jadikan-utama {
+    margin: 0;
+  }
+  .alamat .kartu-alamat .alamat-ganti .cta-jadikan-utama button {
     font-size: 24px;
   }
   .alamat .kartu-alamat .alamat-ganti .cta-alamat-utama {
-    margin: 50px 0;
+    margin: 0;
   }
-  .alamat .kartu-alamat .alamat-ganti .cta-alamat-utama a {
+  .alamat .kartu-alamat .alamat-ganti .cta-alamat-utama button {
     font-size: 24px;
   }
   .alamat .tabel {
@@ -3374,9 +3416,12 @@ footer .container .contact-footer ul li span {
             align-items: baseline;
     margin: auto;
   }
-  .alamat .riwayat-mobile .bot a {
+  .alamat .riwayat-mobile .bot button {
     text-align: center !important;
     font-size: 4vw !important;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
   }
   .alamat .riwayat-mobile .bot p {
     font-size: 4vw !important;
@@ -3456,6 +3501,7 @@ footer .container .contact-footer ul li span {
   }
   .alamat .informasi-akun .container .password h4 {
     font-size: 3vw !important;
+    margin-bottom: 40px !important;
   }
 }
 
@@ -3496,20 +3542,20 @@ footer .container .contact-footer ul li span {
     font-size: 3.5vw;
     margin-bottom: 10px !important;
   }
-  .profil .alamat .kartu-alamat .alamat-ganti .card .cta-sunting-hapus .sunting {
-    padding: 3vw 0;
-  }
   .profil .alamat .kartu-alamat .alamat-ganti .card .cta-sunting-hapus .hapus {
     padding: 3vw 0;
   }
   .profil .alamat .kartu-alamat .alamat-ganti .card .cta-sunting-hapus a {
     font-size: 3vw;
   }
-  .profil .alamat .kartu-alamat .alamat-ganti .cta-jadikan-utama a {
-    font-size: 1em;
+  .profil .alamat .kartu-alamat .alamat-ganti button {
+    margin: 15px 0 40px 0 !important;
   }
-  .profil .alamat .kartu-alamat .alamat-ganti .cta-alamat-utama a {
-    font-size: 1em;
+  .profil .alamat .kartu-alamat .alamat-ganti .cta-jadikan-utama button {
+    font-size: 14px;
+  }
+  .profil .alamat .kartu-alamat .alamat-ganti .cta-alamat-utama button {
+    font-size: 14px;
   }
   .profil .alamat .informasi-akun .container {
     margin: 0 !important;
@@ -3562,6 +3608,9 @@ footer .container .contact-footer ul li span {
     font-size: 14px !important;
     padding: 5px 5px !important;
     max-height: 30px;
+  }
+  .profil .alamat .informasi-akun .container .password h4 {
+    margin-bottom: 20px !important;
   }
   .profil .alamat .tabel {
     margin: 0 !important;
@@ -3757,11 +3806,14 @@ footer .container .contact-footer ul li span {
 }
 
 .popup .container .right-col h3 {
-  color: black;
+  color: rgba(0, 0, 0, 0.7);
   font-size: 13px;
   font-weight: 300;
-  position: absolute;
-  display: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  opacity: 1;
 }
 
 .popup .container .left-col {
@@ -3922,7 +3974,7 @@ footer .container .contact-footer ul li span {
   }
   .popup .container .right-col .nav-bot .exit {
     margin-top: 10PX;
-    width: 30%;
+    width: 50%;
     font-size: 1.6em !important;
   }
   .popup .container .right-col .nav-bot .exit .exit-arrow {
@@ -3976,12 +4028,12 @@ footer .container .contact-footer ul li span {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    -webkit-box-align: end;
-        -ms-flex-align: end;
-            align-items: flex-end;
   }
   .popup .container .right-col .nav-bot .exit {
     margin: 0 !important;
+    width: 100%;
+    -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
   }
   .popup .container .right-col .nav-bot .exit a {
     font-size: 16px !important;
@@ -4326,7 +4378,8 @@ footer .container .contact-footer ul li span {
           justify-content: center;
 }
 
-.keranjang-belanja .body-mobile {
+.keranjang-belanja form {
+  width: 65%;
   display: none;
 }
 
@@ -4497,6 +4550,20 @@ footer .container .contact-footer ul li span {
   text-align: center;
 }
 
+.keranjang-belanja .body table input[type=text] {
+  border: none;
+  color: var(--primary-color);
+  max-width: 50px;
+  pointer-events: none;
+}
+
+.keranjang-belanja .body table .table-alert {
+  border-top: rgba(236, 179, 144, 0.6) 2px solid;
+  border-left: 2px solid var(--primary-color);
+  border-right: 2px solid var(--primary-color);
+  display: none;
+}
+
 .keranjang-belanja .body table .table-mid {
   border: 2px var(--primary-color) solid;
 }
@@ -4504,6 +4571,24 @@ footer .container .contact-footer ul li span {
 .keranjang-belanja .body table .table-mid tr, .keranjang-belanja .body table .table-mid td {
   border-top: rgba(236, 179, 144, 0.6) 2px solid;
   border-right: rgba(236, 179, 144, 0.6) 2px solid;
+}
+
+.keranjang-belanja .body table .table-mid label {
+  max-width: 50px;
+}
+
+.keranjang-belanja .body table .table-mid td:nth-child(3) {
+  max-width: 80px;
+}
+
+.keranjang-belanja .body table .table-mid .hapus-row {
+  border: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1em;
+  background-color: #F7F7E8;
 }
 
 .keranjang-belanja .body table .table-mid-2 {
@@ -4529,6 +4614,15 @@ footer .container .contact-footer ul li span {
   font-size: 18px;
 }
 
+.keranjang-belanja .body table .tabel-bot input[type=text] {
+  max-width: 50px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  pointer-events: none;
+}
+
 .keranjang-belanja .body table .table-top {
   border: 1pxrgba 236, 179, 144, 0.6 solid;
   border-left: 2px var(--primary-color) solid;
@@ -4552,6 +4646,7 @@ footer .container .contact-footer ul li span {
   background-color: #ECB390;
   padding: 10px 20px;
   border-radius: 5px;
+  height: 60px;
 }
 
 .keranjang-belanja .body table .produk label {
@@ -4615,7 +4710,7 @@ footer .container .contact-footer ul li span {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  margin-right: 5%;
+  margin-right: 40px;
 }
 
 .keranjang-belanja .foot .cta-simpan button {
@@ -4652,6 +4747,16 @@ footer .container .contact-footer ul li span {
   .keranjang-belanja .body {
     display: none;
   }
+  .keranjang-belanja form {
+    display: block;
+    width: 100%;
+  }
+  .keranjang-belanja form .foot {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    margin-top: 15%;
+  }
   .keranjang-belanja .body-mobile {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
@@ -4662,27 +4767,42 @@ footer .container .contact-footer ul li span {
     -ms-flex-line-pack: start;
         align-content: flex-start;
     border-top: 2px solid var(--primary-color);
-    max-height: 50%;
     max-width: -webkit-fit-content;
     max-width: -moz-fit-content;
     max-width: fit-content;
+  }
+  .keranjang-belanja .body-mobile .alert-mobile {
+    font-size: 1.6em;
+    text-align: center;
+    width: 100%;
+    border-bottom: 2px solid #ECB390;
   }
   .keranjang-belanja .body-mobile .total {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    padding-left: auto;
     border-bottom: 2px solid var(--primary-color);
     min-width: 100% !important;
+    padding-left: 10%;
   }
   .keranjang-belanja .body-mobile .total label {
     margin: 20px 40px;
-    font-size: 38px;
+    font-size: 32px;
+  }
+  .keranjang-belanja .body-mobile .total input[type=text] {
+    width: 120px;
+    color: var(--primary-color);
+    border: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    pointer-events: none;
   }
   .keranjang-belanja .body-mobile .tabel-mobile, .keranjang-belanja .body-mobile .tabel-mobile-2 {
     display: -webkit-box;
@@ -4714,10 +4834,12 @@ footer .container .contact-footer ul li span {
     max-width: 50%;
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left .image-produk img, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .image-produk img {
-    height: 70% !important;
-    padding: 10px 25%;
+    max-width: 49px;
+    width: 100%;
+    height: 190px;
+    padding: 10% 25%;
     background-color: #ECB390;
-    margin: auto;
+    margin: 20px auto;
     border-radius: 15px;
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left .info-produk, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .info-produk {
@@ -4793,11 +4915,31 @@ footer .container .contact-footer ul li span {
   .keranjang-belanja .body-mobile .tabel-mobile .produk-right a, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-right a {
     font-size: 3vw;
   }
+  .keranjang-belanja .body-mobile .tabel-mobile .produk-right input[type=text], .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-right input[type=text] {
+    width: 80px;
+    border: none;
+    color: var(--primary-color);
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    pointer-events: none;
+  }
+  .keranjang-belanja .body-mobile .tabel-mobile .produk-right .hapus-row, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-right .hapus-row {
+    color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    font-size: 3vw;
+    text-decoration: underline;
+    background: none;
+  }
   .keranjang-belanja .foot {
     -ms-flex-preferred-size: 90%;
         flex-basis: 90%;
-    margin-top: 7%;
+    margin-top: 10% !important;
     margin-bottom: 7%;
+    display: none;
+    margin-right: 10%;
   }
   .keranjang-belanja .foot .cta-selanjutnya button {
     background-color: var(--primary-color);
@@ -4837,37 +4979,19 @@ footer .container .contact-footer ul li span {
   .keranjang-belanja .body {
     display: none;
   }
-  .keranjang-belanja .body-mobile {
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    max-height: auto !important;
-    -ms-flex-line-pack: start;
-        align-content: flex-start;
-    border-top: 2px solid var(--primary-color);
-    max-height: 50%;
-    max-width: -webkit-fit-content;
-    max-width: -moz-fit-content;
-    max-width: fit-content;
+  .keranjang-belanja .body-mobile .alert-mobile {
+    font-size: 1em;
+    display: none;
   }
   .keranjang-belanja .body-mobile .total {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    padding-left: auto;
-    border-bottom: 2px solid var(--primary-color);
-    min-width: 100% !important;
+    padding-left: 12%;
   }
   .keranjang-belanja .body-mobile .total label {
-    margin: 20px 40px;
-    font-size: 18px;
+    margin: 10px 20px;
+    font-size: 16px;
+  }
+  .keranjang-belanja .body-mobile .total input[type=text] {
+    max-width: 80px;
   }
   .keranjang-belanja .body-mobile .tabel-mobile, .keranjang-belanja .body-mobile .tabel-mobile-2 {
     display: -webkit-box;
@@ -4877,49 +5001,19 @@ footer .container .contact-footer ul li span {
         flex-basis: 100%;
     max-height: 140px !important;
   }
+  .keranjang-belanja .body-mobile .tabel-mobile .tabel-mobile label, .keranjang-belanja .body-mobile .tabel-mobile-2 .tabel-mobile label {
+    margin: 10px 20px !important;
+  }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left {
-    -ms-flex-preferred-size: 50%;
-        flex-basis: 50%;
-    max-width: 67%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    border-right: 2px solid #ECB390;
     border-bottom: 2px solid #ECB390;
   }
-  .keranjang-belanja .body-mobile .tabel-mobile .produk-left .image-produk, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .image-produk {
-    -ms-flex-preferred-size: 30%;
-        flex-basis: 30%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    max-width: 35%;
-  }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left .image-produk img, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .image-produk img {
-    height: 65% !important;
+    max-width: 25px;
+    height: 100px !important;
     padding: 10px 25px;
     background-color: #ECB390;
-    margin: auto;
+    margin: 10px auto;
     border-radius: 5px;
-  }
-  .keranjang-belanja .body-mobile .tabel-mobile .produk-left .info-produk, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .info-produk {
-    -ms-flex-preferred-size: 60%;
-        flex-basis: 60%;
-    -webkit-box-pack: left;
-        -ms-flex-pack: left;
-            justify-content: left;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    margin-left: auto;
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left .info-produk label, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .info-produk label {
     max-width: 80%;
@@ -4927,12 +5021,12 @@ footer .container .contact-footer ul li span {
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left .info-produk .quantity2, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .info-produk .quantity2 {
     margin: 0;
-    max-width: 45% !important;
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left .info-produk .quantity2 button, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .info-produk .quantity2 button {
     padding: 2px 7px !important;
-    margin-top: -3px !important;
-    margin-left: -4px !important;
+    margin-top: -1px !important;
+    margin-left: -5% !important;
+    background: none;
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left .info-produk .quantity3, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .info-produk .quantity3 {
     margin: 0;
@@ -4940,7 +5034,7 @@ footer .container .contact-footer ul li span {
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left .info-produk .quantity3 button, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .info-produk .quantity3 button {
     padding: 2px 7px !important;
-    margin-top: -3px !important;
+    margin-top: 2% !important;
     margin-left: -4px !important;
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-right, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-right {
@@ -4964,6 +5058,9 @@ footer .container .contact-footer ul li span {
         flex-basis: 100%;
     text-align: center;
   }
+  .keranjang-belanja .body-mobile .tabel-mobile .produk-right input[type=text], .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-right input[type=text] {
+    max-width: 35%;
+  }
 }
 
 .container-data {
@@ -4974,9 +5071,6 @@ footer .container .contact-footer ul li span {
           justify-content: center;
   color: var(--primary-color);
   margin-bottom: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -5016,15 +5110,33 @@ footer .container .contact-footer ul li span {
       flex-wrap: wrap;
 }
 
+.container-data section .alert {
+  width: 100%;
+  text-align: center;
+  margin-top: 2%;
+}
+
+.container-data section .alert p {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 14px;
+  display: block;
+  opacity: 1;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 .container-data section .container-metode {
-  -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-preferred-size: 90%;
+      flex-basis: 90%;
+  margin: auto;
 }
 
 .container-data section .container-metode .metode {
@@ -5076,7 +5188,7 @@ footer .container .contact-footer ul li span {
   max-width: 280px;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
-  margin: 5% auto 0 auto;
+  margin: 0 auto 0 auto;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -5120,7 +5232,7 @@ footer .container .contact-footer ul li span {
   max-width: 88%;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
-  margin: 10% 10px 0 0px;
+  margin: 0 10px 0 0px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -5320,11 +5432,14 @@ footer .container .contact-footer ul li span {
 }
 
 .container-data section .container .right-col h3 {
-  color: black;
+  color: rgba(0, 0, 0, 0.7);
   font-size: 13px;
   font-weight: 300;
-  margin: 0 0 10px 0;
-  position: absolute;
+  margin: -10px 0 20px 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .container-data section table tr td {
@@ -5343,10 +5458,30 @@ footer .container .contact-footer ul li span {
   margin-bottom: 30px;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
+  max-height: 100%;
 }
 
-.container-data table input {
-  margin-left: 10%;
+.container-data table .Table-1 {
+  width: 60%;
+}
+
+.container-data table .Table-2 {
+  width: 40%;
+}
+
+.container-data table .content-table {
+  margin-left: 7%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 85%;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.container-data table .content-table label {
+  margin-left: 3%;
 }
 
 .container-data tr td, .container-data td td {
@@ -5515,11 +5650,11 @@ footer .container .contact-footer ul li span {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin-top: 15%;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
     max-width: 100% !important;
+    margin-top: 80px;
   }
   .container-data section .container .right-col .nav-bot-2 .cta-submit {
     background-color: var(--primary-color);

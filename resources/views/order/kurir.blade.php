@@ -22,8 +22,10 @@
                     @foreach ($ongkirJNE as $jne)
                     <tr>
                         <td class="Table-1">
-                            <input type="radio" name="ekspedisi" value="JNE - {{ $jne['service'] }}|{{ $jne['cost'][0]['value'] }}">
-                            <label for="">{{ $jne['service'] }} ({{ $jne['cost'][0]['etd'] }} hari)</label>
+                            <div class="content-table">
+                                <input type="radio" name="ekspedisi" value="JNE - {{ $jne['service'] }}|{{ $jne['cost'][0]['value'] }}">
+                                <label for="">{{ $jne['service'] }} ({{ $jne['cost'][0]['etd'] }} hari)</label>
+                            </div>
                         </td>
                         <td class="Table-2">IDR {{ number_format($jne['cost'][0]['value'], 0, '.', '.') }}</td>
                     </tr>
@@ -38,8 +40,10 @@
                     @foreach ($ongkirTIKI as $tiki)
                     <tr>
                         <td class="Table-1">
-                            <input type="radio" name="ekspedisi" value="TIKI - {{ $tiki['service'] }}|{{ $tiki['cost'][0]['value'] }}">
-                            <label for="">{{ $tiki['service'] }} ({{ $tiki['cost'][0]['etd'] }} hari)</label>
+                            <div class="content-table">
+                                <input type="radio" name="ekspedisi" value="TIKI - {{ $tiki['service'] }}|{{ $tiki['cost'][0]['value'] }}">
+                                <label for="">{{ $tiki['service'] }} ({{ $tiki['cost'][0]['etd'] }} hari)</label>
+                            </div>
                         </td>
                         <td class="Table-2">IDR {{ number_format($tiki['cost'][0]['value'], 0, '.', '.') }}</td>
                     </tr>
@@ -54,8 +58,10 @@
                     @foreach ($ongkirPOS as $pos)
                     <tr>
                         <td class="Table-1">
-                            <input type="radio" name="ekspedisi" value="POS - {{ $pos['service'] }}|{{ $pos['cost'][0]['value'] }}">
-                            <label for="">{{ $pos['service'] }} ({{ $pos['cost'][0]['etd'] }} hari)</label>
+                            <div class="content-table">
+                                <input type="radio" name="ekspedisi" value="POS - {{ $pos['service'] }}|{{ $pos['cost'][0]['value'] }}">
+                                <label for="">{{ $pos['service'] }} ({{ $pos['cost'][0]['etd'] }} hari)</label>
+                            </div>
                         </td>
                         <td class="Table-2">IDR {{ number_format($pos['cost'][0]['value'], 0, '.', '.') }}</td>
                     </tr>
@@ -63,9 +69,13 @@
                 </table>
                 </div>
             </div>
-            @if ($errors->any())
-                    <p class="error">{{ $errors->first() }}</p> 
-            @endif
+            <div class="alert">
+                @if ($errors->any())
+                    <p class="alert-content">{{ $errors->first() }}</p>
+                @endif
+            </div>
+
+
         <div class="nav-bot">
             <div class="exit">
                 <a href="{{ route('profilAlamat') }}">

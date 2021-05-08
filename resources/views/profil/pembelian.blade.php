@@ -50,7 +50,7 @@
                                 <td>
                                     @if ($order->status_payment == 'pending')
                                         <input type="hidden" id="snap_token" value="{{ $order->snap_token }}">
-                                        <button id="pay-button">Bayar Sekarang</button>
+                                        <button class="lacak" id="pay-button">Bayar Sekarang</button>
                                     @endif
                                 </td>
                             </tr>

@@ -18,9 +18,11 @@
                     <input type="text" name="email" value="{{ old('email') }}">
                 <label for="">Kata Sandi</label>
                     <input type="password" name="password"> 
-                @if ($errors->any())
-                    <p class="error">{{ $errors->first() }}</p> 
-                @endif
+                    <p class="error">
+                        @if ($errors->any())
+                            {{ $errors->first() }}
+                        @endif
+                    </p> 
                 <button type="submit" class="cta-submit">Masuk</button>
                 <p>Belum punya akun? <a href="{{ route('register-customer') }}"><strong> <span class="underline">Daftar sekarang</span> </strong></a></p>
             </form>

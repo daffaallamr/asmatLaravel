@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class CheckoutController extends RajaOngkirController
@@ -244,6 +245,7 @@ class CheckoutController extends RajaOngkirController
     public function storeOngkir(Request $request) {
         $orderId = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
         $customer = Customer::find(Auth('customer')->id());
+        $alamatCustomer = Address::where('costumer_id', Auth('customer')->id())->where('is_main', 1)->first();
 
         if ($request->ekspedisi == null) {
             return redirect()->route('pilih-kurir')->withErrors('Belum memilih metode pengiriman');
@@ -281,6 +283,8 @@ class CheckoutController extends RajaOngkirController
         $snapToken = \Midtrans\Snap::getSnapToken($payload);
         $orderId->snap_token = $snapToken;
         $orderId->save();
+
+        Mail::to($customer->email)->send(new \App\Mail\CheckoutConfirmed($customer, $orderId, $alamatCustomer));
 
         return redirect('pembayaran');
     }   

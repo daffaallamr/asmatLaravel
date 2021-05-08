@@ -6,13 +6,13 @@
             <img src="images/log-reg.png" alt="">
         </div>
     </div>
+    <form action="{{ route('register-customer') }}" method="post">
     <div class="login-right">
         <div class="logo">
             <img src="images/logo-footer.png" alt="">
             <h2>Mulai <br> mendaftar&excl;</h2>
         </div>   
-        <div class="container-reg">
-            <form action="{{ route('register-customer') }}" method="post">
+            <div class="container-reg">
                 @csrf
                 <div class="nama-depan">
                     <label for="">Nama depan</label> <br>
@@ -38,15 +38,20 @@
                     <label for="">Konfirmasi kata sandi</label> <br>
                     <input type="password" name="password_confirmation">
                 </div>
-                @if (session('errors'))
-                    <p class="error">{{ $errors->first() }}</p> 
-                @endif
-                <div class="exit">
-                    <a href="{{ route('login-customer') }}"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Batal</span></a> 
-                    <input type="submit" class="cta-submit" value="Daftar"></div>
+                <p class="error">
+                    @if ($errors->any())
+                        {{ $errors->first() }}
+                    @endif
+                </p> 
+                <div class="exit" style="margin-bottom: 50px">
+                    <a href="{{ route('login-customer') }}">
+                        <img src="images/arrow.svg" alt="" class="exit-arrow">
+                        <span class="underline">Batal</span>
+                    </a> 
+                    <input type="submit" class="cta-submit" value="Daftar">
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 @endsection

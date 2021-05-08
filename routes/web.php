@@ -16,6 +16,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\StoryController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -132,5 +133,20 @@ Route::get('register/admin', [AdminRegisterController::class, 'showAdminRegister
 Route::post('register/admin', [AdminRegisterController::class, 'createAdmin']);
 
 Route::get('logout/admin', [AdminLoginController::class,'logout'])->name('logout-admin');
+
+
+// ---------------------------------------------------------------------
+// Fitur email
+Route::get('send-mail', function () {
+   
+    $details = [
+        'title' => 'Mail from ItSolutionStuff.com',
+        'body' => 'This is for testing email using smtp'
+    ];
+   
+    // Mail::to('dafaalamr@gmail.com')->send(new \App\Mail\CheckoutConfirmed($details));
+   
+    dd("Email is Sent.");
+});
 
 

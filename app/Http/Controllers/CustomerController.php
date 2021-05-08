@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends RajaOngkirController
 {
+
     public function alamat()
-    {
+    {   
         //memanggil function get_province
         $provinsi = $this->get_province();
 
@@ -89,7 +90,8 @@ class CustomerController extends RajaOngkirController
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
- 
+
+        
         if($validator->fails()){
             return redirect()->route('profilAlamat')->withErrors($validator)->withInput($request->all);
         }
@@ -133,12 +135,12 @@ class CustomerController extends RajaOngkirController
 
         return redirect()->route('profilAlamat');
     }
-
+    
     public function suntingAlamat(Request $request) 
     {
         dd($request->all());
     }
-
+    
     public function hapusAlamatUtama(Request $request)
     {
         $address = Address::where('id', $request->id)->first();
@@ -153,7 +155,7 @@ class CustomerController extends RajaOngkirController
 
         return redirect()->route('profilAlamat');
     }
-
+    
     public function hapusAlamatCadangan(Request $request)
     {
         $address = Address::where('id', $request->id)->first();
@@ -178,7 +180,7 @@ class CustomerController extends RajaOngkirController
 
 
     public function pembelian() {
-        $orders = Order::where('customer_id', Auth('customer')->id())->get();
+        $orders = Order::where('customer_id', Auth('customer')->id())->whereNotNull('order_unique_id')->get();
         
         return view ('profil.pembelian', [
             'orders' => $orders

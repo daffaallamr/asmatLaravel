@@ -1784,20 +1784,17 @@ footer{
                 font-weight: 300;
                 padding: 10px 5px;
                 border: 1px solid var(--primary-color);
-                margin-top: 9%;
             }
             .cta-submit:hover{
                 color: var(--primary-color);
                 background-color: #F7F7E8
             }
             .error{
-                color: black;
+                color: rgba(0, 0, 0, 0.7);
                 font-size: 0.9vw;
                 flex-basis: 100%;
-                opacity: 0.9;
-                margin: 0;
-                position: absolute;
-                top: 70%;
+                opacity: 1;
+                margin: 10px 0;
             }
             p{
                 font-size: 1vw;
@@ -1855,7 +1852,6 @@ footer{
                 letter-spacing: 1.2px;
                 font-family: 'Commissioner';
                 margin-left: -150px;
-                margin-top: 15px;
                 z-index: 100;
             }
             .cta-submit:hover{
@@ -1886,12 +1882,14 @@ footer{
                 }   
             }
             .error{
-                top: 76.5%;
-                color: black;
+                color: rgba(0, 0, 0, 0.7);
                 font-size: 0.9vw;
-                opacity: 0.9;
+                user-select: none;
+                opacity: 1;
                 z-index: -100;
-                position: absolute;
+                width: 100%;
+                margin: 0;
+                margin-top: -10px;
             }
             
         }
@@ -1915,9 +1913,6 @@ footer{
                     }
                 }
                 form{
-                    .error{
-                        top: 84%;
-                    }
                     label{
                         font-size: 1em;
                     }
@@ -1974,6 +1969,7 @@ footer{
             max-width: 70%;
             margin: 20px auto 0 auto!important;
             min-height: 0!important;
+            background:none;
             .container{
                 img{
                     width: 100%;
@@ -2005,8 +2001,7 @@ footer{
                     display: flex;
                     justify-content: space-around;
                     .error{
-                        top: 138%!important;
-                        left: 15%;
+                        margin: 20px 0 40px 0;
                     }
                     label{
                         font-weight: 400;
@@ -2042,6 +2037,9 @@ footer{
                 }
             
             .container-reg{
+                .error{
+                    margin: 20px 0 40px 0;
+                }
                 input{
                     height: 6vw!important;
                     border: 2px solid var(--primary-color)!important;
@@ -2161,7 +2159,7 @@ footer{
                     display: flex;
                     justify-content: space-around;
                     .error{
-                        top: 76%!important;
+                        margin: 10px 0 20px 0;
                     }
                     label{
                         font-weight: 400;
@@ -2186,6 +2184,9 @@ footer{
                 }
             
             .container-reg{
+                .error{
+                    margin: 5px 0 10px 0!important;
+                }
                 input{
                     height: 30px!important;
                     border: 2px solid rgba(223, 120, 97, 0.7)!important;
@@ -2461,6 +2462,9 @@ footer{
         color: var(--primary-color);
         margin: 0 auto 0 auto;
         height: 100vh;
+        .lacak{
+            text-decoration: underline;
+        }
         .riwayat-mobile{
             display: none;
         }
@@ -2500,11 +2504,12 @@ footer{
                     max-width: 20vw;
                     display: flex;
                     flex-wrap: wrap;
+                    
                     h2{
                         flex-basis: 75%;
                         margin-left: auto;
                         margin-right: auto;
-                        font-weight: 400!important;
+                        font-weight: 500!important;
                         font-size: 1.6vw;
                     }
                     label{
@@ -2522,29 +2527,42 @@ footer{
                         flex-basis: 100%;
                         text-align: baseline;
                         cursor: pointer;
+                        button{
+                            width: 100%;
+                            height: 4vw;
+                            font-weight: 500;
+                            background-color: #F7F7E8;
+                        }
                         .sunting{
-                            padding: 1.2vw 0;
                             flex-basis: 50%;
                             text-align: center;
                         }
                         .hapus{
-                            padding: 1.2vw 0;
                             flex-basis: 50%;
                             text-align: center;
                             border-left: #ECB390  solid 1px;
                         }
                     }
                 }
+                button{
+                    border: none;
+                    color: var(--primary-color);
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
                 .cta-jadikan-utama{
                     text-align: center;
-                    text-decoration: underline;
-                    margin-top: 10px;
-                    font-weight: 400;
+                    button{
+                        text-decoration: underline;
+                        margin-top: 10px;
+                    }
                 }
                 .cta-alamat-utama{
                     text-align: center;
-                    margin-top: 10px;
-                    font-weight: 500;
+                    button{
+                        margin-top: 10px;
+                    }
                 }
             }
         }
@@ -2562,17 +2580,20 @@ footer{
                     padding: 10px 20px 10px 20px;
                 }
                 tbody tr td{
-                    border-top: var(--primary-color) 2px solid;
+                    border-bottom: rgba(223, 120, 97, 0.4) 2px solid;
                     border-left: var(--primary-color) 2px solid;
                     border-right: var(--primary-color) 2px solid;
                     padding: 20px 20px 3em 20px;
+                    button{
+                        border: none;
+                        color: var(--primary-color);
+                        cursor: pointer;
+                    }
                 }
-                tfoot tr td{ 
-                    border-top: #ECB390 2px solid;
-                    padding: 20px 20px 20px 20px;
-                    border-left: var(--primary-color) 2px solid;
-                    border-bottom: var(--primary-color) 2px solid;
-                    border-right: var(--primary-color) 2px solid;
+                tbody:last-child{
+                    tr td{
+                        border-bottom: 2px var(--primary-color) solid!important;
+                    }
                 }
                 a{
                     text-decoration: underline;
@@ -2619,12 +2640,13 @@ footer{
                         background-color: #F7F7E8;
                     }
                     h4{
-                        color: black;
+                        color: rgba(0, 0, 0, 0.7);
                         font-weight: 400;
                         font-size: 14px;
                         margin-top: -10px;
-                        opacity: 0.8;
-                        position: absolute;
+                        opacity: 1;
+                        margin-bottom: 0;
+                        user-select: none;
                     }
                     .cta-submit{
                         background-color:var(--primary-color);
@@ -2638,7 +2660,9 @@ footer{
                         z-index: 100;
                         float: right;
                         cursor: pointer;
-                        margin-top: 30px;
+                        margin: 30px 0;
+                        border: 0;
+                        width: 60%;
                     }
                 }
             }
@@ -2730,19 +2754,17 @@ footer{
                     .card{
                         min-width: 90%;
                         margin: auto;
-                        min-height: 80vh;
                         h2{
-                            font-size: 5vw!important;
-                            margin-bottom: 0;
+                            font-size: 4vw!important;
+                            margin-bottom: 40px;
                         }
                         label{
                             font-size: 3vw!important;
-                            margin-bottom: 1px!important;
+                            margin-bottom: 15px!important;
                         }
                         .cta-sunting-hapus{
-                            a{
-                                font-size: 3vw;
-                            }
+                            height: 12vw;
+                            border-top: 2px solid #ECB390!important;
                             .sunting{
                                 align-items: center;
                                 display: flex;
@@ -2753,17 +2775,26 @@ footer{
                                 display: flex;
                                 justify-content: center;
                             }
+                            button{
+                                margin: 0!important;
+                                font-size: 3vw;
+                                height: 100%!important;
+                            }
                         }
                     }
+                    button{
+                        margin: 30px 0 80px 0!important;
+                        background-color: #F7F7E8;
+                    }
                     .cta-jadikan-utama{
-                        margin: 50px 0;
-                        a{
+                        margin: 0;
+                        button{
                             font-size: 24px;
                         }
                     }
                     .cta-alamat-utama{
-                        margin: 50px 0;
-                        a{
+                        margin: 0;
+                        button{
                             font-size: 24px;
                         }
                     }
@@ -2794,9 +2825,12 @@ footer{
                     flex-basis: 85%;
                     align-items: baseline;
                     margin: auto;
-                    a{
+                    button{
                         text-align: center!important;
                         font-size: 4vw!important;
+                        border: none;
+                        color: var(--primary-color);
+                        cursor: pointer;
                     }
                     p{
                         font-size: 4vw!important;
@@ -2859,6 +2893,7 @@ footer{
                         }
                         h4{
                             font-size: 3vw!important;
+                            margin-bottom: 40px!important;
                         }
                     }
                 }
@@ -2897,9 +2932,6 @@ footer{
                             margin-bottom: 10px!important;
                         }
                         .cta-sunting-hapus{
-                            .sunting{
-                                padding:3vw 0;
-                            }
                             .hapus{
                                 padding:3vw 0;
                             }
@@ -2908,14 +2940,17 @@ footer{
                             }
                         }
                     }
+                    button{
+                        margin: 15px 0 40px 0!important;
+                    }
                     .cta-jadikan-utama{
-                        a{
-                            font-size: 1em;
+                        button{
+                            font-size: 14px;
                         }
                     }
                     .cta-alamat-utama{
-                        a{
-                            font-size: 1em;
+                        button{
+                            font-size: 14px;
                         }
                     }
                 }
@@ -2961,6 +2996,9 @@ footer{
                             font-size: 14px!important;
                             padding: 5px 5px!important;
                             max-height: 30px;
+                        }
+                        h4{
+                            margin-bottom: 20px!important;
                         }
                     }
                 }
@@ -3108,11 +3146,11 @@ footer{
                 color: var(--primary-color);
             }
             h3{
-                color: black;
+                color: rgba(0, 0, 0, 0.7);
                 font-size: 13px;
                 font-weight: 300;
-                position: absolute;
-                display: none;
+                user-select: none;
+                opacity: 1;
             }
             
         }.left-col{
@@ -3242,7 +3280,7 @@ footer{
                     }
                     .exit{
                         margin-top: 10PX;
-                        width: 30%;
+                        width: 50%;
                         font-size: 1.6em!important;
                         .exit-arrow{
                             transform: rotate(180deg);
@@ -3298,9 +3336,10 @@ footer{
                 .nav-bot{
                     display: flex;
                     justify-content: space-between;
-                    align-items: flex-end;
                     .exit{
                         margin: 0!important;
+                        width: 100%;
+                        flex-basis: 50%;
                         a{
                             font-size: 16px!important;
                             flex-basis: 50%;
@@ -3570,8 +3609,11 @@ footer{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    .body-mobile{
+    form{
+        width: 65%;
         display: none;
+    }
+    .body-mobile{
         #hapus-mobile{
             background-color: #F7F7E8;
             border: 0;
@@ -3702,12 +3744,39 @@ footer{
             border-collapse: collapse;
             width: 100%;
             text-align: center;
+            input[type=text]{
+                border: none;
+                color: var(--primary-color);
+                max-width: 50px;
+                pointer-events: none;
+            }
+            .table-alert{
+                border-top:rgba(236, 179, 144, 0.6) 2px solid;
+                border-left: 2px solid var(--primary-color);
+                border-right: 2px solid var(--primary-color);
+                display: none;
+            }
             .table-mid{
                 border: 2px var(--primary-color) solid;
                 tr, td{
                     border-top:rgba(236, 179, 144, 0.6) 2px solid;
                     border-right: rgba(236, 179, 144, 0.6) 2px solid;
                 } 
+                label{
+                    max-width: 50px;
+                }
+                td:nth-child(3){
+                    max-width: 80px;
+                }
+                .hapus-row{
+                    border: none;
+                    color: var(--primary-color);
+                    font-weight: 500;
+                    text-decoration: underline;
+                    cursor: pointer;
+                    font-size: 1em;
+                    background-color: #F7F7E8;
+                }
             }
             .table-mid-2{
                 border: 2px var(--primary-color) solid;
@@ -3727,6 +3796,11 @@ footer{
                     margin-right: 80px;
                     font-size: 18px;
                 }
+                input[type=text]{
+                    max-width: 50px;
+                    user-select: none;
+                    pointer-events: none;
+                }
             }
             .table-top{
                 border: 1pxrgba(236, 179, 144, 0.6) solid;
@@ -3745,6 +3819,7 @@ footer{
                     background-color: #ECB390;
                     padding: 10px 20px;
                     border-radius: 5px;
+                    height: 60px;
                 }
                 label{
                     margin-left: 25px;
@@ -3795,7 +3870,7 @@ footer{
         .cta-simpan{ 
             display: flex;
             justify-content: flex-end;
-            margin-right: 5%;
+            margin-right: 40px;
             button{
                 background-color: #ECB390;
                 width: 9.5vw;
@@ -3829,24 +3904,44 @@ footer{
         .body{
             display: none;
         }
+        form{
+            display: block;
+            width: 100%;
+            .foot{
+                display: flex!important;
+                margin-top: 15%;
+            }
+        }
         .body-mobile{
             display: flex!important;
             flex-wrap: wrap;
             max-height: auto!important;
             align-content: flex-start;
             border-top: 2px solid var(--primary-color);
-            max-height: 50%;
             max-width: fit-content;
+            .alert-mobile{
+                font-size: 1.6em;
+                text-align: center;
+                width: 100%;
+                border-bottom: 2px solid #ECB390;
+            }
             .total{
                 display: flex;
-                justify-content: flex-end;
+                justify-content: space-evenly;
                 flex-wrap: wrap;
-                padding-left: auto;
                 border-bottom: 2px solid var(--primary-color);
                 min-width: 100%!important;
+                padding-left: 10%;
                 label{
                     margin: 20px 40px;
-                    font-size: 38px;
+                    font-size: 32px;
+                }
+                input[type=text]{
+                    width: 120px;
+                    color: var(--primary-color);
+                    border: none;
+                    user-select: none;
+                    pointer-events: none;
                 }
             }
             .tabel-mobile, .tabel-mobile-2{
@@ -3865,10 +3960,12 @@ footer{
                         justify-content: center;
                         max-width: 50%;
                         img{
-                            height: 70%!important;
-                            padding: 10px 25%;
+                            max-width: 49px;
+                            width: 100%;
+                            height: 190px;
+                            padding: 10% 25%;
                             background-color: #ECB390;
-                            margin: auto;
+                            margin: 20px auto;
                             border-radius: 15px;
                         }
                     }
@@ -3928,13 +4025,30 @@ footer{
                     a{
                         font-size: 3vw;
                     }
+                    input[type=text]{
+                        width: 80px;
+                        border: none;
+                        color: var(--primary-color);
+                        user-select: none;
+                        pointer-events: none;
+                    }
+                    .hapus-row{
+                        color: var(--primary-color);
+                        border: none;
+                        cursor: pointer;
+                        font-size: 3vw;
+                        text-decoration: underline;
+                        background:none;
+                    }
                 }
             }
         }
         .foot{
             flex-basis: 90%;
-            margin-top: 7%;
+            margin-top: 10%!important;
             margin-bottom: 7%;
+            display: none;
+            margin-right: 10%;
             .cta-selanjutnya button{
                 background-color: var(--primary-color);
                 width:35vw;
@@ -3977,66 +4091,53 @@ footer{
             display: none;
         }
         .body-mobile{
-            display: flex!important;
-            flex-wrap: wrap;
-            max-height: auto!important;
-            align-content: flex-start;
-            border-top: 2px solid var(--primary-color);
-            max-height: 50%;
-            max-width: fit-content;
+            .alert-mobile{
+                font-size: 1em;
+                display: none;
+            }
             .total{
-                display: flex;
-                justify-content: flex-end;
-                flex-wrap: wrap;
-                padding-left: auto;
-                border-bottom: 2px solid var(--primary-color);
-                min-width: 100%!important;
+                padding-left: 12%;
                 label{
-                    margin: 20px 40px;
-                    font-size: 18px;
+                    margin: 10px 20px;
+                    font-size: 16px;
+                }
+                input[type=text]{
+                    max-width: 80px;
                 }
             }
             .tabel-mobile, .tabel-mobile-2{
                 display: flex;
                 flex-basis: 100%;
                 max-height: 140px!important;
+                .tabel-mobile{
+                    label{
+                        margin: 10px 20px!important;
+                    }
+                }
                 .produk-left{
-                    flex-basis: 50%;
-                    max-width: 67%;
-                    display: flex;
-                    border-right: 2px solid #ECB390;
                     border-bottom: 2px solid #ECB390;
                     .image-produk{
-                        flex-basis: 30%;
-                        display: flex;
-                        justify-content: center;
-                        max-width: 35%;
                         img{
-                            height: 65%!important;
+                            max-width: 25px;
+                            height: 100px!important;
                             padding: 10px 25px;
                             background-color: #ECB390;
-                            margin: auto;
+                            margin: 10px auto;
                             border-radius: 5px;
                         }
                     }
                     .info-produk{
-                        flex-basis: 60%;
-                        justify-content: left;
-                        align-items: center;
-                        display: flex;
-                        flex-wrap: wrap;
-                        margin-left: auto;
                         label{
                             max-width: 80%;
                             font-size: 18px;
                         }
                         .quantity2{
                             margin: 0;
-                            max-width: 45%!important;
-                            button{
+                                button{
                                 padding: 2px 7px!important;
-                                margin-top: -3px!important;
-                                margin-left: -4px!important;
+                                margin-top: -1px!important;
+                                margin-left: -5%!important;
+                                background: none;
                             }
                             input{
                                 
@@ -4047,7 +4148,7 @@ footer{
                             max-width: 45%!important;
                             button{
                                 padding: 2px 7px!important;
-                                margin-top: -3px!important;
+                                margin-top: 2%!important;
                                 margin-left: -4px!important;
                             }
                         }
@@ -4064,6 +4165,9 @@ footer{
                         flex-basis: 100%;
                         text-align: center;
                     }
+                    input[type=text]{
+                        max-width: 35%;
+                    }
                 }
             }
         }
@@ -4074,7 +4178,6 @@ footer{
     justify-content: center;
     color: var(--primary-color);
     margin-bottom: 50px;
-    display: flex;
     flex-wrap: wrap;
     header{
         margin-top: 30px;
@@ -4099,10 +4202,23 @@ footer{
     section{
         display: flex;
         flex-wrap: wrap;
+        .alert{
+            width: 100%;
+            text-align: center;
+            margin-top: 2%;
+            p{
+                color: rgba(0, 0, 0, 0.8);
+                font-size: 14px;
+                display: block;
+                opacity: 1;
+                user-select: none;
+            }
+        }
         .container-metode{
-            flex-basis: 100%;
             display: flex;
             justify-content: space-between;
+            flex-basis: 90%;
+            margin: auto;
             .metode{
                 flex-basis: 30%;
                 table{
@@ -4140,7 +4256,7 @@ footer{
             display: flex;
             max-width: 280px;
             flex-basis: 100%;
-            margin: 5% auto 0 auto;
+            margin: 0 auto 0 auto;
             justify-content: space-between;
             .cta-submit{
                 background-color:var(--primary-color);
@@ -4168,7 +4284,7 @@ footer{
             display: flex;
             max-width: 88%;
             flex-basis: 100%;
-            margin: 10% 10px 0 0px;
+            margin: 0 10px 0 0px;
             justify-content: space-between;
             align-items: baseline;
             .cta-submit{
@@ -4314,11 +4430,11 @@ footer{
                     color: var(--primary-color);
                 }
                 h3{
-                    color: black;
+                    color: rgba(0, 0, 0, 0.7);
                     font-size: 13px;
                     font-weight: 300;
-                    margin: 0 0 10px 0;
-                    position: absolute;
+                    margin:-10px 0 20px 0;
+                    user-select: none;
                 }
                 
             }
@@ -4338,8 +4454,21 @@ footer{
         border-collapse: collapse;
         margin-bottom: 30px;
         flex-basis: 100%;
-        input{
-            margin-left: 10%;
+        max-height: 100%;
+        .Table-1{
+            width: 60%;
+        }
+        .Table-2{
+            width: 40%;
+        }
+        .content-table{
+            margin-left: 7%;
+            display: flex;
+            max-width: 85%;
+            align-items: baseline;
+            label{
+                margin-left: 3%;
+            }
         }
     }
     tr, td{
@@ -4487,10 +4616,10 @@ footer{
                     padding: 0!important;
                     min-width: 100%!important;
                     .nav-bot-2{
-                        display: flex;
-                        margin-top: 15%;
+                        display: flex;  
                         justify-content: space-between;
                         max-width: 100%!important;
+                        margin-top: 80px;
                         .cta-submit{
                             background-color:var(--primary-color);
                             color: white;
