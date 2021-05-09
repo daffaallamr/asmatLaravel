@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Mail\PaymentSuccess;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class Customer extends Authenticatable
 {
@@ -30,5 +33,11 @@ class Customer extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class, 'customer_id', 'id');
+    }
+
+    public function emailPayment()
+    {
+        $customer = Customer::findOrFail(Auth('customer')->id());
+        Mail::to($customer->email)->send(new PaymentSuccess());
     }
 }

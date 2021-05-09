@@ -51,7 +51,7 @@
                 <div class="nav-bot">
                     <div class="exit">
                         <a id="exitSuntingAlamat-1" style="cursor: pointer">
-                            <img src="images/arrow.svg" alt="" class="exit-arrow">
+                            <img src="public/images/arrow.svg" alt="" class="exit-arrow">
                             <span class="underline">Batal</span>
                         </a>
                     </div>

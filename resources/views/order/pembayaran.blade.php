@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asmat</title>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/css/main.css') }}">
 </head>
 <body class="container-data" style="display: flex;">
 
     <header>
-        <img src="images/logo-2.png" alt="">
+        <img src="public/images/logo-2.png" alt="">
         <nav>
             <a href="{{ route('profilAlamat') }}">Data diri</a>  -  <a href="{{ route('pilih-kurir') }}">Pengiriman</a>  -  <span><a href="{{ route('pembayaran') }}">Pembayaran</a></span>
         </nav>
@@ -50,7 +50,7 @@
             <div class="nav-bot">
                 <div class="exit">
                     <a href="{{ route('pilih-kurir') }}">
-                        <img src="images/arrow.svg" alt="" class="exit-arrow">
+                        <img src="public/images/arrow.svg" alt="" class="exit-arrow">
                         <span class="underline">Kembali</span>
                     </a>
                 </div>
@@ -63,7 +63,7 @@
         data-client-key="{{ config('services.midtrans.clientKey')
     }}"></script>
 
-    <script type="text/javascript" src="{{ URL::asset('js/midtransSnapPayment.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('public/js/midtransSnapPayment.js') }}"></script>
 
 </body>
 </html>

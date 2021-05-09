@@ -2,7 +2,7 @@
 
 @section('content')
     <header>
-        <img src="images/logo-2.png" alt="">
+        <img src="public/images/logo-2.png" alt="">
         <nav>
             <span>
                 <a aria-disabled="true" style="cursor: default">Data diri</a>
@@ -60,7 +60,7 @@
                     @endif
                     <div class="nav-bot-2">
                         <div class="exit">
-                        <a href="{{ route('keranjang') }}"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>
+                        <a href="{{ route('keranjang') }}"> <img src="public/images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>
                         <button type="submit" class="cta-submit">Selanjutnya</button>
                     </div>
                 </div>
@@ -68,10 +68,8 @@
         </section>
     </form>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script type="text/javascript" src="{{ URL::asset('js/rajaOngkir.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/js/rajaOngkir.js') }}"></script>
 
 @endsection

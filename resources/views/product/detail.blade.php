@@ -4,7 +4,7 @@
 @include('layouts.navbar')
 <div class="detail-barang">
     <div class="showcase">
-        <img src="{{ asset('images/' . $product->gambar) }}" alt="">
+        <img src="{{ asset('public/images/' . $product->gambar) }}" alt="">
     </div>
     <div class="detail">
         <div class="top">
@@ -23,7 +23,7 @@
 
                 <div class="quantity">
                     <button class="btn minus-btn" type="button" disabled="disabled">-</button>
-                    <input type="text" name="jumlah_barang" id="quantity" value="1">
+                        <input type="text" name="jumlah_barang" id="quantity" value="1">
                     <button class="btn plus-btn" type="button">+</button>
                 </div>
                 <div class="cta-submit">
@@ -33,32 +33,9 @@
         </div>
     </div>
 </div>
+
+    <script type="text/javascript" src="{{ asset('public/js/detailProduct.js') }}"></script>
+
 @include('layouts.footer')
-
-<script>
-    document.querySelector(".minus-btn").setAttribute("disabled", "disabled");
-    var valueCount
-    document.querySelector(".plus-btn").addEventListener("click", function() {
-        valueCount = document.getElementById("quantity").value;
-        valueCount++;
-        document.getElementById("quantity").value = valueCount;
-        if (valueCount > 1) {
-            document.querySelector(".minus-btn").removeAttribute("disabled");
-            document.querySelector(".minus-btn").classList.remove("disabled")
-        }
-        priceTotal()
-    })
-    document.querySelector(".minus-btn").addEventListener("click", function() {
-        valueCount = document.getElementById("quantity").value;
-        valueCount--;
-        document.getElementById("quantity").value = valueCount
-
-        if (valueCount == 1) {
-            document.querySelector(".minus-btn").setAttribute("disabled", "disabled")
-        }
-        priceTotal()
-    })
-</script>
-
 @endsection
     

@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asmat</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('/public/css/main.css') }}">
+    <title>ASMAT Papua</title>
 </head>
 <body>
+    <h2>Pembayaran anda dengan nomer pemesanan telah kami konfirmasi</h2>
 
-    @yield('content')
-
+    <p>Terima kasih telah mendukung ASMAT.</p>
 </body>
 </html>

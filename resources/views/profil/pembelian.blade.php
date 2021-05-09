@@ -9,7 +9,7 @@
             <div class="sidenav-top">
             <h1>Selamat <br> Datang di Asmat!</h1>
             <div class="exit-mobile">
-            <a href="index.html"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
+            <a href="index.html"> <img src="public/images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
             </div>
             <ul>
                 <li><a href="{{ route('profilAlamat') }}">Alamat</a></li>
@@ -17,7 +17,7 @@
                 <li><a href="{{ route('profilInformasiAkun') }}">Informasi Akun</a></li>
             </ul>
             <div class="exit">
-            <a href="{{ route('login-customer') }}"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
+            <a href="{{ route('login-customer') }}"> <img src="public/images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
         </div>       
         <div class="alamat">
             <div class="top">
@@ -82,7 +82,7 @@
         data-client-key="{{ config('services.midtrans.clientKey')
     }}"></script>
 
-    <script type="text/javascript" src="{{ URL::asset('js/midtransSnapPayment.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('public/js/midtransSnapPayment.js') }}"></script>
 
 @include('layouts.footer')
 @endsection

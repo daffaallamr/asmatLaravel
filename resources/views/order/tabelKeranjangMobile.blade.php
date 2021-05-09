@@ -24,7 +24,7 @@
     
         <div class="produk-left">
             <div class="image-produk">
-                <img src="images/hs.svg" alt="">
+                <img src="{{ asset('public/images/' . $detail->product->gambar) }}" alt="">
             </div>
             <div class="info-produk">
                 <label>{{ $detail->product->nama }}</label>
@@ -32,15 +32,15 @@
 
                 <div class="quantity2">
                     <button class="btn sub" type="button">-</button>
-                        <input type="text" class="jumlah-barang" name="jumlah_barang_{{ $loop->iteration }}" value="{{ $detail->jumlah_barang }}">
+                        <input type="text" class="jumlah-barang-mobile" name="jumlah_barang_{{ $loop->iteration }}" value="{{ $detail->jumlah_barang }}">
                     <button class="btn add" type="button">+</button>
                 </div>
             </div>
         </div>
         <div class="produk-right">
-                <input type="hidden" class="detail-harga" name="harga_{{ $loop->iteration }}" value="{{ $detail->harga }}">
+                <input type="hidden" class="detail-harga-mobile" name="harga_{{ $loop->iteration }}" value="{{ $detail->harga }}">
             <label for="">
-                IDR <input type="text" class="jumlah-harga" name="" value="{{ $detail->harga * $detail->jumlah_barang }}">
+                IDR <input type="text" class="jumlah-harga-mobile" name="" value="{{ $detail->harga * $detail->jumlah_barang }}">
             </label>
             <button class="hapus-row">Hapus</button>
         </div>
@@ -55,7 +55,7 @@
     <div class="total">
         <label for="">Total belanja</label>
         <label>
-            IDR <input type="text" id="total-harga-akhir" name="jumlah_harga_barang" value="{{ $totalHargaKeranjangMobile }}">
+            IDR <input type="text" id="total-harga-akhir-mobile" name="jumlah_harga_barang" value="{{ $totalHargaKeranjangMobile }}">
         </label>
     </div>
 </div>

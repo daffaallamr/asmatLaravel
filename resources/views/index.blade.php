@@ -12,7 +12,7 @@
             <a href="{{ route('belanja.index') }}">Belanja Sekarang</a>
         </div>
         <div class="banner">
-            <img src="images/banner.png" alt="">
+            <img src="public/images/banner.png" alt="">
         </div>
     </div>
 </div>
@@ -21,20 +21,20 @@
     <div class="container">
         @foreach ($products as $product)
         <div class="produkbox" onclick="location.href='{{ URL::to('belanja/' . $product->id) }}';">
-            <img src="{{ asset('images/' . $product->gambar) }}" alt="">
+            <img src="{{ asset('/public/images/' . $product->gambar) }}" alt="">
             <h2>{{ $product->nama }}</h2>
             <p>IDR {{ number_format($product->harga, 0, '.', '.') }}</p>
         </div>
         @endforeach
     </div>
     <div class="cta-lainnya">
-            <a href="{{ route('belanja.index') }}" alt="">Lihat produk lainnya<img src="images/arrow.svg"></a>
+            <a href="{{ route('belanja.index') }}" alt="">Lihat produk lainnya<img src="public/images/arrow.svg"></a>
     </div>
 </div>
 <div class="about">
     <div class="container">    
         <div class="left-col">
-            <img src="images/ilustrasi.svg" alt="">
+            <img src="public/images/ilustrasi.svg" alt="">
         </div>
         <div class="right-col">
             <h1>Apa itu Asmat?</h1>
@@ -66,16 +66,16 @@
     <div class="container">
         @foreach ($stories as $story)
         <div class="card-cerita">
-            <img src="{{ url('images/' . $story->gambar_1) }}" alt="">
+            <img src="{{ url('public/images/' . $story->gambar_1) }}" alt="">
             <p>{{ $story->judul }}</p>
             <div class="bot-card">
             <label for="">{{ date('d / m / Y', strtotime($story->created_at)) }}</label>
-            <a href="{{ URL::to('cerita/' . $story->id) }}"> <span class="underline">Baca cerita </span> <img src="images/arrow-white.svg" alt=""></a></div>
+            <a href="{{ URL::to('cerita/' . $story->id) }}"> <span class="underline">Baca cerita </span> <img src="public/images/arrow-white.svg" alt=""></a></div>
         </div>
         @endforeach
     </div>
     <div class="cta-baca-footer">
-    <a href="{{ route('cerita.index') }}"><span class="underline">Baca cerita Lainnya</span> <img src="images/arrow.svg" alt=""></a>
+    <a href="{{ route('cerita.index') }}"><span class="underline">Baca cerita Lainnya</span> <img src="public/images/arrow.svg" alt=""></a>
     </div>
 </div>
 <div class="bagaimana">
@@ -99,7 +99,7 @@
             </div>
         </div>
         <div class="right-col">
-            <img src="images/2.png" alt="">
+            <img src="public/images/2.png" alt="">
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <footer>
     <div class="container">
         <div class="logo">
-            <img src="{{ URL::asset("images/logo-footer.png") }}" alt="">
+            <img src="{{ asset("/public/images/logo-footer.png") }}" alt="">
         </div>
         <div class="nav-footer">
             <ul>

@@ -34,7 +34,8 @@ class CheckoutConfirmed extends Mailable
      */
     public function build()
     {
-        return $this->subject('Selesaikan pembayaran anda di ASMAT Papua')
+        return $this->from('tokoasmatpapua@gmail.com')
+                    ->subject('Selesaikan pembayaran anda di ASMAT Papua')
                     ->view('emails.checkoutConfirmed');
     }
 }

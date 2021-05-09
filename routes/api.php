@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\MidtransController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/midtrans/notification', [CheckoutController::class, 'notification']);
+Route::post('/midtrans/notification', [MidtransController::class, 'notification']);

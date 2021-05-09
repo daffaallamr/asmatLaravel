@@ -69,10 +69,10 @@
                                 <td>{{ $story->judul_paragraf_3 }}</td>
                                 <td>{{ $story->paragraf_3 }}</td>
                                 <td>
-                                    <img src="{{ url('images/' . $story->gambar_1) }}" alt="" style="width: 300px; height: auto;">
+                                    <img src="{{ url('public/images/' . $story->gambar_1) }}" alt="" style="width: 300px; height: auto;">
                                 </td>
                                 <td>
-                                    <img src="{{ url('images/' . $story->gambar_3) }}" alt="" style="width: 200px; height: auto;">
+                                    <img src="{{ url('public/images/' . $story->gambar_3) }}" alt="" style="width: 200px; height: auto;">
                                 </td>
                                 <td>{{ date('d / m / Y', strtotime($story->created_at)) }}</td>
                                 <td>

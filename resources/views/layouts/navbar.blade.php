@@ -5,7 +5,7 @@
                     <li class="tentang"><a href="{{ route('tentang-kami') }}">Tentang Kami</a></li>
                     <li class="cerita"><a href="{{ route('cerita.index') }}">Cerita</a></li>
                 </ul>
-                <a href="{{ route('home-customer') }}" class="logo"><img src="{{ URL::asset('images/logo.png') }}" alt="Logo"></a>
+                <a href="{{ route('home-customer') }}" class="logo"><img src="{{ asset('/public/images/logo.png') }}" alt="Logo"></a>
                 <ul class="secondary-nav">
                     @if (Auth('customer')->check())
                         <li class="profile"><a href="{{ route('profilAlamat') }}">Profil</a></li>
@@ -16,11 +16,11 @@
                     <li class="sekarang"><a href="{{ route('keranjang') }}">Keranjang (0)</a></li>
                 </ul>
         </div>
-        <div class="container-mobile">
-            <a href="{{ route('home-customer') }}"><img src="images/logo-mobile.png" alt=""></a>
+        <div class="container-mobile"> 
+            <a href="{{ route('home-customer') }}"><img src="{{ asset('public/images/logo-mobile.png') }}" alt=""></a>
             
             <input type="checkbox"  id="check">
-            <label for="check" class="checkbtn"><img src="{{ URL::asset('images/nav-mobile.svg') }}" alt=""></label>
+            <label for="check" class="checkbtn"><img src="{{ asset('public/images/nav-mobile.svg') }}" alt=""></label>
             <div class="bg-nav-mob"></div> 
                 <div class="nav-mob">
                     

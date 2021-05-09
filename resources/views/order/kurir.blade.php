@@ -2,7 +2,7 @@
 
 @section('content')
     <header>
-        <img src="images/logo-2.png" alt="">
+        <img src="public/images/logo-2.png" alt="">
         <nav>
             <a href="{{ route('profilAlamat') }}">Data diri</a>  -  <span>
                 <a href="{{ route('pilih-kurir') }}">Pengiriman</a>
@@ -81,7 +81,7 @@
         <div class="nav-bot">
             <div class="exit">
                 <a href="{{ route('profilAlamat') }}">
-                    <img src="images/arrow.svg" alt="" class="exit-arrow">
+                    <img src="public/images/arrow.svg" alt="" class="exit-arrow">
                     <span class="underline">Kembali</span>
                 </a>
                 </div>

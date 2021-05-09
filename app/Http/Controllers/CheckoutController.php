@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CheckoutConfirmed;
 use App\Models\Address;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -284,7 +282,7 @@ class CheckoutController extends RajaOngkirController
         $orderId->snap_token = $snapToken;
         $orderId->save();
 
-        Mail::to($customer->email)->send(new \App\Mail\CheckoutConfirmed($customer, $orderId, $alamatCustomer));
+        Mail::to($customer->email)->send(new CheckoutConfirmed($customer, $orderId, $alamatCustomer));
 
         return redirect('pembayaran');
     }   
@@ -297,52 +295,4 @@ class CheckoutController extends RajaOngkirController
         ]);
     }
 
-    public function notification(Request $request)
-    {
-        $notif = new \Midtrans\Notification();
-
-        DB::transaction(function() use($notif) {
-
-          $transaction = $notif->transaction_status;
-          $type = $notif->payment_type;
-          $orderId = $notif->order_id;
-          $fraud = $notif->fraud_status;
-          $order = Order::where('order_unique_id', $orderId)->first();
-
-          if ($transaction == 'capture') {
-            if ($type == 'credit_card') {
-
-              if($fraud == 'challenge') {
-                $order->setStatusPending();
-              } else {
-                $order->setStatusSuccess();
-              }
-
-            }
-          } elseif ($transaction == 'settlement') {
-
-            $order->setStatusSuccess();
-
-          } elseif($transaction == 'pending'){
-
-              $order->setStatusPending();
-
-          } elseif ($transaction == 'deny') {
-
-              $order->setStatusFailed();
-
-          } elseif ($transaction == 'expire') {
-
-              $order->setStatusExpired();
-
-          } elseif ($transaction == 'cancel') {
-
-              $order->setStatusFailed();
-
-          }
-
-        });
-
-        return;
-    }
 }

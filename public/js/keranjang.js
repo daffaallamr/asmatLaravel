@@ -1,10 +1,10 @@
 // Tambah jumlah barang
 $('.add').on('click', function () {
+    
     detailHarga = $(this).closest('tr.table-mid').find('.detail-harga');
     jumlahSementara = $(this).prev();
     jumlahHarga = $(this).closest('tr.table-mid').find('.jumlah-harga');
     totalHargaKeranjang = $(this).parentsUntil('.isi-table').find('#total-harga-akhir');
-    // console.log(totalHargaKeranjang.val());
     
     jumlahSementara.val(+jumlahSementara.val() + 1);
     jumlahHarga.val(+detailHarga.val() * parseInt(jumlahSementara.val()));
@@ -29,11 +29,12 @@ $('.sub').on('click', function () {
 $(".hapus-row").on('click', function () {
     jumlahHarga = $(this).closest('tr.table-mid').find('.jumlah-harga');
     totalHargaKeranjang = $(this).parentsUntil('.isi-table').find('#total-harga-akhir');
+
     // console.log(jumlahHarga.val());
+
     totalHargaKeranjang.val(+totalHargaKeranjang.val() - parseInt(jumlahHarga.val()));
     $(this).closest('tr').remove();
 });
-
 
 
     

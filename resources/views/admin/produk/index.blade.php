@@ -56,7 +56,7 @@
                                 <td>{{ $product->deskripsi }}</td>
                                 <td>{{ $product->stok }}</td>
                                 <td>
-                                    <img src="{{ url('images/' . $product->gambar) }}" alt="" style="width: auto; height: 200px;">
+                                    <img src="{{ url('public/images/' . $product->gambar) }}" alt="" style="width: auto; height: 200px;">
                                 </td>
                                 <td>
                                     <span>

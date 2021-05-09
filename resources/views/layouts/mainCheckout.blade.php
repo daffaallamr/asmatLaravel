@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asmat</title>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/public/css/main.css') }}">
 </head>
 <body class="container-data">
     

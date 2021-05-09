@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\StoryController;
@@ -67,14 +68,16 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::get('pembayaran', [CheckoutController::class, 'pembayaran'])->name('pembayaran');
 
     // Raja Ongkir API
-    Route::get('nama-provinsi/{id}',[RajaOngkirController::class, 'get_province_name']);
-    Route::get('nama-kota/{id_kota}/{id_provinsi}',[RajaOngkirController::class, 'get_city_name']);
-    Route::get('nama-kecamatan/{id_kecamatan}/{id_kota}',[RajaOngkirController::class, 'get_kecamatan_name']);
+    Route::get('asmatLaravel/nama-provinsi/{id}',[RajaOngkirController::class, 'get_province_name']);
+    Route::get('asmatLaravel/nama-kota/{id_kota}/{id_provinsi}',[RajaOngkirController::class, 'get_city_name']);
+    Route::get('asmatLaravel/nama-kecamatan/{id_kecamatan}/{id_kota}',[RajaOngkirController::class, 'get_kecamatan_name']);
 
-    Route::get('kota/{id}',[RajaOngkirController::class, 'get_city']);
-    Route::get('kecamatan/{id}',[RajaOngkirController::class, 'get_kecamatan']);
+    Route::get('asmatLaravel/kota/{id}',[RajaOngkirController::class, 'get_city']);
+    Route::get('asmatLaravel/kecamatan/{id}',[RajaOngkirController::class, 'get_kecamatan']);
 
+    Route::get('tryEmail', [MidtransController::class, 'tryEmail']);
 });
+
 
 // Customer Auth
 Route::get('login', [AuthController::class, 'showFormLogin'])->name('login-customer');

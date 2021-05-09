@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ URL('/admin') }}">
         <div class="sidebar-brand-icon">
-            <img src="{{ asset('images/logoAsmat_1.png') }}" alt="" style="width: auto; height: 50px">
+            <img src="{{ asset('public/images/logoAsmat_1.png') }}" alt="" style="width: auto; height: 50px">
         </div>
         <div class="sidebar-brand-text mx-3">Asmat Admin</div>
     </a>
