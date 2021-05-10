@@ -13,8 +13,7 @@
         @include('order.tabelKeranjang')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script type="text/javascript" src="{{ asset('public/js/keranjang.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('public/js/keranjang.js') }}"></script>
 
 @include('layouts.footer')
 @endsection

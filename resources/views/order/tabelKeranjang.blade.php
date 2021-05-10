@@ -67,7 +67,7 @@
                 <td colspan="4" style="border-top:rgba(236, 179, 144, 0.6) 2px solid;">
                     <label>Total Belanja:</label>
                     <label>
-                        IDR <input type="text" id="total-harga-akhir" name="jumlah_harga_barang" value="{{ $totalHargaKeranjang }}">
+                        IDR <input readonly type="text" id="total-harga-akhir" name="jumlah_harga_barang" value="{{ $totalHargaKeranjang }}">
                     </label>
                 </td>
             </tr>

@@ -25,7 +25,7 @@
                 <div class="nav-mob">
                     
                     <ul>
-                        <li><a href="keranjang-belanja.html">Keranjang (0)</a></li>
+                        <li><a href="{{ route('keranjang') }}">Keranjang (0)</a></li>
                         <li><a href="{{ route('belanja.index') }}">Belanja</a></li>
                         @if (Auth::check())
                             <li><a href="{{ route('profilAlamat') }}">Profil</a></li>

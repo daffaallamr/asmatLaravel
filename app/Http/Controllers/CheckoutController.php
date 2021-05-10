@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\CheckoutConfirmed;
+use App\Mail\PaymentSuccess;
 use App\Models\Address;
 use App\Models\Customer;
 use App\Models\Order;
@@ -26,6 +27,7 @@ class CheckoutController extends RajaOngkirController
     {
         $orderSementara = new Order();
         $orderDetailBaru = new OrderDetail();
+        $customer = Customer::find(Auth('customer')->id());
 
         // Mencari data order customer, apakah customer punya data keranjang atau belum
         $dataCustomer = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
@@ -63,6 +65,7 @@ class CheckoutController extends RajaOngkirController
         } else {
             $orderSementara->customer_id = $request->customer_id;
             $orderSementara->is_checkout = false;
+            $orderSementara->email = $customer->email;
             $orderSementara->save();
 
             $orderDetailBaru->order_id = $orderSementara->id;
@@ -283,6 +286,7 @@ class CheckoutController extends RajaOngkirController
         $orderId->save();
 
         Mail::to($customer->email)->send(new CheckoutConfirmed($customer, $orderId, $alamatCustomer));
+        Mail::to('dafaalamr@gmail.com')->send(new PaymentSuccess());
 
         return redirect('pembayaran');
     }   
@@ -293,6 +297,58 @@ class CheckoutController extends RajaOngkirController
         return view('order.pembayaran', [
             'orderInfo' => $orderId
         ]);
+    }
+
+    public function notification(Request $request)
+    {
+        $notif = new \Midtrans\Notification();
+
+        \DB::transaction(function() use($notif) {   
+            
+            $transaction = $notif->transaction_status;
+            $type = $notif->payment_type;
+            $orderId = $notif->order_id;
+            $fraud = $notif->fraud_status;
+            
+            $order = Order::where('order_unique_id', $orderId)->first();
+            $emailUser = $order->email;
+
+            if ($transaction == 'capture') {
+                if ($type == 'credit_card') {
+
+                if($fraud == 'challenge') {
+                    $order->setStatusPending();
+                } else {
+                    $order->setStatusSuccess();
+                }
+
+                }
+            } elseif ($transaction == 'settlement') {
+
+                $order->setStatusSuccess();
+                Mail::to($emailUser)->send(new PaymentSuccess());
+
+            } elseif($transaction == 'pending'){
+
+                $order->setStatusPending();
+
+            } elseif ($transaction == 'deny') {
+
+                $order->setStatusFailed();
+
+            } elseif ($transaction == 'expire') {
+
+                $order->setStatusExpired();
+
+            } elseif ($transaction == 'cancel') {
+
+                $order->setStatusFailed();
+
+            }
+
+        });
+          
+        return;
     }
 
 }

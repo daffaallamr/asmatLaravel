@@ -31,6 +31,6 @@ class PaymentSuccess extends Mailable
     {
         return $this->from('tokoasmatpapua@gmail.com')
                     ->subject('Pembayaran anda sudah diterima')
-                    ->view('emails.paymentSucess');
+                    ->view('emails.paymentSuccess');
     }
 }

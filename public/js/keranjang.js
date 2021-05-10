@@ -1,6 +1,6 @@
 // Tambah jumlah barang
 $('.add').on('click', function () {
-    
+            
     detailHarga = $(this).closest('tr.table-mid').find('.detail-harga');
     jumlahSementara = $(this).prev();
     jumlahHarga = $(this).closest('tr.table-mid').find('.jumlah-harga');
@@ -10,6 +10,21 @@ $('.add').on('click', function () {
     jumlahHarga.val(+detailHarga.val() * parseInt(jumlahSementara.val()));
     totalHargaKeranjang.val(+totalHargaKeranjang.val() + parseInt(detailHarga.val()));
 });
+
+// Tambah jumlah barang mobile
+$('.addMobile').on('click', function () {
+    
+    detailHargaMobile = $(this).closest('div.tabel-mobile').find('.detail-harga');
+    jumlahSementara = $(this).prev();
+    jumlahHargaMobile = $(this).closest('div.tabel-mobile').find('.jumlah-harga-mobile');
+    totalHargaKeranjangMobile = $(this).parentsUntil('div.keranjang-belanja').find('#totalAkhirMobile');
+    // console.log(totalHargaKeranjangMobile.val());
+    
+    jumlahSementara.val(+jumlahSementara.val() + 1);
+    jumlahHargaMobile.val(+detailHargaMobile.val() * parseInt(jumlahSementara.val()));
+    totalHargaKeranjangMobile.val(+totalHargaKeranjangMobile.val() + parseInt(detailHargaMobile.val()));
+});
+
 
 // Mengurangi jumlah barang
 $('.sub').on('click', function () {
@@ -25,15 +40,38 @@ $('.sub').on('click', function () {
     }
 });
 
+// Mengurangi jumlah barang mobile
+$('.subMobile').on('click', function () {
+    detailHargaMobile = $(this).closest('div.tabel-mobile').find('.detail-harga');
+    jumlahSementara = $(this).next();
+    jumlahHargaMobile = $(this).closest('div.tabel-mobile').find('.jumlah-harga-mobile');
+    totalHargaKeranjangMobile = $(this).parentsUntil('div.keranjang-belanja').find('#totalAkhirMobile');
+    // console.log(totalHargaKeranjangMobile.val());
+
+    if (jumlahSementara.val() > 1) {
+        if (jumlahSementara.val() > 1) jumlahSementara.val(+jumlahSementara.val() - 1);
+        jumlahHargaMobile.val(+detailHargaMobile.val() * parseInt(jumlahSementara.val()));
+        totalHargaKeranjangMobile.val(+totalHargaKeranjangMobile.val() - parseInt(detailHargaMobile.val()));
+    }
+});
+
 // Delete row
 $(".hapus-row").on('click', function () {
     jumlahHarga = $(this).closest('tr.table-mid').find('.jumlah-harga');
     totalHargaKeranjang = $(this).parentsUntil('.isi-table').find('#total-harga-akhir');
 
-    // console.log(jumlahHarga.val());
-
     totalHargaKeranjang.val(+totalHargaKeranjang.val() - parseInt(jumlahHarga.val()));
     $(this).closest('tr').remove();
+});
+
+// Delete row mobile
+$(".hapus-row").on('click', function () {
+    jumlahHargaMobile = $(this).closest('div.tabel-mobile').find('.jumlah-harga-mobile');
+    totalHargaKeranjangMobile = $(this).parentsUntil('div.keranjang-belanja').find('#totalAkhirMobile');
+
+    totalHargaKeranjangMobile.val(+totalHargaKeranjangMobile.val() - parseInt(jumlahHargaMobile.val()));
+    $(this).closest('.tabel-mobile').find('.produk-left').remove();
+    $(this).closest('.tabel-mobile').find('.produk-right').remove();
 });
 
 

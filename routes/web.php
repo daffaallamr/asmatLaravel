@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::get('asmatLaravel/kota/{id}',[RajaOngkirController::class, 'get_city']);
     Route::get('asmatLaravel/kecamatan/{id}',[RajaOngkirController::class, 'get_kecamatan']);
 
-    Route::get('tryEmail', [MidtransController::class, 'tryEmail']);
+    // Route::get('tryEmail', [CheckoutController::class, 'tryEmail']);
 });
 
 

@@ -1,7 +1,7 @@
 <form action="{{ route('prosesKeranjangSelanjutnya') }}" method="post">
     @csrf
     <div class="body-mobile">
-    <input type="hidden" name="order_id" value="{{ $order->id }}">
+        <input type="hidden" name="order_id" value="{{ $order->id }}">
 
     @php
         $totalHargaKeranjangMobile = 0;
@@ -31,14 +31,14 @@
                     <input type="hidden" name="berat_{{ $loop->iteration }}" value="{{ $detail->product->berat }}">
 
                 <div class="quantity2">
-                    <button class="btn sub" type="button">-</button>
+                    <button class="btn subMobile" type="button">-</button>
                         <input type="text" class="jumlah-barang-mobile" name="jumlah_barang_{{ $loop->iteration }}" value="{{ $detail->jumlah_barang }}">
-                    <button class="btn add" type="button">+</button>
+                    <button class="btn addMobile" type="button">+</button>
                 </div>
             </div>
         </div>
         <div class="produk-right">
-                <input type="hidden" class="detail-harga-mobile" name="harga_{{ $loop->iteration }}" value="{{ $detail->harga }}">
+                <input type="hidden" class="detail-harga" name="harga_{{ $loop->iteration }}" value="{{ $detail->harga }}">
             <label for="">
                 IDR <input type="text" class="jumlah-harga-mobile" name="" value="{{ $detail->harga * $detail->jumlah_barang }}">
             </label>
@@ -55,7 +55,7 @@
     <div class="total">
         <label for="">Total belanja</label>
         <label>
-            IDR <input type="text" id="total-harga-akhir-mobile" name="jumlah_harga_barang" value="{{ $totalHargaKeranjangMobile }}">
+            IDR <input readonly type="text" id="totalAkhirMobile" name="jumlah_harga_barang" value="{{ $totalHargaKeranjangMobile }}">
         </label>
     </div>
 </div>
