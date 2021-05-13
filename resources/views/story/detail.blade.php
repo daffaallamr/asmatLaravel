@@ -2,11 +2,12 @@
 
 @section('content')
 @include('layouts.navbar')
-    <div class="hero-origin">
+    <div class="hero-origin" style="background-image: url({{ url('public/images/' . $story->gambar_1) }});">
         <div class="container">
-            <img src="{{ asset('public/images/' . $story->gambar_1) }}" alt="">
-            <h1>{{ $story->judul }}</h1>
-            <label for="">{{ date('d / m / Y', strtotime($story->created_at)) }}</label>
+            <div class="content">
+                <h1>{{ $story->judul }}</h1>
+                <label for="">{{ date('d / m / Y', strtotime($story->created_at)) }}</label>
+            </div>
         </div>
     </div> 
     <div class="paragraf-origin-a">
@@ -26,6 +27,7 @@
         <h1>{{ $story->judul_paragraf_3 }}</h1>
         <p>{{ $story->paragraf_3 }}</p>
     </div>
+
 @include('layouts.footer')
 @endsection
     

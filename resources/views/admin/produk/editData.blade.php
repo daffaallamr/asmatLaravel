@@ -14,6 +14,11 @@
                 <form class="forms-sample" action="{{ URL::to('adminProduct/' . $product->id) }}" method="post" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
+                  @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        {{ $errors->first() }}
+                    </div>
+                  @endif
                   <div class="form-group">
                     <label for="nama">Nama Produk</label>
                     <input type="text" class="form-control" id="nama" name="nama" value="{{ $product->nama }}">

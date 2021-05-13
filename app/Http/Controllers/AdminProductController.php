@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class AdminProductController extends Controller
 {
@@ -40,6 +41,34 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {   
+        $rules = [
+            'nama'                  => 'required|min:5|max:30|unique:products,nama',
+            'harga'         => 'required|',
+            'berat'         => 'required|',
+            'deskripsi'         => 'required|min:30|',
+            'stok'         => 'required|',
+            'gambar'         => 'required|',
+        ];
+ 
+        $messages = [
+            'nama.required'   => 'Nama produk wajib diisi',
+            'nama.unique'          => 'Nama produk sudah terdaftar',
+            'nama.min'        => 'Nama produk minimal 5 karakter',
+            'nama.max'        => 'Nama produk maksimal 30 karakter',
+            'harga.required'    => 'Harga wajib diisi',
+            'berat.required' => 'Berat wajib diisi',
+            'deskripsi.required' => 'Deskripsi wajib diisi',
+            'deskripsi.min'      => 'Deskripsi minimal 30 karakter',
+            'stok.required' => 'Stok wajib diisi',
+            'gambar.required' => 'Gambar wajib diisi',
+        ];
+ 
+        $validator = Validator::make($request->all(), $rules, $messages);
+ 
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        }
+
         $imageName = Auth::id() . time().'.'.$request->gambar->extension();
         $request->gambar->move(public_path('images'), $imageName); 
 
@@ -89,17 +118,52 @@ class AdminProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $imageName = Auth::id() . time().'.'.$request->gambar->extension();
-        $request->gambar->move(public_path('images'), $imageName); 
+        $rules = [
+            'nama'                  => 'required|min:5|max:30',
+            'harga'         => 'required|',
+            'berat'         => 'required|',
+            'deskripsi'         => 'required|min:30|',
+            'stok'         => 'required|',
+        ];
+ 
+        $messages = [
+            'nama.required'   => 'Nama produk wajib diisi',
+            'nama.min'        => 'Nama produk minimal 5 karakter',
+            'nama.max'        => 'Nama produk maksimal 30 karakter',
+            'harga.required'    => 'Harga wajib diisi',
+            'berat.required' => 'Berat wajib diisi',
+            'deskripsi.required' => 'Deskripsi wajib diisi',
+            'deskripsi.min'      => 'Deskripsi minimal 30 karakter',
+            'stok.required' => 'Stok wajib diisi',
+        ];
+ 
+        $validator = Validator::make($request->all(), $rules, $messages);
+ 
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        }
 
-        $product = Product::where('id', $id)->first();
-        $product->nama = $request->nama;
-        $product->harga = $request->harga;
-        $product->berat = $request->berat;
-        $product->deskripsi = $request->deskripsi;
-        $product->stok = $request->stok;
-        $product->gambar = $imageName;
-        $product->save();
+        if($request->gambar == null) {
+            $product = Product::findOrFail($id);
+            $product->nama = $request->nama;
+            $product->harga = $request->harga;
+            $product->berat = $request->berat;
+            $product->deskripsi = $request->deskripsi;
+            $product->stok = $request->stok;
+            $product->save();
+        } else {
+            $imageName = Auth::id() . time().'.'.$request->gambar->extension();
+            $request->gambar->move(public_path('images'), $imageName); 
+
+            $product = Product::findOrFail($id);
+            $product->nama = $request->nama;
+            $product->harga = $request->harga;
+            $product->berat = $request->berat;
+            $product->deskripsi = $request->deskripsi;
+            $product->stok = $request->stok;
+            $product->gambar = $imageName;
+            $product->save();
+        }
 
         return redirect()->route('adminProduct.index');
     }

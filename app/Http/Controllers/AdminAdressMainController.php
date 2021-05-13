@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use Illuminate\Http\Request;
 
-class AdminAddressController extends Controller
+class AdminAdressMainController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $address = Address::all();
-        return view('admin.address.index', [
+        $address = Address::where('is_main', true)->get();
+        return view('admin.address.mainAddress.index', [
             'addresses' => $address
         ]);
     }
@@ -60,7 +60,7 @@ class AdminAddressController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.address.editData', [
+        return view('admin.address.mainAddress.editData', [
             'address' => Address::findOrFail($id)
         ]);
     }
@@ -74,7 +74,7 @@ class AdminAddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $address = Address::where('id', $id)->first();
+        $address = Address::findOrFail($id);
         $address->nama_depan = $request->nama_depan;
         $address->nama_belakang = $request->nama_belakang;
         $address->email = $request->email;
@@ -86,7 +86,7 @@ class AdminAddressController extends Controller
         $address->kode_pos = $request->kode_pos;
         $address->save();
 
-        return redirect()->route('adminAddress.index');
+        return redirect()->route('adminAddressMain.index');
     }
 
     /**

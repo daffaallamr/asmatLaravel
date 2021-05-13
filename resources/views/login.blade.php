@@ -12,7 +12,7 @@
                 <img src="public/images/logo-footer.png" alt="">
                 <h2>Selamat datang di Asmat&excl;</h2>
             </div>
-            <form action="{{ route('login-customer') }}" method="post">
+            <form class="container-login" action="{{ route('login-customer') }}" method="post">
                 @csrf
                 <label for="" >Email</label>
                     <input type="text" name="email" value="{{ old('email') }}">

@@ -13,25 +13,30 @@
               <div class="card-body">
                 <form class="forms-sample" action="{{ route('adminProduct.store') }}" method="post" enctype="multipart/form-data">
                   @csrf
+                  @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        {{ $errors->first() }}
+                    </div>
+                  @endif
                   <div class="form-group">
                     <label for="nama">Nama Produk</label>
-                    <input type="text" class="form-control" id="nama" name="nama">
+                    <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}">
                   </div>
                   <div class="form-group">
                     <label for="harga">Harga Satuan</label>
-                    <input type="number" class="form-control" id="harga" name="harga">
+                    <input type="number" class="form-control" id="harga" name="harga" value="{{ old('harga') }}">
                   </div>
                   <div class="form-group">
                     <label for="berat">Berat Satuan (gram)</label>
-                    <input type="number" class="form-control" id="berat" name="berat">
+                    <input type="number" class="form-control" id="berat" name="berat" value="{{ old('berat') }}">
                   </div>
                   <div class="form-group">
                     <label for="deskripsi">Deskripsi Singkat</label>
-                    <textarea class="form-control" id="deskripsi" rows="4" name="deskripsi"></textarea>
+                    <textarea class="form-control" id="deskripsi" rows="4" name="deskripsi">{{ old('deskripsi') }}</textarea>
                   </div>
                   <div class="form-group">
                     <label for="stok">Stok</label>
-                    <input type="" class="form-control" id="stok" name="stok">
+                    <input type="" class="form-control" id="stok" name="stok" value="{{ old('stok') }}">
                   </div>
                   <div class="form-group">
                     <label>Gambar Produk</label>

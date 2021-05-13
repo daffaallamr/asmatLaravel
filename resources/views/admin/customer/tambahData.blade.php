@@ -13,21 +13,26 @@
               <div class="card-body">
                 <form class="forms-sample" action="{{ route('adminCustomer.store') }}" method="post">
                   @csrf
+                  @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        {{ $errors->first() }}
+                    </div>
+                  @endif
                   <div class="form-group">
                     <label for="nama_depan">Nama Depan</label>
-                    <input type="text" class="form-control" id="nama_depan" name="nama_depan">
+                    <input type="text" class="form-control" id="nama_depan" name="nama_depan" value="{{ old('nama_depan') }}">
                   </div>
                   <div class="form-group">
                     <label for="nama_belakang">Nama Belakang</label>
-                    <input type="text" class="form-control" id="nama_belakang" name="nama_belakang">
+                    <input type="text" class="form-control" id="nama_belakang" name="nama_belakang" value="{{ old('nama_belakang') }}">
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
                   </div>
                   <div class="form-group">
                     <label for="telepon">Telepon</label>
-                    <input type="number" class="form-control" id="telepon" name="telepon">
+                    <input type="number" class="form-control" id="telepon" name="telepon" value="{{ old('telepon') }}">
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>

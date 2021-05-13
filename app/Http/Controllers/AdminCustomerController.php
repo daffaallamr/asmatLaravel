@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AdminCustomerController extends Controller
 {
@@ -40,6 +40,38 @@ class AdminCustomerController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = [
+            'nama_depan'            => 'required|min:2|max:15',
+            'nama_belakang'         => 'required|min:2|max:30',
+            'email'                 => 'required|email|unique:customers,email',
+            'telepon'               => 'required|min:9|max:20',
+            'password'              => 'required|confirmed|min:8'
+        ];
+ 
+        $messages = [
+            'nama_depan.required'   => 'Nama depan wajib diisi',
+            'nama_depan.min'        => 'Nama depan minimal 2 karakter',
+            'nama_depan.max'        => 'Nama depan maksimal 15 karakter',
+            'nama_belakang.required'=> 'Nama belakang wajib diisi',
+            'nama_belakang.min'     => 'Nama belakang minimal 2 karakter',
+            'nama_belakang.max'     => 'Nama belakang maksimal 30 karakter',
+            'email.required'        => 'Email wajib diisi',
+            'email.email'           => 'Email tidak valid',
+            'email.unique'          => 'Email sudah terdaftar',
+            'telepon.required'      => 'Telepon wajib diisi',
+            'telepon.min'           => 'Telepon minimal 9 nomer',
+            'telepon.max'           => 'Telepon maksimal 20 nomer',
+            'password.required'     => 'Kata sandi wajib diisi',
+            'password.min'          => 'Kata sandi  minimal 8 karakter',
+            'password.confirmed'    => 'Kata sandi tidak sama dengan konfirmasi kata sandi'
+        ];
+ 
+        $validator = Validator::make($request->all(), $rules, $messages);
+ 
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        }
+
         $user = new Customer;
         $user->nama_depan = $request->nama_depan;
         $user->nama_belakang = $request->nama_belakang;
@@ -84,7 +116,38 @@ class AdminCustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Customer::where('id', $id)->first();
+        $rules = [
+            'nama_depan'            => 'required|min:2|max:15',
+            'nama_belakang'         => 'required|min:2|max:30',
+            'email'                 => 'required|email',
+            'telepon'               => 'required|min:9|max:20',
+            'password'              => 'required|confirmed|min:8'
+        ];
+ 
+        $messages = [
+            'nama_depan.required'   => 'Nama depan wajib diisi',
+            'nama_depan.min'        => 'Nama depan minimal 2 karakter',
+            'nama_depan.max'        => 'Nama depan maksimal 15 karakter',
+            'nama_belakang.required'=> 'Nama belakang wajib diisi',
+            'nama_belakang.min'     => 'Nama belakang minimal 2 karakter',
+            'nama_belakang.max'     => 'Nama belakang maksimal 30 karakter',
+            'email.required'        => 'Email wajib diisi',
+            'email.email'           => 'Email tidak valid',
+            'telepon.required'      => 'Telepon wajib diisi',
+            'telepon.min'           => 'Telepon minimal 9 nomer',
+            'telepon.max'           => 'Telepon maksimal 20 nomer',
+            'password.required'     => 'Kata sandi wajib diisi',
+            'password.min'          => 'Kata sandi  minimal 8 karakter',
+            'password.confirmed'    => 'Kata sandi tidak sama dengan konfirmasi kata sandi'
+        ];
+ 
+        $validator = Validator::make($request->all(), $rules, $messages);
+ 
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        }
+
+        $user = Customer::findOrFail($id);
         $user->nama_depan = $request->nama_depan;
         $user->nama_belakang = $request->nama_belakang;
         $user->email = strtolower($request->email);

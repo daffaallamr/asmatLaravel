@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PaymentSuccess;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
-class AdminUserController extends Controller
+class AdminPaymentSuccessController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +17,10 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::where('status_payment', 'success')->where('is_dikirim', false)->get();
+        return view('admin.order.paymentSuccess', [
+            'orders' => $orders
+        ]);
     }
 
     /**
@@ -23,7 +30,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.order.tambahData');
     }
 
     /**
@@ -45,7 +52,9 @@ class AdminUserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.order.editData', [
+            'order' => Order::findOrFail($id)
+        ]);
     }
 
     /**
@@ -68,7 +77,28 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'nomer_resi'            => 'required|unique:orders,nomer_resi',
+        ];
+ 
+        $messages = [
+            'nomer_resi.required'   => 'Nomer resi belum diisi',
+            'nomer_resi.unique'        => 'Nomer resi sudah terdaftar di database. Check kevalidan nomer resi!',
+        ];
+ 
+        $validator = Validator::make($request->all(), $rules, $messages);
+ 
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        }
+
+        $order = Order::findOrFail($id);
+        $order->nomer_resi = $request->nomer_resi;
+        $order->save();
+
+        Mail::to($request->email_customer)->send(new PaymentSuccess());
+
+        return redirect()->route('adminPaymentSuccess.index');
     }
 
     /**
@@ -79,6 +109,8 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd('yes');
+        $order = Order::findOrFail($id);
+        $order->delete();
     }
 }

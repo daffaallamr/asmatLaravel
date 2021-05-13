@@ -1,23 +1,22 @@
 <?php
 
-use App\Http\Controllers\AdminAddressController;
+use App\Http\Controllers\AdminAdressMainController;
+use App\Http\Controllers\AdminAdressSecondController;
 use App\Http\Controllers\AdminCustomerController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\AdminPaymentSuccessController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminRegisterController;
 use App\Http\Controllers\AdminStoryController;
-use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MidtransController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\StoryController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\SuperAdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -119,11 +118,14 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::view('/admin', 'admin.index')->name('admin.home');
 
     Route::resource('adminCustomer', AdminCustomerController::class);
-    Route::resource('adminAddress', AdminAddressController::class);
-    Route::resource('adminOrder', AdminOrderController::class);
+    Route::resource('adminAddressMain', AdminAdressMainController::class);
+    Route::resource('adminAddressSecond', AdminAdressSecondController::class);
     Route::resource('adminProduct', AdminProductController::class);
     Route::resource('adminStory', AdminStoryController::class);
-    Route::resource('adminUser', AdminUserController::class);
+    Route::resource('superAdmin', SuperAdminController::class);
+    Route::resource('adminPaymentSuccess', AdminPaymentSuccessController::class);
+    Route::get('adminIsPending', [AdminOrderController::class, 'isPending']);
+    Route::get('adminDelivered', [AdminOrderController::class, 'delivered']);
     
     // Route::get('/logout/admin', [AdminLoginController::class, 'logoutAdmin'])->name('adminLogout');
 });

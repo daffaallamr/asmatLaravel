@@ -8,6 +8,10 @@ html {
   overflow-x: hidden !important;
 }
 
+form {
+  display: block;
+}
+
 :root {
   --primary-color: #DF7861;
   font-family: 'Commissioner', Arial, Helvetica;
@@ -971,22 +975,27 @@ ul {
       flex-basis: 35%;
   background-color: #ECB390;
   color: white;
-  padding-bottom: 3.5vw;
+  padding-bottom: 2vw;
   border-radius: 5px;
   float: left;
   text-align: left;
   margin-bottom: 100px;
 }
 
-.artboard .container .card-cerita img {
+.artboard .container .card-cerita .img {
   width: 100%;
+  background-image: url("../images/kartu.svg");
+  height: 400px;
+  background-position: center;
+  background-size: cover;
 }
 
 .artboard .container .card-cerita p {
   font-size: 24px;
   max-width: 60%;
   margin-left: 2.4vw;
-  height: 15%;
+  height: 40px;
+  margin-bottom: 60px;
 }
 
 .artboard .container .card-cerita .bot-card {
@@ -1038,8 +1047,8 @@ ul {
     margin-bottom: 50px;
     border-radius: 10px;
   }
-  .artboard .container .card-cerita img {
-    border-radius: 10px;
+  .artboard .container .card-cerita .img {
+    height: 350px;
   }
   .artboard .container .card-cerita p {
     font-size: 2vw;
@@ -1079,9 +1088,6 @@ ul {
     display: block;
     float: left;
     text-align: left;
-    border-radius: 15px;
-  }
-  .artboard .container .card-cerita img {
     border-radius: 15px;
   }
   .artboard .container .card-cerita p {
@@ -1192,8 +1198,8 @@ ul {
     text-align: left;
     border-radius: 7px;
   }
-  .artboard .container .card-cerita img {
-    border-radius: 7px;
+  .artboard .container .card-cerita .img {
+    height: 200px;
   }
   .artboard .container .card-cerita p {
     font-size: 1em;
@@ -2101,7 +2107,7 @@ footer .container .contact-footer ul li span {
   display: none;
 }
 
-.logreg .login-right form {
+.logreg .login-right .container-login {
   color: var(--primary-color);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2110,7 +2116,7 @@ footer .container .contact-footer ul li span {
       flex-wrap: wrap;
 }
 
-.logreg .login-right form label {
+.logreg .login-right .container-login label {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
   margin-bottom: 7px;
@@ -2119,7 +2125,7 @@ footer .container .contact-footer ul li span {
   margin-top: 25px;
 }
 
-.logreg .login-right form input {
+.logreg .login-right .container-login input {
   border: rgba(223, 120, 97, 0.7) solid 2px;
   border-radius: 3px;
   height: 35px;
@@ -2133,7 +2139,7 @@ footer .container .contact-footer ul li span {
   width: 800px;
 }
 
-.logreg .login-right form .cta-submit {
+.logreg .login-right .container-login .cta-submit {
   background-color: var(--primary-color);
   color: white;
   -ms-flex-preferred-size: 100%;
@@ -2147,12 +2153,12 @@ footer .container .contact-footer ul li span {
   border: 1px solid var(--primary-color);
 }
 
-.logreg .login-right form .cta-submit:hover {
+.logreg .login-right .container-login .cta-submit:hover {
   color: var(--primary-color);
   background-color: #F7F7E8;
 }
 
-.logreg .login-right form .error {
+.logreg .login-right .container-login .error {
   color: rgba(0, 0, 0, 0.7);
   font-size: 0.9vw;
   -ms-flex-preferred-size: 100%;
@@ -2161,7 +2167,7 @@ footer .container .contact-footer ul li span {
   margin: 10px 0;
 }
 
-.logreg .login-right form p {
+.logreg .login-right .container-login p {
   font-size: 1vw;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
@@ -2305,24 +2311,26 @@ footer .container .contact-footer ul li span {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    height: auto;
-    margin-top: 5vw;
+    height: 100vh;
+    margin-top: 0vw;
+    min-height: 0px;
   }
   .logreg .login-right {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    margin-top: 5%;
   }
   .logreg .login-right .container .logo img {
     margin-bottom: 0;
   }
-  .logreg .login-right .container form label {
+  .logreg .login-right .container .container-login label {
     font-size: 1em;
   }
-  .logreg .login-right .container form input {
+  .logreg .login-right .container .container-login input {
     padding: 0 10% 0 2%;
   }
-  .logreg .login-right .container form p {
+  .logreg .login-right .container .container-login p {
     font-size: 1vw;
   }
   .logreg .login-right .container-reg {
@@ -2377,6 +2385,9 @@ footer .container .contact-footer ul li span {
 }
 
 @media (max-width: 800px) {
+  .logreg {
+    height: auto;
+  }
   .logreg .login-left {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
@@ -2411,21 +2422,21 @@ footer .container .contact-footer ul li span {
     font-size: 5vw;
     margin-right: auto !important;
   }
-  .logreg .login-right form {
+  .logreg .login-right .container-login {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
         justify-content: space-around;
   }
-  .logreg .login-right form .error {
+  .logreg .login-right .container-login .error {
     margin: 20px 0 40px 0;
   }
-  .logreg .login-right form label {
+  .logreg .login-right .container-login label {
     font-weight: 400;
     font-size: 4vw !important;
   }
-  .logreg .login-right form input {
+  .logreg .login-right .container-login input {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2436,16 +2447,16 @@ footer .container .contact-footer ul li span {
     height: 8vw !important;
     border-radius: 1vw !important;
   }
-  .logreg .login-right form p {
+  .logreg .login-right .container-login p {
     font-size: 2.5vw !important;
   }
-  .logreg .login-right form p a strong {
+  .logreg .login-right .container-login p a strong {
     font-weight: 400;
   }
-  .logreg .login-right form p a strong span {
+  .logreg .login-right .container-login p a strong span {
     text-decoration: none;
   }
-  .logreg .login-right form .cta-submit {
+  .logreg .login-right .container-login .cta-submit {
     font-size: 3.5vw !important;
     margin-right: auto;
     text-align: center;
@@ -2576,20 +2587,20 @@ footer .container .contact-footer ul li span {
   .logreg .login-right .logo {
     margin-left: -25%;
   }
-  .logreg .login-right form {
+  .logreg .login-right .container-login {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
         justify-content: space-around;
   }
-  .logreg .login-right form .error {
+  .logreg .login-right .container-login .error {
     margin: 10px 0 20px 0;
   }
-  .logreg .login-right form label {
+  .logreg .login-right .container-login label {
     font-weight: 400;
   }
-  .logreg .login-right form input {
+  .logreg .login-right .container-login input {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2599,10 +2610,10 @@ footer .container .contact-footer ul li span {
     border: 2px solid rgba(223, 120, 97, 0.7) !important;
     padding-right: 0 !important;
   }
-  .logreg .login-right form p a strong {
+  .logreg .login-right .container-login p a strong {
     font-weight: 400;
   }
-  .logreg .login-right form p a strong span {
+  .logreg .login-right .container-login p a strong span {
     text-decoration: none;
   }
   .logreg .login-right .container-reg .error {
@@ -2699,8 +2710,8 @@ footer .container .contact-footer ul li span {
     margin-right: 10%;
   }
   .logreg .login-right .container-reg .exit a img {
-    width: 3vh !important;
-    height: 3vh;
+    width: 2vh !important;
+    height: 2vh;
   }
   .logreg .login-right .container-reg .exit input {
     -ms-flex-preferred-size: 30% !important;
@@ -2718,10 +2729,9 @@ footer .container .contact-footer ul li span {
 
 .hero-origin .container {
   color: white;
-}
-
-.hero-origin .container img {
-  max-width: 100vw;
+  background-position: center;
+  background-size: cover;
+  height: 80vh;
 }
 
 .hero-origin .container h1, .hero-origin .container label {
@@ -2805,18 +2815,30 @@ footer .container .contact-footer ul li span {
 
 @media (max-width: 800px) {
   .hero-origin {
-    height: 450px;
     width: 100%;
     margin-top: 15% !important;
+    height: auto;
+  }
+  .hero-origin .container {
+    height: 50vh;
+  }
+  .hero-origin .container .content {
+    margin-bottom: -50vh;
+    top: 400px;
+    position: relative;
+    height: auto;
   }
   .hero-origin .container h1 {
     font-size: 5.5vw;
     font-weight: 400;
-    top: 370px;
+    max-width: 55%;
+    position: static;
+    margin-bottom: 30px;
   }
   .hero-origin .container label {
     font-size: 3.5vw;
     top: 480px;
+    position: static;
   }
   .paragraf-origin-a {
     text-align: center;
@@ -2852,6 +2874,7 @@ footer .container .contact-footer ul li span {
   }
   .paragraf-origin-b .left-col img {
     max-width: 90%;
+    margin: auto;
   }
   .paragraf-origin-b .right-col {
     -ms-flex-preferred-size: 80% !important;
@@ -2868,6 +2891,21 @@ footer .container .contact-footer ul li span {
     font-size: 3vw !important;
     max-width: 85%;
     margin: 5vw auto auto;
+  }
+}
+
+@media (max-width: 425px) {
+  .hero-origin .container .content {
+    top: 60vw;
+  }
+  .hero-origin .container .content h1 {
+    margin-bottom: 10px;
+  }
+  .paragraf-origin-a {
+    margin-bottom: 25px;
+  }
+  .paragraf-origin-a h1 {
+    margin-bottom: 25px;
   }
 }
 

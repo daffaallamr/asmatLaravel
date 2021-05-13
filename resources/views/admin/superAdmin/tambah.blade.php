@@ -5,35 +5,26 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Form Edit Pelanggan</h1>
+        <h1 class="h3 mb-2 text-gray-800">Form Tambah Admin</h1>
         
         <!-- Form Tambah Data -->
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <form class="forms-sample" action="{{ URL::to('adminCustomer/' . $customer->id) }}" method="post">
+                <form class="forms-sample" action="{{ route('superAdmin.store') }}" method="post">
                   @csrf
-                  @method('PUT')
                   @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                         {{ $errors->first() }}
                     </div>
                   @endif
                   <div class="form-group">
-                    <label for="nama_depan">Nama Depan</label>
-                    <input type="text" class="form-control" id="nama_depan" name="nama_depan" value="{{ $customer->nama_depan }}">
+                    <label for="nama">Nama</label>
+                    <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}">
                   </div>
                   <div class="form-group">
-                    <label for="nama_belakang">Nama Belakang</label>
-                    <input type="text" class="form-control" id="nama_belakang" name="nama_belakang" value="{{ $customer->nama_belakang }}">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{ $customer->email }}">
-                  </div>
-                  <div class="form-group">
-                    <label for="telepon">Telepon</label>
-                    <input type="number" class="form-control" id="telepon" name="telepon" value="{{ $customer->telepon }}">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}">
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
@@ -43,7 +34,7 @@
                     <label for="konfirmasi_password">Konfirmasi Password</label>
                     <input type="password" class="form-control" id="konfirmasi_password" name="password_confirmation">
                   </div>
-                  <button type="submit" class="btn btn-primary mr-2">Edit</button>
+                  <button type="submit" class="btn btn-primary mr-2">Tambah</button>
                 </form>
               </div>
             </div>

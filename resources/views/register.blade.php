@@ -6,14 +6,13 @@
             <img src="public/images/log-reg.png" alt="">
         </div>
     </div>
-    <form action="{{ route('register-customer') }}" method="post">
     <div class="login-right">
         <div class="logo">
             <img src="public/images/logo-footer.png" alt="">
             <h2>Mulai <br> mendaftar&excl;</h2>
         </div>   
-        @csrf
-            <div class="container-reg">
+            <form class="container-reg" action="{{ route('register-customer') }}" method="post">
+                @csrf
                 <div class="nama-depan">
                     <label for="">Nama depan</label> <br>
                         <input type="text" name="nama_depan" value="{{ old('nama_depan') }}">
@@ -50,9 +49,9 @@
                     </a> 
                     <input type="submit" class="cta-submit" value="Daftar">
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 @endsection
     
