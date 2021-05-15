@@ -1,6 +1,5 @@
 // Tambah Data Alamat
 if (document.getElementById('button')) {
-    console.log('Berhasil');
     document.getElementById('button').addEventListener('click',function() {
         document.querySelector('#modalTambahAlamat').style.display = 'block';
         document.querySelector('#modalTambahAlamat').style.opacity = '1';

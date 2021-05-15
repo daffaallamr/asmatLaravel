@@ -18,7 +18,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 TOTAL PESANAN (BULANAN)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">15 Pesanan</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $pesananPerbulan }} Pesanan</div>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 TOTAL PESANAN (TAHUNAN)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">20 Pesanan</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $pesananPertahun }} Pesanan</div>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 TOTAL PESANAN</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">45 Pesanan</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalPesanan }} Pesanan</div>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                 JUMLAH PELANGGAN</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18 Pelanggan</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jumlahCustomer }} Pelanggan</div>
                         </div>
                     </div>
                 </div>

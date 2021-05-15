@@ -93,7 +93,20 @@
                                         </button>
                                       </div>
                                       <div class="modal-body">
-                                        <h5>Detail Informasi</h5>
+                                        <h5>Detail Order</h5>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label for="nama_produk">Produk yang diorder</label>
+                                            @foreach ($order->orderDetails as $detail)
+                                                <input readonly type="text" class="form-control mb-2" id="nama_produk" value="{{ $detail->jumlah_barang }}x {{ $detail->product->nama }}  //  IDR {{ number_format($detail->jumlah_harga, 0, '.', '.') }}">
+                                            @endforeach
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="total_pembayaran">Total Pembayaran</label>
+                                            <input readonly type="text" class="form-control" id="total_pembayaran" value="IDR {{ number_format($order->jumlah_harga_barang, 0, '.', '.') }}">
+                                        </div>
+                                        <hr>
+                                        <h5>Detail Informasi Customer</h5>
                                         <hr>
                                         @if ($order->customer->addresses[0]->is_main == 1)
                                             <div class="form-group">
@@ -162,6 +175,18 @@
                                                 <input readonly type="number" class="form-control" id="kode_pos" name="kode_pos" value="{{ $order->customer->addresses[1]->kode_pos }}">
                                             </div>
                                         @endif
+                                        <hr>
+                                        <h5>Ekspedisi dan Ongkir</h5>
+                                        <hr>
+                                            <div class="form-group">
+                                                <label for="ekspedisi">Ekspedisi</label>
+                                                <input readonly type="text" class="form-control" id="ekspedisi" name="ekspedisi" value="{{ $order->ekspedisi }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ongkir">Ongkir</label>
+                                                <input readonly type="text" class="form-control" id="ongkir" name="ongkir" value="IDR {{ number_format($order->ongkir, 0, '.', '.') }}">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

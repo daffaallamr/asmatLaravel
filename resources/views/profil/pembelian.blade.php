@@ -23,6 +23,13 @@
             <div class="top">
                 <h2>Riwayat Pembelian</h2>
             </div>
+            
+            @if ($orders->isEmpty())
+                <div class="tabel">
+                    <p>Riwayat belanja anda masih kosong</p>
+                </div>
+            @else
+
                 <div class="tabel">
                     <table>
                         <thead>
@@ -74,6 +81,7 @@
                         </div>
                     </div>
                 @endforeach
+            @endif
         </div>
     </div>
 

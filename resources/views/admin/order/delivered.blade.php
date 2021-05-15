@@ -22,10 +22,10 @@
                                 <th>No.</th>
                                 <th>Nomer Pesanan</th>
                                 <th>Nama Pemesan</th>
-                                <th>Tgl Pemesanan</th>
-                                <th>Metode Pembayaran</th>
                                 <th>Jumlah Pembayaran</th>
-                                <th>Tgl Pembayaran</th>
+                                <th>Nomer Resi</th>
+                                <th>Dikirim oleh</th>
+                                <th>Tanggal Pengiriman</th>
                                 <th style="min-width: 100px;">Aksi</th>
                             </tr>
                         </thead>
@@ -34,10 +34,10 @@
                                 <th>No.</th>
                                 <th>Nomer Pesanan</th>
                                 <th>Nama Pemesan</th>
-                                <th>Tgl Pemesanan</th>
-                                <th>Metode Pembayaran</th>
                                 <th>Jumlah Pembayaran</th>
-                                <th>Tgl Pembayaran</th>
+                                <th>Nomer Resi</th>
+                                <th>Dikirim oleh</th>
+                                <th>Tanggal Pengiriman</th>
                                 <th>Aksi</th>
                             </tr>
                         </tfoot>
@@ -47,10 +47,10 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $order->order_unique_id }}</td>
                                 <td>{{ $order->customer->nama_depan . ' ' .  $order->customer->nama_belakang }}</td>
-                                <td>{{ date('d / m / Y', strtotime($order->created_at)) }}</td>
-                                <td>{{ $order->metode_pembayaran }}</td>
                                 <td>IDR {{ number_format($order->jumlah_pembayaran_akhir, 0, '.', '.') }}</td>
-                                <td>{{ date('d / m / Y', strtotime($order->tanggal_pembayaran)) }}</td>
+                                <td>{{ $order->nomer_resi }}</td>
+                                <td>{{ $order->dikirim_by }}</td>
+                                <td>{{ $order->tanggal_pengiriman }}</td>
                                 <td>
                                     <span>
                                         <a class="btn btn-success btn-circle" data-toggle="modal" data-target="#modalDetail{{ $order->id }}">
@@ -99,6 +99,19 @@
                                         </button>
                                       </div>
                                       <div class="modal-body">
+                                        <h5>Detail Order</h5>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label for="nama_produk">Produk yang diorder</label>
+                                            @foreach ($order->orderDetails as $detail)
+                                                <input readonly type="text" class="form-control mb-2" id="nama_produk" value="{{ $detail->jumlah_barang }}x {{ $detail->product->nama }}  //  IDR {{ number_format($detail->jumlah_harga, 0, '.', '.') }}">
+                                            @endforeach
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="total_pembayaran">Total Pembayaran</label>
+                                            <input readonly type="text" class="form-control" id="total_pembayaran" value="IDR {{ number_format($order->jumlah_harga_barang, 0, '.', '.') }}">
+                                        </div>
+                                        <hr>
                                         <h5>Detail Informasi</h5>
                                         <hr>
                                         @if ($order->customer->addresses[0]->is_main == 1)
@@ -169,11 +182,29 @@
                                             </div>
                                         @endif
                                         <hr>
+                                        <h5>Informasi Order</h5>
+                                            <div class="form-group">
+                                                <label for="tanggal_pemesanan">Tanggal Pemesanan</label>
+                                                <input readonly type="text" class="form-control" id="tanggal_pemesanan" name="tanggal_pemesanan" value="{{ date('d / m / Y', strtotime($order->created_at)) }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="metode_pembayaran">Metode Pembayaran</label>
+                                                <input readonly type="text" class="form-control" id="metode_pembayaran" name="metode_pembayaran" value="{{ $order->metode_pembayaran }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tanggal_pembayaran">Tanggal Pembayaran</label>
+                                                <input readonly type="text" class="form-control" id="tanggal_pembayaran" name="tanggal_pembayaran" value="{{ date('d / m / Y', strtotime($order->tanggal_pembayaran)) }}">
+                                            </div>
+                                        <hr>
                                         <h5>Ekspedisi dan Nomer Resi</h5>
                                         <hr>
                                             <div class="form-group">
                                                 <label for="ekspedisi">Ekspedisi</label>
                                                 <input readonly type="text" class="form-control" id="ekspedisi" name="ekspedisi" value="{{ $order->ekspedisi }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ongkir">Ongkir</label>
+                                                <input readonly type="text" class="form-control" id="ongkir" name="ongkir" value="IDR {{ number_format($order->ongkir, 0, '.', '.') }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="nomer_resi">Nomer Resi</label>

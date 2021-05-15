@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminAdressMainController;
 use App\Http\Controllers\AdminAdressSecondController;
 use App\Http\Controllers\AdminCustomerController;
+use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminPaymentSuccessController;
@@ -115,15 +116,29 @@ Route::resource('belanja', ProductController::class)->only(['index', 'show']);
 
 // Web Admin Route
 Route::group(['middleware' => 'auth:admin'], function () {
-    Route::view('/admin', 'admin.index')->name('admin.home');
+    Route::get('/admin', [AdminHomeController::class, 'index'])->name('admin.home');
 
-    Route::resource('adminCustomer', AdminCustomerController::class);
-    Route::resource('adminAddressMain', AdminAdressMainController::class);
-    Route::resource('adminAddressSecond', AdminAdressSecondController::class);
-    Route::resource('adminProduct', AdminProductController::class);
-    Route::resource('adminStory', AdminStoryController::class);
-    Route::resource('superAdmin', SuperAdminController::class);
-    Route::resource('adminPaymentSuccess', AdminPaymentSuccessController::class);
+    Route::resource('adminCustomer', AdminCustomerController::class)->only([
+        'index', 'create', 'store', 'edit', 'update', 'destroy'
+    ]);
+    Route::resource('adminAddressMain', AdminAdressMainController::class)->only([
+        'index', 'edit', 'update', 'destroy'
+    ]);
+    Route::resource('adminAddressSecond', AdminAdressSecondController::class)->only([
+        'index', 'edit', 'update', 'destroy'
+    ]);
+    Route::resource('adminProduct', AdminProductController::class)->only([
+        'index', 'create', 'store', 'edit', 'update', 'destroy'
+    ]);
+    Route::resource('adminStory', AdminStoryController::class)->only([
+        'index', 'create', 'store', 'edit', 'update', 'destroy'
+    ]);
+    Route::resource('superAdmin', SuperAdminController::class)->only([
+        'index', 'create', 'store', 'edit', 'update', 'destroy'
+    ]);
+    Route::resource('adminPaymentSuccess', AdminPaymentSuccessController::class)->only([
+        'index', 'update', 'destroy'
+    ]);
     Route::get('adminIsPending', [AdminOrderController::class, 'isPending']);
     Route::get('adminDelivered', [AdminOrderController::class, 'delivered']);
     
@@ -134,8 +149,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
 Route::get('login/admin', [AdminLoginController::class, 'showAdminLoginForm'])->name('login-admin');
 Route::post('login/admin', [AdminLoginController::class, 'adminLogin']);
 
-Route::get('register/admin', [AdminRegisterController::class, 'showAdminRegisterForm'])->name('register-admin');
-Route::post('register/admin', [AdminRegisterController::class, 'createAdmin']);
+// Route::get('register/admin', [AdminRegisterController::class, 'showAdminRegisterForm'])->name('register-admin');
+// Route::post('register/admin', [AdminRegisterController::class, 'createAdmin']);
 
 Route::get('logout/admin', [AdminLoginController::class,'logout'])->name('logout-admin');
 

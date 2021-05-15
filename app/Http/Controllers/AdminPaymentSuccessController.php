@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Mail\PaymentSuccess;
+use App\Models\Admin;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,51 +24,6 @@ class AdminPaymentSuccessController extends Controller
         return view('admin.order.paymentSuccess', [
             'orders' => $orders
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.order.tambahData');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return view('admin.order.editData', [
-            'order' => Order::findOrFail($id)
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -92,9 +50,21 @@ class AdminPaymentSuccessController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
 
+        $admin = Admin::findOrFail($request->admin_id);
+
         $order = Order::findOrFail($id);
         $order->nomer_resi = $request->nomer_resi;
+        $order->is_dikirim = true;
+        $order->dikirim_by = $admin->nama;
+        $order->tanggal_pengiriman = Carbon::now();
         $order->save();
+
+        // mengurangi stok
+        foreach ($order->orderDetails as $detail) {
+            $product = Product::findOrFail($detail->product->id);
+            $product->stok = $product->stok - $detail->jumlah_barang;
+            $product->save();
+        }
 
         Mail::to($request->email_customer)->send(new PaymentSuccess());
 

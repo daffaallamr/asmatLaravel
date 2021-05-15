@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use Illuminate\Http\Request;
 
-class AdminAdressMainController extends Controller
+class AdminAdressMainController extends RajaOngkirController
 {
     /**
      * Display a listing of the resource.
@@ -15,41 +15,12 @@ class AdminAdressMainController extends Controller
     public function index()
     {
         $address = Address::where('is_main', true)->get();
+        $provinsi = $this->get_province();
+
         return view('admin.address.mainAddress.index', [
-            'addresses' => $address
+            'addresses' => $address,
+            'provinsi' => $provinsi
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -97,6 +68,17 @@ class AdminAdressMainController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $address = Address::findOrFail($id);
+        $address->delete();
+
+        $userId = $address->customer->id;
+        $addressCadangan = Address::where('customer_id', $userId)->where('is_main', 0)->first();
+
+        if(!empty($addressCadangan)) {
+            $addressCadangan->is_main = true;
+            $addressCadangan->save();
+        }
+
+        return redirect()->route('adminAddressMain.index');
     }
 }

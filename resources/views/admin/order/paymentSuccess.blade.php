@@ -93,13 +93,26 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Detail Informasi/Kirim Email Konfirmasi</h5>
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Detail Informasi & Kirim Email Konfirmasi</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                         </button>
                                       </div>
                                       <div class="modal-body">
-                                        <h5>Detail Informasi</h5>
+                                        <h5>Detail Order</h5>
+                                        <hr>
+                                        <div class="form-group">
+                                            <label for="nama_produk">Produk yang diorder</label>
+                                            @foreach ($order->orderDetails as $detail)
+                                                <input readonly type="text" class="form-control mb-2" id="nama_produk" value="{{ $detail->jumlah_barang }}x {{ $detail->product->nama }}  //  IDR {{ number_format($detail->jumlah_harga, 0, '.', '.') }}">
+                                            @endforeach
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="total_pembayaran">Total Pembayaran</label>
+                                            <input readonly type="text" class="form-control" id="total_pembayaran" value="IDR {{ number_format($order->jumlah_harga_barang, 0, '.', '.') }}">
+                                        </div>
+                                        <hr>
+                                        <h5>Detail Informasi Customer</h5>
                                         <hr>
                                         @if ($order->customer->addresses[0]->is_main == 1)
                                             <div class="form-group">
@@ -179,10 +192,15 @@
                                                 <input readonly type="text" class="form-control" id="ekspedisi" name="ekspedisi" value="{{ $order->ekspedisi }}">
                                             </div>
                                             <div class="form-group">
+                                                <label for="ongkir">Ongkir</label>
+                                                <input readonly type="text" class="form-control" id="ongkir" name="ongkir" value="IDR {{ number_format($order->ongkir, 0, '.', '.') }}">
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="nomer_resi">Nomer Resi</label>
                                                 <input type="text" class="form-control" id="nomer_resi" name="nomer_resi">
                                                 <input type="hidden" class="form-control" id="nomer_resi" name="email_customer" value="{{ $order->customer->email }}">
                                             </div>
+                                                <input type="hidden" class="form-control" id="nomer_resi" name="admin_id" value="{{ Auth('admin')->id() }}">
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary" data-dismiss="modal">Kembali</button>

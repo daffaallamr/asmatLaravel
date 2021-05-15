@@ -93,16 +93,33 @@
                                               <textarea class="form-control" id="alamat_lengkap" name="alamat_lengkap" rows="3">{{ $address->alamat_lengkap }}</textarea>
                                             </div>
                                             <div class="form-group">
-                                              <label for="provinsi_id">Provinsi</label>
-                                              <input type="text" class="form-control" id="provinsi_id" name="provinsi_id" value="{{ $address->provinsi }}">
+                                                <label for="">Provinsi</label>
+                                                <select class="custom-select" name="province_id" id="admin_main_province_id" required>
+                                                    <option value="">--- Provinsi Tujuan ---</option>
+                                                    @foreach ($provinsi  as $row)
+                                                    <option value="{{ $row['province_id'] }}">
+                                                        {{$row['province']}}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                {{--  Mengambil data nama provinsi  --}}
+                                                <input type="hidden" id="nama_provinsi" name="nama_provinsi">
                                             </div>
                                             <div class="form-group">
-                                              <label for="kota_id">Kota</label>
-                                              <input type="text" class="form-control" id="kota_id" name="kota_id" value="{{ $address->kota }}">
+                                                <label for="">Kota</label>
+                                                <select class="custom-select" name="kota_id" id="kota_id" required>
+                                                    <option value="">--- Kota Tujuan ---</option>
+                                                </select>
+                                                {{--  Mengambil data nama kota  --}}
+                                                <input type="hidden" id="nama_kota" name="nama_kota">
                                             </div>
                                             <div class="form-group">
-                                              <label for="kecamatan_id">Kecamatan</label>
-                                              <input type="text" class="form-control" id="kecamatan_id" name="kecamatan_id" value="{{ $address->kecamatan }}">
+                                                <label for="">Kecamatan</label>
+                                                <select class="custom-select" name="kecamatan_id" id="kecamatan_id" required>
+                                                    <option value="">--- Kecamatan Tujuan ---</option>
+                                                </select>
+                                                {{--  Mengambil data nama kecamatan  --}}
+                                                <input type="hidden" id="nama_kecamatan" name="nama_kecamatan" required>
                                             </div>
                                             <div class="form-group">
                                               <label for="kode_pos">Kode Pos</label>
