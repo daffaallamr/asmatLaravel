@@ -70,3 +70,7 @@ if(document.getElementById('ubah')) {
         }   
     );
 }
+
+document.getElementById('oke').addEventListener('click',function() {
+    document.querySelector('.modal').style.display = 'none';
+});

@@ -5,7 +5,13 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Tabel Alamat Pelanggan</h1>
+        <h1 class="h3 mb-2 text-gray-800">Tabel Alamat Cadangan Pelanggan</h1>
+
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                {{ $errors->first() }}
+            </div>
+        @endif
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -33,6 +39,9 @@
                             </tr>
                         </tfoot>
                         <tbody>
+                            <script>
+                                var dataJS = @json($addresses).length;
+                            </script>
                             @foreach ($addresses as $address)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
@@ -65,48 +74,78 @@
                                         </button>
                                       </div>
                                       <div class="modal-body">
-                                        <form class="forms-sample" action="{{ URL::to('adminAddressMain/' . $address->id) }}" method="post">
+                                        <form class="forms-sample" action="{{ URL::to('adminAddressSecond/' . $address->id) }}" method="post">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-group">
                                               <label for="nama_pelanggan">Nama Pelanggan</label>
-                                              <input readonly type="text" class="form-control" id="nama_pelanggan" value="{{ $address->customer->nama_depan . ' ' . $address->customer->nama_belakang }}">
+                                              <input readonly type="text" class="form-control" value="{{ $address->customer->nama_depan . ' ' . $address->customer->nama_belakang }}">
                                             </div>
                                             <div class="form-group">
                                               <label for="nama_depan">Nama Depan Penerima</label>
-                                              <input type="text" class="form-control" id="nama_depan" name="nama_depan" value="{{ $address->nama_depan }}">
+                                              <input type="text" class="form-control" name="nama_depan" value="{{ $address->nama_depan }}">
                                             </div>
                                             <div class="form-group">
                                               <label for="nama_belakang">Nama Belakang Penerima</label>
-                                              <input type="text" class="form-control" id="nama_belakang" name="nama_belakang" value="{{ $address->nama_belakang }}">
+                                              <input type="text" class="form-control" name="nama_belakang" value="{{ $address->nama_belakang }}">
                                             </div>
                                             <div class="form-group">
                                               <label for="email">Email</label>
-                                              <input type="email" class="form-control" id="email" name="email" value="{{ $address->email }}">
+                                              <input type="email" class="form-control" name="email" value="{{ $address->email }}">
                                             </div>
                                             <div class="form-group">
                                               <label for="telepon">Telepon</label>
-                                              <input type="number" class="form-control" id="telepon" name="telepon" value="{{ $address->telepon }}">
+                                              <input type="number" class="form-control" name="telepon" value="{{ $address->telepon }}">
                                             </div>
                                             <div class="form-group">
                                               <label for="alamat_lengkap">Alamat Lengkap</label>
-                                              <textarea class="form-control" id="alamat_lengkap" name="alamat_lengkap" rows="3">{{ $address->alamat_lengkap }}</textarea>
+                                              <textarea class="form-control" name="alamat_lengkap" rows="3">{{ $address->alamat_lengkap }}</textarea>
                                             </div>
+
+                                            {{-- Default ID Provinsi dll --}}
+                                            <input type="hidden" id="default_id_provinsi{{ $loop->iteration }}" value="{{ $address->provinsi_id }}">
+                                            <input type="hidden" id="default_id_kota{{ $loop->iteration }}" value="{{ $address->kota_id }}">
+                                            <input type="hidden" id="default_id_kecamatan{{ $loop->iteration }}" value="{{ $address->kecamatan_id }}">
+
+
                                             <div class="form-group">
-                                              <label for="provinsi_id">Provinsi</label>
-                                              <input type="text" class="form-control" id="provinsi_id" name="provinsi_id" value="{{ $address->provinsi }}">
+                                                <label for="">Provinsi</label>
+                                                <select class="custom-select" name="province_id" id="admin_main_province_id{{ $loop->iteration }}" required>
+                                                    <option value="">--- Provinsi Tujuan ---</option>
+                                                    @foreach ($provinsi  as $row)
+                                                    <option value="{{ $row['province_id'] }}">
+                                                        {{$row['province']}}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
+
+                                            {{--  Mengambil data nama provinsi  --}}
+                                            <input type="hidden" id="admin_main_nama_provinsi{{ $loop->iteration }}" name="nama_provinsi" value="{{ $address->provinsi }}">
+
                                             <div class="form-group">
-                                              <label for="kota_id">Kota</label>
-                                              <input type="text" class="form-control" id="kota_id" name="kota_id" value="{{ $address->kota }}">
+                                                <label for="">Kota</label>
+                                                <select class="custom-select" name="kota_id" id="admin_main_kota_id{{ $loop->iteration }}" required>
+                                                    <option value="">--- Kota Tujuan ---</option>
+                                                </select>
                                             </div>
+
+                                            {{--  Mengambil data nama kota  --}}
+                                            <input type="hidden" id="admin_main_nama_kota{{ $loop->iteration }}" name="nama_kota">
+
                                             <div class="form-group">
-                                              <label for="kecamatan_id">Kecamatan</label>
-                                              <input type="text" class="form-control" id="kecamatan_id" name="kecamatan_id" value="{{ $address->kecamatan }}">
+                                                <label for="">Kecamatan</label>
+                                                <select class="custom-select" name="kecamatan_id" id="admin_main_kecamatan_id{{ $loop->iteration }}" required>
+                                                    <option value="">--- Kecamatan Tujuan ---</option>
+                                                </select>
                                             </div>
+
+                                            {{--  Mengambil data nama kecamatan  --}}
+                                            <input type="hidden" id="admin_main_nama_kecamatan{{ $loop->iteration }}" name="nama_kecamatan" required>
+
                                             <div class="form-group">
                                               <label for="kode_pos">Kode Pos</label>
-                                              <input type="number" class="form-control" id="kode_pos" name="kode_pos" value="{{ $address->kode_pos }}">
+                                              <input type="number" class="form-control" name="kode_pos" value="{{ $address->kode_pos }}">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -129,7 +168,7 @@
                                         </button>
                                         </div>
                                         <div class="modal-body text-center">
-                                            <form action="{{ route('adminAddressMain.destroy', $address->id) }}" method="POST">
+                                            <form action="{{ route('adminAddressSecond.destroy', $address->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Hapus</button>
@@ -147,4 +186,8 @@
     </div>
     <!-- /.container-fluid -->
 
+@endsection
+
+@section('js')
+    <script src="{{ asset('public/js/adminAddressSecond.js') }}"></script>
 @endsection

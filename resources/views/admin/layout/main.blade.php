@@ -71,6 +71,8 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('public/js/demo/datatables-demo.js') }}"></script>
+
+    @yield('js')
     
     <script>
         // Add the following code if you want the name of the file appear on select

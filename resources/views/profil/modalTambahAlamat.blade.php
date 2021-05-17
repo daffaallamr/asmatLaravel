@@ -5,19 +5,19 @@
             <div class="container">
                 <div class="left-col">
                     <label for="">Nama depan</label>
-                    <input type="text" name="nama_depan" required>
+                    <input type="text" name="nama_depan">
                     <label for="">Nama belakang</label>
-                    <input type="text" name="nama_belakang" required>
+                    <input type="text" name="nama_belakang">
                     <label for="">Telepon</label>
-                    <input type="text" name="telepon" required>
+                    <input type="text" name="telepon">
                     <label for="">Email</label>
-                    <input type="text" name="email" required> 
+                    <input type="text" name="email"> 
                     <label for="">Alamat lengkap</label>
-                    <input type="text" name="alamat_lengkap" required>
+                    <input type="text" name="alamat_lengkap">
                 </div>
                 <div class="right-col">
                     <label for="">Provinsi</label>
-                        <select name="province_id" id="province_id" required>
+                        <select name="province_id" id="province_id">
                             <option value="">--- Provinsi Tujuan ---</option>
                             @foreach ($provinsi  as $row)
                             <option value="{{ $row['province_id'] }}">
@@ -28,22 +28,19 @@
                         {{--  Mengambil data nama provinsi  --}}
                         <input type="hidden" id="nama_provinsi" name="nama_provinsi">
                     <label for="">Kota</label>
-                        <select name="kota_id" id="kota_id" required>
+                        <select name="kota_id" id="kota_id">
                             <option value="">--- Kota Tujuan ---</option>
                         </select>
                         {{--  Mengambil data nama kota  --}}
                         <input type="hidden" id="nama_kota" name="nama_kota">
                     <label for="">Kecamatan</label>
-                        <select name="kecamatan_id" id="kecamatan_id" required>
+                        <select name="kecamatan_id" id="kecamatan_id">
                             <option value="">--- Kecamatan Tujuan ---</option>
                         </select>
                         {{--  Mengambil data nama kecamatan  --}}
-                        <input type="hidden" id="nama_kecamatan" name="nama_kecamatan" required>
+                        <input type="hidden" id="nama_kecamatan" name="nama_kecamatan">
                     <label for="">Kode pos</label>
-                    <input type="text" name="kode_pos" required>
-                    @if ($errors->any())
-                        <h3>{{ $errors->first() }}</h3>
-                    @endif 
+                    <input type="text" name="kode_pos">
                     <div class="nav-bot">
                     <div class="exit">
                         <a id="exitTambahAlamat" style="cursor: pointer">

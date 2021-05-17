@@ -5,6 +5,16 @@
 
 <div class="border-profil"></div>
     <div class="profil">
+
+        @if ($errors->any())
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                <p>{{ $errors->first() }}</p>
+                <button class="cta-oke" id="oke">Oke</button>
+                </div>
+            </div>
+        @endif
+
             <div class="sidenav">
                 <div class="sidenav-top">
                 <h1>Selamat <br> Datang di Asmat!</h1>
@@ -45,17 +55,6 @@
     </div>
 
     @include('profil.modalTambahAlamat')
-
-    @if ($errors->any())
-        <div class="popup-ubah" style="display: block;">
-            <h2>Apakah anda yakin &quest;</h2>
-            <div class="nav-bot">
-                <div class="exit">
-                <a href="akun.html"> <img src="images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>
-                <button class="cta-submit" href="pengiriman.html" style="padding: 10px 31px;">Ya</button>
-            </div>
-        </div>
-    @endif
 
     <div class="popup-bg"></div>
 

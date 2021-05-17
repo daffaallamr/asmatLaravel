@@ -54,12 +54,18 @@
                                 @endforeach
                                 </td>
                                 <td>IDR {{ number_format($order->jumlah_pembayaran_akhir, 0, '.', '.') }}</td>
-                                <td>
-                                    @if ($order->status_payment == 'pending')
+                                @if ($order->status_payment == 'pending')
+                                    <td>
                                         <input type="hidden" id="snap_token" value="{{ $order->snap_token }}">
                                         <button class="lacak" id="pay-button">Bayar Sekarang</button>
-                                    @endif
-                                </td>
+                                    </td>
+                                @elseif ($listStatus[$loop->index] == 0)
+                                    <td>Dalam Perjalanan</td>
+                                @elseif ($listStatus[$loop->index] == 1)
+                                    <td>Sudah Diterima</td>
+                                @elseif ($listStatus[$loop->index] == 3)
+                                    <td>Terjadi Kesalahan</td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>

@@ -254,17 +254,18 @@ class CheckoutController extends RajaOngkirController
 
         $ekspedisi = explode('|', $request->ekspedisi);
         $valueEkspedisi = $ekspedisi[0];
-        $valueOngkir = $ekspedisi[1];
+        $valueJenisPengiriman = $ekspedisi[1];
+        $valueOngkir = $ekspedisi[2];
         
-        $orderId->ongkir = $valueOngkir;
         $orderId->ekspedisi = $valueEkspedisi;
+        $orderId->jenis_pengiriman = $valueJenisPengiriman;
+        $orderId->ongkir = $valueOngkir;
         $orderId->jumlah_pembayaran_akhir = $orderId->jumlah_harga_barang + $valueOngkir;
         
         // bagian payment
         $uniqueId = 'ASMAT-' . rand();
 
         $orderId->order_unique_id = $uniqueId;
-        // $orderId->tanggal_pembayaran = Carbon::now();
         $orderId->save();
 
 
@@ -286,7 +287,6 @@ class CheckoutController extends RajaOngkirController
         $orderId->save();
 
         Mail::to($customer->email)->send(new CheckoutConfirmed($customer, $orderId, $alamatCustomer));
-        Mail::to('dafaalamr@gmail.com')->send(new PaymentSuccess());
 
         return redirect('pembayaran');
     }   

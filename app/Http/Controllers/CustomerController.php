@@ -57,6 +57,7 @@ class CustomerController extends RajaOngkirController
 
     public function storeAlamat(Request $request)
     {
+        // dd($request->all());
         $rules = [
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
@@ -247,9 +248,19 @@ class CustomerController extends RajaOngkirController
 
     public function pembelian() {
         $orders = Order::where('customer_id', Auth('customer')->id())->whereNotNull('order_unique_id')->get();
+        $listStatus = array();
+
+        foreach ($orders as $order) {
+            $ekspedisi = $order->ekspedisi;
+            $resi = $order->nomer_resi;
+
+            $statusPaket = $this->statusPaket($resi, $ekspedisi);
+            $listStatus[] = $statusPaket;
+        }
         
         return view ('profil.pembelian', [
-            'orders' => $orders
+            'orders' => $orders,
+            'listStatus' => $listStatus
             ]);
     }
 

@@ -21,17 +21,7 @@ class Order extends Model
 
     // customer_id
     public function customer() {
-        return $this->hasOne(Customer::class, 'id', 'id');
-    }
-
-    // shipper_id
-    public function shipper() {
-        return $this->hasOne(Shipper::class);
-    }
-
-    // payment_id
-    public function payment() {
-        return $this->hasOne(Payment::class);
+        return $this->belongsTo(Customer::class);
     }
 
     // midtrans status_payment function

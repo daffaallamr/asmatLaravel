@@ -20,7 +20,7 @@ class AdminPaymentSuccessController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('status_payment', 'success')->where('is_dikirim', false)->get();
+        $orders = Order::where('status_payment', 'success')->where('is_dikirim', null)->get();
         return view('admin.order.paymentSuccess', [
             'orders' => $orders
         ]);
@@ -66,7 +66,7 @@ class AdminPaymentSuccessController extends Controller
             $product->save();
         }
 
-        Mail::to($request->email_customer)->send(new PaymentSuccess());
+        Mail::to($order->email)->send(new PaymentSuccess());
 
         return redirect()->route('adminPaymentSuccess.index');
     }

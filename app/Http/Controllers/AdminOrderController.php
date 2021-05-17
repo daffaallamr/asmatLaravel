@@ -10,6 +10,7 @@ class AdminOrderController extends Controller
     public function isPending()
     {
         $orders = Order::where('status_payment', 'pending')->get();
+
         return view('admin.order.isPending', [
             'orders' => $orders
         ]);

@@ -22,8 +22,10 @@
         @foreach ($products as $product)
         <div class="produkbox" onclick="location.href='{{ URL::to('belanja/' . $product->id) }}';">
             <img src="{{ asset('/public/images/' . $product->gambar) }}" alt="">
-            <h2>{{ $product->nama }}</h2>
-            <p>IDR {{ number_format($product->harga, 0, '.', '.') }}</p>
+            <div class="content-produkbox">
+                <h2>{{ $product->nama }}</h2>
+                <p>IDR {{ number_format($product->harga, 0, '.', '.') }}</p>
+            </div>            
         </div>
         @endforeach
     </div>

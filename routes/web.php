@@ -67,14 +67,6 @@ Route::group(['middleware' => 'auth:customer'], function () {
     Route::post('ongkir', [CheckoutController::class, 'storeOngkir'])->name('ongkir');
     Route::get('pembayaran', [CheckoutController::class, 'pembayaran'])->name('pembayaran');
 
-    // Raja Ongkir API
-    Route::get('asmatLaravel/nama-provinsi/{id}',[RajaOngkirController::class, 'get_province_name']);
-    Route::get('asmatLaravel/nama-kota/{id_kota}/{id_provinsi}',[RajaOngkirController::class, 'get_city_name']);
-    Route::get('asmatLaravel/nama-kecamatan/{id_kecamatan}/{id_kota}',[RajaOngkirController::class, 'get_kecamatan_name']);
-
-    Route::get('asmatLaravel/kota/{id}',[RajaOngkirController::class, 'get_city']);
-    Route::get('asmatLaravel/kecamatan/{id}',[RajaOngkirController::class, 'get_kecamatan']);
-
     // Route::get('tryEmail', [CheckoutController::class, 'tryEmail']);
 });
 

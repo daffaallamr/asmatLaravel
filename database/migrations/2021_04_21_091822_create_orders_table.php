@@ -16,23 +16,29 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->timestamps();
-
-            $table->dateTime('tanggal_order')->nullable();
-
+            
             $table->string('order_unique_id')->unique()->nullable();;
             $table->unsignedBigInteger('customer_id')->index();
-
+            
             $table->boolean('is_checkout')->nullable();
             $table->string('ekspedisi')->nullable();
+            $table->string('jenis_pengiriman')->nullable();
+            $table->string('nomer_resi')->nullable();
             $table->integer('ongkir')->nullable();;
 
             $table->integer('jumlah_harga_barang')->nullable();
             $table->integer('jumlah_pembayaran_akhir')->nullable();
-
+            
             $table->dateTime('tanggal_pembayaran')->nullable();
             $table->string('metode_pembayaran')->nullable();
             $table->string('status_payment')->nullable();
             $table->string('snap_token')->nullable();
+            
+            $table->string('email')->nullable();
+            
+            $table->boolean('is_dikirim')->nullable();
+            $table->dateTime('tanggal_pengiriman')->nullable();
+            $table->string('dikirim_by')->nullable();
 
             $table->foreign('customer_id')->references('id')->on('customers');
         });

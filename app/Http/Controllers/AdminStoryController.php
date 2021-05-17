@@ -41,27 +41,18 @@ class AdminStoryController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'judul'                  => 'required|min:5|max:30|unique:stories,judul',
+            'judul'                  => 'required|min:5|unique:stories,judul',
             'judul_paragraf_1'         => 'required',
             'paragraf_1'         => 'required',
-            'judul_paragraf_2'         => 'required',
-            'paragraf_2'         => 'required',
-            'judul_paragraf_3'         => 'required',
-            'paragraf_3'         => 'required',
             'gambar_1'         => 'required',
         ];
  
         $messages = [
             'judul.required'   => 'Judul wajib diisi',
             'judul.min'   => 'Judul minimal 5 karakter',
-            'judul.max'   => 'Judul maksimal 30 karakter',
             'judul.unique'   => 'Judul sudah terdaftar',
             'judul_paragraf_1.required'          => 'Judul Paragraf Pertama belum diisi',
             'paragraf_1.required'          => 'Paragraf Pertama belum diisi',
-            'judul_paragraf_2.required'          => 'Judul Paragraf Kedua belum diisi',
-            'paragraf_2.required'          => 'Paragraf Kedua belum diisi',
-            'judul_paragraf_3.required'          => 'Judul Paragraf Ketiga belum diisi',
-            'paragraf_3.required'          => 'Paragraf Ketiga belum diisi',
             'gambar_1.required' => 'Gambar - 1 wajib diisi',
         ];
  

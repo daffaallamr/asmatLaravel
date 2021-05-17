@@ -104,12 +104,12 @@
                                         <div class="form-group">
                                             <label for="nama_produk">Produk yang diorder</label>
                                             @foreach ($order->orderDetails as $detail)
-                                                <input readonly type="text" class="form-control mb-2" id="nama_produk" value="{{ $detail->jumlah_barang }}x {{ $detail->product->nama }}  //  IDR {{ number_format($detail->jumlah_harga, 0, '.', '.') }}">
+                                                <input readonly type="text" class="form-control mb-2" value="{{ $detail->jumlah_barang }}x {{ $detail->product->nama }}  //  IDR {{ number_format($detail->jumlah_harga, 0, '.', '.') }}">
                                             @endforeach
                                         </div>
                                         <div class="form-group">
                                             <label for="total_pembayaran">Total Pembayaran</label>
-                                            <input readonly type="text" class="form-control" id="total_pembayaran" value="IDR {{ number_format($order->jumlah_harga_barang, 0, '.', '.') }}">
+                                            <input readonly type="text" class="form-control" value="IDR {{ number_format($order->jumlah_harga_barang, 0, '.', '.') }}">
                                         </div>
                                         <hr>
                                         <h5>Detail Informasi Customer</h5>
@@ -117,68 +117,68 @@
                                         @if ($order->customer->addresses[0]->is_main == 1)
                                             <div class="form-group">
                                                 <label for="nama_pelanggan">Nama Penerima</label>
-                                                <input readonly type="text" class="form-control" id="nama_pelanggan" value="{{ $order->customer->addresses[0]->nama_depan . ' ' .  $order->customer->addresses[0]->nama_belakang }}">
+                                                <input readonly type="text" class="form-control" value="{{ $order->customer->addresses[0]->nama_depan . ' ' .  $order->customer->addresses[0]->nama_belakang }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input readonly type="email" class="form-control" id="email" name="email" value="{{ $order->customer->addresses[0]->email }}">
+                                                <input readonly type="email" class="form-control" name="email" value="{{ $order->customer->addresses[0]->email }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="telepon">Telepon</label>
-                                                <input readonly type="number" class="form-control" id="telepon" name="telepon" value="{{ $order->customer->addresses[0]->telepon }}">
+                                                <input readonly type="number" class="form-control" name="telepon" value="{{ $order->customer->addresses[0]->telepon }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="alamat_lengkap">Alamat Lengkap</label>
-                                                <textarea readonly class="form-control" id="alamat_lengkap" name="alamat_lengkap" rows="3">{{ $order->customer->addresses[0]->alamat_lengkap }}</textarea>
+                                                <textarea readonly class="form-control" name="alamat_lengkap" rows="3">{{ $order->customer->addresses[0]->alamat_lengkap }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="provinsi_id">Provinsi</label>
-                                                <input readonly type="text" class="form-control" id="provinsi_id" name="provinsi_id" value="{{ $order->customer->addresses[0]->provinsi }}">
+                                                <input readonly type="text" class="form-control" name="provinsi_id" value="{{ $order->customer->addresses[0]->provinsi }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="kota_id">Kota</label>
-                                                <input readonly type="text" class="form-control" id="kota_id" name="kota_id" value="{{ $order->customer->addresses[0]->kota }}">
+                                                <input readonly type="text" class="form-control" name="kota_id" value="{{ $order->customer->addresses[0]->kota }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="kecamatan_id">Kecamatan</label>
-                                                <input readonly type="text" class="form-control" id="kecamatan_id" name="kecamatan_id" value="{{ $order->customer->addresses[0]->kecamatan }}">
+                                                <input readonly type="text" class="form-control" name="kecamatan_id" value="{{ $order->customer->addresses[0]->kecamatan }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="kode_pos">Kode Pos</label>
-                                                <input readonly type="number" class="form-control" id="kode_pos" name="kode_pos" value="{{ $order->customer->addresses[0]->kode_pos }}">
+                                                <input readonly type="number" class="form-control" name="kode_pos" value="{{ $order->customer->addresses[0]->kode_pos }}">
                                             </div>
                                         @else
                                             <div class="form-group">
                                                 <label for="nama_pelanggan">Nama Penerima</label>
-                                                <input readonly type="text" class="form-control" id="nama_pelanggan" value="{{ $order->customer->addresses[1]->nama_depan . ' ' .  $order->customer->addresses[1]->nama_belakang }}">
+                                                <input readonly type="text" class="form-control" value="{{ $order->customer->addresses[1]->nama_depan . ' ' .  $order->customer->addresses[1]->nama_belakang }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input readonly type="email" class="form-control" id="email" name="email" value="{{ $order->customer->addresses[1]->email }}">
+                                                <input readonly type="email" class="form-control" name="email" value="{{ $order->customer->addresses[1]->email }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="telepon">Telepon</label>
-                                                <input readonly type="number" class="form-control" id="telepon" name="telepon" value="{{ $order->customer->addresses[1]->telepon }}">
+                                                <input readonly type="number" class="form-control" name="telepon" value="{{ $order->customer->addresses[1]->telepon }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="alamat_lengkap">Alamat Lengkap</label>
-                                                <textarea readonly class="form-control" id="alamat_lengkap" name="alamat_lengkap" rows="3">{{ $order->customer->addresses[1]->alamat_lengkap }}</textarea>
+                                                <textarea readonly class="form-control" name="alamat_lengkap" rows="3">{{ $order->customer->addresses[1]->alamat_lengkap }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="provinsi_id">Provinsi</label>
-                                                <input readonly type="text" class="form-control" id="provinsi_id" name="provinsi_id" value="{{ $order->customer->addresses[1]->provinsi }}">
+                                                <input readonly type="text" class="form-control" name="provinsi_id" value="{{ $order->customer->addresses[1]->provinsi }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="kota_id">Kota</label>
-                                                <input readonly type="text" class="form-control" id="kota_id" name="kota_id" value="{{ $order->customer->addresses[1]->kota }}">
+                                                <input readonly type="text" class="form-control" name="kota_id" value="{{ $order->customer->addresses[1]->kota }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="kecamatan_id">Kecamatan</label>
-                                                <input readonly type="text" class="form-control" id="kecamatan_id" name="kecamatan_id" value="{{ $order->customer->addresses[1]->kecamatan }}">
+                                                <input readonly type="text" class="form-control" name="kecamatan_id" value="{{ $order->customer->addresses[1]->kecamatan }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="kode_pos">Kode Pos</label>
-                                                <input readonly type="number" class="form-control" id="kode_pos" name="kode_pos" value="{{ $order->customer->addresses[1]->kode_pos }}">
+                                                <input readonly type="number" class="form-control" name="kode_pos" value="{{ $order->customer->addresses[1]->kode_pos }}">
                                             </div>
                                         @endif
                                         <hr>
@@ -189,18 +189,21 @@
                                             @method('PUT')
                                             <div class="form-group">
                                                 <label for="ekspedisi">Ekspedisi</label>
-                                                <input readonly type="text" class="form-control" id="ekspedisi" name="ekspedisi" value="{{ $order->ekspedisi }}">
+                                                <input readonly type="text" class="form-control" name="ekspedisi" value="{{ strtoupper($order->ekspedisi) }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ekspedisi">Jenis Pengiriman</label>
+                                                <input readonly type="text" class="form-control" name="jenis_pengiriman" value="{{ $order->jenis_pengiriman }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="ongkir">Ongkir</label>
-                                                <input readonly type="text" class="form-control" id="ongkir" name="ongkir" value="IDR {{ number_format($order->ongkir, 0, '.', '.') }}">
+                                                <input readonly type="text" class="form-control" name="ongkir" value="IDR {{ number_format($order->ongkir, 0, '.', '.') }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="nomer_resi">Nomer Resi</label>
-                                                <input type="text" class="form-control" id="nomer_resi" name="nomer_resi">
-                                                <input type="hidden" class="form-control" id="nomer_resi" name="email_customer" value="{{ $order->customer->email }}">
+                                                <input type="text" class="form-control" name="nomer_resi">
                                             </div>
-                                                <input type="hidden" class="form-control" id="nomer_resi" name="admin_id" value="{{ Auth('admin')->id() }}">
+                                                <input type="hidden" class="form-control" name="admin_id" value="{{ Auth('admin')->id() }}">
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary" data-dismiss="modal">Kembali</button>

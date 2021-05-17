@@ -2,8 +2,8 @@
 
 @section('content')
 @include('layouts.navbar')
-    <div class="hero-origin" style="background-image: url({{ url('public/images/' . $story->gambar_1) }});">
-        <div class="container">
+    <div class="hero-origin">
+        <div class="container" style="background-image: url({{ url('public/images/' . $story->gambar_1) }});">
             <div class="content">
                 <h1>{{ $story->judul }}</h1>
                 <label for="">{{ date('d / m / Y', strtotime($story->created_at)) }}</label>

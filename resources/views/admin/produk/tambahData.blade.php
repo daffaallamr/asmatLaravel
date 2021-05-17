@@ -39,6 +39,14 @@
                     <input type="" class="form-control" id="stok" name="stok" value="{{ old('stok') }}">
                   </div>
                   <div class="form-group">
+                    <label for="produsen">Produsen</label>
+                    <input type="" class="form-control" id="produsen" name="produsen" value="{{ old('produsen') }}">
+                  </div>
+                  <div class="form-group">
+                    <label for="nomer_izin">Nomer izin</label>
+                    <input type="" class="form-control" id="nomer_izin" name="nomer_izin" value="{{ old('nomer_izin') }}">
+                  </div>
+                  <div class="form-group">
                     <label>Gambar Produk</label>
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="customFile" name="gambar">

@@ -558,6 +558,7 @@ ul {
           justify-content: space-evenly;
   width: 100%;
   margin: auto;
+  margin-bottom: 50px;
 }
 
 .showcase .container .produkbox {
@@ -572,10 +573,18 @@ ul {
   border-radius: 7px;
   text-align: center;
   cursor: pointer;
+  max-height: 450px;
+  height: auto;
+}
+
+.showcase .container .produkbox .content-produkbox {
+  position: relative;
+  margin-top: -28%;
 }
 
 .showcase .container .produkbox img {
-  height: 27vw;
+  height: auto;
+  width: 100%;
   margin-top: 40px;
 }
 
@@ -590,24 +599,30 @@ ul {
 }
 
 .showcase .container .produkbox-2 {
-  -ms-flex-preferred-size: 20%;
-      flex-basis: 20%;
+  -ms-flex-preferred-size: 22%;
+      flex-basis: 22%;
   color: white;
   background-color: #ECB390;
-  margin: 30px 1.8%;
-  padding: 0 10px;
+  margin: 30px 2%;
   border-radius: 7px;
   text-align: center;
   cursor: pointer;
+  height: auto;
+}
+
+.showcase .container .produkbox-2 .content-produkbox {
+  margin-top: -25%;
+  position: relative;
 }
 
 .showcase .container .produkbox-2 img {
-  height: 300px;
-  margin-top: 20px;
+  height: auto;
+  width: 100%;
 }
 
 .showcase .container .produkbox-2 h2 {
   font-size: 26px;
+  margin-top: 0;
 }
 
 .showcase .container .produkbox-2 p {
@@ -638,6 +653,16 @@ ul {
   margin-left: 10px;
 }
 
+@media (max-width: 1200px) {
+  .produkbox .content-produkbox {
+    margin-top: -33% !important;
+  }
+  .showcase .cta-lainnya {
+    margin-top: 0 !important;
+    margin-bottom: 50px;
+  }
+}
+
 @media (max-width: 800px) {
   html {
     overflow: scroll !important;
@@ -658,20 +683,17 @@ ul {
         flex-wrap: wrap;
   }
   .showcase .container .produkbox {
-    margin: 35px 40px 0 40px;
+    margin: 45px 40px 50px 40px;
     -ms-flex-preferred-size: 45%;
         flex-basis: 45%;
   }
   .showcase .container .produkbox img {
-    height: 45vw;
+    margin: 0;
   }
   .showcase .container .produkbox-2 {
     -ms-flex-preferred-size: 50%;
         flex-basis: 50%;
     margin-top: 25px;
-  }
-  .showcase .container .produkbox-2 img {
-    height: 50vw;
   }
   .showcase .container .produkbox-2 h2 {
     font-size: 5vw;
@@ -707,9 +729,6 @@ ul {
     margin: 35px 40px 0 40px;
     -ms-flex-preferred-size: 45%;
         flex-basis: 45%;
-  }
-  .showcase .container .produkbox img {
-    height: 180px;
   }
   .showcase .container .produkbox h2 {
     font-size: 1em;
@@ -2731,6 +2750,7 @@ footer .container .contact-footer ul li span {
   color: white;
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   height: 80vh;
 }
 
@@ -2914,7 +2934,7 @@ footer .container .contact-footer ul li span {
   border-bottom: 2px solid var(--primary-color);
   padding-bottom: 120px;
   background-color: #F7F7E8;
-  z-index: -200;
+  /* z-index: -200; */
 }
 
 .profil {
@@ -2922,6 +2942,44 @@ footer .container .contact-footer ul li span {
   display: -ms-flexbox;
   display: flex;
   background-color: #F7F7E8;
+}
+
+.profil #myBtn {
+  display: none;
+}
+
+.profil .modal {
+  display: block;
+  position: fixed;
+  z-index: 200;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.profil .modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 28%;
+  text-align: center;
+  border-radius: 7px;
+}
+
+.profil .modal-content .cta-oke {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  width: 25%;
+  height: 30px;
+  font-size: 1em;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .profil .sidenav {
@@ -3256,6 +3314,17 @@ footer .container .contact-footer ul li span {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
+  .profil .modal-content {
+    margin-top: 30%;
+    width: 40%;
+  }
+  .profil .modal-content p {
+    font-size: 22px !important;
+  }
+  .profil .modal-content .cta-oke {
+    width: 30%;
+    font-size: 1.4em;
+  }
   .profil .sidenav {
     -ms-flex-preferred-size: 100% !important;
         flex-basis: 100% !important;
@@ -3551,6 +3620,13 @@ footer .container .contact-footer ul li span {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     max-height: 1000px;
+  }
+  .profil .modal-content p {
+    font-size: 1em !important;
+  }
+  .profil .modal-content .cta-oke {
+    width: 40%;
+    font-size: 1em !important;
   }
   .profil .sidenav {
     margin-top: -50px !important;
@@ -4136,12 +4212,14 @@ footer .container .contact-footer ul li span {
   height: auto;
   background-color: #ECB390;
   border-radius: 5px;
-  padding: 2% 0;
+  padding: 0;
 }
 
 .detail-barang .showcase img {
   max-width: auto;
-  height: 450px;
+  height: 480px;
+  max-width: 325px;
+  width: auto;
   margin: auto;
   border-radius: 5px;
 }
@@ -4257,9 +4335,9 @@ footer .container .contact-footer ul li span {
     border-radius: 5px;
   }
   .detail-barang .showcase img {
-    height: 400px;
-    width: 50%;
-    margin: 10% auto 0% auto;
+    height: 100%;
+    width: 100%;
+    margin: 0;
     max-height: none;
   }
   .detail-barang .detail {
@@ -4680,9 +4758,10 @@ footer .container .contact-footer ul li span {
 }
 
 .keranjang-belanja .body table .produk img {
-  width: 15px;
+  width: 45px;
+  height: 90px;
   background-color: #ECB390;
-  padding: 10px 20px;
+  padding: 0;
   border-radius: 5px;
   height: 60px;
 }
@@ -4872,10 +4951,9 @@ footer .container .contact-footer ul li span {
     max-width: 50%;
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left .image-produk img, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .image-produk img {
-    max-width: 49px;
+    max-width: 150px;
     width: 100%;
-    height: 190px;
-    padding: 10% 25%;
+    height: 232px;
     background-color: #ECB390;
     margin: 20px auto;
     border-radius: 15px;
@@ -5046,9 +5124,8 @@ footer .container .contact-footer ul li span {
     border-bottom: 2px solid #ECB390;
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-left .image-produk img, .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-left .image-produk img {
-    max-width: 25px;
+    max-width: 60px;
     height: 100px !important;
-    padding: 10px 25px;
     background-color: #ECB390;
     margin: 10px auto;
     border-radius: 5px;

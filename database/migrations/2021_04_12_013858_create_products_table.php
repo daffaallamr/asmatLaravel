@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->text('deskripsi');
             $table->string('gambar');
             $table->integer('stok');
+            $table->string('produsen');
             $table->string('nomer_izin')->nullable();
         });
     }

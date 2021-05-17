@@ -21,17 +21,23 @@
                         JNE
                     </h3>
                 <table>
-                    @foreach ($ongkirJNE as $jne)
-                    <tr>
-                        <td class="Table-1">
-                            <div class="content-table">
-                                <input type="radio" name="ekspedisi" value="JNE - {{ $jne['service'] }}|{{ $jne['cost'][0]['value'] }}">
-                                <label for="">{{ $jne['service'] }} ({{ $jne['cost'][0]['etd'] }} hari)</label>
-                            </div>
-                        </td>
-                        <td class="Table-2">IDR {{ number_format($jne['cost'][0]['value'], 0, '.', '.') }}</td>
-                    </tr>
-                    @endforeach
+                    @if ($ongkirJNE == [])
+                        <h5 style="font-weight: 400">
+                            Tidak ada paket pengiriman yang tersedia.
+                        </h5>
+                    @else
+                        @foreach ($ongkirJNE as $jne)
+                        <tr>
+                            <td class="Table-1">
+                                <div class="content-table">
+                                    <input type="radio" name="ekspedisi" value="jne|{{ $jne['service'] }}|{{ $jne['cost'][0]['value'] }}">
+                                    <label for="">{{ $jne['service'] }} ({{ $jne['cost'][0]['etd'] }} hari)</label>
+                                </div>
+                            </td>
+                            <td class="Table-2">IDR {{ number_format($jne['cost'][0]['value'], 0, '.', '.') }}</td>
+                        </tr>
+                        @endforeach
+                    @endif
                 </table>
                 </div>
                 <div class="metode">
@@ -39,17 +45,23 @@
                         TIKI
                     </h3>
                 <table>
-                    @foreach ($ongkirTIKI as $tiki)
-                    <tr>
-                        <td class="Table-1">
-                            <div class="content-table">
-                                <input type="radio" name="ekspedisi" value="TIKI - {{ $tiki['service'] }}|{{ $tiki['cost'][0]['value'] }}">
-                                <label for="">{{ $tiki['service'] }} ({{ $tiki['cost'][0]['etd'] }} hari)</label>
-                            </div>
-                        </td>
-                        <td class="Table-2">IDR {{ number_format($tiki['cost'][0]['value'], 0, '.', '.') }}</td>
-                    </tr>
-                    @endforeach
+                    @if ($ongkirTIKI == [])
+                        <h5 style="font-weight: 400">
+                            Tidak ada paket pengiriman yang tersedia.
+                        </h5>
+                    @else
+                        @foreach ($ongkirTIKI as $tiki)
+                        <tr>
+                            <td class="Table-1">
+                                <div class="content-table">
+                                    <input type="radio" name="ekspedisi" value="tiki|{{ $tiki['service'] }}|{{ $tiki['cost'][0]['value'] }}">
+                                    <label for="">{{ $tiki['service'] }} ({{ $tiki['cost'][0]['etd'] }} hari)</label>
+                                </div>
+                            </td>
+                            <td class="Table-2">IDR {{ number_format($tiki['cost'][0]['value'], 0, '.', '.') }}</td>
+                        </tr>
+                        @endforeach
+                    @endif
                 </table>
                 </div>
                 <div class="metode">
@@ -57,17 +69,23 @@
                         POS
                     </h3>
                 <table>
-                    @foreach ($ongkirPOS as $pos)
-                    <tr>
-                        <td class="Table-1">
-                            <div class="content-table">
-                                <input type="radio" name="ekspedisi" value="POS - {{ $pos['service'] }}|{{ $pos['cost'][0]['value'] }}">
-                                <label for="">{{ $pos['service'] }} ({{ $pos['cost'][0]['etd'] }} hari)</label>
-                            </div>
-                        </td>
-                        <td class="Table-2">IDR {{ number_format($pos['cost'][0]['value'], 0, '.', '.') }}</td>
-                    </tr>
-                    @endforeach
+                    @if ($ongkirPOS == [])
+                        <h5 style="font-weight: 400">
+                            Tidak ada paket pengiriman yang tersedia.
+                        </h5>
+                    @else
+                        @foreach ($ongkirPOS as $pos)
+                        <tr>
+                            <td class="Table-1">
+                                <div class="content-table">
+                                    <input type="radio" name="ekspedisi" value="pos|{{ $pos['service'] }}|{{ $pos['cost'][0]['value'] }}">
+                                    <label for="">{{ $pos['service'] }} ({{ $pos['cost'][0]['etd'] }} hari)</label>
+                                </div>
+                            </td>
+                            <td class="Table-2">IDR {{ number_format($pos['cost'][0]['value'], 0, '.', '.') }}</td>
+                        </tr>
+                        @endforeach
+                    @endif
                 </table>
                 </div>
             </div>

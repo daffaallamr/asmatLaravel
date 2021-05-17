@@ -47,6 +47,7 @@ class AdminProductController extends Controller
             'berat'         => 'required|',
             'deskripsi'         => 'required|min:30|',
             'stok'         => 'required|',
+            'produsen'         => 'required|',
             'gambar'         => 'required|',
         ];
  
@@ -60,6 +61,7 @@ class AdminProductController extends Controller
             'deskripsi.required' => 'Deskripsi wajib diisi',
             'deskripsi.min'      => 'Deskripsi minimal 30 karakter',
             'stok.required' => 'Stok wajib diisi',
+            'produsen.required' => 'Nama produsen wajib diisi',
             'gambar.required' => 'Gambar wajib diisi',
         ];
  
@@ -79,6 +81,8 @@ class AdminProductController extends Controller
         $product->deskripsi = $request->deskripsi;
         $product->stok = $request->stok;
         $product->gambar = $imageName;
+        $product->produsen = $request->produsen;
+        $product->nomer_izin = $request->nomer_izin;
         $product->save();
 
         return redirect()->route('adminProduct.index');

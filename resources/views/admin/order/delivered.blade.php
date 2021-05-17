@@ -104,12 +104,12 @@
                                         <div class="form-group">
                                             <label for="nama_produk">Produk yang diorder</label>
                                             @foreach ($order->orderDetails as $detail)
-                                                <input readonly type="text" class="form-control mb-2" id="nama_produk" value="{{ $detail->jumlah_barang }}x {{ $detail->product->nama }}  //  IDR {{ number_format($detail->jumlah_harga, 0, '.', '.') }}">
+                                                <input readonly type="text" class="form-control mb-2" value="{{ $detail->jumlah_barang }}x {{ $detail->product->nama }}  //  IDR {{ number_format($detail->jumlah_harga, 0, '.', '.') }}">
                                             @endforeach
                                         </div>
                                         <div class="form-group">
                                             <label for="total_pembayaran">Total Pembayaran</label>
-                                            <input readonly type="text" class="form-control" id="total_pembayaran" value="IDR {{ number_format($order->jumlah_harga_barang, 0, '.', '.') }}">
+                                            <input readonly type="text" class="form-control" value="IDR {{ number_format($order->jumlah_harga_barang, 0, '.', '.') }}">
                                         </div>
                                         <hr>
                                         <h5>Detail Informasi</h5>
@@ -200,7 +200,11 @@
                                         <hr>
                                             <div class="form-group">
                                                 <label for="ekspedisi">Ekspedisi</label>
-                                                <input readonly type="text" class="form-control" id="ekspedisi" name="ekspedisi" value="{{ $order->ekspedisi }}">
+                                                <input readonly type="text" class="form-control" id="ekspedisi" name="ekspedisi" value="{{ strtoupper($order->ekspedisi) }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ekspedisi">Jenis Pengiriman</label>
+                                                <input readonly type="text" class="form-control" id="jenis_pengiriman" name="jenis_pengiriman" value="{{ $order->jenis_pengiriman }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="ongkir">Ongkir</label>
