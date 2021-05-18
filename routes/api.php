@@ -24,13 +24,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('midtrans/notification', [CheckoutController::class, 'notification']);
 
 // Raja Ongkir API
+// Route::get('asmatLaravel/province',[RajaOngkirController::class, 'get_province']);
 Route::get('asmatLaravel/nama-provinsi/{id}',[RajaOngkirController::class, 'get_province_name']);
-Route::get('asmatLaravel/nama-kota/{id_kota}/{id_provinsi}',[RajaOngkirController::class, 'get_city_name']);
-Route::get('asmatLaravel/nama-kecamatan/{id_kecamatan}/{id_kota}',[RajaOngkirController::class, 'get_kecamatan_name']);
+Route::get('asmatLaravel/nama-kota/{id_kota}',[RajaOngkirController::class, 'get_city_name']);
+Route::get('asmatLaravel/nama-kecamatan/{id_kecamatan}',[RajaOngkirController::class, 'get_kecamatan_name']);
 
 Route::get('asmatLaravel/kota/{id}',[RajaOngkirController::class, 'get_city']);
 Route::get('asmatLaravel/kecamatan/{id}',[RajaOngkirController::class, 'get_kecamatan']);
 
 Route::get('asmatLaravel/statusPaket/{resi}/{ekspedisi}',[RajaOngkirController::class, 'statusPaket']);
 
-Route::get('kirimEmail',[CustomerController::class, 'kirimEmail']);
+// Route::get('kirimEmail',[CustomerController::class, 'kirimEmail']);
+
+// Route::get('ongkir/{desti}/{weight}/{courier}',[RajaOngkirController::class, 'ongkir']);

@@ -3,7 +3,6 @@ $(function(){
     $('select[id="province_id"]').on('change', function(){
 
         let provinceid = $(this).val();
-        // console.log(provinceid);
 
         if(provinceid){
             jQuery.ajax({
@@ -12,7 +11,6 @@ $(function(){
                 dataType:'json',
                 success:function(data){
                     // console.log('Berhasil masuk kota/kabupaten');
-                    console.log(data);
                     $("#nama_provinsi").empty();
                     $("#nama_provinsi").val(data);
                 }
@@ -39,7 +37,7 @@ $(function(){
                 success:function(data){
                     $('select[id="kota_id"]').empty();
                     for (var i = 0;i < data.length; i++) {
-                        listKotaTambah += '<option value="'+ data[i].city_id +'">' + data[i].type + ' ' + data[i].city_name + '</option>';
+                        listKotaTambah += '<option value="'+ data[i].id +'">' + data[i].type + ' ' + data[i].nama_city + '</option>';
                     }
                     $('select[id="kota_id"]').html(listKotaTambah);
                 }
@@ -53,28 +51,29 @@ $(function(){
     return false;
 });
 
-// {{--  Script mendapat nama Kota  --}}
+// {{--  Script mendapat nama Kota dan Postal Code  --}}
 $(function(){
     $('select[id="kota_id"]').on('change', function(){
 
         let cityid = $(this).val();
-        var provinceid = $("#province_id").val();
         // console.log(provinceid);
 
         if(cityid){
             jQuery.ajax({
-                url:"api/asmatLaravel/nama-kota/"+cityid+"/"+provinceid,
+                url:"api/asmatLaravel/nama-kota/"+cityid,
                 type:'GET',
                 dataType:'json',
                 success:function(data){
                     // console.log('Berhasil masuk kota/kabupaten');
-                    // console.log(data);
                     $("#nama_kota").empty();
-                    $("#nama_kota").val(data);
+                    $("#nama_kota").val(data['type'] + ' ' + data['nama_city']);
+                    $("#kode_pos").empty();
+                    $("#kode_pos").val(data['postal_code']);
                 }
             });
         } else {
             $('input[id="nama_kota"]').val.empty();
+            $("#kode_pos").empty();
         }
     });
 });
@@ -94,7 +93,7 @@ $(function(){
                 success:function(data){
                     $('select[id="kecamatan_id"]').empty();
                     for (var i = 0;i < data.length; i++) {
-                        listKecamatanTambah += '<option value="'+ data[i].subdistrict_id +'">' + 'Kecamatan' + ' ' + data[i].subdistrict_name + '</option>';
+                        listKecamatanTambah += '<option value="'+ data[i].id +'">' + 'Kecamatan' + ' ' + data[i].nama_subdistrict + '</option>';
                     }
                     $('select[id="kecamatan_id"]').html(listKecamatanTambah);
                 }
@@ -111,19 +110,17 @@ $(function(){
     $('select[id="kecamatan_id"]').on('change', function(){
 
         let kecamatan_id = $(this).val();
-        var cityid = $("#kota_id").val();
         // console.log(cityid);
 
         if(kecamatan_id){
             jQuery.ajax({
-                url:"api/asmatLaravel/nama-kecamatan/"+kecamatan_id+"/"+cityid,
+                url:"api/asmatLaravel/nama-kecamatan/"+kecamatan_id,
                 type:'GET',
                 dataType:'json',
                 success:function(data){
                     // console.log('Berhasil masuk kecamatan');
-                    // console.log(data);
                     $("#nama_kecamatan").empty();
-                    $("#nama_kecamatan").val(data);
+                    $("#nama_kecamatan").val(data['nama_subdistrict']);
                 }
             });
         } else {
@@ -153,7 +150,7 @@ $(function(){
                 dataType:'json',
                 success:function(data){
                     // console.log('Berhasil masuk kota/kabupaten');
-                    console.log(data);
+                    // console.log(data);
                     $("#sunting_1_nama_provinsi").empty();
                     $("#sunting_1_nama_provinsi").val(data);
                 }
@@ -179,7 +176,7 @@ $(function(){
             success:function(data){
                 $('select[id="sunting_1_kota_id"]').empty();
                 for (var i = 0;i < data.length; i++) {
-                    listKota += '<option value="'+ data[i].city_id +'">' + data[i].type + ' ' + data[i].city_name + '</option>';
+                    listKota += '<option value="'+ data[i].id +'">' + data[i].type + ' ' + data[i].nama_city + '</option>';
                 }
                 $('select[id="sunting_1_kota_id"]').html(listKota);
                 $('select[id="sunting_1_kota_id"]').val(defaultKotaSunting_1);
@@ -203,7 +200,7 @@ $(function(){
                 success:function(data){
                     $('select[id="sunting_1_kota_id"]').empty();
                     for (var i = 0;i < data.length; i++) {
-                        listKota += '<option value="'+ data[i].city_id +'">' + data[i].type + ' ' + data[i].city_name + '</option>';
+                        listKota += '<option value="'+ data[i].id +'">' + data[i].type + ' ' + data[i].nama_city + '</option>';
                     }
                     $('select[id="sunting_1_kota_id"]').html(listKota);
                 }
@@ -222,23 +219,25 @@ $(function(){
     $('select[id="sunting_1_kota_id"]').on('change', function(){
 
         let cityid = $(this).val();
-        var provinceid = $("#sunting_1_province_id").val();
         // console.log(provinceid);
 
         if(cityid){
             jQuery.ajax({
-                url:"api/asmatLaravel/nama-kota/"+cityid+"/"+provinceid,
+                url:"api/asmatLaravel/nama-kota/"+cityid,
                 type:'GET',
                 dataType:'json',
                 success:function(data){
                     // console.log('Berhasil masuk kota/kabupaten');
                     // console.log(data);
                     $("#sunting_1_nama_kota").empty();
-                    $("#sunting_1_nama_kota").val(data);
+                    $("#sunting_1_nama_kota").val(data['type'] + ' ' + data['nama_city']);
+                    $("#sunting_1_kode_pos").empty();
+                    $("#sunting_1_kode_pos").val(data['postal_code']);
                 }
             });
         } else {
             $('input[id="sunting_1_nama_kota"]').val.empty();
+            $("#sunting_1_kode_pos").empty();
         }
     });
 });
@@ -256,7 +255,7 @@ $(function(){
             success:function(data){
                 $('select[id="sunting_1_kecamatan_id"]').empty();
                 for (var i = 0;i < data.length; i++) {
-                    listKecamatan += '<option value="'+ data[i].subdistrict_id +'">' + 'Kecamatan' + ' ' + data[i].subdistrict_name + '</option>';
+                    listKecamatan += '<option value="'+ data[i].id +'">' + 'Kecamatan' + ' ' + data[i].nama_subdistrict + '</option>';
                 }
                 $('select[id="sunting_1_kecamatan_id"]').html(listKecamatan);
                 $('select[id="sunting_1_kecamatan_id"]').val(defaultKecamatanSunting_1);
@@ -281,7 +280,7 @@ $(function(){
                 success:function(data){
                     $('select[id="sunting_1_kecamatan_id"]').empty();
                     for (var i = 0;i < data.length; i++) {
-                        listKecamatan += '<option value="'+ data[i].subdistrict_id +'">' + 'Kecamatan' + ' ' + data[i].subdistrict_name + '</option>';
+                        listKecamatan += '<option value="'+ data[i].id +'">' + 'Kecamatan' + ' ' + data[i].nama_subdistrict + '</option>';
                     }
                     $('select[id="sunting_1_kecamatan_id"]').html(listKecamatan);
                 }
@@ -298,19 +297,18 @@ $(function(){
     $('select[id="sunting_1_kecamatan_id"]').on('change', function(){
 
         let kecamatan_id = $(this).val();
-        var cityid = $("#sunting_1_kota_id").val();
         // console.log(cityid);
 
         if(kecamatan_id){
             jQuery.ajax({
-                url:"api/asmatLaravel/nama-kecamatan/"+kecamatan_id+"/"+cityid,
+                url:"api/asmatLaravel/nama-kecamatan/"+kecamatan_id,
                 type:'GET',
                 dataType:'json',
                 success:function(data){
                     // console.log('Berhasil masuk kecamatan');
                     // console.log(data);
                     $("#sunting_1_nama_kecamatan").empty();
-                    $("#sunting_1_nama_kecamatan").val(data);
+                    $("#sunting_1_nama_kecamatan").val(data['nama_subdistrict']);
                 }
             });
         } else {
@@ -341,7 +339,7 @@ $(function(){
                 dataType:'json',
                 success:function(data){
                     // console.log('Berhasil masuk kota/kabupaten');
-                    console.log(data);
+                    // console.log(data);
                     $("#sunting_2_nama_provinsi").empty();
                     $("#sunting_2_nama_provinsi").val(data);
                 }
@@ -367,7 +365,7 @@ $(function(){
             success:function(data){
                 $('select[id="sunting_2_kota_id"]').empty();
                 for (var i = 0;i < data.length; i++) {
-                    listKota += '<option value="'+ data[i].city_id +'">' + data[i].type + ' ' + data[i].city_name + '</option>';
+                    listKota += '<option value="'+ data[i].id +'">' + data[i].type + ' ' + data[i].nama_city + '</option>';
                 }
                 $('select[id="sunting_2_kota_id"]').html(listKota);
                 $('select[id="sunting_2_kota_id"]').val(defaultKotaSunting_2);
@@ -391,7 +389,7 @@ $(function(){
                 success:function(data){
                     $('select[id="sunting_2_kota_id"]').empty();
                     for (var i = 0;i < data.length; i++) {
-                        listKota += '<option value="'+ data[i].city_id +'">' + data[i].type + ' ' + data[i].city_name + '</option>';
+                        listKota += '<option value="'+ data[i].id +'">' + data[i].type + ' ' + data[i].nama_city + '</option>';
                     }
                     $('select[id="sunting_2_kota_id"]').html(listKota);
                 }
@@ -410,23 +408,25 @@ $(function(){
     $('select[id="sunting_2_kota_id"]').on('change', function(){
 
         let cityid = $(this).val();
-        var provinceid = $("#sunting_2_province_id").val();
         // console.log(provinceid);
 
         if(cityid){
             jQuery.ajax({
-                url:"api/asmatLaravel/nama-kota/"+cityid+"/"+provinceid,
+                url:"api/asmatLaravel/nama-kota/"+cityid,
                 type:'GET',
                 dataType:'json',
                 success:function(data){
                     // console.log('Berhasil masuk kota/kabupaten');
                     // console.log(data);
                     $("#sunting_2_nama_kota").empty();
-                    $("#sunting_2_nama_kota").val(data);
+                    $("#sunting_2_nama_kota").val(data['type'] + ' ' + data['nama_city']);
+                    $("#sunting_2_kode_pos").empty();
+                    $("#sunting_2_kode_pos").val(data['postal_code']);
                 }
             });
         } else {
             $('input[id="sunting_2_nama_kota"]').val.empty();
+            $("#sunting_2_kode_pos").empty();
         }
     });
 });
@@ -444,7 +444,7 @@ $(function(){
             success:function(data){
                 $('select[id="sunting_2_kecamatan_id"]').empty();
                 for (var i = 0;i < data.length; i++) {
-                    listKecamatan += '<option value="'+ data[i].subdistrict_id +'">' + 'Kecamatan' + ' ' + data[i].subdistrict_name + '</option>';
+                    listKecamatan += '<option value="'+ data[i].id +'">' + 'Kecamatan' + ' ' + data[i].nama_subdistrict + '</option>';
                 }
                 $('select[id="sunting_2_kecamatan_id"]').html(listKecamatan);
                 $('select[id="sunting_2_kecamatan_id"]').val(defaultKecamatanSunting_2);
@@ -469,7 +469,7 @@ $(function(){
                 success:function(data){
                     $('select[id="sunting_2_kecamatan_id"]').empty();
                     for (var i = 0;i < data.length; i++) {
-                        listKecamatan += '<option value="'+ data[i].subdistrict_id +'">' + 'Kecamatan' + ' ' + data[i].subdistrict_name + '</option>';
+                        listKecamatan += '<option value="'+ data[i].id +'">' + 'Kecamatan' + ' ' + data[i].nama_subdistrict + '</option>';
                     }
                     $('select[id="sunting_2_kecamatan_id"]').html(listKecamatan);
                 }
@@ -486,19 +486,18 @@ $(function(){
     $('select[id="sunting_2_kecamatan_id"]').on('change', function(){
 
         let kecamatan_id = $(this).val();
-        var cityid = $("#sunting_2_kota_id").val();
         // console.log(cityid);
 
         if(kecamatan_id){
             jQuery.ajax({
-                url:"api/asmatLaravel/nama-kecamatan/"+kecamatan_id+"/"+cityid,
+                url:"api/asmatLaravel/nama-kecamatan/"+kecamatan_id,
                 type:'GET',
                 dataType:'json',
                 success:function(data){
                     // console.log('Berhasil masuk kecamatan');
                     // console.log(data);
                     $("#sunting_2_nama_kecamatan").empty();
-                    $("#sunting_2_nama_kecamatan").val(data);
+                    $("#sunting_2_nama_kecamatan").val(data['nama_subdistrict']);
                 }
             });
         } else {

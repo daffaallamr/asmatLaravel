@@ -234,9 +234,17 @@ class CheckoutController extends RajaOngkirController
         $userAddress = Customer::find(Auth('customer')->id())->addresses->where('is_main', 1)->first();
         $userKecamatan = $userAddress->kecamatan_id;
 
-        $ongkirJNE = $this->ongkirJNE($userKecamatan);
-        $ongkirTIKI = $this->ongkirTIKI($userKecamatan);
-        $ongkirPOS = $this->ongkirPOS($userKecamatan);
+        $orderId = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
+        $totalBeratBarang = 0;
+
+        foreach($orderId->orderDetails as $detail)
+        {
+            $totalBeratBarang += $detail->jumlah_berat;
+        }
+
+        $ongkirJNE = $this->ongkir($userKecamatan, $totalBeratBarang, 'jne');
+        $ongkirTIKI = $this->ongkir($userKecamatan, $totalBeratBarang, 'tiki');
+        $ongkirPOS = $this->ongkir($userKecamatan, $totalBeratBarang, 'pos');
 
         return view('order.kurir', [
             'ongkirJNE' => $ongkirJNE,

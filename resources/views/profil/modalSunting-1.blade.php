@@ -24,13 +24,14 @@
                     <select name="province_id" id="sunting_1_province_id">
                         <option value="">--- Provinsi Tujuan ---</option>
                         @foreach ($provinsi  as $row)
-                        <option value="{{ $row['province_id'] }}">
-                            {{$row['province']}}
+                        <option value="{{ $row->id }}">
+                            {{$row->nama_province}}
                         </option>
                         @endforeach
                     </select>
                     {{--  Mengambil data nama provinsi  --}}
                     <input type="hidden" id="sunting_1_nama_provinsi" name="nama_provinsi" value="{{ $isMain->provinsi }}">
+                    
                 <label for="">Kota</label>
                 {{-- Mengambil data default --}}
                 <input type="hidden" id="default_sunting_1_kota_id" value="{{ $isMain->kota_id }}">
@@ -39,6 +40,7 @@
                     </select>
                     {{--  Mengambil data nama kota  --}}
                     <input type="hidden" id="sunting_1_nama_kota" name="nama_kota" value="{{ $isMain->kota }}">
+
                 <label for="">Kecamatan</label>
                 {{-- Mengambil data default --}}
                     <input type="hidden" id="default_sunting_1_kecamatan_id" value="{{ $isMain->kecamatan_id }}">
@@ -47,8 +49,9 @@
                     </select>
                     {{--  Mengambil data nama kecamatan  --}}
                     <input type="hidden" id="sunting_1_nama_kecamatan" name="nama_kecamatan" value="{{ $isMain->kecamatan }}">
+
                 <label for="">Kode pos</label>
-                    <input type="text" name="kode_pos" value="{{ $isMain->kode_pos }}">
+                    <input type="text" id="sunting_1_kode_pos" name="kode_pos" value="{{ $isMain->kode_pos }}">
                 <div class="nav-bot">
                     <div class="exit">
                         <a id="exitSuntingAlamat-1" style="cursor: pointer">

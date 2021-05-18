@@ -114,7 +114,10 @@ Route::resource('belanja', ProductController::class)->only(['index', 'show']);
 
 // Web Admin Route
 Route::group(['middleware' => 'auth:admin'], function () {
-    Route::get('/admin', [AdminHomeController::class, 'index'])->name('admin.home');
+    // Route::get('/admin', [AdminHomeController::class, 'index'])->name('admin.home');
+    Route::resource('admin', AdminHomeController::class)->only([
+        'index', 'edit', 'update'
+    ]);
 
     Route::resource('adminCustomer', AdminCustomerController::class)->only([
         'index', 'create', 'store', 'edit', 'update', 'destroy'
@@ -147,8 +150,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
 Route::get('login/admin', [AdminLoginController::class, 'showAdminLoginForm'])->name('login-admin');
 Route::post('login/admin', [AdminLoginController::class, 'adminLogin']);
 
-// Route::get('register/admin', [AdminRegisterController::class, 'showAdminRegisterForm'])->name('register-admin');
-// Route::post('register/admin', [AdminRegisterController::class, 'createAdmin']);
+Route::get('register/admin', [AdminRegisterController::class, 'showAdminRegisterForm'])->name('register-admin');
+Route::post('register/admin', [AdminRegisterController::class, 'createAdmin']);
 
 Route::get('logout/admin', [AdminLoginController::class,'logout'])->name('logout-admin');
 
@@ -160,6 +163,6 @@ Route::get('logout/admin', [AdminLoginController::class,'logout'])->name('logout
 //     return $mail->render();
 //   });
 
-Route::get('/view-mail-anjuranMembayar', [EmailController::class,'checkoutConfirmed']);
+// Route::get('/view-mail-anjuranMembayar', [EmailController::class,'checkoutConfirmed']);
 
 

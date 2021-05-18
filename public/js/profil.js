@@ -71,6 +71,8 @@ if(document.getElementById('ubah')) {
     );
 }
 
-document.getElementById('oke').addEventListener('click',function() {
-    document.querySelector('.modal').style.display = 'none';
-});
+if(document.getElementById('oke')) {
+    document.getElementById('oke').addEventListener('click',function() {
+        document.querySelector('.modal').style.display = 'none';
+    });
+}

@@ -6,7 +6,7 @@
         <label for="">{{ $isMain->telepon }}</label> 
         <label for="">{{ $isMain->provinsi }}</label> 
         <label for="">{{ $isMain->kota }}</label> 
-        <label for="">{{ $isMain->kecamatan }}</label> 
+        <label for="">Kecamatan {{ $isMain->kecamatan }}</label> 
         <label for="">{{ $isMain->kode_pos }}</label> 
         <div class="cta-sunting-hapus">
             <div class="sunting">
@@ -37,7 +37,7 @@
         <label for="">{{ $notMain->telepon }}</label> 
         <label for="">{{ $notMain->provinsi }}</label> 
         <label for="">{{ $notMain->kota }}</label> 
-        <label for="">{{ $notMain->kecamatan }}</label> 
+        <label for="">Kecamatan {{ $notMain->kecamatan }}</label> 
         <label for="">{{ $notMain->kode_pos }}</label>
         <div class="cta-sunting-hapus">
             <div class="sunting">

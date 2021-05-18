@@ -20,8 +20,8 @@
                         <select name="province_id" id="province_id">
                             <option value="">--- Provinsi Tujuan ---</option>
                             @foreach ($provinsi  as $row)
-                            <option value="{{ $row['province_id'] }}">
-                                {{$row['province']}}
+                            <option value="{{ $row->id }}">
+                                {{$row->nama_province}}
                             </option>
                             @endforeach
                         </select>
@@ -40,7 +40,7 @@
                         {{--  Mengambil data nama kecamatan  --}}
                         <input type="hidden" id="nama_kecamatan" name="nama_kecamatan">
                     <label for="">Kode pos</label>
-                    <input type="text" name="kode_pos">
+                    <input type="text" id="kode_pos" name="kode_pos">
                     <div class="nav-bot">
                     <div class="exit">
                         <a id="exitTambahAlamat" style="cursor: pointer">
