@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RajaOngkirController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,5 @@ Route::get('asmatLaravel/kota/{id}',[RajaOngkirController::class, 'get_city']);
 Route::get('asmatLaravel/kecamatan/{id}',[RajaOngkirController::class, 'get_kecamatan']);
 
 Route::get('asmatLaravel/statusPaket/{resi}/{ekspedisi}',[RajaOngkirController::class, 'statusPaket']);
+
+Route::get('kirimEmail',[CustomerController::class, 'kirimEmail']);

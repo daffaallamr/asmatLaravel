@@ -29,23 +29,20 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::defaultView('vendor.pagination.custom-pagination');
 
-        // $user = Auth::guard('customer')->check();
-        // $keranjang = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
-        // dd($user);
+        $order = Order::where('is_checkout', 0)->with('customer')->with('orderDetails')->get();
         
-        // if ($keranjang->isEmpty()) {
-        //     // belum ada keranjang
-        //     $isiKeranjang = 'Yaps';
-        // } elseif ($keranjang->orderDetails->isEmpty()) {
-        //     // ada keranjang tapi isinya kosong
-        //     $isiKeranjang = 'ASD';
-        // } else {
-        //     // keranjangnya berisi
-        //     $isiKeranjang = $keranjang->orderDetails->sum();
+        // dd($order);
+        // $isiKeranjang = 0;
+
+        // foreach ($order->orderDetails as $detail) {
+        //     $isiKeranjang++;
         // }
 
-        // View::composer('layouts.navbar', function ($view) use($isiKeranjang) {
-        //     $view->with('isiKeranjang', $isiKeranjang);
-        // });
+        view()->composer(
+            'layouts.navbar',
+            function ($view) use($order) {
+                $view->with('order', $order);
+            }
+        );
     }
 }

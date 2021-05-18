@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PaymentSuccessMD;
+use App\Mail\PembayaranBerhasil;
 use App\Models\Address;
 use App\Models\Customer;
 use App\Models\Order;
@@ -9,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerController extends RajaOngkirController
 {
@@ -296,5 +299,11 @@ class CustomerController extends RajaOngkirController
         Customer::find(Auth('customer')->id())->update(['password'=> Hash::make($request->password)]);
 
         return redirect()->route('profilInformasiAkun')->withErrors('Kata sandi berhasil diubah');
+    }
+
+    public function kirimEmail()
+    {
+        Mail::to('dafaalamr@gmail.com')->send(new PembayaranBerhasil('ASMAT-123123'));
+        dd('email sent!');
     }
 }

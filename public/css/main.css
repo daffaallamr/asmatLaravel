@@ -4888,12 +4888,14 @@ footer .container .contact-footer ul li span {
     max-width: -moz-fit-content;
     max-width: fit-content;
   }
-  .keranjang-belanja .body-mobile .alert-mobile {
-    font-size: 1.6em;
+
+  #alert-mobile {
+    font-size: 1.2em;
     text-align: center;
     width: 100%;
     border-bottom: 2px solid #ECB390;
   }
+  
   .keranjang-belanja .body-mobile .total {
     display: -webkit-box;
     display: -ms-flexbox;

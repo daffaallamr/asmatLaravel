@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Mail\CheckoutConfirmed;
 use App\Mail\PaymentSuccess;
+use App\Mail\PembayaranBerhasil;
+use App\Mail\SelesaikanPembayaran;
 use App\Models\Address;
 use App\Models\Customer;
 use App\Models\Order;
@@ -286,7 +288,7 @@ class CheckoutController extends RajaOngkirController
         $orderId->snap_token = $snapToken;
         $orderId->save();
 
-        Mail::to($customer->email)->send(new CheckoutConfirmed($customer, $orderId, $alamatCustomer));
+        Mail::to($customer->email)->send(new SelesaikanPembayaran($customer, $orderId, $alamatCustomer));
 
         return redirect('pembayaran');
     }   
@@ -326,7 +328,7 @@ class CheckoutController extends RajaOngkirController
             } elseif ($transaction == 'settlement') {
 
                 $order->setStatusSuccess();
-                Mail::to($emailUser)->send(new PaymentSuccess());
+                Mail::to($emailUser)->send(new PembayaranBerhasil($orderId));
 
             } elseif($transaction == 'pending'){
 

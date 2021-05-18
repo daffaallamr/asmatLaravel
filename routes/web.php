@@ -13,11 +13,17 @@ use App\Http\Controllers\AdminStoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\SuperAdminController;
+use App\Mail\CheckoutConfirmed;
+use App\Mail\PaymentSuccess;
+use App\Mail\PaymentSuccessMD;
+use App\Mail\PembayaranBerhasil;
+use App\Mail\PesananTelahDikirim;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -148,5 +154,12 @@ Route::get('logout/admin', [AdminLoginController::class,'logout'])->name('logout
 
 
 // ---------------------------------------------------------------------
+
+// Route::get('/view-mail', function(){
+//     $mail = new PesananTelahDikirim('ASMAT-123');
+//     return $mail->render();
+//   });
+
+Route::get('/view-mail-anjuranMembayar', [EmailController::class,'checkoutConfirmed']);
 
 

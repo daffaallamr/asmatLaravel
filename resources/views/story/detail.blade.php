@@ -14,19 +14,30 @@
         <h1>{{ $story->judul_paragraf_1 }}</h1>
         <p>{{ $story->paragraf_1 }}</p>
     </div>
-    <div class="paragraf-origin-b">
-        <div class="left-col">
-            <img src="{{ asset('public/images/' . $story->gambar_3) }}" alt="">
-        </div>
-        <div class="right-col">
+    @if ($story->gambar_3 == null)
+        <div class="paragraf-origin-a">
             <h1>{{ $story->judul_paragraf_2 }}</h1>
             <p>{{ $story->paragraf_2 }}</p>
+        </div>  
+        <div class="paragraf-origin-a">
+            <h1>{{ $story->judul_paragraf_3 }}</h1>
+            <p>{{ $story->paragraf_3 }}</p>
+        </div>  
+    @else
+        <div class="paragraf-origin-b">
+            <div class="left-col">
+                <img src="{{ asset('public/images/' . $story->gambar_3) }}" alt="">
+            </div>
+            <div class="right-col">
+                <h1>{{ $story->judul_paragraf_2 }}</h1>
+                <p>{{ $story->paragraf_2 }}</p>
+            </div>
         </div>
-    </div>
-    <div class="paragraf-origin-a">
-        <h1>{{ $story->judul_paragraf_3 }}</h1>
-        <p>{{ $story->paragraf_3 }}</p>
-    </div>
+        <div class="paragraf-origin-a">
+            <h1>{{ $story->judul_paragraf_3 }}</h1>
+            <p>{{ $story->paragraf_3 }}</p>
+        </div>
+    @endif
 
 @include('layouts.footer')
 @endsection

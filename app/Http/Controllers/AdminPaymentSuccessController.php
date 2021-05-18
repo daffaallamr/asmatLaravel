@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\PaymentSuccess;
+use App\Mail\PesananTelahDikirim;
 use App\Models\Admin;
 use App\Models\Order;
 use App\Models\Product;
@@ -66,7 +67,7 @@ class AdminPaymentSuccessController extends Controller
             $product->save();
         }
 
-        Mail::to($order->email)->send(new PaymentSuccess());
+        Mail::to($order->email)->send(new PesananTelahDikirim($order->order_unique_id, $request->nomer_resi));
 
         return redirect()->route('adminPaymentSuccess.index');
     }

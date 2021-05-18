@@ -7,10 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CheckoutConfirmed extends Mailable
+class SelesaikanPembayaran extends Mailable
 {
     use Queueable, SerializesModels;
-    
+
     public $customer;
     public $orderId;
     public $alamatCustomer;
@@ -34,8 +34,11 @@ class CheckoutConfirmed extends Mailable
      */
     public function build()
     {
-        return $this->from('tokoasmatpapua@gmail.com')
-                    ->subject('Selesaikan pembayaran anda di ASMAT Papua')
-                    ->view('emails.checkoutConfirmed');
+        return $this->from('noreply@asmatpapua.com', 'Asmat Papua')
+                ->markdown('emails.selesaikanPembayaran', [
+                    'customer' =>  $this->customer,
+                    'orderId' =>  $this->orderId,
+                    'alamatCustomer' =>  $this->alamatCustomer,
+                ]);
     }
 }
