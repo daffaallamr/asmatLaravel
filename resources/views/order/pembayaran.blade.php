@@ -10,7 +10,9 @@
 <body class="container-data" style="display: flex;">
 
     <header>
-        <img src="public/images/logo-2.png" alt="">
+        <a href="{{ route('home-customer') }}">
+            <img src="public/images/logo-2.png" alt="">
+        </a>
         <nav>
             <a href="{{ route('profilAlamat') }}">Data diri</a>  -  <a href="{{ route('pilih-kurir') }}">Pengiriman</a>  -  <span><a href="{{ route('pembayaran') }}">Pembayaran</a></span>
         </nav>

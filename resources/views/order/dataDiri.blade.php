@@ -2,7 +2,9 @@
 
 @section('content')
     <header>
-        <img src="public/images/logo-2.png" alt="">
+        <a href="{{ route('home-customer') }}">
+            <img src="public/images/logo-2.png" alt="">
+        </a>
         <nav>
             <span>
                 <a aria-disabled="true" style="cursor: default">Data diri</a>
@@ -19,45 +21,50 @@
             <div class="container">
                 <div class="left-col">
                     <label for="">Nama depan</label>
-                        <input  type="text" name="nama_depan">
+                        <input  type="text" name="nama_depan" value="{{ old('nama_depan') }}">
                     <label for="">Nama belakang</label>
-                        <input type="text" name="nama_belakang">
+                        <input type="text" name="nama_belakang" value="{{ old('nama_belakang') }}">
                     <label for="">Telepon</label>
-                        <input type="text" name="telepon">
+                        <input type="text" name="telepon" value="{{ old('telepon') }}">
                     <label for="">Email</label>
-                        <input type="text" name="email"> 
+                        <input type="text" name="email" value="{{ old('email') }}"> 
                     <label for="">Alamat lengkap</label>
-                        <input type="text" name="alamat_lengkap">
+                        <input type="text" name="alamat_lengkap" value="{{ old('alamat_lengkap') }}">
                 </div>
                 <div class="right-col">
                     <label for="">Provinsi</label>
                         <select name="province_id" id="province_id">
                             <option value="">--- Provinsi Tujuan ---</option>
                             @foreach ($provinsi  as $row)
-                            <option value="{{ $row['province_id'] }}" namaprovinsi="{{ $row['province'] }}">
-                                {{$row['province']}}
+                            <option value="{{ $row->id }}">
+                                {{$row->nama_province}}
                             </option>
                             @endforeach
                         </select>
                         {{--  Mengambil data nama provinsi  --}}
                         <input type="hidden" id="nama_provinsi" name="nama_provinsi">
+
                     <label for="">Kota</label>
                         <select name="kota_id" id="kota_id">
                             <option value="">--- Kota Tujuan ---</option>
                         </select>
                         {{--  Mengambil data nama kota  --}}
                         <input type="hidden" id="nama_kota" name="nama_kota">
+
                     <label for="">Kecamatan</label>
                         <select name="kecamatan_id" id="kecamatan_id">
                             <option value="">--- Kecamatan Tujuan ---</option>
                         </select>
                         {{--  Mengambil data nama kecamatan  --}}
                         <input type="hidden" id="nama_kecamatan" name="nama_kecamatan">
+                        
                     <label for="">Kode pos</label>
-                    <input type="text" name="kode_pos">
-                    @if ($errors->any())
-                        <p class="error">{{ $errors->first() }}</p> 
-                    @endif
+                    <input readonly type="text" id="kode_pos" name="kode_pos">
+                    <p style="color: rgba(0, 0, 0, 0.7);">
+                        @if ($errors->any())
+                                {{ $errors->first() }}
+                        @endif
+                    </p> 
                     <div class="nav-bot-2">
                         <div class="exit">
                         <a href="{{ route('keranjang') }}"> <img src="public/images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Kembali</span></a> </div>

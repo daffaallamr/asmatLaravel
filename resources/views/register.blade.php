@@ -8,7 +8,9 @@
     </div>
     <div class="login-right">
         <div class="logo">
-            <img src="public/images/logo-footer.png" alt="">
+            <a href="{{ route('home-customer') }}" style="margin-top: -10px">
+                <img src="public/images/logo-footer.png" alt="">
+            </a>
             <h2>Mulai <br> mendaftar&excl;</h2>
         </div>   
             <form class="container-reg" action="{{ route('register-customer') }}" method="post">

@@ -32,16 +32,17 @@
                     
                     <ul>
                         @if ($order->where('customer_id', Auth('customer')->id())->isEmpty())
-                            <li><a href="{{ route('keranjang') }}">Keranjang (0)</a></li>
+                        <li class="sekarang"><a href="{{ route('keranjang') }}">Keranjang (0)</a></li>
                         @else
                             @foreach ($order->where('customer_id', Auth('customer')->id()) as $customerOrder)
+                                <li class="sekarang"><a href="{{ route('keranjang') }}">Keranjang ({{ $customerOrder->orderDetails->count() }})</a></li>
                             @endforeach
                         @endif
                         <li><a href="{{ route('belanja.index') }}">Belanja</a></li>
-                        @if (Auth::check())
-                            <li><a href="{{ route('profilAlamat') }}">Profil</a></li>
+                        @if (Auth('customer')->check())
+                            <li class="profile"><a href="{{ route('profilAlamat') }}">Profil</a></li>
                         @else
-                            <li><a href="{{ route('login-customer') }}">Masuk</a></li>
+                            <li class="profile"><a href="{{ route('login-customer') }}">Masuk</a></li>
                         @endif
                         <li><a href="{{ route('cerita.index') }}">Cerita</a></li>
                         <li><a href="{{ route('tentang-kami') }}">Tentang Kami</a></li>

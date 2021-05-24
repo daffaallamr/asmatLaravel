@@ -21,7 +21,7 @@ Telepon: <strong>{{ $alamatCustomer->telepon }}</strong><br>
 @endcomponent
 
 <br>
-@component('mail::button', ['url' => 'https://asmatpapua.com/'])
+@component('mail::button', ['url' => 'https://asmatpapua.com/profil-pembelian'])
 Selesaikan Pembayaran
 @endcomponent
 

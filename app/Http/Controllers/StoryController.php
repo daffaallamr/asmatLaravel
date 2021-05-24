@@ -14,11 +14,8 @@ class StoryController extends Controller
      */
     public function index()
     {
-        $storiesCache = Cache::remember('semua-cerita-cache', 10, function() {
-            return Story::orderBy('created_at', 'DESC')->paginate(6);
-        });
-
-        return view ('story.story', ['stories' => $storiesCache]);
+        $stories = Story::orderBy('created_at', 'DESC')->paginate(6);
+        return view ('story.story', ['stories' => $stories]);
     }
 
     /**

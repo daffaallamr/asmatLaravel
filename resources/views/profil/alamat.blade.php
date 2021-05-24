@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-
+    
     @include('profil.modalTambahAlamat')
 
     <div class="popup-bg"></div>
@@ -63,7 +63,7 @@
     <script type="text/javascript" src="{{ asset('public/js/profil.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/rajaOngkir.js') }}"></script>
 
-@include('layouts.footer')
+    @include('layouts.footer')
 @endsection
 
 

@@ -1,6 +1,6 @@
 <tr>
 <td class="header">
-<a href="{{ $url }}" style="display: inline-block;">
+<a href="https://asmatpapua.com/" style="display: inline-block;">
 @if (trim($slot) === 'Laravel')
 asmatpapua.com
 @else

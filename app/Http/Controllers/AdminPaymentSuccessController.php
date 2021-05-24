@@ -83,5 +83,7 @@ class AdminPaymentSuccessController extends Controller
         // dd('yes');
         $order = Order::findOrFail($id);
         $order->delete();
+
+        return redirect()->route('adminPaymentSuccess.index');
     }
 }

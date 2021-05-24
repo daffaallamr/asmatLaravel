@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\PaymentSuccessMD;
 use App\Mail\PembayaranBerhasil;
+use App\Mail\SelesaikanPembayaran;
 use App\Models\Address;
 use App\Models\Customer;
 use App\Models\Order;
@@ -60,12 +61,11 @@ class CustomerController extends RajaOngkirController
 
     public function storeAlamat(Request $request)
     {
-        // dd($request->all());
         $rules = [
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
-            'email'                 => 'required|email',
             'telepon'               => 'required|min:10',
+            'email'                 => 'required|email',
             'alamat_lengkap'        => 'required|min:5',
             'province_id'           => 'required',
             'nama_provinsi'         => 'required',
@@ -89,12 +89,12 @@ class CustomerController extends RajaOngkirController
             'telepon.required'        => 'Telepon wajib diisi',
             'alamat_lengkap.min'        => 'Alamat lengkap kurang terperinci',
             'alamat_lengkap.required'        => 'Alamat lengkap wajib diisi',
-            'province_id.required'      => 'Tunggu beberapa detik sebelum konfirmasi',
-            'nama_provinsi.required'    => 'Tunggu beberapa detik sebelum konfirmasi',
-            'kota_id.required'          => 'Tunggu beberapa detik sebelum konfirmasi',
-            'nama_kota.required'        => 'Tunggu beberapa detik sebelum konfirmasi',
-            'kecamatan_id.required'     => 'Tunggu beberapa detik sebelum konfirmasi',
-            'nama_kecamatan.required'   => 'Tunggu beberapa detik sebelum konfirmasi',
+            'province_id.required'      => 'Pilih Provinsi tujuan',
+            'nama_provinsi.required'    => 'Pilih Provinsi tujuan',
+            'kota_id.required'          => 'Pilih Kota tujuan',
+            'nama_kota.required'        => 'Pilih Kota tujuan',
+            'kecamatan_id.required'     => 'Pilih Kecamatan tujuan',
+            'nama_kecamatan.required'   => 'Pilih Kecamatan tujuan',
             'kode_pos.digits'       => 'Kode pos harus 5 digit',
             'kode_pos.required'        => 'Kode pos wajib diisi',
         ];
@@ -151,8 +151,8 @@ class CustomerController extends RajaOngkirController
         $rules = [
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
-            'email'                 => 'required|email',
             'telepon'               => 'required|min:10',
+            'email'                 => 'required|email',
             'alamat_lengkap'        => 'required|min:5',
             'province_id'           => 'required',
             'nama_provinsi'         => 'required',
@@ -176,12 +176,12 @@ class CustomerController extends RajaOngkirController
             'telepon.required'        => 'Telepon wajib diisi',
             'alamat_lengkap.min'        => 'Alamat lengkap kurang terperinci',
             'alamat_lengkap.required'        => 'Alamat lengkap wajib diisi',
-            'province_id.required'      => 'Tunggu beberapa detik sebelum konfirmasi',
-            'nama_provinsi.required'    => 'Tunggu beberapa detik sebelum konfirmasi',
-            'kota_id.required'          => 'Tunggu beberapa detik sebelum konfirmasi',
-            'nama_kota.required'        => 'Tunggu beberapa detik sebelum konfirmasi',
-            'kecamatan_id.required'     => 'Tunggu beberapa detik sebelum konfirmasi',
-            'nama_kecamatan.required'   => 'Tunggu beberapa detik sebelum konfirmasi',
+            'province_id.required'      => 'Pilih Provinsi tujuan',
+            'nama_provinsi.required'    => 'Pilih Provinsi tujuan',
+            'kota_id.required'          => 'Pilih Kota tujuan',
+            'nama_kota.required'        => 'Pilih Kota tujuan',
+            'kecamatan_id.required'     => 'Pilih Kecamatan tujuan',
+            'nama_kecamatan.required'   => 'Pilih Kecamatan tujuan',
             'kode_pos.digits'       => 'Kode pos harus 5 digit',
             'kode_pos.required'        => 'Kode pos wajib diisi',
         ];
@@ -250,7 +250,7 @@ class CustomerController extends RajaOngkirController
 
 
     public function pembelian() {
-        $orders = Order::where('customer_id', Auth('customer')->id())->whereNotNull('order_unique_id')->get();
+        $orders = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 1)->whereNotNull('order_unique_id')->get();
         $listStatus = array();
 
         foreach ($orders as $order) {
@@ -303,7 +303,11 @@ class CustomerController extends RajaOngkirController
 
     public function kirimEmail()
     {
-        Mail::to('dafaalamr@gmail.com')->send(new PembayaranBerhasil('ASMAT-123123'));
-        dd('email sent!');
+        $orderId = Order::where('order_unique_id', 'ASMAT-245612859')->first();
+        $customerId = $orderId->customer_id;
+        $customer = Customer::find($customerId);
+        $alamatCustomer = Address::where('customer_id', $customerId)->where('is_main', 1)->first();
+
+        return new SelesaikanPembayaran($customer, $orderId, $alamatCustomer);
     }
 }

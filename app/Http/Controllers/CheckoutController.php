@@ -168,8 +168,8 @@ class CheckoutController extends RajaOngkirController
         $rules = [
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
-            'email'                 => 'required|email',
             'telepon'               => 'required|min:10',
+            'email'                 => 'required|email',
             'alamat_lengkap'        => 'required|min:5',
             'province_id'           => 'required',
             'nama_provinsi'         => 'required',
@@ -181,26 +181,26 @@ class CheckoutController extends RajaOngkirController
         ];
  
         $messages = [
-            'nama_depan.required'   => 'Nama Depan wajib diisi',
             'nama_depan.min'        => 'Nama Depan minimal 2 karakter',
             'nama_depan.max'        => 'Nama Depan maksimal 15 karakter',
-            'nama_belakang.required'=> 'Nama Belakang wajib diisi',
+            'nama_depan.required'        => 'Nama Depan wajib diisi',
             'nama_belakang.min'     => 'Nama Belakang minimal 2 karakter',
             'nama_belakang.max'     => 'Nama Belakang maksimal 30 karakter',
+            'nama_belakang.required'        => 'Nama belakang wajib diisi',
             'email.required'        => 'Email wajib diisi',
             'email.email'           => 'Email tidak valid',
-            'telepon.required'      => 'Telepon wajib diisi',
             'telepon.min'           => 'Telepon minimal 10 digit',
-            'alamat_lengkap.required'   => 'Alamat lengkap wajib diisi',
+            'telepon.required'        => 'Telepon wajib diisi',
             'alamat_lengkap.min'        => 'Alamat lengkap kurang terperinci',
-            'province_id.required'      => 'Tunggu beberapa detik sebelum konfirmasi',
-            'nama_provinsi.required'    => 'Tunggu beberapa detik sebelum konfirmasi',
-            'kota_id.required'          => 'Tunggu beberapa detik sebelum konfirmasi',
-            'nama_kota.required'        => 'Tunggu beberapa detik sebelum konfirmasi',
-            'kecamatan_id.required'     => 'Tunggu beberapa detik sebelum konfirmasi',
-            'nama_kecamatan.required'   => 'Tunggu beberapa detik sebelum konfirmasi',
-            'kode_pos.required'     => 'Kode pos wajib diisi',
+            'alamat_lengkap.required'        => 'Alamat lengkap wajib diisi',
+            'province_id.required'      => 'Pilih Provinsi tujuan',
+            'nama_provinsi.required'    => 'Pilih Provinsi tujuan',
+            'kota_id.required'          => 'Pilih Kota tujuan',
+            'nama_kota.required'        => 'Pilih Kota tujuan',
+            'kecamatan_id.required'     => 'Pilih Kecamatan tujuan',
+            'nama_kecamatan.required'   => 'Pilih Kecamatan tujuan',
             'kode_pos.digits'       => 'Kode pos harus 5 digit',
+            'kode_pos.required'        => 'Kode pos wajib diisi',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -234,9 +234,17 @@ class CheckoutController extends RajaOngkirController
         $userAddress = Customer::find(Auth('customer')->id())->addresses->where('is_main', 1)->first();
         $userKecamatan = $userAddress->kecamatan_id;
 
-        $ongkirJNE = $this->ongkirJNE($userKecamatan);
-        $ongkirTIKI = $this->ongkirTIKI($userKecamatan);
-        $ongkirPOS = $this->ongkirPOS($userKecamatan);
+        $orderId = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
+        $totalBeratBarang = 0;
+
+        foreach($orderId->orderDetails as $detail)
+        {
+            $totalBeratBarang += $detail->jumlah_berat;
+        }
+
+        $ongkirJNE = $this->ongkir($userKecamatan, $totalBeratBarang, 'jne');
+        $ongkirTIKI = $this->ongkir($userKecamatan, $totalBeratBarang, 'tiki');
+        $ongkirPOS = $this->ongkir($userKecamatan, $totalBeratBarang, 'pos');
 
         return view('order.kurir', [
             'ongkirJNE' => $ongkirJNE,
@@ -248,7 +256,6 @@ class CheckoutController extends RajaOngkirController
     public function storeOngkir(Request $request) {
         $orderId = Order::where('customer_id', Auth('customer')->id())->where('is_checkout', 0)->first();
         $customer = Customer::find(Auth('customer')->id());
-        $alamatCustomer = Address::where('customer_id', Auth('customer')->id())->where('is_main', 1)->first();
 
         if ($request->ekspedisi == null) {
             return redirect()->route('pilih-kurir')->withErrors('Belum memilih metode pengiriman');
@@ -288,8 +295,6 @@ class CheckoutController extends RajaOngkirController
         $orderId->snap_token = $snapToken;
         $orderId->save();
 
-        Mail::to($customer->email)->send(new SelesaikanPembayaran($customer, $orderId, $alamatCustomer));
-
         return redirect('pembayaran');
     }   
 
@@ -313,6 +318,8 @@ class CheckoutController extends RajaOngkirController
             $fraud = $notif->fraud_status;
             
             $order = Order::where('order_unique_id', $orderId)->first();
+            $customer = Customer::find($order->customer_id);
+            $alamatCustomer = Address::where('customer_id', $order->customer_id)->where('is_main', 1)->first();
             $emailUser = $order->email;
 
             if ($transaction == 'capture') {
@@ -322,6 +329,7 @@ class CheckoutController extends RajaOngkirController
                     $order->setStatusPending();
                 } else {
                     $order->setStatusSuccess();
+                    Mail::to($emailUser)->send(new PembayaranBerhasil($orderId));
                 }
 
                 }
@@ -333,6 +341,7 @@ class CheckoutController extends RajaOngkirController
             } elseif($transaction == 'pending'){
 
                 $order->setStatusPending();
+                Mail::to($emailUser)->send(new SelesaikanPembayaran($customer, $order, $alamatCustomer));
 
             } elseif ($transaction == 'deny') {
 

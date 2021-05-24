@@ -9,7 +9,7 @@
             <div class="sidenav-top">
             <h1>Selamat <br> Datang di Asmat!</h1>
             <div class="exit-mobile">
-            <a href="index.html"> <img src="public/images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
+            <a href="{{ route('logout-customer') }}"> <img src="public/images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
             </div>
             <ul>
                 <li><a href="{{ route('profilAlamat') }}">Alamat</a></li>

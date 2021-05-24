@@ -2,12 +2,12 @@
 # Konfirmasi Pembayaran
 
 
-Pembayaran pesanan anda dengan nomer
-<strong>{{ $nomerPesanan }}</strong> telah kami konfirmasi.
+Pembayaran pesanan anda dengan nomor
+<strong>{{ $nomerPesanan }}</strong> telah dikonfirmasi.
 
 <br>
 
-Kunjungi website kami untuk kembali melakukan
+Kunjungi laman web kami untuk kembali melakukan
 transaksi guna membantu terlindungnya hutan Papua.
 
 @component('mail::button', ['url' => 'https://asmatpapua.com/'])

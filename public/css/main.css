@@ -2266,7 +2266,7 @@ footer .container .contact-footer ul li span {
 
 .logreg .login-right .container-reg .cta-submit:hover {
   color: var(--primary-color);
-  background-color: white;
+  background-color: #F7F7E8;
 }
 
 .logreg .login-right .container-reg .exit {
@@ -2934,7 +2934,7 @@ footer .container .contact-footer ul li span {
   border-bottom: 2px solid var(--primary-color);
   padding-bottom: 120px;
   background-color: #F7F7E8;
-  /* z-index: -200; */
+  z-index: -200;
 }
 
 .profil {
@@ -2951,7 +2951,7 @@ footer .container .contact-footer ul li span {
 .profil .modal {
   display: block;
   position: fixed;
-  z-index: 200;
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
@@ -2983,11 +2983,10 @@ footer .container .contact-footer ul li span {
 }
 
 .profil .sidenav {
-  border-right: var(--primary-color) solid 2px;
   -ms-flex-preferred-size: 33%;
       flex-basis: 33%;
   width: 400px;
-  height: 100vh;
+  min-height: 9vh;
   color: var(--primary-color);
   margin-left: 6%;
 }
@@ -3034,7 +3033,8 @@ footer .container .contact-footer ul li span {
       flex-basis: 60%;
   color: var(--primary-color);
   margin: 0 auto 0 auto;
-  height: 100vh;
+  border-left: var(--primary-color) solid 2px;
+  height: auto;
   /*Tabel*/
   /*Informasi Akun*/
 }
@@ -3091,6 +3091,7 @@ footer .container .contact-footer ul li span {
           justify-content: space-between;
   max-width: 80%;
   margin: auto;
+  margin-bottom: 116px;
 }
 
 .profil .alamat .kartu-alamat .alamat-ganti .card {
@@ -3174,6 +3175,7 @@ footer .container .contact-footer ul li span {
 .profil .alamat .kartu-alamat .alamat-ganti .cta-jadikan-utama button {
   text-decoration: underline;
   margin-top: 10px;
+  background-color: #F7F7E8;
 }
 
 .profil .alamat .kartu-alamat .alamat-ganti .cta-alamat-utama {
@@ -3182,6 +3184,7 @@ footer .container .contact-footer ul li span {
 
 .profil .alamat .kartu-alamat .alamat-ganti .cta-alamat-utama button {
   margin-top: 10px;
+  background-color: #F7F7E8;
 }
 
 .profil .alamat .tabel {
@@ -3192,6 +3195,8 @@ footer .container .contact-footer ul li span {
       -ms-flex-pack: center;
           justify-content: center;
   max-width: 95%;
+  min-height: 59vh;
+  margin-bottom: 50px;
 }
 
 .profil .alamat .tabel table {
@@ -3224,6 +3229,10 @@ footer .container .contact-footer ul li span {
 
 .profil .alamat .tabel table a {
   text-decoration: underline;
+}
+
+.profil .alamat .informasi-akun {
+  margin-bottom: 125px;
 }
 
 .profil .alamat .informasi-akun label {
@@ -3307,6 +3316,9 @@ footer .container .contact-footer ul li span {
 }
 
 @media (max-width: 800px) {
+  .foot-hidden {
+    display: block;
+  }
   .border-profil {
     border: none;
   }
@@ -3322,7 +3334,8 @@ footer .container .contact-footer ul li span {
     font-size: 22px !important;
   }
   .profil .modal-content .cta-oke {
-    width: 30%;
+    width: 40%;
+    height: 45px;
     font-size: 1.4em;
   }
   .profil .sidenav {
@@ -3400,6 +3413,7 @@ footer .container .contact-footer ul li span {
     height: -webkit-fit-content !important;
     height: -moz-fit-content !important;
     height: fit-content !important;
+    border-left: none !important;
   }
   .alamat .top {
     max-width: 100% !important;
@@ -3418,6 +3432,7 @@ footer .container .contact-footer ul li span {
   .alamat .kartu-alamat {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    margin-bottom: 0 !important;
   }
   .alamat .kartu-alamat .alamat-ganti {
     -ms-flex-preferred-size: 100% !important;
@@ -3533,6 +3548,9 @@ footer .container .contact-footer ul li span {
   .alamat .riwayat-mobile .bot p {
     font-size: 4vw !important;
   }
+  .alamat .informasi-akun {
+    margin-bottom: 0 !important;
+  }
   .alamat .informasi-akun .container {
     margin: 0 !important;
     -ms-flex-wrap: wrap;
@@ -3619,13 +3637,13 @@ footer .container .contact-footer ul li span {
   .profil {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    max-height: 1000px;
   }
   .profil .modal-content p {
-    font-size: 1em !important;
+    font-size: 13px !important;
   }
   .profil .modal-content .cta-oke {
     width: 40%;
+    height: 30px;
     font-size: 1em !important;
   }
   .profil .sidenav {
@@ -4318,7 +4336,7 @@ footer .container .contact-footer ul li span {
   color: var(--primary-color);
 }
 
-@media (max-width: 800px) and (min-width: 425px) {
+@media (max-width: 800px) and (min-width: 426px) {
   .detail-barang {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -4328,9 +4346,10 @@ footer .container .contact-footer ul li span {
     margin-top: 175px !important;
   }
   .detail-barang .showcase {
-    -ms-flex-preferred-size: 40% !important;
-        flex-basis: 40% !important;
-    height: 475px;
+    -ms-flex-preferred-size: 50% !important;
+        flex-basis: 50% !important;
+    max-height: 475px;
+    height: auto;
     margin-bottom: 50px;
     border-radius: 5px;
   }
@@ -4339,6 +4358,9 @@ footer .container .contact-footer ul li span {
     width: 100%;
     margin: 0;
     max-height: none;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    max-width: none;
   }
   .detail-barang .detail {
     -ms-flex-preferred-size: 90%;
@@ -4374,7 +4396,7 @@ footer .container .contact-footer ul li span {
     margin-bottom: 10%;
   }
   .detail-barang .detail .cta-submit button {
-    font-size: 1.5em !important;
+    font-size: 3vw !important;
     border-radius: 5px !important;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -4405,14 +4427,15 @@ footer .container .contact-footer ul li span {
     margin-bottom: 20px;
   }
   .detail-barang .showcase {
-    -ms-flex-preferred-size: 40% !important;
-        flex-basis: 40% !important;
+    -ms-flex-preferred-size: 50% !important;
+        flex-basis: 50% !important;
     max-height: 250px !important;
-    margin-bottom: 0;
+    height: auto;
+    margin-bottom: 30px;
   }
   .detail-barang .showcase img {
-    max-height: 200px !important;
-    padding: 10% 17%;
+    max-height: 240px !important;
+    height: auto;
   }
   .detail-barang .detail {
     -ms-flex-preferred-size: 80% !important;
@@ -4669,8 +4692,9 @@ footer .container .contact-footer ul li span {
 .keranjang-belanja .body table input[type=text] {
   border: none;
   color: var(--primary-color);
-  max-width: 50px;
+  max-width: 60px;
   pointer-events: none;
+  text-align: center;
 }
 
 .keranjang-belanja .body table .table-alert {
@@ -4731,7 +4755,7 @@ footer .container .contact-footer ul li span {
 }
 
 .keranjang-belanja .body table .tabel-bot input[type=text] {
-  max-width: 50px;
+  max-width: 80px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -4888,14 +4912,12 @@ footer .container .contact-footer ul li span {
     max-width: -moz-fit-content;
     max-width: fit-content;
   }
-
-  #alert-mobile {
-    font-size: 1.2em;
+  .keranjang-belanja .body-mobile .alert-mobile {
+    font-size: 1.6em;
     text-align: center;
     width: 100%;
     border-bottom: 2px solid #ECB390;
   }
-  
   .keranjang-belanja .body-mobile .total {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -5034,7 +5056,8 @@ footer .container .contact-footer ul li span {
     font-size: 3vw;
   }
   .keranjang-belanja .body-mobile .tabel-mobile .produk-right input[type=text], .keranjang-belanja .body-mobile .tabel-mobile-2 .produk-right input[type=text] {
-    width: 80px;
+    width: 100px;
+    text-align: center;
     border: none;
     color: var(--primary-color);
     -webkit-user-select: none;
@@ -5628,10 +5651,15 @@ footer .container .contact-footer ul li span {
     min-width: 100%;
     margin-top: 50px;
   }
+  .container-data section .alert-content {
+    font-size: 3vw !important;
+  }
   .container-data section .container-metode {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
   }
   .container-data section .container-metode .metode {
     -ms-flex-preferred-size: 100%;
@@ -5681,7 +5709,7 @@ footer .container .contact-footer ul li span {
   }
   .container-data section .nav-bot {
     max-width: 60% !important;
-    margin: 5% 6% 7% auto;
+    margin: 5% 9% 7% auto;
   }
   .container-data section .nav-bot .exit {
     display: -webkit-box;
@@ -6028,7 +6056,7 @@ footer .container .contact-footer ul li span {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin: 10px 25px 30px auto !important;
+    margin: 10px 9% 30px auto !important;
     -webkit-box-align: baseline !important;
         -ms-flex-align: baseline !important;
             align-items: baseline !important;

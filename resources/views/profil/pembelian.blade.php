@@ -9,7 +9,7 @@
             <div class="sidenav-top">
             <h1>Selamat <br> Datang di Asmat!</h1>
             <div class="exit-mobile">
-            <a href="index.html"> <img src="public/images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
+            <a href="{{ route('logout-customer') }}"> <img src="public/images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
             </div>
             <ul>
                 <li><a href="{{ route('profilAlamat') }}">Alamat</a></li>
@@ -17,7 +17,7 @@
                 <li><a href="{{ route('profilInformasiAkun') }}">Informasi Akun</a></li>
             </ul>
             <div class="exit">
-            <a href="{{ route('login-customer') }}"> <img src="public/images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
+            <a href="{{ route('logout-customer') }}"> <img src="public/images/arrow.svg" alt="" class="exit-arrow"><span class="underline">Keluar</span></a> </div>
         </div>       
         <div class="alamat">
             <div class="top">
@@ -41,8 +41,8 @@
                             <td>Status</td>
                         </tr>
                         </thead>
-                        <tbody>
                         @foreach ($orders as $order)
+                        <tbody>
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $order->order_unique_id }}</td>
@@ -59,16 +59,20 @@
                                         <input type="hidden" id="snap_token" value="{{ $order->snap_token }}">
                                         <button class="lacak" id="pay-button">Bayar Sekarang</button>
                                     </td>
-                                @elseif ($listStatus[$loop->index] == 0)
-                                    <td>Dalam Perjalanan</td>
-                                @elseif ($listStatus[$loop->index] == 1)
-                                    <td>Sudah Diterima</td>
-                                @elseif ($listStatus[$loop->index] == 3)
-                                    <td>Terjadi Kesalahan</td>
+                                @elseif ($order->status_payment == 'success')
+                                    @if ($order->is_dikirim == null)
+                                        <td>Dalam Proses</td>
+                                    @elseif ($listStatus[$loop->index] == 0)
+                                        <td>Dalam Perjalanan</td>
+                                    @elseif ($listStatus[$loop->index] == 1)
+                                        <td>Sudah Diterima</td>
+                                    @elseif ($listStatus[$loop->index] == 3)
+                                        <td>Terjadi Kesalahan</td>
+                                    @endif
                                 @endif
                             </tr>
-                        @endforeach
                         </tbody>
+                        @endforeach
                     </table>
                 </div>
                 @foreach ($orders as $order)
@@ -83,7 +87,22 @@
                                     <p>{{ $detail->jumlah_barang }}x {{ $detail->product->nama }}</p>
                                 @endforeach
                             </div>
-                            <a href="#">Selesai</a>
+                            @if ($order->status_payment == 'pending')
+                                <p>
+                                    <input type="hidden" id="snap_token" value="{{ $order->snap_token }}">
+                                    <button class="lacak" id="pay-button">Bayar Sekarang</button>
+                                </p>
+                            @elseif ($order->status_payment == 'success')
+                                @if ($order->is_dikirim == null)
+                                    <p>Dalam Proses</p>
+                                @elseif ($listStatus[$loop->index] == 0)
+                                    <p>Dalam Perjalanan</p>
+                                @elseif ($listStatus[$loop->index] == 1)
+                                    <p>Sudah Diterima</p>
+                                @elseif ($listStatus[$loop->index] == 3)
+                                    <p style="text-align: right">Terjadi<br>Kesalahan</p>
+                                @endif
+                            @endif
                         </div>
                     </div>
                 @endforeach
@@ -91,6 +110,8 @@
         </div>
     </div>
 
+    @include('layouts.footer')
+    
     <script src="{{
         !config('services.midtrans.isProduction') ? 'https://app.sandbox.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}"
         data-client-key="{{ config('services.midtrans.clientKey')
@@ -98,7 +119,6 @@
 
     <script type="text/javascript" src="{{ URL::asset('public/js/midtransSnapPayment.js') }}"></script>
 
-@include('layouts.footer')
 @endsection
 
 

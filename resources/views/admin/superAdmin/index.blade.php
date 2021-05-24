@@ -53,11 +53,11 @@
                                             <i class="fas fa-pen"></i>
                                         </a>
                                     </span>
-                                    {{-- <span>
+                                    <span>
                                         <a class="btn btn-danger btn-circle" data-toggle="modal" data-target="#modalHapus{{ $admin->id }}">
                                             <i class="fas fa-trash"></i>
                                         </a>
-                                    </span> --}}
+                                    </span>
                                 </td>
                             </tr>
 

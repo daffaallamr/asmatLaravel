@@ -9,7 +9,9 @@
     <div class="login-right">
         <div class="container">
             <div class="logo">
-                <img src="public/images/logo-footer.png" alt="">
+                <a href="{{ route('home-customer') }}">
+                    <img src="public/images/logo-footer.png" alt="">
+                </a>
                 <h2>Selamat datang di Asmat&excl;</h2>
             </div>
             <form class="container-login" action="{{ route('login-customer') }}" method="post">

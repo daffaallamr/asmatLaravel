@@ -5,23 +5,23 @@
             <div class="container">
                 <div class="left-col">
                     <label for="">Nama depan</label>
-                    <input type="text" name="nama_depan">
+                    <input type="text" name="nama_depan" value="{{ old('nama_depan') }}">
                     <label for="">Nama belakang</label>
-                    <input type="text" name="nama_belakang">
+                    <input type="text" name="nama_belakang" value="{{ old('nama_belakang') }}">
                     <label for="">Telepon</label>
-                    <input type="text" name="telepon">
+                    <input type="text" name="telepon" value="{{ old('telepon') }}">
                     <label for="">Email</label>
-                    <input type="text" name="email"> 
+                    <input type="text" name="email" value="{{ old('email') }}"> 
                     <label for="">Alamat lengkap</label>
-                    <input type="text" name="alamat_lengkap">
+                    <input type="text" name="alamat_lengkap" value="{{ old('alamat_lengkap') }}">
                 </div>
                 <div class="right-col">
                     <label for="">Provinsi</label>
                         <select name="province_id" id="province_id">
                             <option value="">--- Provinsi Tujuan ---</option>
                             @foreach ($provinsi  as $row)
-                            <option value="{{ $row['province_id'] }}">
-                                {{$row['province']}}
+                            <option value="{{ $row->id }}">
+                                {{$row->nama_province}}
                             </option>
                             @endforeach
                         </select>
@@ -40,7 +40,7 @@
                         {{--  Mengambil data nama kecamatan  --}}
                         <input type="hidden" id="nama_kecamatan" name="nama_kecamatan">
                     <label for="">Kode pos</label>
-                    <input type="text" name="kode_pos">
+                    <input readonly type="text" id="kode_pos" name="kode_pos">
                     <div class="nav-bot">
                     <div class="exit">
                         <a id="exitTambahAlamat" style="cursor: pointer">

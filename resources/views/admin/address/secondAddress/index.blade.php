@@ -113,9 +113,9 @@
                                                 <select class="custom-select" name="province_id" id="admin_main_province_id{{ $loop->iteration }}" required>
                                                     <option value="">--- Provinsi Tujuan ---</option>
                                                     @foreach ($provinsi  as $row)
-                                                    <option value="{{ $row['province_id'] }}">
-                                                        {{$row['province']}}
-                                                    </option>
+                                                        <option value="{{ $row->id }}">
+                                                            {{$row->nama_province}}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>

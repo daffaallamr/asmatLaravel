@@ -1887,7 +1887,7 @@ footer{
             }
             .cta-submit:hover{
                 color: var(--primary-color);
-                background-color: white;
+                background-color: #F7F7E8;
             }
             .exit{
                 margin-top: 10PX;
@@ -2491,7 +2491,7 @@ footer{
 .modal {
     display: block; 
     position: fixed; 
-    z-index: 1;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%; 
@@ -2520,10 +2520,9 @@ footer{
     }
   }
     .sidenav{
-        border-right: var(--primary-color) solid 2px;
         flex-basis: 33%;
         width: 400px;
-        height: 100vh;
+        min-height: 9vh;
         color: var(--primary-color);
         margin-left: 6%;
         .exit-mobile{
@@ -2560,7 +2559,8 @@ footer{
         flex-basis: 60%;
         color: var(--primary-color);
         margin: 0 auto 0 auto;
-        height: 100vh;
+        border-left: var(--primary-color) solid 2px;
+        height: auto;
         .lacak{
             text-decoration: underline;
         }
@@ -2595,6 +2595,7 @@ footer{
             justify-content: space-between;
             max-width: 80%;
             margin: auto;
+            margin-bottom: 116px;
             .alamat-ganti{
                 .card{
                     border: #ECB390 2px double;
@@ -2655,12 +2656,14 @@ footer{
                     button{
                         text-decoration: underline;
                         margin-top: 10px;
+                        background-color: #F7F7E8;
                     }
                 }
                 .cta-alamat-utama{
                     text-align: center;
                     button{
                         margin-top: 10px;
+                        background-color: #F7F7E8;
                     }
                 }
             }
@@ -2670,6 +2673,8 @@ footer{
             display: flex;
             justify-content: center;
             max-width: 95%;
+            min-height: 59vh;
+            margin-bottom: 50px;
             table{
                 border-collapse: collapse;
                 text-align: center;
@@ -2702,6 +2707,7 @@ footer{
         }
         /*Informasi Akun*/
         .informasi-akun{
+            margin-bottom: 125px;
             label{
                 font-weight: 500;
                 font-size: 22px;
@@ -2769,6 +2775,9 @@ footer{
     }
 }
 @media (max-width:800px){
+    .foot-hidden{
+        display: block;
+    }
     .border-profil{
         border: none;
     }
@@ -2781,7 +2790,8 @@ footer{
                     font-size: 22px!important;
                 }
                 .cta-oke{
-                    width: 30%;
+                    width: 40%;
+                    height: 45px;
                     font-size: 1.4em;
                 }
             }
@@ -2843,6 +2853,7 @@ footer{
             flex-basis: 85%!important;
             min-height: fit-content!important;
             height: fit-content!important;
+            border-left: none!important;
             .top{
                 max-width: 100%!important;
                 margin-top: 15%!important;
@@ -2859,6 +2870,7 @@ footer{
             }
             .kartu-alamat{
                 flex-wrap: wrap;
+                margin-bottom: 0!important;
                 .alamat-ganti{
                     flex-basis: 100%!important;
                     .card{
@@ -2948,6 +2960,7 @@ footer{
                 }
             }
             .informasi-akun{
+                margin-bottom: 0!important;
                 .container{
                     margin: 0!important;
                     flex-wrap: wrap;
@@ -3016,13 +3029,13 @@ footer{
     }
     .profil{
         flex-wrap: wrap;
-        max-height: 1000px;
         .modal-content{
             p{
-                font-size: 1em!important;
+                font-size: 13px!important;
             }
             .cta-oke{
                 width: 40%;
+                height: 30px;
                 font-size: 1em!important;
             }
         }
@@ -3600,14 +3613,15 @@ footer{
         }
     }
 }
-@media (max-width:800px) and (min-width:425px){
+@media (max-width:800px) and (min-width:426px){
     .detail-barang{
         display: flex;
         flex-wrap: wrap;
         margin-top: 175px!important;
         .showcase{
-            flex-basis: 40%!important;
-            height: 475px;
+            flex-basis: 50%!important;
+            max-height: 475px;
+            height: auto;
             margin-bottom: 50px;
             border-radius: 5px;
             img{
@@ -3615,6 +3629,8 @@ footer{
                 width: 100%;
                 margin: 0;
                 max-height: none;
+                flex-basis: 100%;
+                max-width: none;
             }
         }
         .detail{
@@ -3642,7 +3658,7 @@ footer{
                 width: 50%;
                 margin-bottom: 10%;
                 button{
-                    font-size: 1.5em!important;
+                    font-size: 3vw!important;
                     border-radius: 5px!important;
                     display: flex;
                     margin:0!important;
@@ -3665,12 +3681,13 @@ footer{
         margin-top: 100px;
         margin-bottom: 20px;
         .showcase{
-            flex-basis: 40%!important;
+            flex-basis: 50%!important;
             max-height: 250px!important;
-            margin-bottom: 0;
+            height: auto;
+            margin-bottom: 30px;
             img{
-                max-height:200px!important;
-                padding: 10% 17%;
+                max-height:240px!important;
+                height: auto;
             }
         }
         .detail{
@@ -3868,8 +3885,9 @@ footer{
             input[type=text]{
                 border: none;
                 color: var(--primary-color);
-                max-width: 50px;
+                max-width: 60px;
                 pointer-events: none;
+                text-align: center;
             }
             .table-alert{
                 border-top:rgba(236, 179, 144, 0.6) 2px solid;
@@ -3918,7 +3936,7 @@ footer{
                     font-size: 18px;
                 }
                 input[type=text]{
-                    max-width: 50px;
+                    max-width: 80px;
                     user-select: none;
                     pointer-events: none;
                 }
@@ -4147,7 +4165,8 @@ footer{
                         font-size: 3vw;
                     }
                     input[type=text]{
-                        width: 80px;
+                        width: 100px;
+                        text-align: center;
                         border: none;
                         color: var(--primary-color);
                         user-select: none;
@@ -4620,9 +4639,13 @@ footer{
         section{
             min-width: 100%;
             margin-top: 50px;
+            .alert-content{
+                font-size: 3vw!important;
+            }
             .container-metode{
                 flex-wrap: wrap;
-                margin: 20px 0;
+                margin: 20px 0 0 0;
+                flex-basis: 100%;
                 .metode{
                     flex-basis: 100%;
                     h3{
@@ -4671,7 +4694,7 @@ footer{
             }
             .nav-bot{
                 max-width: 60%!important;
-                margin: 5% 6% 7% auto;
+                margin: 5% 9% 7% auto;
                 .exit{
                     display: flex;
                     
@@ -5005,7 +5028,7 @@ footer{
             }
             .nav-bot{
                 display: flex;
-                margin: 10px 25px 30px auto!important;
+                margin: 10px 9% 30px auto!important;
                 align-items: baseline!important;
                 justify-content: flex-end;
                 max-width: 70%!important;

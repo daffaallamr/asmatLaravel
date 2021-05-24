@@ -41,18 +41,19 @@ class SuperAdminController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nama'                  => 'required|min:2|max:15',
+            'nama'                  => 'required|min:2|max:15|unique:admins,nama',
             'username'         => 'required|min:2|max:30|unique:admins,username',
             'password'              => 'required|confirmed|min:8'
         ];
  
         $messages = [
-            'nama.required'   => 'Nama depan wajib diisi',
-            'nama.min'        => 'Nama depan minimal 2 karakter',
-            'nama.max'        => 'Nama depan maksimal 15 karakter',
-            'username.required'=> 'Nama belakang wajib diisi',
-            'username.min'     => 'Nama belakang minimal 2 karakter',
-            'username.max'     => 'Nama belakang maksimal 30 karakter',
+            'nama.required'   => 'Nama wajib diisi',
+            'nama.min'        => 'Nama minimal 2 karakter',
+            'nama.max'        => 'Nama maksimal 15 karakter',
+            'nama.unique'          => 'Nama sudah terdaftar',
+            'username.required'=> 'Username wajib diisi',
+            'username.min'     => 'Username minimal 2 karakter',
+            'username.max'     => 'Username maksimal 30 karakter',
             'username.unique'          => 'Username sudah terdaftar',
             'password.required'     => 'Kata sandi wajib diisi',
             'password.min'          => 'Kata sandi  minimal 8 karakter',
