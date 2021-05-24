@@ -150,8 +150,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
 Route::get('login/admin', [AdminLoginController::class, 'showAdminLoginForm'])->name('login-admin');
 Route::post('login/admin', [AdminLoginController::class, 'adminLogin']);
 
-Route::get('register/admin', [AdminRegisterController::class, 'showAdminRegisterForm'])->name('register-admin');
-Route::post('register/admin', [AdminRegisterController::class, 'createAdmin']);
+// Route::get('register/admin', [AdminRegisterController::class, 'showAdminRegisterForm'])->name('register-admin');
+// Route::post('register/admin', [AdminRegisterController::class, 'createAdmin']);
 
 Route::get('logout/admin', [AdminLoginController::class,'logout'])->name('logout-admin');
 

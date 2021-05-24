@@ -5,8 +5,8 @@
 <div class="hero">
     <div class="container">
         <div class="header">
-            <h1>Kalimat Pembuka Website</h1>
-            <p>Sub judul untuk untuk kalimat pembuka <br> yang bisa menjelaskan dengan singkat web ini.</p>
+            <h1>Selamat Datang</h1>
+            <p>Advancing Sustainable Market (ASMAT) <br> untuk produk masyarakat adat di sekitar hutan PAPUA</p>
         </div>
         <div class="cta-belanja">
             <a href="{{ route('belanja.index') }}">Belanja Sekarang</a>

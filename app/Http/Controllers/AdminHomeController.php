@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Validator;
 class AdminHomeController extends Controller
 {
     public function index() {
-        $order = Order::latest();
         
         // pesanan perbulan
-        $order->whereMonth('created_at', Carbon::now()->month);
-        $pesananPerbulan = $order->count();
+        $perbulan = Order::whereMonth('created_at', Carbon::now()->month)->whereYear('created_at', Carbon::now()->year)->get();
+        $pesananPerbulan = $perbulan->count();
 
         // pesanan pertahun
-        $order->whereYear('created_at', Carbon::now()->year);
-        $pesananPertahun = $order->count();
+        $pertahun = Order::whereYear('created_at', Carbon::now()->year)->get();
+        $pesananPertahun = $pertahun->count();
 
         $totalPesanan = Order::all()->count();
         $jumlahCustomer = Customer::all()->count();

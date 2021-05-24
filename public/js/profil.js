@@ -54,22 +54,22 @@ if(document.getElementById('button-sunting-2')) {
 }
 
 // profil informasi akun pop up ubah password
-if(document.getElementById('ubah')) {
-    document.getElementById('ubah').addEventListener('click',function() {
-        document.querySelector('.popup-ubah').style.display = 'block';
-        document.querySelector('.popup-ubah').style.opacity = '1';
-        document.querySelector('.popup-bg').style.display = 'block';
-        document.querySelector('.popup-bg').style.opacity = '0.2'; 
-    });
+// if(document.getElementById('ubah')) {
+//     document.getElementById('ubah').addEventListener('click',function() {
+//         document.querySelector('.popup-ubah').style.display = 'block';
+//         document.querySelector('.popup-ubah').style.opacity = '1';
+//         document.querySelector('.popup-bg').style.display = 'block';
+//         document.querySelector('.popup-bg').style.opacity = '0.2'; 
+//     });
     
-    document.getElementById('exitModal').addEventListener('click',function() {
-        document.querySelector('.popup-ubah').style.display = 'none';
-        document.querySelector('.popup-ubah').style.opacity = '0';
-        document.querySelector('.popup-bg').style.display = 'none';
-        document.querySelector('.popup-bg').style.opacity = '0'; 
-        }   
-    );
-}
+//     document.getElementById('exitModal').addEventListener('click',function() {
+//         document.querySelector('.popup-ubah').style.display = 'none';
+//         document.querySelector('.popup-ubah').style.opacity = '0';
+//         document.querySelector('.popup-bg').style.display = 'none';
+//         document.querySelector('.popup-bg').style.opacity = '0'; 
+//         }   
+//     );
+// }
 
 if(document.getElementById('oke')) {
     document.getElementById('oke').addEventListener('click',function() {

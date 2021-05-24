@@ -20,9 +20,9 @@
             <input type="hidden" name="jumlah_barang_{{ $loop->iteration }}" value="0">
 
             @if ($order->orderDetails->isEmpty())
-                {{--  <div class="alert-mobile">
+                <div id="alert-mobile" style="margin: 0 auto;">
                     <p>Keranjang anda masih kosong</p>
-                </div>  --}}
+                </div> 
             @else
         
             <div class="produk-left">
@@ -57,7 +57,7 @@
         @endforeach
     
     @else
-        <div id="alert-mobile">
+        <div id="alert-mobile" style="margin: 0 auto;">
             <p>Keranjang anda masih kosong</p>
         </div> 
     @endif

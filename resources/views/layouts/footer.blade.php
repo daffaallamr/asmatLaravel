@@ -13,7 +13,7 @@
         </div>
         <div class="contact-footer">
             <ul>
-                <li>Email:<span style="margin-left: 1%;">AsmatPapua@gmail.com</span></li>
+                <li>Email:<span style="margin-left: 1%;">support@asmatpapua.com</span></li>
                 <li>Telepon:<span style="margin-left: 1%;">+62334777888</span></li>
                 <li>Instagram:<span style="margin-left: 1%;">asmatpapua</span></li>
             </ul>
