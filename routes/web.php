@@ -19,10 +19,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RajaOngkirController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\SuperAdminController;
-use App\Mail\CheckoutConfirmed;
-use App\Mail\PaymentSuccess;
-use App\Mail\PaymentSuccessMD;
-use App\Mail\PembayaranBerhasil;
 use App\Mail\PesananTelahDikirim;
 use Illuminate\Support\Facades\Route;
 

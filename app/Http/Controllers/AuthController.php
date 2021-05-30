@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Crypt;
 
 class AuthController extends Controller
 {
@@ -97,7 +98,7 @@ class AuthController extends Controller
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
             'email'                 => 'required|email|unique:customers,email',
-            'telepon'               => 'required|min:9|max:20',
+            'telepon'               => ['required', 'regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', 'min:10'],
             'password'              => 'required|confirmed|min:8'
         ];
  
@@ -111,9 +112,9 @@ class AuthController extends Controller
             'email.required'        => 'Email wajib diisi',
             'email.email'           => 'Email tidak valid',
             'email.unique'          => 'Email sudah terdaftar',
-            'telepon.required'      => 'Telepon wajib diisi',
-            'telepon.min'           => 'Telepon minimal 9 nomer',
-            'telepon.max'           => 'Telepon maksimal 20 nomer',
+            'telepon.min'           => 'Telepon minimal 10 digit',
+            'telepon.required'        => 'Telepon wajib diisi',
+            'telepon.regex'        => 'Format telepon tidak valid',
             'password.required'     => 'Kata sandi wajib diisi',
             'password.min'          => 'Kata sandi  minimal 8 karakter',
             'password.confirmed'    => 'Kata sandi tidak sama dengan konfirmasi kata sandi'
@@ -129,7 +130,7 @@ class AuthController extends Controller
         $user->nama_depan = $request->nama_depan;
         $user->nama_belakang = $request->nama_belakang;
         $user->email = strtolower($request->email);
-        $user->telepon = $request->telepon;
+        $user->telepon = Crypt::encryptString($request->telepon);
         $user->password = Hash::make($request->password);
         $user->created_at = \Carbon\Carbon::now();
         $simpan = $user->save();

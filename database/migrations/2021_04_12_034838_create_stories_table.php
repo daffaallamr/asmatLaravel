@@ -20,6 +20,7 @@ class CreateStoriesTable extends Migration
             $table->unsignedBigInteger('admin_id')->index();
 
             $table->string('judul')->unique();
+            $table->string('slug')->unique();
             $table->string('judul_paragraf_1');
             $table->text('paragraf_1');
             $table->string('judul_paragraf_2')->nullable();

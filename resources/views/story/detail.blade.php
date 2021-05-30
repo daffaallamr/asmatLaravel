@@ -5,6 +5,7 @@
     <div class="hero-origin">
         <div class="container" style="background-image: url({{ url('public/images/' . $story->gambar_1) }});">
             <div class="content">
+                <span class="spacing" style="opacity: 0; display: none;">spacing</span>
                 <h1>{{ $story->judul }}</h1>
                 <label for="">{{ date('d / m / Y', strtotime($story->created_at)) }}</label>
             </div>

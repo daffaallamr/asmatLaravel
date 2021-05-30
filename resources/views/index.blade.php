@@ -20,7 +20,7 @@
     <h1>Produk Terbaik Kami</h1>
     <div class="container">
         @foreach ($products as $product)
-        <div class="produkbox" onclick="location.href='{{ URL::to('belanja/' . $product->id) }}';">
+        <div class="produkbox" onclick="location.href='{{ route('belanja.show', ['belanja' => $product->slug]) }}';">
             <img src="{{ asset('/public/images/' . $product->gambar) }}" alt="">
             <div class="content-produkbox">
                 <h2>{{ $product->nama }}</h2>
@@ -72,7 +72,7 @@
             <p>{{ $story->judul }}</p>
             <div class="bot-card">
                 <label for="">{{ date('d / m / Y', strtotime($story->created_at)) }}</label>
-                <a href="{{ URL::to('cerita/' . $story->id) }}"class="cta-baca">
+                <a href="{{ route('cerita.show', ['ceritum' => $story->slug]) }}"class="cta-baca">
                     <span class="underline">Baca cerita </span>
                     <img src="public/images/arrow-white.svg" alt="">
                 </a>

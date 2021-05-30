@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\PaymentSuccessMD;
-use App\Mail\PembayaranBerhasil;
 use App\Mail\SelesaikanPembayaran;
 use App\Models\Address;
 use App\Models\Customer;
@@ -13,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
 
 class CustomerController extends RajaOngkirController
 {
@@ -41,19 +40,34 @@ class CustomerController extends RajaOngkirController
           } elseif (empty($notMain)) {
             $checkNotMain = false;
 
+            $teleponMain = Crypt::decryptString($isMain->telepon);
+            $alamatMain = Crypt::decryptString($isMain->alamat_lengkap);
+
             return view ('profil.alamat', [
                 'checkMain'     => $checkMain, 
                 'checkNotMain'  => $checkNotMain,
                 'isMain'        => $isMain,
+                'teleponMain'        => $teleponMain,
+                'alamatMain'        => $alamatMain,
                 'provinsi'      => $provinsi,
                 ]);
 
           } else {
+            $teleponMain = Crypt::decryptString($isMain->telepon);
+            $alamatMain = Crypt::decryptString($isMain->alamat_lengkap);
+            
+            $teleponNotMain = Crypt::decryptString($notMain->telepon);
+            $alamatNotMain = Crypt::decryptString($notMain->alamat_lengkap);
+
                 return view ('profil.alamat', [
                     'checkMain'     => $checkMain, 
                     'checkNotMain'  => $checkNotMain,
                     'isMain'        => $isMain,
+                    'teleponMain'        => $teleponMain,
+                    'alamatMain'        => $alamatMain,
                     'notMain'       => $notMain,
+                    'teleponNotMain'        => $teleponNotMain,
+                    'alamatNotMain'        => $alamatNotMain,
                     'provinsi'      => $provinsi,
                     ]);
           }
@@ -64,7 +78,7 @@ class CustomerController extends RajaOngkirController
         $rules = [
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
-            'telepon'               => 'required|min:10',
+            'telepon'               => ['required', 'regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', 'min:10'],
             'email'                 => 'required|email',
             'alamat_lengkap'        => 'required|min:5',
             'province_id'           => 'required',
@@ -87,6 +101,7 @@ class CustomerController extends RajaOngkirController
             'email.email'           => 'Email tidak valid',
             'telepon.min'           => 'Telepon minimal 10 digit',
             'telepon.required'        => 'Telepon wajib diisi',
+            'telepon.regex'        => 'Format telepon tidak valid',
             'alamat_lengkap.min'        => 'Alamat lengkap kurang terperinci',
             'alamat_lengkap.required'        => 'Alamat lengkap wajib diisi',
             'province_id.required'      => 'Pilih Provinsi tujuan',
@@ -114,8 +129,8 @@ class CustomerController extends RajaOngkirController
             $address->nama_depan = $request->nama_depan;
             $address->nama_belakang = $request->nama_belakang;
             $address->email = $request->email;
-            $address->telepon = $request->telepon;
-            $address->alamat_lengkap = $request->alamat_lengkap;
+            $address->telepon = Crypt::encryptString($request->telepon);
+            $address->alamat_lengkap = Crypt::encryptString($request->alamat_lengkap);
             $address->provinsi_id = $request->province_id;
             $address->provinsi = $request->nama_provinsi;
             $address->kota_id = $request->kota_id;
@@ -130,8 +145,8 @@ class CustomerController extends RajaOngkirController
             $address->nama_depan = $request->nama_depan;
             $address->nama_belakang = $request->nama_belakang;
             $address->email = $request->email;
-            $address->telepon = $request->telepon;
-            $address->alamat_lengkap = $request->alamat_lengkap;
+            $address->telepon = Crypt::encryptString($request->telepon);
+            $address->alamat_lengkap = Crypt::encryptString($request->alamat_lengkap);
             $address->provinsi_id = $request->province_id;
             $address->provinsi = $request->nama_provinsi;
             $address->kota_id = $request->kota_id;
@@ -151,7 +166,7 @@ class CustomerController extends RajaOngkirController
         $rules = [
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
-            'telepon'               => 'required|min:10',
+            'telepon'               => ['required', 'regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', 'min:10'],
             'email'                 => 'required|email',
             'alamat_lengkap'        => 'required|min:5',
             'province_id'           => 'required',
@@ -174,6 +189,7 @@ class CustomerController extends RajaOngkirController
             'email.email'           => 'Email tidak valid',
             'telepon.min'           => 'Telepon minimal 10 digit',
             'telepon.required'        => 'Telepon wajib diisi',
+            'telepon.regex'        => 'Format telepon tidak valid',
             'alamat_lengkap.min'        => 'Alamat lengkap kurang terperinci',
             'alamat_lengkap.required'        => 'Alamat lengkap wajib diisi',
             'province_id.required'      => 'Pilih Provinsi tujuan',
@@ -197,8 +213,8 @@ class CustomerController extends RajaOngkirController
         $address->nama_depan = $request->nama_depan;
         $address->nama_belakang = $request->nama_belakang;
         $address->email = $request->email;
-        $address->telepon = $request->telepon;
-        $address->alamat_lengkap = $request->alamat_lengkap;
+        $address->telepon = Crypt::encryptString($request->telepon);
+        $address->alamat_lengkap = Crypt::encryptString($request->alamat_lengkap);
         $address->provinsi_id = $request->province_id;
         $address->provinsi = $request->nama_provinsi;
         $address->kota_id = $request->kota_id;
@@ -269,8 +285,9 @@ class CustomerController extends RajaOngkirController
 
     public function informasiAkun() {
         $customer = Customer::where('id', Auth('customer')->id())->first();
+        $customerTelepon = Crypt::decryptString($customer->telepon);
 
-        return view ('profil.informasiAkun', ['customer' => $customer]);
+        return view ('profil.informasiAkun', ['customer' => $customer, 'customerTelepon' => $customerTelepon]);
     }
 
     public function ubahPassword(Request $request) 

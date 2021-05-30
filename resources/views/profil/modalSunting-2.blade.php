@@ -11,11 +11,11 @@
                 <label for="">Nama belakang</label>
                 <input type="text" name="nama_belakang" value="{{ $notMain->nama_belakang }}">
                 <label for="">Telepon</label>
-                <input type="text" name="telepon" value="{{ $notMain->telepon }}">
+                <input type="text" name="telepon" value="{{ $teleponNotMain }}">
                 <label for="">Email</label>
                 <input type="text" name="email" value="{{ $notMain->email }}"> 
                 <label for="">Alamat lengkap</label>
-                <input type="text" name="alamat_lengkap" value="{{ $notMain->alamat_lengkap }}">
+                <input type="text" name="alamat_lengkap" value="{{ $alamatNotMain }}">
             </div>
             <div class="right-col">
                 <label for="">Provinsi</label>

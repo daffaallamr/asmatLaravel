@@ -92,6 +92,10 @@
                                     <input type="hidden" id="snap_token" value="{{ $order->snap_token }}">
                                     <button class="lacak" id="pay-button">Bayar Sekarang</button>
                                 </p>
+                            @elseif ($order->status_payment == 'failed')
+                                <p>Pembayaran gagal</p>
+                            @elseif ($order->status_payment == 'expired')
+                                <p>Pembayaran kadaluarsa</p>
                             @elseif ($order->status_payment == 'success')
                                 @if ($order->is_dikirim == null)
                                     <p>Dalam Proses</p>

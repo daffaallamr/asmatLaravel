@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\CheckoutConfirmed;
-use App\Mail\PaymentSuccess;
 use App\Mail\PembayaranBerhasil;
 use App\Mail\SelesaikanPembayaran;
 use App\Models\Address;
@@ -13,6 +11,7 @@ use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Crypt;
 
 class CheckoutController extends RajaOngkirController
 {
@@ -168,7 +167,7 @@ class CheckoutController extends RajaOngkirController
         $rules = [
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
-            'telepon'               => 'required|min:10',
+            'telepon'               => ['required', 'regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', 'min:10'],
             'email'                 => 'required|email',
             'alamat_lengkap'        => 'required|min:5',
             'province_id'           => 'required',
@@ -191,6 +190,7 @@ class CheckoutController extends RajaOngkirController
             'email.email'           => 'Email tidak valid',
             'telepon.min'           => 'Telepon minimal 10 digit',
             'telepon.required'        => 'Telepon wajib diisi',
+            'telepon.regex'        => 'Format telepon tidak valid',
             'alamat_lengkap.min'        => 'Alamat lengkap kurang terperinci',
             'alamat_lengkap.required'        => 'Alamat lengkap wajib diisi',
             'province_id.required'      => 'Pilih Provinsi tujuan',
@@ -215,8 +215,8 @@ class CheckoutController extends RajaOngkirController
         $address->nama_depan = $request->nama_depan;
         $address->nama_belakang = $request->nama_belakang;
         $address->email = $request->email;
-        $address->telepon = $request->telepon;
-        $address->alamat_lengkap = $request->alamat_lengkap;
+        $address->telepon = Crypt::encryptString($request->telepon);
+        $address->alamat_lengkap = Crypt::encryptString($request->alamat_lengkap);
         $address->provinsi_id = $request->province_id;
         $address->provinsi = $request->nama_provinsi;
         $address->kota_id = $request->kota_id;

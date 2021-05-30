@@ -1,9 +1,9 @@
 <div class="alamat-ganti">
     <div class="card">
         <h2>{{ $isMain->nama_depan . ' ' . $isMain->nama_belakang}}</h2>
-        <label for="">{{ $isMain->alamat_lengkap }}</label>  
+        <label for="">{{ $alamatMain }}</label>  
         <label for="">{{ $isMain->email }}</label> 
-        <label for="">{{ $isMain->telepon }}</label> 
+        <label for="">{{ $teleponMain }}</label> 
         <label for="">{{ $isMain->provinsi }}</label> 
         <label for="">{{ $isMain->kota }}</label> 
         <label for="">Kecamatan {{ $isMain->kecamatan }}</label> 

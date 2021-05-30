@@ -27,7 +27,7 @@ class StoryController extends Controller
     public function show($id)
     {
         return view('story.detail', [
-            'story' => Story::findOrFail($id)
+            'story' => Story::where('slug', $id)->first()
         ]);
     }
 }

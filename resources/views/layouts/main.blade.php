@@ -10,6 +10,8 @@
 <body>
 
     @yield('content')
+    <button class="scrollToTopBtn" style="cursor: pointer"><img src="{{ asset("public/images/arrow-white copy.svg") }}" alt="" id="arrow-top"></button>
 
+    <script type="text/javascript" src="{{ asset('public/js/layoutMain.js') }}"></script>
 </body>
 </html>

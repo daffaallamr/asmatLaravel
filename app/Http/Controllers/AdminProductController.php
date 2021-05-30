@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AdminProductController extends Controller
 {
@@ -76,6 +76,7 @@ class AdminProductController extends Controller
 
         $product = new Product;
         $product->nama = $request->nama;
+        $product->slug = Str::slug($request->nama, '-');
         $product->harga = $request->harga;
         $product->berat = $request->berat;
         $product->deskripsi = $request->deskripsi;
@@ -139,6 +140,7 @@ class AdminProductController extends Controller
         if($request->gambar == null) {
             $product = Product::findOrFail($id);
             $product->nama = $request->nama;
+            $product->slug = Str::slug($request->nama, '-');
             $product->harga = $request->harga;
             $product->berat = $request->berat;
             $product->deskripsi = $request->deskripsi;
@@ -150,6 +152,7 @@ class AdminProductController extends Controller
 
             $product = Product::findOrFail($id);
             $product->nama = $request->nama;
+            $product->slug = Str::slug($request->nama, '-');
             $product->harga = $request->harga;
             $product->berat = $request->berat;
             $product->deskripsi = $request->deskripsi;

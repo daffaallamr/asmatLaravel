@@ -1,11 +1,11 @@
 <nav>
-    <div class="navbar">
+    <div class="navbar" id="navbar-dekstop">
         <div class="container">
                 <ul class="primary-nav">
                     <li class="tentang"><a href="{{ route('tentang-kami') }}">Tentang Kami</a></li>
                     <li class="cerita"><a href="{{ route('cerita.index') }}">Cerita</a></li>
                 </ul>
-                <a href="{{ route('home-customer') }}" class="logo"><img src="{{ asset('/public/images/logo.png') }}" alt="Logo"></a>
+                <a href="{{ route('home-customer') }}" class="logo" id="navbar-dekstop-2"><img src="{{ asset('/public/images/logo.png') }}" alt="Logo"></a>
                 <ul class="secondary-nav">
                     @if (Auth('customer')->check())
                         <li class="profile"><a href="{{ route('profilAlamat') }}">Profil</a></li>

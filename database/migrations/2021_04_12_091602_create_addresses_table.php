@@ -22,7 +22,7 @@ class CreateAddressesTable extends Migration
             $table->string('nama_depan');
             $table->string('nama_belakang');
             $table->string('email');
-            $table->string('telepon', 20);
+            $table->string('telepon');
             $table->text('alamat_lengkap');
             $table->integer('provinsi_id');
             $table->string('provinsi');

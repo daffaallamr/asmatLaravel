@@ -59,7 +59,7 @@
                         <input type="hidden" id="nama_kecamatan" name="nama_kecamatan">
                         
                     <label for="">Kode pos</label>
-                    <input readonly type="text" id="kode_pos" name="kode_pos">
+                    <input type="text" id="kode_pos" name="kode_pos">
                     <p style="color: rgba(0, 0, 0, 0.7);">
                         @if ($errors->any())
                                 {{ $errors->first() }}

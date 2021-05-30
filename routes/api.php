@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('midtrans/notification', [CheckoutController::class, 'notification']);
 
 // Raja Ongkir API
+
 // Route::get('asmatLaravel/province',[RajaOngkirController::class, 'get_province']);
 Route::get('asmatLaravel/nama-provinsi/{id}',[RajaOngkirController::class, 'get_province_name']);
 Route::get('asmatLaravel/nama-kota/{id_kota}',[RajaOngkirController::class, 'get_city_name']);

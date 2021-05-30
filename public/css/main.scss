@@ -54,6 +54,36 @@ h1{
 h2{
     font-weight: 500!important;
 }
+#navbar-dekstop-2{
+    transition: 0.3s;
+}
+.scrollToTopBtn{
+    position: fixed;
+    bottom: 30px;
+    color: white;
+    background-color: var(--primary-color);
+    border: 1px solid white;
+    right: 30px;
+    width: 60px;
+    border-radius: 7%;
+    height: 50px;
+    font-size: 1em;
+    z-index: 100;
+    /* hide with opacity */
+    opacity: 0;
+    /* also add a translate effect */
+    transform: translateY(100px);
+    /* and a transition */
+    transition: all .5s ease;
+    #arrow-top{
+        transform: rotate(270deg);
+    }
+
+}
+.showBtn {
+    opacity: 1;
+    transform: translateY(0)
+  }
 /*Navigasi*/
 #nav-bg{
     position: fixed;
@@ -69,6 +99,7 @@ h2{
     z-index: 100;
     user-select: none;
     text-align: center;
+    transition: 0.3s;
     .container-mobile{
         display: none;
     }
@@ -765,9 +796,9 @@ ul {
             .right-col{
                 flex-basis: 100%;
                 margin: 0;
+                width: 100%;
                 max-width: 100%;
                 padding-bottom: 20px;
-                display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
                 height: fit-content;
@@ -777,6 +808,7 @@ ul {
                 }
                 p{
                     max-width: 70%;
+                    margin: 20px auto 20px 17%;
                     text-align: center;
                     font-size: 3vw;
                     line-height: 3vw;
@@ -872,7 +904,7 @@ ul {
                 font-size: 24px;
                 max-width: 60%;
                 margin-left: 2.4vw;
-                height: 40px;
+                height: 60px;
                 margin-bottom: 60px;
             }
             .bot-card{
@@ -980,7 +1012,6 @@ ul {
                 }
                     label{
                         font-size: 2vw;
-                        margin-left: 3%;
                     }
                      a{  color: white;
                         font-size: 2vw;
@@ -2345,6 +2376,7 @@ footer{
     margin: auto;
     color: var(--primary-color);
     margin-bottom: 100px;
+    
     h1{
         font-weight: 500;
         margin-top: 100px;
@@ -2359,6 +2391,7 @@ footer{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    
     .left-col{
         flex-basis: 30%;
         display: flex;
@@ -2388,12 +2421,14 @@ footer{
         margin-top: 15%!important;
         height: auto;
         .container{
-            height: 50vh;
+            height: auto;
+            min-height: 80vw!important;
             .content{
-                margin-bottom: -50vh;
-                top: 400px;
-                position: relative;
-                height: auto;
+                margin-bottom: 30px;
+                .spacing{
+                    display: block!important;
+                    margin-bottom: 45%;
+                }
             }
             h1{
                 font-size: 5.5vw;
@@ -2404,13 +2439,12 @@ footer{
             }
             label{
                 font-size: 3.5vw;
-                top: 480px;
                 position: static;
             }
         }
     }
     .paragraf-origin-a{
-        text-align: center;
+        text-align: left;
         h1{
             font-size: 4vw!important;
             margin-top: 30px!important;
@@ -2418,7 +2452,6 @@ footer{
         }
         p{
             font-size: 3vw!important;
-            max-width: 85%;
             margin: 2vw auto 3vw auto ;
         }
     }
@@ -2426,7 +2459,7 @@ footer{
         flex-wrap: wrap;
         justify-content: space-between;
         display: flex;
-        text-align: center;
+        text-align: left;
         .left-col{
             flex-basis: 80%;
             min-width: 60%;
@@ -2449,7 +2482,6 @@ footer{
                 }
                 p{
                     font-size: 3vw!important;
-                    max-width: 85%;
                     margin: 5vw auto auto;
                 }
         }
@@ -2459,7 +2491,10 @@ footer{
     .hero-origin{
         .container{
             .content{
-                top: 60vw;
+                top: 70%;
+                .spacing{
+                    margin-bottom: 40%!important;
+                }
                 label{
                 }
                 h1{

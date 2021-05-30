@@ -30,7 +30,7 @@ class ProductController extends Controller
     public function show($id)
     {
         return view('product.detail', [
-            'product' => Product::findOrFail($id)
+            'product' => Product::where('slug', $id)->first()
         ]);
     }
 }

@@ -20,7 +20,7 @@ class CreateCustomersTable extends Migration
             $table->string('nama_depan');
             $table->string('nama_belakang');
             $table->string('email')->unique();
-            $table->string('telepon', 20);
+            $table->string('telepon');
             $table->string('password');
         });
     }

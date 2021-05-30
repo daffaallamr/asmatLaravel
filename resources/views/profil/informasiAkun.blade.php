@@ -40,7 +40,7 @@
                             </div>
                             <div class="telepon">
                                 <label for="">Telepon</label>
-                                <p>{{ $customer->telepon }}</p>                                  
+                                <p>{{ $customerTelepon }}</p>                                  
                             </div>
                         </div>
                         <div class="password">

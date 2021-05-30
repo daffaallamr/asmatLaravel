@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
 
             $table->string('nama')->unique();
+            $table->string('slug')->unique();
             $table->string('berat')->default(500);
             $table->integer('harga');
             $table->text('deskripsi');

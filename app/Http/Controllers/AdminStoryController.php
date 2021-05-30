@@ -6,6 +6,7 @@ use App\Models\Story;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AdminStoryController extends Controller
 {
@@ -70,6 +71,7 @@ class AdminStoryController extends Controller
             $story->admin_id = $request->admin_id;
 
             $story->judul = $request->judul;
+            $story->slug = Str::slug($request->judul, '-');
             $story->judul_paragraf_1 = $request->judul_paragraf_1;
             $story->paragraf_1 = $request->paragraf_1;
 
@@ -92,6 +94,7 @@ class AdminStoryController extends Controller
             $story->admin_id = $request->admin_id;
 
             $story->judul = $request->judul;
+            $story->slug = Str::slug($request->judul, '-');
             $story->judul_paragraf_1 = $request->judul_paragraf_1;
             $story->paragraf_1 = $request->paragraf_1;
 
@@ -157,6 +160,7 @@ class AdminStoryController extends Controller
             $story->admin_id = $request->admin_id;
 
             $story->judul = $request->judul;
+            $story->slug = Str::slug($request->judul, '-');
             $story->judul_paragraf_1 = $request->judul_paragraf_1;
             $story->paragraf_1 = $request->paragraf_1;
 
@@ -176,6 +180,7 @@ class AdminStoryController extends Controller
             $story->admin_id = $request->admin_id;
 
             $story->judul = $request->judul;
+            $story->slug = Str::slug($request->judul, '-');
             $story->judul_paragraf_1 = $request->judul_paragraf_1;
             $story->paragraf_1 = $request->paragraf_1;
 
@@ -200,6 +205,7 @@ class AdminStoryController extends Controller
             $story->admin_id = $request->admin_id;
 
             $story->judul = $request->judul;
+            $story->slug = Str::slug($request->judul, '-');
             $story->judul_paragraf_1 = $request->judul_paragraf_1;
             $story->paragraf_1 = $request->paragraf_1;
 

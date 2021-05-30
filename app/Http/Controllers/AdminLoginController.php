@@ -83,7 +83,7 @@ class AdminLoginController extends Controller
         } else { // false
  
             //Login Fail
-            return redirect()->back()->withErrors('Email atau kata sandi anda salah')->withInput();
+            return redirect()->back()->withErrors('Username atau kata sandi anda salah')->withInput();
         }
     }
 

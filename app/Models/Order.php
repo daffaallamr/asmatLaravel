@@ -36,8 +36,6 @@ class Order extends Model
         $this->attributes['is_checkout'] = true;
         $this->attributes['tanggal_pembayaran'] = Carbon::now();
         $this->save();
-
-        // Mail::to($this->customer->email)->send(new PaymentSuccess());
     }
     
     public function setStatusFailed() {
