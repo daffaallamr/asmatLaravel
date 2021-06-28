@@ -22,4 +22,10 @@ class HomeController extends Controller
             'stories' => $storiesCache,
         ]);
     }
+
+    public function FAQ() {
+        return view('info.faq', [
+            'products' =>  Product::all()
+        ]);
+    }
 }

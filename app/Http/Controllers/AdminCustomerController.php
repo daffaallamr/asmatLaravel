@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -44,7 +45,7 @@ class AdminCustomerController extends Controller
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
             'email'                 => 'required|email|unique:customers,email',
-            'telepon'               => 'required|min:9|max:20',
+            'telepon'               => ['required', 'regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', 'min:10'],
             'password'              => 'required|confirmed|min:8'
         ];
  
@@ -76,7 +77,7 @@ class AdminCustomerController extends Controller
         $user->nama_depan = $request->nama_depan;
         $user->nama_belakang = $request->nama_belakang;
         $user->email = strtolower($request->email);
-        $user->telepon = $request->telepon;
+        $user->telepon = Crypt::encryptString($request->telepon);
         $user->password = Hash::make($request->password);
         $user->save();
 
@@ -109,7 +110,7 @@ class AdminCustomerController extends Controller
             'nama_depan'            => 'required|min:2|max:15',
             'nama_belakang'         => 'required|min:2|max:30',
             'email'                 => 'required|email',
-            'telepon'               => 'required|min:9|max:20',
+            'telepon'               => ['required', 'regex:/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/', 'min:10'],
             'password'              => 'confirmed'
         ];
  
@@ -140,7 +141,7 @@ class AdminCustomerController extends Controller
             $user->nama_depan = $request->nama_depan;
             $user->nama_belakang = $request->nama_belakang;
             $user->email = strtolower($request->email);
-            $user->telepon = $request->telepon;
+            $user->telepon = Crypt::encryptString($request->telepon);
             $user->save();
 
         } else {
@@ -149,7 +150,7 @@ class AdminCustomerController extends Controller
             $user->nama_depan = $request->nama_depan;
             $user->nama_belakang = $request->nama_belakang;
             $user->email = strtolower($request->email);
-            $user->telepon = $request->telepon;
+            $user->telepon = Crypt::encryptString($request->telepon);
             $user->password = Hash::make($request->password);
             $user->save();
 

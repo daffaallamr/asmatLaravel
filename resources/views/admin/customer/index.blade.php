@@ -49,7 +49,7 @@
                                 <td>{{ $customer->nama_depan}}</td>
                                 <td>{{ $customer->nama_belakang}}</td>
                                 <td>{{ $customer->email}}</td>
-                                <td>{{ $customer->telepon}}</td>
+                                <td>{{ \Crypt::decryptString($customer->telepon) }}</td>
                                 <td>
                                     <span>
                                         <a class="btn btn-success btn-circle" href="{{ URL::to('adminCustomer/' . $customer->id . '/edit') }}">

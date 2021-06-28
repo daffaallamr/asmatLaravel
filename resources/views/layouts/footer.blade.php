@@ -21,5 +21,5 @@
     </div>
 </footer>
 <div class="copyright">
-    <p>copyright &copy; Design by Weirdone | All Right Reserved</p>
+    <p></p>
 </div>

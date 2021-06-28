@@ -738,8 +738,11 @@ ul {
             margin-right: -2%;
             img{
                 height: auto;
-                max-width: 14vw;
+                max-height: 600px;
+                width: 80%;
                 margin-top: 50px;
+                margin-right: auto;
+                align-self: center;
             }
         }
         .right-col{
@@ -756,7 +759,7 @@ ul {
                 margin-bottom: 30px;
                 font-weight: 200;
                 line-height: 1.5vw;
-                max-width: 75%;
+                max-width: 90%;
             }
             h1{
                 max-width: 500px;
@@ -764,6 +767,24 @@ ul {
             h1{
                 margin-bottom: 70px;
                 font-weight: 500;
+            }
+            ol.produk {
+                counter-reset: alpha
+            }
+            ol.produk > li:before {
+                counter-increment: alpha;
+                content:"(" counter(alpha, lower-alpha)") "
+            }
+            ol li {
+                list-style: none;
+                position: relative;
+            }
+            li::before{
+                position: absolute;
+                margin-left: -5%;
+            }
+            li{
+                margin-bottom: 20px;
             }
         }
     }
@@ -783,8 +804,13 @@ ul {
                 padding-top: 10vw;
                 img{
                     margin-top: 10vw;
-                    height: 100%;
+                    max-height: 500px;
+                    height: auto;
+                    width: 40%;
+                    margin-left: auto;
+                    margin-right: auto;
                     z-index: 100;
+                    margin-left: 23%;
                 }
             }
             .left-col::before{
@@ -832,7 +858,7 @@ ul {
                 padding-top: 10vw;
                 img{
                     margin-top: 10vw;
-                    height: 100%;
+                    max-height: 250px;
                     z-index: 100;
                 }
             }
@@ -5213,24 +5239,95 @@ footer{
             width: 90%!important;
             margin: auto;
             h2{
-                font-size: 30px!important;
+                font-size: 6vw!important;
+                margin-top: 24vw!important  ;
             }
             .accordion{
                 .contentBx{
+                    label{
+                        font-size: 34px!important;
+                    }
                     .content{
                         max-width: 80%!important;
                         margin: auto!important;
+                        p{
+                            font-size: 3.5vw;
+                        }
+                        li{
+                            font-size: 1.6em;
+                        }
+                        .container{
+                            .produkbox{
+                                flex-basis: 100%!important;
+                                margin-bottom: 20px;
+                                img{
+                                    max-width: 400px!important;
+                                    width: 100%;
+                                    height: auto;
+                                    max-height: 500px!important;
+                                }
+                                .content-produkbox{
+                                    margin-top: -65%!important;
+                                    h2{
+                                        font-size: 4.5vw!important;
+                                    }
+                                }
+                            }
+                            .produkbox:last-child{
+                                padding-bottom: 70px!important;
+                            }
+                        }
                     }
+                }
+                .contentBx.active:last-child .content{
+                    max-height: 3500px!important;
                 }
                 .contentBx.active{
                     .content{
-                        height: 200px;
+                        max-height: 500px!important;
                     }
                 }
             }
         }
     }
 }
+@media (max-width:425px){
+    .faq{
+        .container{
+            font-size: 1em!important;
+            margin-top: 20px!important;
+            .accordion{
+                .contentBx{
+                    label{
+                        font-size: 22px!important;
+                    }
+                    label::before{
+                        font-size: 44px!important;
+                    }
+                    p{
+                        font-size: 16px!important;
+                    }
+                    li{
+                        font-size: 16px!important;
+                    }
+                    .content{
+                        margin-left: 0!important;
+                        padding-left: 30px!important;
+                        .container{
+                            .produkbox{
+                                margin-top: 20px!important;
+                                .content-produkbox{
+                                    margin-top: -70%!important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 .faq{
     .container{
         width: 60%;
@@ -5241,9 +5338,13 @@ footer{
             text-align: center;
             font-size: 38px;
         }
+        .contentBx{
+            margin-bottom: -20px;
+        }
         .accordion .contentBx{
             position: relative;
-            margin: 10px 20px;
+            margin: 0px 20px 30px 20px;
+            height: fit-content;
             label{
                 font-weight: 400;
                 font-size: 24px;
@@ -5265,25 +5366,72 @@ footer{
             }
             .content{
                 position: relative;
-                padding: 5px;
+                padding: 5px 5px 5px 20px;
                 max-width: 67%;
                 font-size: 18px;
                 margin-left: 30px;
-                margin-bottom: 40px;
-                height: 0;
+                max-height: 0px;
                 overflow: hidden;
                 transition: 0.5s;
+                .container{
+                    width: 100%;
+                    margin-top: 20px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    .produkbox{
+                        flex-basis: 40%;
+                        text-align: center;
+                        margin-top: 80px;
+                        img{
+                            max-height: 400px;
+                            height: auto;
+                            max-width: 310px;
+                            width: 100%;
+                        }
+                        .content-produkbox{
+                            margin-top: -28%;
+                            color: white;
+                            h2{
+                                margin-bottom: 0;
+                                font-size: 2vw;
+                            }
+                            p{
+                                margin-top: 0;
+                            }
+                        }
+                    }
+                    .produkbox:last-child{
+                        padding-bottom: 25px;
+                        min-height: 400px;
+                        margin-top: 80px;
+                    }
+                }
+                p{
+                    margin-bottom: 0;
+                }
+                li{
+                    list-style-type: disc;
+                    margin-top: 10px;
+                }
             }
         }
         .accordion .contentBx.active{
             .content{
-                max-height: 300px!important;
-                height: 100px;
-                padding: 5px;
+                height: fit-content!important;
+                max-height: 200px;
+                transition: 0.5s;
             }
+            
             label::before{
                 content: '-';
             }
+        }
+        .accordion .contentBx.active:last-child .content{
+            max-height: max-content;
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
         }
     }
 }

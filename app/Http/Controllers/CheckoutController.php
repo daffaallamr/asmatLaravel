@@ -287,7 +287,7 @@ class CheckoutController extends RajaOngkirController
                 'first_name'    => $customer->nama_depan,
                 'last_name'     => $customer->nama_belakang,
                 'email'         => $customer->email,
-                'phone'         => $customer->telepon,
+                'phone'         => Crypt::decryptString($customer->telepon),
             ],
         ];
 

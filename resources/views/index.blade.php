@@ -36,29 +36,13 @@
 <div class="about">
     <div class="container">    
         <div class="left-col">
-            <img src="public/images/ilustrasi.svg" alt="">
+            <img src="public/images/sirup a.png" alt="">
         </div>
         <div class="right-col">
             <h1>Apa itu Asmat?</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Morbi porta magna vel varius auctor. Vivamus non quam
-                euismod, fringilla lacus eget, accumsan ligula. Class aptent
-                taciti sociosqu ad litora torquent. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Morbi porta
+            <p>ASMAT adalah sebuah Marketplace atau platform perantara yang menghubungkan penjual dan pembeli yang dilakukan secara online (e-Commerce), ASMAT memiliki singkatan Advancing Sustainable Market atau memajukan pasar yang berkelanjutan.  Dibentuk pada tahun 2021 dengan inisiasi yang dilakukan oleh Program Pelestarian Sumber Daya Alam dan Peningkatan Kehidupan Masyarakat Adat melalui Pertanian Berkelanjutan di Tanah Papua atau yang disingkat PAPeDA Papua.  
             </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Morbi porta magna vel varius auctor. Vivamus non quam
-                euismod, fringilla lacus eget, accumsan ligula. Class aptent
-                taciti sociosqu ad litora torquent. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Morbi porta
-                
-            </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Morbi porta magna vel varius auctor. Vivamus non quam
-                euismod, fringilla lacus eget, accumsan ligula. Class aptent
-                taciti sociosqu ad litora torquent. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Morbi porta Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit.
+            <p>Sejak 2018 dengan dukungan David and Lucile Packard Foundation, The Asia Foundation bersama Pt PPMA, KIPRa, Perkumpulan Mnuwar Papua, GEMAPALA & PUPUK melakukan pemberdayaan masyarakat adat di Jayapura, Keerom, Manokwari Selatan dan Fakfak.  Berbagai macam potensi komoditas dipilih dan dibudidayakan untuk dapat diolah menjadi produk konsumsi yang layak jual secara berkesinambungan. Website e-Commerce ini digunakan untuk memperkenalkan produk-produk tersebut yang khas akan budaya masyarakat adat dan semangatnya dalam melestarikan hutan Papua.
             </p>
         </div>
     </div>
@@ -88,18 +72,9 @@
     <div class="container">
         <div class="left-col">
             <h1>Bagaimana Asmat membantu membangun rumah kita?</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Morbi porta magna vel varius auctor. Vivamus non quam
-                euismod, fringilla lacus eget, accumsan ligula. Class aptent
-                taciti sociosqu ad litora torquent. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Morbi porta
-                </p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Morbi porta magna vel varius auctor. Vivamus non quam
-                euismod, fringilla lacus eget, accumsan ligula. Class aptent
-                taciti sociosqu ad litora torquent. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Morbi porta
-                </p>
+            <p>ASMAT fokus pada pemasaran hasil produk yang dihasilkan oleh masyarakat adat dan yang tinggal di sekitar hutan Papua yang tersebar di 2 kabupaten di Provinsi Papua yakni Jayapura dan Keerom dan 2 kabupaten lainnya di Provinsi Papua Barat yakni Manokwari Selatan dan Fakfak. 
+            </p>
+            <p>Mereka telah didampingi oleh sejumlah masyarakat sipil yakni: Pt. PPMA, KIPRA, Mnukwar, GEMAPALA dan PUPUK.</p>
             <div class="cta-insta">
                 <a href="http://instagram.com">Ikuti Instagram Kami</a>
             </div>

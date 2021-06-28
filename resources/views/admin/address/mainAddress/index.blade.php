@@ -47,8 +47,8 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $address->customer->nama_depan . ' ' . $address->customer->nama_belakang }}</td>
                                 <td>{{ $address->email }}</td>
-                                <td>{{ $address->telepon }}</td>
-                                <td>{{ $address->alamat_lengkap }}</td>
+                                <td>{{ \Crypt::decryptString($address->telepon) }}</td>
+                                <td>{{ \Crypt::decryptString($address->alamat_lengkap) }}</td>
                                 <td>
                                     <span>
                                         <a class="btn btn-success btn-circle" data-toggle="modal" data-target="#modalDetail{{ $address->id }}">
@@ -95,11 +95,11 @@
                                             </div>
                                             <div class="form-group">
                                               <label for="telepon">Telepon</label>
-                                              <input type="number" class="form-control" name="telepon" value="{{ $address->telepon }}">
+                                              <input type="number" class="form-control" name="telepon" value="{{ \Crypt::decryptString($address->telepon) }}">
                                             </div>
                                             <div class="form-group">
                                               <label for="alamat_lengkap">Alamat Lengkap</label>
-                                              <textarea class="form-control" name="alamat_lengkap" rows="3">{{ $address->alamat_lengkap }}</textarea>
+                                              <textarea class="form-control" name="alamat_lengkap" rows="3">{{ \Crypt::decryptString($address->alamat_lengkap) }}</textarea>
                                             </div>
 
                                             {{-- Default ID Provinsi dll --}}

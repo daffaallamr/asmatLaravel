@@ -125,11 +125,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="telepon">Telepon</label>
-                                                <input readonly type="number" class="form-control" name="telepon" value="{{ $order->customer->addresses[0]->telepon }}">
+                                                <input readonly type="number" class="form-control" id="telepon" name="telepon" value="{{ \Crypt::decryptString($order->customer->addresses[0]->telepon) }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="alamat_lengkap">Alamat Lengkap</label>
-                                                <textarea readonly class="form-control" name="alamat_lengkap" rows="3">{{ $order->customer->addresses[0]->alamat_lengkap }}</textarea>
+                                                <textarea readonly class="form-control" id="alamat_lengkap" name="alamat_lengkap" rows="3">{{ \Crypt::decryptString($order->customer->addresses[0]->alamat_lengkap) }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="provinsi_id">Provinsi</label>
@@ -158,11 +158,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="telepon">Telepon</label>
-                                                <input readonly type="number" class="form-control" name="telepon" value="{{ $order->customer->addresses[1]->telepon }}">
+                                                <input readonly type="number" class="form-control" id="telepon" name="telepon" value="{{ \Crypt::decryptString($order->customer->addresses[1]->telepon) }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="alamat_lengkap">Alamat Lengkap</label>
-                                                <textarea readonly class="form-control" name="alamat_lengkap" rows="3">{{ $order->customer->addresses[1]->alamat_lengkap }}</textarea>
+                                                <textarea readonly class="form-control" id="alamat_lengkap" name="alamat_lengkap" rows="3">{{ \Crypt::decryptString($order->customer->addresses[1]->alamat_lengkap) }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="provinsi_id">Provinsi</label>

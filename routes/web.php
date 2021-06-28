@@ -39,6 +39,9 @@ use Illuminate\Support\Facades\Route;
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home-customer');
 
+// FAQ
+Route::get('FAQ', [HomeController::class, 'FAQ'])->name('FAQ');
+
 // Web publik Route Customer middleware
 Route::group(['middleware' => 'auth:customer'], function () {
 
@@ -91,11 +94,6 @@ Route::get('tentang-kami', function() {
 Route::get('detail-pengiriman', function() {
     return view('info.detailPengiriman');
 })->name('detail-pengiriman');
-
-// FAQ
-Route::get('FAQ', function() {
-    return view('info.faq');
-})->name('FAQ');
 
 // Cerita Controller
 Route::resource('cerita', StoryController::class)->only(['index', 'show']);

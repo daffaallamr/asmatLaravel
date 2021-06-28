@@ -33,7 +33,7 @@
                   </div>
                   <div class="form-group">
                     <label for="telepon">Telepon</label>
-                    <input type="number" class="form-control" id="telepon" name="telepon" value="{{ $customer->telepon }}">
+                    <input type="number" class="form-control" id="telepon" name="telepon" value="{{ \Crypt::decryptString($customer->telepon) }}">
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>

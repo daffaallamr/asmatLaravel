@@ -837,8 +837,13 @@ ul {
 
 .about .container .left-col img {
   height: auto;
-  max-width: 14vw;
+  max-height: 600px;
+  width: 80%;
   margin-top: 50px;
+  margin-right: auto;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .about .container .right-col {
@@ -863,7 +868,7 @@ ul {
   margin-bottom: 30px;
   font-weight: 200;
   line-height: 1.5vw;
-  max-width: 75%;
+  max-width: 90%;
 }
 
 .about .container .right-col h1 {
@@ -873,6 +878,29 @@ ul {
 .about .container .right-col h1 {
   margin-bottom: 70px;
   font-weight: 500;
+}
+
+.about .container .right-col ol.produk {
+  counter-reset: alpha;
+}
+
+.about .container .right-col ol.produk > li:before {
+  counter-increment: alpha;
+  content: "(" counter(alpha, lower-alpha) ") ";
+}
+
+.about .container .right-col ol li {
+  list-style: none;
+  position: relative;
+}
+
+.about .container .right-col li::before {
+  position: absolute;
+  margin-left: -5%;
+}
+
+.about .container .right-col li {
+  margin-bottom: 20px;
 }
 
 @media (max-width: 800px) {
@@ -900,8 +928,13 @@ ul {
   }
   .about .container .left-col img {
     margin-top: 10vw;
-    height: 100%;
+    max-height: 500px;
+    height: auto;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
     z-index: 100;
+    margin-left: 23%;
   }
   .about .container .left-col::before {
     content: 'Apa itu Asmat \003F';
@@ -963,7 +996,7 @@ ul {
   }
   .about .container .left-col img {
     margin-top: 10vw;
-    height: 100%;
+    max-height: 250px;
     z-index: 100;
   }
   .about .container .left-col::before {
@@ -6280,14 +6313,76 @@ footer .container .contact-footer ul li span {
     margin: auto;
   }
   .faq .container h2 {
-    font-size: 30px !important;
+    font-size: 6vw !important;
+    margin-top: 24vw !important;
+  }
+  .faq .container .accordion .contentBx label {
+    font-size: 34px !important;
   }
   .faq .container .accordion .contentBx .content {
     max-width: 80% !important;
     margin: auto !important;
   }
+  .faq .container .accordion .contentBx .content p {
+    font-size: 3.5vw;
+  }
+  .faq .container .accordion .contentBx .content li {
+    font-size: 1.6em;
+  }
+  .faq .container .accordion .contentBx .content .container .produkbox {
+    -ms-flex-preferred-size: 100% !important;
+        flex-basis: 100% !important;
+    margin-bottom: 20px;
+  }
+  .faq .container .accordion .contentBx .content .container .produkbox img {
+    max-width: 400px !important;
+    width: 100%;
+    height: auto;
+    max-height: 500px !important;
+  }
+  .faq .container .accordion .contentBx .content .container .produkbox .content-produkbox {
+    margin-top: -65% !important;
+  }
+  .faq .container .accordion .contentBx .content .container .produkbox .content-produkbox h2 {
+    font-size: 4.5vw !important;
+  }
+  .faq .container .accordion .contentBx .content .container .produkbox:last-child {
+    padding-bottom: 70px !important;
+  }
+  .faq .container .accordion .contentBx.active:last-child .content {
+    max-height: 3500px !important;
+  }
   .faq .container .accordion .contentBx.active .content {
-    height: 200px;
+    max-height: 500px !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .faq .container {
+    font-size: 1em !important;
+    margin-top: 20px !important;
+  }
+  .faq .container .accordion .contentBx label {
+    font-size: 22px !important;
+  }
+  .faq .container .accordion .contentBx label::before {
+    font-size: 44px !important;
+  }
+  .faq .container .accordion .contentBx p {
+    font-size: 16px !important;
+  }
+  .faq .container .accordion .contentBx li {
+    font-size: 16px !important;
+  }
+  .faq .container .accordion .contentBx .content {
+    margin-left: 0 !important;
+    padding-left: 30px !important;
+  }
+  .faq .container .accordion .contentBx .content .container .produkbox {
+    margin-top: 20px !important;
+  }
+  .faq .container .accordion .contentBx .content .container .produkbox .content-produkbox {
+    margin-top: -70% !important;
   }
 }
 
@@ -6303,9 +6398,16 @@ footer .container .contact-footer ul li span {
   font-size: 38px;
 }
 
+.faq .container .contentBx {
+  margin-bottom: -20px;
+}
+
 .faq .container .accordion .contentBx {
   position: relative;
-  margin: 10px 20px;
+  margin: 0px 20px 30px 20px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .faq .container .accordion .contentBx label {
@@ -6333,25 +6435,92 @@ footer .container .contact-footer ul li span {
 
 .faq .container .accordion .contentBx .content {
   position: relative;
-  padding: 5px;
+  padding: 5px 5px 5px 20px;
   max-width: 67%;
   font-size: 18px;
   margin-left: 30px;
-  margin-bottom: 40px;
-  height: 0;
+  max-height: 0px;
   overflow: hidden;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
+.faq .container .accordion .contentBx .content .container {
+  width: 100%;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.faq .container .accordion .contentBx .content .container .produkbox {
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.faq .container .accordion .contentBx .content .container .produkbox img {
+  max-height: 400px;
+  height: auto;
+  max-width: 310px;
+  width: 100%;
+}
+
+.faq .container .accordion .contentBx .content .container .produkbox .content-produkbox {
+  margin-top: -28%;
+  color: white;
+}
+
+.faq .container .accordion .contentBx .content .container .produkbox .content-produkbox h2 {
+  margin-bottom: 0;
+  font-size: 2vw;
+}
+
+.faq .container .accordion .contentBx .content .container .produkbox .content-produkbox p {
+  margin-top: 0;
+}
+
+.faq .container .accordion .contentBx .content .container .produkbox:last-child {
+  padding-bottom: 25px;
+  min-height: 400px;
+  margin-top: 80px;
+}
+
+.faq .container .accordion .contentBx .content p {
+  margin-bottom: 0;
+}
+
+.faq .container .accordion .contentBx .content li {
+  list-style-type: disc;
+  margin-top: 10px;
+}
+
 .faq .container .accordion .contentBx.active .content {
-  max-height: 300px !important;
-  height: 100px;
-  padding: 5px;
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  max-height: 200px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .faq .container .accordion .contentBx.active label::before {
   content: '-';
+}
+
+.faq .container .accordion .contentBx.active:last-child .content {
+  max-height: -webkit-max-content;
+  max-height: -moz-max-content;
+  max-height: max-content;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .quantity2 {
