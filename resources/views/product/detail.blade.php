@@ -11,6 +11,9 @@
             <h2>{{ $product->nama }}</h2>
             <h4>IDR {{ number_format($product->harga, 0, '.', '.') }}</h4>
             <p>{{ $product->deskripsi }}</p>
+            <p for="">
+                Stok: {{ $product->stok }}
+            </p>
         </div>
         <div class="bot">
             <form action="{{ route('storeOrder') }}" method="POST">

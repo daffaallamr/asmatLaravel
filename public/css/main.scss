@@ -689,6 +689,7 @@ ul {
             flex-basis: 100%;
             display: flex;
             flex-wrap: wrap;
+            margin-bottom: 20px!important;
             .produkbox{
                 margin: 35px 40px 0 40px;
                 flex-basis: 45%;
@@ -708,7 +709,7 @@ ul {
         }
         .cta-lainnya{
             margin-top: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
             a{
                 font-size: 12px;
             }
@@ -1861,17 +1862,21 @@ footer{
                 padding-left: 2%;
                 width: 800px;
             }
-            .cta-submit{
-                background-color: var(--primary-color);
-                color: white;
+            .container-submit{
                 flex-basis: 100%;
-                max-width: 130px;
-                border-radius: 3px;
-                text-align: center;
-                font-size: 18px;
-                font-weight: 300;
-                padding: 10px 5px;
-                border: 1px solid var(--primary-color);
+                height: fit-content;
+                .cta-submit{
+                    background-color: var(--primary-color);
+                    color: white;
+                    flex-basis: 100%;
+                    width: 150px;                    
+                    border-radius: 3px;
+                    text-align: center;
+                    font-size: 18px;
+                    font-weight: 300;
+                    padding: 10px 5px;
+                    border: 1px solid var(--primary-color);
+                }
             }
             .cta-submit:hover{
                 color: var(--primary-color);
@@ -1887,6 +1892,10 @@ footer{
             p{
                 font-size: 1vw;
                 flex-basis: 100%;
+            }
+            .nav-bottom{
+                max-width: 250px;
+                line-height: 20px;
             }
         }
         .container-reg{
@@ -2058,7 +2067,7 @@ footer{
         .login-left{
             flex-basis: 100%;
             max-width: 70%;
-            margin: 20px auto 0 auto!important;
+            margin: 180px auto 0 auto!important;
             min-height: 0!important;
             background:none;
             .container{
@@ -2072,8 +2081,8 @@ footer{
             flex-basis: 100%;
             margin: 0 auto auto auto!important;
             max-width: 70%;
-                input[type="text"]{
-                    font-size: 22px;
+                input[type="text"], input[type="password"]{
+                    font-size: 26px;
                 }
                 .logo{
                     margin: 0!important;
@@ -2082,9 +2091,9 @@ footer{
                     }
                     h2{
                         display: block;
-                        max-width: 60%;
+                        max-width: 62%;
                         margin-top: 20%;
-                        font-size: 5vw;
+                        font-size: 5.9vw;
                         margin-right: auto!important;
                     }
                 }
@@ -2093,10 +2102,11 @@ footer{
                     justify-content: space-around;
                     .error{
                         margin: 20px 0 40px 0;
+                        font-size: 3vw!important;
                     }
                     label{
                         font-weight: 400;
-                        font-size: 4vw!important;
+                        font-size: 4.7vw!important;
                     }
                     input{
                         display: flex;
@@ -2107,23 +2117,21 @@ footer{
                         border-radius: 1vw!important;
                     }
                     p{
-                        font-size: 2.5vw!important;
-                        a{
-                            strong{
-                                font-weight: 400;
-                                span{
-                                    text-decoration: none;
-                                }
-                            }
-                        }
+                        font-size: 3vw!important;
                     }
                     .cta-submit{
-                        font-size: 3.5vw!important;
+                        font-size: 4vw!important;
                         margin-right: auto;
                         text-align: center;
-                        max-width: 16vw!important;
-                        padding: 1vw 1.5vw!important;
-                        border-radius: .8vw;
+                        max-width: 20vw!important;
+                        padding: 1.5vw 1.5vw!important;
+                        border-radius: 8%!important;
+                    }
+                    .nav-bottom{
+                        float: left;
+                        margin-right: auto;
+                        max-width: 80%!important;
+                        line-height: 5vw;
                     }
                 }
             
@@ -2142,7 +2150,7 @@ footer{
                     font-size: 3.5vw;
                 }
                 p{
-                    font-size: 2vw!important;
+                    font-size: 3vw!important;
                 }
                 .nama-depan{
                     flex-basis: 45%;
@@ -2196,16 +2204,21 @@ footer{
                     }
                 }
                 .exit{
+                    margin-bottom: 50px;
                     a{
-                        font-size: 3vw;
+                        font-size: 4vw;
                         flex-basis: 20%!important;
                         align-self: center;
                         display: flex;
                         align-items: center;
                         margin-right: 10%;
+                        margin-right: 5vw;
                         img{
-                            width: 2vh!important;
-                            height: 2vh;
+                            width: 3.5vh!important;
+                            height: 3.5vh;
+                        }
+                        .underline{
+                            margin-left: 5px;
                         }
                     }
                     input{
@@ -2213,11 +2226,11 @@ footer{
                         flex-basis: 30%!important;
                     }
                     .cta-submit{
-                        font-size: 3vw!important;
+                        font-size: 4vw!important;
                         margin-right: auto;
                         text-align: center;
-                        max-width: 16vw;
                         border-radius: .8vw;
+                        height: 8vw!important;
                     }
                 }
             }
@@ -2229,6 +2242,7 @@ footer{
         .login-left{
             flex-basis: 100%;
             max-width: 70%;
+            margin-top: 90px!important;
             .container{
                 img{
                     width: 100%;
@@ -2240,11 +2254,14 @@ footer{
             flex-basis: 100%;
             margin: 0 auto auto auto!important;
             max-width: 70%;
-            input[type="text"]{
+            input[type="text"], input[type="password"]{
                 font-size: 1em;
             }
                 .logo{
                     margin-left: -25%;
+                    h2{
+                        font-size: 5.5vw;
+                    }
                 }
                 .container-login{
                     display: flex;
@@ -2261,16 +2278,6 @@ footer{
                         margin-right: -5%;
                         border: 2px solid rgba(223, 120, 97, 0.7)!important;
                         padding-right: 0!important;
-                    }
-                    p{
-                        a{
-                            strong{
-                                font-weight: 400;
-                                span{
-                                    text-decoration: none;
-                                }
-                            }
-                        }
                     }
                 }
             
@@ -2345,26 +2352,7 @@ footer{
                 }
                 p{
                     margin: 5px 0 5% 0!important;
-                    font-size: 9px!important;
                     opacity: 0.8!important;
-                }
-                .exit{
-                    a{
-                        font-size: 3vw;
-                        flex-basis: 20%!important;
-                        align-self: center;
-                        display: flex;
-                        align-items: center;
-                        margin-right: 10%;
-                        img{
-                            width: 2vh!important;
-                            height: 2vh;
-                        }
-                    }
-                    input{
-                        flex-basis: 30%!important;
-                        max-width: 100%!important;
-                    }
                 }
             }
         }
@@ -3598,7 +3586,7 @@ footer{
         float: left;
         margin-top: 0%;
         .top{
-            margin-bottom:75px;
+            margin-bottom:70px;
             h2{
                 font-size: 36px;
             }
@@ -3613,6 +3601,9 @@ footer{
                 font-size: 20px;
                 margin-top: -10px;
                 max-width:65%;
+            }
+            p:last-child{
+                margin-top: 40px;
             }
         }
         .bot{
@@ -5280,11 +5271,11 @@ footer{
                     }
                 }
                 .contentBx.active:last-child .content{
-                    max-height: 3500px!important;
+                    
                 }
                 .contentBx.active{
                     .content{
-                        max-height: 500px!important;
+                        
                     }
                 }
             }

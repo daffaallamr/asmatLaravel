@@ -764,6 +764,7 @@ ul {
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    margin-bottom: 20px !important;
   }
   .showcase .container .produkbox {
     margin: 35px 40px 0 40px;
@@ -785,7 +786,7 @@ ul {
   }
   .showcase .cta-lainnya {
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
   }
   .showcase .cta-lainnya a {
     font-size: 12px;
@@ -2229,12 +2230,20 @@ footer .container .contact-footer ul li span {
   width: 800px;
 }
 
-.logreg .login-right .container-login .cta-submit {
+.logreg .login-right .container-login .container-submit {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.logreg .login-right .container-login .container-submit .cta-submit {
   background-color: var(--primary-color);
   color: white;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
-  max-width: 130px;
+  width: 150px;
   border-radius: 3px;
   text-align: center;
   font-size: 18px;
@@ -2261,6 +2270,11 @@ footer .container .contact-footer ul li span {
   font-size: 1vw;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
+}
+
+.logreg .login-right .container-login .nav-bottom {
+  max-width: 250px;
+  line-height: 20px;
 }
 
 .logreg .login-right .container-reg {
@@ -2482,7 +2496,7 @@ footer .container .contact-footer ul li span {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
     max-width: 70%;
-    margin: 20px auto 0 auto !important;
+    margin: 180px auto 0 auto !important;
     min-height: 0 !important;
     background: none;
   }
@@ -2496,8 +2510,8 @@ footer .container .contact-footer ul li span {
     margin: 0 auto auto auto !important;
     max-width: 70%;
   }
-  .logreg .login-right input[type="text"] {
-    font-size: 22px;
+  .logreg .login-right input[type="text"], .logreg .login-right input[type="password"] {
+    font-size: 26px;
   }
   .logreg .login-right .logo {
     margin: 0 !important;
@@ -2507,9 +2521,9 @@ footer .container .contact-footer ul li span {
   }
   .logreg .login-right .logo h2 {
     display: block;
-    max-width: 60%;
+    max-width: 62%;
     margin-top: 20%;
-    font-size: 5vw;
+    font-size: 5.9vw;
     margin-right: auto !important;
   }
   .logreg .login-right .container-login {
@@ -2521,10 +2535,11 @@ footer .container .contact-footer ul li span {
   }
   .logreg .login-right .container-login .error {
     margin: 20px 0 40px 0;
+    font-size: 3vw !important;
   }
   .logreg .login-right .container-login label {
     font-weight: 400;
-    font-size: 4vw !important;
+    font-size: 4.7vw !important;
   }
   .logreg .login-right .container-login input {
     display: -webkit-box;
@@ -2538,21 +2553,21 @@ footer .container .contact-footer ul li span {
     border-radius: 1vw !important;
   }
   .logreg .login-right .container-login p {
-    font-size: 2.5vw !important;
-  }
-  .logreg .login-right .container-login p a strong {
-    font-weight: 400;
-  }
-  .logreg .login-right .container-login p a strong span {
-    text-decoration: none;
+    font-size: 3vw !important;
   }
   .logreg .login-right .container-login .cta-submit {
-    font-size: 3.5vw !important;
+    font-size: 4vw !important;
     margin-right: auto;
     text-align: center;
-    max-width: 16vw !important;
-    padding: 1vw 1.5vw !important;
-    border-radius: .8vw;
+    max-width: 20vw !important;
+    padding: 1.5vw 1.5vw !important;
+    border-radius: 8% !important;
+  }
+  .logreg .login-right .container-login .nav-bottom {
+    float: left;
+    margin-right: auto;
+    max-width: 80% !important;
+    line-height: 5vw;
   }
   .logreg .login-right .container-reg .error {
     margin: 20px 0 40px 0;
@@ -2567,7 +2582,7 @@ footer .container .contact-footer ul li span {
     font-size: 3.5vw;
   }
   .logreg .login-right .container-reg p {
-    font-size: 2vw !important;
+    font-size: 3vw !important;
   }
   .logreg .login-right .container-reg .nama-depan {
     -ms-flex-preferred-size: 45%;
@@ -2623,8 +2638,11 @@ footer .container .contact-footer ul li span {
     min-width: 100%;
     margin: 10px 0;
   }
+  .logreg .login-right .container-reg .exit {
+    margin-bottom: 50px;
+  }
   .logreg .login-right .container-reg .exit a {
-    font-size: 3vw;
+    font-size: 4vw;
     -ms-flex-preferred-size: 20% !important;
         flex-basis: 20% !important;
     -ms-flex-item-align: center;
@@ -2636,10 +2654,14 @@ footer .container .contact-footer ul li span {
         -ms-flex-align: center;
             align-items: center;
     margin-right: 10%;
+    margin-right: 5vw;
   }
   .logreg .login-right .container-reg .exit a img {
-    width: 2vh !important;
-    height: 2vh;
+    width: 3.5vh !important;
+    height: 3.5vh;
+  }
+  .logreg .login-right .container-reg .exit a .underline {
+    margin-left: 5px;
   }
   .logreg .login-right .container-reg .exit input {
     font-size: 2vh !important;
@@ -2647,11 +2669,11 @@ footer .container .contact-footer ul li span {
         flex-basis: 30% !important;
   }
   .logreg .login-right .container-reg .exit .cta-submit {
-    font-size: 3vw !important;
+    font-size: 4vw !important;
     margin-right: auto;
     text-align: center;
-    max-width: 16vw;
     border-radius: .8vw;
+    height: 8vw !important;
   }
 }
 
@@ -2660,6 +2682,7 @@ footer .container .contact-footer ul li span {
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
     max-width: 70%;
+    margin-top: 90px !important;
   }
   .logreg .login-left .container img {
     width: 100%;
@@ -2671,11 +2694,14 @@ footer .container .contact-footer ul li span {
     margin: 0 auto auto auto !important;
     max-width: 70%;
   }
-  .logreg .login-right input[type="text"] {
+  .logreg .login-right input[type="text"], .logreg .login-right input[type="password"] {
     font-size: 1em;
   }
   .logreg .login-right .logo {
     margin-left: -25%;
+  }
+  .logreg .login-right .logo h2 {
+    font-size: 5.5vw;
   }
   .logreg .login-right .container-login {
     display: -webkit-box;
@@ -2699,12 +2725,6 @@ footer .container .contact-footer ul li span {
     margin-right: -5%;
     border: 2px solid rgba(223, 120, 97, 0.7) !important;
     padding-right: 0 !important;
-  }
-  .logreg .login-right .container-login p a strong {
-    font-weight: 400;
-  }
-  .logreg .login-right .container-login p a strong span {
-    text-decoration: none;
   }
   .logreg .login-right .container-reg .error {
     margin: 5px 0 10px 0 !important;
@@ -2782,31 +2802,7 @@ footer .container .contact-footer ul li span {
   }
   .logreg .login-right .container-reg p {
     margin: 5px 0 5% 0 !important;
-    font-size: 9px !important;
     opacity: 0.8 !important;
-  }
-  .logreg .login-right .container-reg .exit a {
-    font-size: 3vw;
-    -ms-flex-preferred-size: 20% !important;
-        flex-basis: 20% !important;
-    -ms-flex-item-align: center;
-        align-self: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    margin-right: 10%;
-  }
-  .logreg .login-right .container-reg .exit a img {
-    width: 2vh !important;
-    height: 2vh;
-  }
-  .logreg .login-right .container-reg .exit input {
-    -ms-flex-preferred-size: 30% !important;
-        flex-basis: 30% !important;
-    max-width: 100% !important;
   }
 }
 
@@ -4323,7 +4319,7 @@ footer .container .contact-footer ul li span {
 }
 
 .detail-barang .detail .top {
-  margin-bottom: 75px;
+  margin-bottom: 70px;
 }
 
 .detail-barang .detail .top h2 {
@@ -4342,6 +4338,10 @@ footer .container .contact-footer ul li span {
   font-size: 20px;
   margin-top: -10px;
   max-width: 65%;
+}
+
+.detail-barang .detail .top p:last-child {
+  margin-top: 40px;
 }
 
 .detail-barang .detail .bot .quantity {
@@ -6367,12 +6367,6 @@ footer .container .contact-footer ul li span {
   }
   .faq .container .accordion .contentBx .content .container .produkbox:last-child {
     padding-bottom: 70px !important;
-  }
-  .faq .container .accordion .contentBx.active:last-child .content {
-    max-height: 3500px !important;
-  }
-  .faq .container .accordion .contentBx.active .content {
-    max-height: 500px !important;
   }
 }
 

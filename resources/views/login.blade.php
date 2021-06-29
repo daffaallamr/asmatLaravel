@@ -20,13 +20,15 @@
                     <input type="text" name="email" value="{{ old('email') }}">
                 <label for="">Kata Sandi</label>
                     <input type="password" name="password"> 
-                    <p class="error">
-                        @if ($errors->any())
-                            {{ $errors->first() }}
-                        @endif
-                    </p> 
-                <button type="submit" class="cta-submit">Masuk</button>
-                <p>Belum punya akun? <a href="{{ route('register-customer') }}"><strong> <span class="underline">Daftar sekarang</span></strong></a><br>atau <a href="{{ route('register-customer') }}"><strong> <span class="underline">Kembali ke beranda</span></strong></a></p>
+                <p class="error">
+                    @if ($errors->any())
+                        {{ $errors->first() }}
+                    @endif
+                </p>
+                <div class="container-submit">
+                    <button href="" class="cta-submit">Masuk</button>
+                </div>
+                <p class="nav-bottom">Belum punya akun? <a href="{{ route('register-customer') }}"><strong> <span class="underline">Daftar sekarang</span> </strong></a> atau <a href="{{ route('home-customer') }}"><strong> <span class="underline">Kembali ke beranda</span></strong></a></p>
             </form>
 
         </div>
