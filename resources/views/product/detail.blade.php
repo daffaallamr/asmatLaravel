@@ -27,7 +27,11 @@
                     <button class="btn plus-btn" type="button">+</button>
                 </div>
                 <div class="cta-submit">
-                    <button type="submit">Tambah ke keranjang</button>
+                    @if ($product->stok == 0)
+                        <button id="stokHabis" type="submit" disabled>Stok Habis</button>                    
+                    @else
+                        <button type="submit">Tambah ke keranjang</button>
+                    @endif
                 </div>
             </form>
         </div>

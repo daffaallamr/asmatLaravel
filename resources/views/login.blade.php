@@ -26,7 +26,7 @@
                         @endif
                     </p> 
                 <button type="submit" class="cta-submit">Masuk</button>
-                <p>Belum punya akun? <a href="{{ route('register-customer') }}"><strong> <span class="underline">Daftar sekarang</span> </strong></a></p>
+                <p>Belum punya akun? <a href="{{ route('register-customer') }}"><strong> <span class="underline">Daftar sekarang</span></strong></a><br>atau <a href="{{ route('register-customer') }}"><strong> <span class="underline">Kembali ke beranda</span></strong></a></p>
             </form>
 
         </div>

@@ -5,7 +5,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Tabel Pembayaran Terkirim</h1>
+        <h1 class="h3 mb-2 text-gray-800">Tabel Paket Terkirim</h1>
         @if ($errors->any())
             <div class="alert alert-danger" role="alert">
                 {{ $errors->first() }}

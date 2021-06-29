@@ -4409,6 +4409,25 @@ footer .container .contact-footer ul li span {
   color: var(--primary-color);
 }
 
+.detail-barang .detail .bot .cta-submit #stokHabis {
+  border: #0f0f0f 2px solid;
+  background-color: #0f0f0f;
+  text-align: center;
+  width: 203px;
+  font-weight: 500 !important;
+  height: 40px;
+  border-radius: 2px;
+  color: white;
+  font-size: 16px;
+  padding-top: 5px;
+}
+
+.detail-barang .detail .bot .cta-submit #stokHabis:hover {
+  border: 1px solid #0f0f0f;
+  background-color: #F7F7E8;
+  color: #0f0f0f;
+}
+
 @media (max-width: 800px) and (min-width: 426px) {
   .detail-barang {
     display: -webkit-box;

@@ -51,7 +51,7 @@ class RajaOngkirController extends Controller
     public function ongkir($destination, $weight, $courier)
     {
         // alamat pengiriman
-        $origin = 501;
+        $origin = 444;
 
         $response = Http::asForm()->withHeaders([
             'key' => '271fc7c631677fe6b27686dc2e65dad6',

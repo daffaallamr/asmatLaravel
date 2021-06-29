@@ -3,12 +3,12 @@
 Dipesan oleh <strong>{{ $customer->nama_depan }} {{ $customer->nama_belakang }}</strong>
 
 <br><br>
-Nama Penerima: <strong>{{ $alamatCustomer->nama_depan }} {{ $alamatCustomer->nama_belakang }}</strong><br>
-Alamat lengkap: <strong>{{ $alamatCustomer->alamat_lengkap }}</strong><br>
-Provinsi: <strong>{{ $alamatCustomer->provinsi }}</strong><br>
-Kota/Kabupaten: <strong>{{ $alamatCustomer->provinsi }}</strong><br>
-Kecamatan: <strong>{{ $alamatCustomer->kecamatan }}</strong><br>
-Telepon: <strong>{{ $alamatCustomer->telepon }}</strong><br>
+Nama Penerima: {{ $alamatCustomer->nama_depan }} {{ $alamatCustomer->nama_belakang }}<br>
+Provinsi: {{ $alamatCustomer->provinsi }}<br>
+Kota/Kabupaten: {{ $alamatCustomer->provinsi }}<br>
+Kecamatan: {{ $alamatCustomer->kecamatan }}<br>
+Telepon: {{ \Crypt::decryptString($alamatCustomer->telepon) }}<br>
+Alamat lengkap: {{ \Crypt::decryptString($alamatCustomer->alamat_lengkap) }}<br>
 
 <br>
 @component('mail::table')

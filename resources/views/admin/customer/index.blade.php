@@ -78,12 +78,14 @@
                                             <form action="{{ route('adminCustomer.destroy', $customer->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submitusto" class="btn btn-danger">Hapus</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            {{-- End modal --}}
                             @endforeach
                         </tbody>
                     </table>
