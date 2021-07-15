@@ -24,7 +24,7 @@
                     <div class="container">
                         @foreach ($products as $product)    
                             <div style="cursor: pointer" class="produkbox" onclick="location.href='{{ route('belanja.show', ['belanja' => $product->slug]) }}'">
-                                <img src="{{ asset('public/images/' . $product->gambar) }}" alt="">
+                                <img src="{{ asset('public/images/' . $product->gambar_1) }}" alt="">
                                 <div class="content-produkbox">
                                     <h2>{{ $product->nama }}</h2>
                                     <p>IDR {{ number_format($product->harga, 0, '.', '.') }}</p>

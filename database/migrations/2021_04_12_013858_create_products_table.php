@@ -22,10 +22,12 @@ class CreateProductsTable extends Migration
             $table->string('berat')->default(500);
             $table->integer('harga');
             $table->text('deskripsi');
-            $table->string('gambar');
+            $table->string('gambar_1');
+            $table->string('gambar_2')->nullable();
             $table->integer('stok');
             $table->string('produsen');
             $table->string('nomer_izin')->nullable();
+            $table->string('link_video')->nullable();
         });
     }
 

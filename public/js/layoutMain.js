@@ -1,16 +1,3 @@
-var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
-  var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    document.getElementById("navbar-dekstop").style.top = "0";
-    document.getElementById("navbar-dekstop-2").style.top = "3%";
-  } else {
-    document.getElementById("navbar-dekstop").style.top = "-150px";
-    document.getElementById("navbar-dekstop-2").style.top = "-150px";
-  }
-  prevScrollpos = currentScrollPos;
-}
-
 var scrollToTopBtn = document.querySelector(".scrollToTopBtn")
 var rootElement = document.documentElement
 

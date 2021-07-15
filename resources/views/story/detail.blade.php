@@ -13,16 +13,16 @@
     </div> 
     <div class="paragraf-origin-a">
         <h1>{{ $story->judul_paragraf_1 }}</h1>
-        <p>{{ $story->paragraf_1 }}</p>
+        <p>@nl2br($story->paragraf_1)</p>
     </div>
     @if ($story->gambar_3 == null)
         <div class="paragraf-origin-a">
             <h1>{{ $story->judul_paragraf_2 }}</h1>
-            <p>{{ $story->paragraf_2 }}</p>
+            <p>@nl2br($story->paragraf_2)</p>
         </div>  
         <div class="paragraf-origin-a">
             <h1>{{ $story->judul_paragraf_3 }}</h1>
-            <p>{{ $story->paragraf_3 }}</p>
+            <p>@nl2br($story->paragraf_3)</p>
         </div>  
     @else
         <div class="paragraf-origin-b">
@@ -31,12 +31,12 @@
             </div>
             <div class="right-col">
                 <h1>{{ $story->judul_paragraf_2 }}</h1>
-                <p>{{ $story->paragraf_2 }}</p>
+                <p>@nl2br($story->paragraf_2)</p>
             </div>
         </div>
         <div class="paragraf-origin-a">
             <h1>{{ $story->judul_paragraf_3 }}</h1>
-            <p>{{ $story->paragraf_3 }}</p>
+            <p>@nl2br($story->paragraf_3)</p>
         </div>
     @endif
 

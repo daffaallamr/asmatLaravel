@@ -45,10 +45,10 @@ class AdminProductController extends Controller
             'nama'                  => 'required|min:5|max:30|unique:products,nama',
             'harga'         => 'required|',
             'berat'         => 'required|',
-            'deskripsi'         => 'required|min:30|',
+            'deskripsi'         => 'required|min:30|max:500',
             'stok'         => 'required|',
             'produsen'         => 'required|',
-            'gambar'         => 'required|',
+            'gambar_1'         => 'required|',
         ];
  
         $messages = [
@@ -60,9 +60,10 @@ class AdminProductController extends Controller
             'berat.required' => 'Berat wajib diisi',
             'deskripsi.required' => 'Deskripsi wajib diisi',
             'deskripsi.min'      => 'Deskripsi minimal 30 karakter',
+            'deskripsi.max'      => 'Deskripsi maksimal 500 karakter',
             'stok.required' => 'Stok wajib diisi',
             'produsen.required' => 'Nama produsen wajib diisi',
-            'gambar.required' => 'Gambar wajib diisi',
+            'gambar_1.required' => 'Gambar wajib diisi',
         ];
  
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -70,21 +71,38 @@ class AdminProductController extends Controller
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
+        $imageName_1 = Auth::id() . '_' . time() . '_' . $request->gambar_1->getClientOriginalName();
+        $request->gambar_1->move(public_path('images'), $imageName_1);
 
-        $imageName = Auth::id() . time().'.'.$request->gambar->extension();
-        $request->gambar->move(public_path('images'), $imageName); 
+        if(!$request->gambar_2 == null) {
+            $imageName_2 = Auth::id() . '_' . time() . '_' . $request->gambar_2->getClientOriginalName();
+            $request->gambar_2->move(public_path('images'), $imageName_2); 
 
-        $product = new Product;
-        $product->nama = $request->nama;
-        $product->slug = Str::slug($request->nama, '-');
-        $product->harga = $request->harga;
-        $product->berat = $request->berat;
-        $product->deskripsi = $request->deskripsi;
-        $product->stok = $request->stok;
-        $product->gambar = $imageName;
-        $product->produsen = $request->produsen;
-        $product->nomer_izin = $request->nomer_izin;
-        $product->save();
+            $product = new Product;
+            $product->nama = $request->nama;
+            $product->slug = Str::slug($request->nama, '-');
+            $product->harga = $request->harga;
+            $product->berat = $request->berat;
+            $product->deskripsi = $request->deskripsi;
+            $product->stok = $request->stok;
+            $product->gambar_1 = $imageName_1;
+            $product->gambar_2 = $imageName_2;
+            $product->produsen = $request->produsen;
+            $product->nomer_izin = $request->nomer_izin;
+            $product->save();
+        } else {
+            $product = new Product;
+            $product->nama = $request->nama;
+            $product->slug = Str::slug($request->nama, '-');
+            $product->harga = $request->harga;
+            $product->berat = $request->berat;
+            $product->deskripsi = $request->deskripsi;
+            $product->stok = $request->stok;
+            $product->gambar_1 = $imageName_1;
+            $product->produsen = $request->produsen;
+            $product->nomer_izin = $request->nomer_izin;
+            $product->save();
+        }
 
         return redirect()->route('adminProduct.index');
 
@@ -116,7 +134,7 @@ class AdminProductController extends Controller
             'nama'                  => 'required|min:5|max:30',
             'harga'         => 'required|',
             'berat'         => 'required|',
-            'deskripsi'         => 'required|min:30|',
+            'deskripsi'         => 'required|min:30|max:500',
             'stok'         => 'required|',
         ];
  
@@ -128,6 +146,7 @@ class AdminProductController extends Controller
             'berat.required' => 'Berat wajib diisi',
             'deskripsi.required' => 'Deskripsi wajib diisi',
             'deskripsi.min'      => 'Deskripsi minimal 30 karakter',
+            'deskripsi.max'      => 'Deskripsi maksimal 500 karakter',
             'stok.required' => 'Stok wajib diisi',
         ];
  
@@ -137,28 +156,68 @@ class AdminProductController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
 
-        if($request->gambar == null) {
-            $product = Product::findOrFail($id);
-            $product->nama = $request->nama;
-            $product->slug = Str::slug($request->nama, '-');
-            $product->harga = $request->harga;
-            $product->berat = $request->berat;
-            $product->deskripsi = $request->deskripsi;
-            $product->stok = $request->stok;
-            $product->save();
+        if($request->gambar_1 == null) {
+            $imageName_2 = null;
+            if(!$request->gambar_2 == null) {
+                $imageName_2 = Auth::id() . '_' . time() . '_' . $request->gambar_2->getClientOriginalName();
+                $request->gambar_2->move(public_path('images'), $imageName_2);
+                
+                $product = Product::findOrFail($id);
+                $product->nama = $request->nama;
+                $product->slug = Str::slug($request->nama, '-');
+                $product->harga = $request->harga;
+                $product->berat = $request->berat;
+                $product->deskripsi = $request->deskripsi;
+                $product->stok = $request->stok;
+                $product->gambar_2 = $imageName_2;
+                $product->produsen = $request->produsen;
+                $product->nomer_izin = $request->nomer_izin;
+                $product->save();
+            } else {
+                $product = Product::findOrFail($id);
+                $product->nama = $request->nama;
+                $product->slug = Str::slug($request->nama, '-');
+                $product->harga = $request->harga;
+                $product->berat = $request->berat;
+                $product->deskripsi = $request->deskripsi;
+                $product->stok = $request->stok;
+                $product->produsen = $request->produsen;
+                $product->nomer_izin = $request->nomer_izin;
+                $product->save();
+            }
         } else {
-            $imageName = Auth::id() . time().'.'.$request->gambar->extension();
-            $request->gambar->move(public_path('images'), $imageName); 
+            $imageName_1 = Auth::id() . '_' . time() . '_' . $request->gambar_1->getClientOriginalName();
+            $request->gambar_1->move(public_path('images'), $imageName_1);
 
-            $product = Product::findOrFail($id);
-            $product->nama = $request->nama;
-            $product->slug = Str::slug($request->nama, '-');
-            $product->harga = $request->harga;
-            $product->berat = $request->berat;
-            $product->deskripsi = $request->deskripsi;
-            $product->stok = $request->stok;
-            $product->gambar = $imageName;
-            $product->save();
+            if(!$request->gambar_2 == null) {
+                $imageName_2 = Auth::id() . '_' . time() . '_' . $request->gambar_2->getClientOriginalName();
+                $request->gambar_2->move(public_path('images'), $imageName_2); 
+
+                $product = Product::findOrFail($id);
+                $product->nama = $request->nama;
+                $product->slug = Str::slug($request->nama, '-');
+                $product->harga = $request->harga;
+                $product->berat = $request->berat;
+                $product->deskripsi = $request->deskripsi;
+                $product->stok = $request->stok;
+                $product->gambar_1 = $imageName_1;
+                $product->gambar_2 = $imageName_2;
+                $product->produsen = $request->produsen;
+                $product->nomer_izin = $request->nomer_izin;
+                $product->save();
+            } else {
+                $product = Product::findOrFail($id);
+                $product->nama = $request->nama;
+                $product->slug = Str::slug($request->nama, '-');
+                $product->harga = $request->harga;
+                $product->berat = $request->berat;
+                $product->deskripsi = $request->deskripsi;
+                $product->stok = $request->stok;
+                $product->gambar_1 = $imageName_1;
+                $product->produsen = $request->produsen;
+                $product->nomer_izin = $request->nomer_izin;
+                $product->save();
+            }
         }
 
         return redirect()->route('adminProduct.index');

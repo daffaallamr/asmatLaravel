@@ -24,12 +24,16 @@
                     <input type="text" class="form-control" id="judul" name="judul" value="{{ old('judul') }}">
                   </div>
                   <div class="form-group">
+                    <label for="link_video">Link Video Youtube</label>
+                    <input type="text" class="form-control" id="link_video" name="link_video" value="{{ old('link_video') }}">
+                  </div>
+                  <div class="form-group">
                     <label for="judul_paragraf_1">Judul Paragraf Pertama</label>
                     <input type="text" class="form-control" id="judul_paragraf_1" name="judul_paragraf_1" value="{{ old('judul_paragraf_1') }}">
                   </div>
                   <div class="form-group">
                     <label for="paragraf_1">Paragraf Pertama</label>
-                    <textarea class="form-control" id="paragraf_1" rows="5" name="paragraf_1">{{ old('paragraf_1') }}</textarea>
+                    <textarea class="form-control" id="paragraf_1" rows="10" name="paragraf_1">{{ old('paragraf_1') }}</textarea>
                   </div>
                   <div class="form-group">
                     <label for="judul_paragraf_2">Judul Paragraf Kedua</label>
@@ -37,7 +41,7 @@
                   </div>
                   <div class="form-group">
                     <label for="paragraf_2">Paragraf Kedua</label>
-                    <textarea class="form-control" id="paragraf_2" rows="5" name="paragraf_2">{{ old('paragraf_2') }}</textarea>
+                    <textarea class="form-control" id="paragraf_2" rows="10" name="paragraf_2">{{ old('paragraf_2') }}</textarea>
                   </div>
                   <div class="form-group">
                     <label for="judul_paragraf_3">Judul Paragraf Ketiga</label>
@@ -45,7 +49,7 @@
                   </div>
                   <div class="form-group">
                     <label for="paragraf_3">Paragraf Ketiga</label>
-                    <textarea class="form-control" id="paragraf_3" rows="5" name="paragraf_3">{{ old('paragraf_3') }}</textarea>
+                    <textarea class="form-control" id="paragraf_3" rows="10" name="paragraf_3">{{ old('paragraf_3') }}</textarea>
                   </div>
                   <div class="form-group">
                     <label>Gambar - 1 (Utama)</label>
@@ -55,7 +59,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label>Gambar - 2 (Tambahan dan Tidak wajib)</label>
+                    <label>Gambar - 2 (Tambahan dan Tidak wajib, berformat Potrait/Berdiri)</label>
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="customFile" name="gambar_2">
                       <label class="custom-file-label" for="customFile">Choose file</label>

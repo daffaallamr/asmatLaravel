@@ -31,10 +31,12 @@ class Order extends Model
         $this->save();
     }
     
-    public function setStatusSuccess() {
+    public function setStatusSuccess($type) {
         $this->attributes['status_payment'] = 'success';
         $this->attributes['is_checkout'] = true;
         $this->attributes['tanggal_pembayaran'] = Carbon::now();
+        $typeModif = str_replace('_', ' ', $type);
+        $this->attributes['metode_pembayaran'] = ucwords($typeModif);
         $this->save();
     }
     

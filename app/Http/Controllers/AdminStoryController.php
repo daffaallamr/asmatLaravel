@@ -42,7 +42,7 @@ class AdminStoryController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'judul'                  => 'required|min:5|unique:stories,judul',
+            'judul'                  => 'required|min:5|max:75|unique:stories,judul',
             'judul_paragraf_1'         => 'required',
             'paragraf_1'         => 'required',
             'gambar_1'         => 'required',
@@ -51,6 +51,7 @@ class AdminStoryController extends Controller
         $messages = [
             'judul.required'   => 'Judul wajib diisi',
             'judul.min'   => 'Judul minimal 5 karakter',
+            'judul.max'   => 'Judul maksimal 75 karakter',
             'judul.unique'   => 'Judul sudah terdaftar',
             'judul_paragraf_1.required'          => 'Judul Paragraf Pertama belum diisi',
             'paragraf_1.required'          => 'Paragraf Pertama belum diisi',
@@ -72,6 +73,7 @@ class AdminStoryController extends Controller
 
             $story->judul = $request->judul;
             $story->slug = Str::slug($request->judul, '-');
+            $story->link_video = $request->link_video;
             $story->judul_paragraf_1 = $request->judul_paragraf_1;
             $story->paragraf_1 = $request->paragraf_1;
 
@@ -95,6 +97,7 @@ class AdminStoryController extends Controller
 
             $story->judul = $request->judul;
             $story->slug = Str::slug($request->judul, '-');
+            $story->link_video = $request->link_video;
             $story->judul_paragraf_1 = $request->judul_paragraf_1;
             $story->paragraf_1 = $request->paragraf_1;
 
@@ -136,7 +139,7 @@ class AdminStoryController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'judul'                  => 'required|min:5',
+            'judul'                  => 'required|min:5|max:75',
             'judul_paragraf_1'         => 'required',
             'paragraf_1'         => 'required',
         ];
@@ -144,6 +147,7 @@ class AdminStoryController extends Controller
         $messages = [
             'judul.required'   => 'Judul wajib diisi',
             'judul.min'   => 'Judul minimal 5 karakter',
+            'judul.max'   => 'Judul maksimal 75 karakter',
             'judul_paragraf_1.required'          => 'Judul Paragraf Pertama belum diisi',
             'paragraf_1.required'          => 'Paragraf Pertama belum diisi',
         ];
@@ -161,6 +165,7 @@ class AdminStoryController extends Controller
 
             $story->judul = $request->judul;
             $story->slug = Str::slug($request->judul, '-');
+            $story->link_video = $request->link_video;
             $story->judul_paragraf_1 = $request->judul_paragraf_1;
             $story->paragraf_1 = $request->paragraf_1;
 
@@ -181,6 +186,7 @@ class AdminStoryController extends Controller
 
             $story->judul = $request->judul;
             $story->slug = Str::slug($request->judul, '-');
+            $story->link_video = $request->link_video;
             $story->judul_paragraf_1 = $request->judul_paragraf_1;
             $story->paragraf_1 = $request->paragraf_1;
 
@@ -206,6 +212,7 @@ class AdminStoryController extends Controller
 
             $story->judul = $request->judul;
             $story->slug = Str::slug($request->judul, '-');
+            $story->link_video = $request->link_video;
             $story->judul_paragraf_1 = $request->judul_paragraf_1;
             $story->paragraf_1 = $request->paragraf_1;
 

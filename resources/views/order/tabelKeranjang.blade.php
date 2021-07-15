@@ -35,7 +35,7 @@
 
                     <td>
                         <div class="produk">
-                            <img src="{{ asset('public/images/' . $detail->product->gambar) }}" alt="">
+                            <img src="{{ asset('public/images/' . $detail->product->gambar_1) }}" alt="">
                             <label for="">{{ $detail->product->nama }}</label>
                                 <input type="hidden" name="berat_{{ $loop->iteration }}" value="{{ $detail->product->berat }}">
                         </div>
@@ -86,11 +86,17 @@
     </table>
         </div>
             <div class="foot">
+                <div class="cta-belanja">
+                    <a href="{{ route('belanja.index') }}">
+                    <img src="{{ asset('public/images/arrow.svg') }}" alt="">
+                    <span class="underline">Kembali belanja</span>
+                    </a>
+                </div>
                 <div class="cta-simpan">
                     <button type="submit" formaction="{{ route('simpanKeranjang') }}">Simpan</button>
                 </div>
                 <div class="cta-selanjutnya">
-                    <button type="submit">Simpan dan lanjutkan</button>
+                    <button type="submit">Lanjutkan pembayaran</button>
                 </div>
             </div>
         </form>

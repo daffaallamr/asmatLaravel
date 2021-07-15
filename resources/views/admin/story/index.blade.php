@@ -92,6 +92,10 @@
                                             <input readonly type="text" class="form-control" id="judul" name="judul" value="{{ $story->judul }}">
                                           </div>
                                           <div class="form-group">
+                                            <label for="link_video">Link Video Youtube</label>
+                                            <input readonly type="text" class="form-control" id="link_video" name="link_video" value="{{ $story->link_video }}">
+                                          </div>
+                                          <div class="form-group">
                                             <label for="judul_paragraf_1">Judul Paragraf Pertama</label>
                                             <input readonly type="text" class="form-control" id="judul_paragraf_1" name="judul_paragraf_1" value="{{ $story->judul_paragraf_1 }}">
                                           </div>

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Order;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::defaultView('vendor.pagination.custom-pagination');
+
+        Blade::directive('nl2br', function ($string) {
+            return "<?php echo nl2br($string); ?>";
+        });
 
         $order = Order::where('is_checkout', 0)->with('customer')->with('orderDetails')->get();
         

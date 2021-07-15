@@ -335,7 +335,7 @@ class CheckoutController extends RajaOngkirController
                 }
             } elseif ($transaction == 'settlement') {
 
-                $order->setStatusSuccess();
+                $order->setStatusSuccess($type);
                 Mail::to($emailUser)->send(new PembayaranBerhasil($orderId));
 
             } elseif($transaction == 'pending'){

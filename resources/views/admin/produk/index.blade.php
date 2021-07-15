@@ -28,9 +28,10 @@
                                 <th>Nama</th>
                                 <th>Harga</th>
                                 <th>Berat</th>
-                                <th style="width: 250px;">Deskripsi</th>
+                                <th style="min-width: 250px;">Deskripsi produk</th>
                                 <th>Stok</th>
-                                <th>Gambar</th>
+                                <th>Gambar - 1</th>
+                                <th>Gambar - 2</th>
                                 <th style="min-width: 80px;">Aksi</th>
                             </tr>
                         </thead>
@@ -40,9 +41,10 @@
                                 <th>Nama</th>
                                 <th>Harga</th>
                                 <th>Berat</th>
-                                <th>Deskripsi</th>
+                                <th>Deskripsi produk</th>
                                 <th>Stok</th>
-                                <th>Gambar</th>
+                                <th>Gambar - 1</th>
+                                <th>Gambar - 2</th>
                                 <th>Aksi</th>
                             </tr>
                         </tfoot>
@@ -53,10 +55,13 @@
                                 <td>{{ $product->nama }}</td>
                                 <td>IDR {{ number_format($product->harga, 0, '.', '.') }}</td>
                                 <td>{{ $product->berat }} gram</td>
-                                <td>{{ $product->deskripsi }}</td>
+                                <td>@nl2br($product->deskripsi)</td>
                                 <td>{{ $product->stok }}</td>
                                 <td>
-                                    <img src="{{ url('public/images/' . $product->gambar) }}" alt="" style="width: auto; height: 200px;">
+                                    <img src="{{ url('public/images/' . $product->gambar_1) }}" alt="" style="width: auto; height: 200px;">
+                                </td>
+                                <td>
+                                    <img src="{{ url('public/images/' . $product->gambar_2) }}" alt="" style="width: auto; height: 200px;">
                                 </td>
                                 <td>
                                     <span>

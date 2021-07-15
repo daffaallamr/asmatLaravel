@@ -4,13 +4,21 @@
 @include('layouts.navbar')
 <div class="detail-barang">
     <div class="showcase">
-        <img src="{{ asset('public/images/' . $product->gambar) }}" alt="">
+        <img src="{{ asset('public/images/' . $product->gambar_1) }}" alt="" class="Slides">
+        @if (!$product->gambar_2 == null)
+        yes
+            <img src="{{ asset('public/images/' . $product->gambar_2) }}" alt="" class="Slides">
+            <div class="slideArrow">
+                <button class="w3-button w3-display-left" onclick="plusDivs(-1)"></button>
+                <button class="w3-button w3-display-right" onclick="plusDivs(+1)"></button>
+            </div>
+        @endif
     </div>
     <div class="detail">
         <div class="top">
             <h2>{{ $product->nama }}</h2>
             <h4>IDR {{ number_format($product->harga, 0, '.', '.') }}</h4>
-            <p>{{ $product->deskripsi }}</p>
+            <p>@nl2br($product->deskripsi)</p>
             <p for="">
                 Stok: {{ $product->stok }}
             </p>

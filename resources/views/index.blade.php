@@ -21,7 +21,7 @@
     <div class="container">
         @foreach ($products as $product)
         <div class="produkbox" onclick="location.href='{{ route('belanja.show', ['belanja' => $product->slug]) }}';">
-            <img src="{{ asset('/public/images/' . $product->gambar) }}" alt="">
+            <img src="{{ asset('/public/images/' . $product->gambar_1) }}" alt="">
             <div class="content-produkbox">
                 <h2>{{ $product->nama }}</h2>
                 <p>IDR {{ number_format($product->harga, 0, '.', '.') }}</p>
@@ -44,6 +44,9 @@
             </p>
             <p>Sejak 2018 dengan dukungan David and Lucile Packard Foundation, The Asia Foundation bersama Pt PPMA, KIPRa, Perkumpulan Mnuwar Papua, GEMAPALA & PUPUK melakukan pemberdayaan masyarakat adat di Jayapura, Keerom, Manokwari Selatan dan Fakfak.  Berbagai macam potensi komoditas dipilih dan dibudidayakan untuk dapat diolah menjadi produk konsumsi yang layak jual secara berkesinambungan. Website e-Commerce ini digunakan untuk memperkenalkan produk-produk tersebut yang khas akan budaya masyarakat adat dan semangatnya dalam melestarikan hutan Papua.
             </p>
+            <div class="cta-video">
+                <a href="http://facebook.com">Video Tentang Kami</a>
+            </div>
         </div>
     </div>
 </div>
@@ -53,7 +56,7 @@
         @foreach ($stories as $story)
         <div class="card-cerita">
             <div class="img" style="background-image: url({{ asset('public/images/' . $story->gambar_1) }});"></div>
-            <p>{{ $story->judul }}</p>
+            <p style="text-overflow: ellipsis;">{{ $story->judul }}</p>
             <div class="bot-card">
                 <label for="">{{ date('d / m / Y', strtotime($story->created_at)) }}</label>
                 <a href="{{ route('cerita.show', ['ceritum' => $story->slug]) }}"class="cta-baca">
@@ -71,12 +74,18 @@
 <div class="bagaimana">
     <div class="container">
         <div class="left-col">
-            <h1>Bagaimana Asmat membantu membangun rumah kita?</h1>
-            <p>ASMAT fokus pada pemasaran hasil produk yang dihasilkan oleh masyarakat adat dan yang tinggal di sekitar hutan Papua yang tersebar di 2 kabupaten di Provinsi Papua yakni Jayapura dan Keerom dan 2 kabupaten lainnya di Provinsi Papua Barat yakni Manokwari Selatan dan Fakfak. 
-            </p>
-            <p>Mereka telah didampingi oleh sejumlah masyarakat sipil yakni: Pt. PPMA, KIPRA, Mnukwar, GEMAPALA dan PUPUK.</p>
-            <div class="cta-insta">
-                <a href="http://instagram.com">Ikuti Instagram Kami</a>
+            <h1>Bagaimana ASMAT membantu</h1>
+            <p>ASMAT bukan saja sebagai etalase bagi para produsen yang produknya dipasarkan melalui media ini. ASMAT juga sebagai tempat informasi bagaimana hutan Indonesia dan khsusunya hutan Papua dijaga oleh masyarakat adat dan masyarakat sekitar hutan. Dengan melakukan transaksi pembelian di ASMAT, anda juga terlibat untuk melindungi hutan di Indonesia dan khususnya Papua. 
+                </p>
+            <p>Maukah Anda menjadi bagian dari penjaga hutan Papua, cukup beli produk mereka di ASMAT. Silahkan untuk menjelajahi platform ini.
+                </p>
+            <div class="link-sosmed">
+                <div class="cta-sosmed">
+                    <a href="http://instagram.com">Ikuti Instagram Kami</a>
+                </div>
+                <div class="cta-sosmed">
+                    <a href="http://facebook.com">Ikuti Facebook Kami</a>
+                </div>
             </div>
         </div>
         <div class="right-col">

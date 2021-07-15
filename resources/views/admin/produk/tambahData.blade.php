@@ -31,8 +31,8 @@
                     <input type="number" class="form-control" id="berat" name="berat" value="{{ old('berat') }}">
                   </div>
                   <div class="form-group">
-                    <label for="deskripsi">Deskripsi Singkat</label>
-                    <textarea class="form-control" id="deskripsi" rows="4" name="deskripsi">{{ old('deskripsi') }}</textarea>
+                    <label for="deskripsi">Deskripsi produk</label>
+                    <textarea class="form-control" id="deskripsi" rows="5" name="deskripsi">{{ old('deskripsi') }}</textarea>
                   </div>
                   <div class="form-group">
                     <label for="stok">Stok</label>
@@ -47,10 +47,17 @@
                     <input type="" class="form-control" id="nomer_izin" name="nomer_izin" value="{{ old('nomer_izin') }}">
                   </div>
                   <div class="form-group">
-                    <label>Gambar Produk</label>
+                    <label>Gambar - 1</label>
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile" name="gambar">
-                      <label class="custom-file-label" for="customFile">Choose file</label>
+                      <input type="file" class="custom-file-input" id="customFile_1" name="gambar_1">
+                      <label class="custom-file-label" for="customFile_1">Choose file</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Gambar - 2</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile_2" name="gambar_2">
+                      <label class="custom-file-label" for="customFile_2">Choose file</label>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary mr-2">Tambah</button>

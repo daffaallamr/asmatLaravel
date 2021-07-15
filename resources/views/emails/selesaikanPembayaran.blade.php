@@ -17,6 +17,7 @@ Alamat lengkap: {{ \Crypt::decryptString($alamatCustomer->alamat_lengkap) }}<br>
 @foreach ($orderId->orderDetails as $detail)
 | {{ $detail->jumlah_barang }}x {{ $detail->product->nama }}      | IDR {{ number_format($detail->jumlah_harga, 0, '.', '.') }}      |
 @endforeach
+| Ongkos kirim      | IDR {{ number_format($orderId->ongkir, 0, '.', '.') }}      |
 | <strong>Total pembayaran:</strong>      | <strong>IDR {{ number_format($orderId->jumlah_pembayaran_akhir, 0, '.', '.') }}</strong> |
 @endcomponent
 
