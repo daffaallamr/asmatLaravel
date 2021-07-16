@@ -4,10 +4,9 @@
 @include('layouts.navbar')
 <div class="detail-barang">
     <div class="showcase">
-        <img src="{{ asset('public/images/' . $product->gambar_1) }}" alt="" class="Slides">
+        <img src="{{ asset('public/images/products/' . $product->gambar_1) }}" alt="" class="Slides">
         @if (!$product->gambar_2 == null)
-        yes
-            <img src="{{ asset('public/images/' . $product->gambar_2) }}" alt="" class="Slides">
+            <img src="{{ asset('public/images/products/' . $product->gambar_2) }}" alt="" class="Slides">
             <div class="slideArrow">
                 <button class="w3-button w3-display-left" onclick="plusDivs(-1)"></button>
                 <button class="w3-button w3-display-right" onclick="plusDivs(+1)"></button>
@@ -46,6 +45,12 @@
                 </div>
             </form>
         </div>
+    </div>
+</div>
+<div class="video">
+    <div class="wrapper-video">
+        <h1>Video Tentang<br>{{ $product->nama }}</h1>
+        <iframe width="560" height="300" src="{{ $product->link_video }}" title="{{ $product->nama }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </div>
 

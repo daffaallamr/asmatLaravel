@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -72,11 +73,11 @@ class AdminProductController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
         $imageName_1 = Auth::id() . '_' . time() . '_' . $request->gambar_1->getClientOriginalName();
-        $request->gambar_1->move(public_path('images'), $imageName_1);
+        $request->gambar_1->move(public_path('images/products'), $imageName_1);
 
         if(!$request->gambar_2 == null) {
             $imageName_2 = Auth::id() . '_' . time() . '_' . $request->gambar_2->getClientOriginalName();
-            $request->gambar_2->move(public_path('images'), $imageName_2); 
+            $request->gambar_2->move(public_path('images/products'), $imageName_2); 
 
             $product = new Product;
             $product->nama = $request->nama;
@@ -89,6 +90,7 @@ class AdminProductController extends Controller
             $product->gambar_2 = $imageName_2;
             $product->produsen = $request->produsen;
             $product->nomer_izin = $request->nomer_izin;
+            $product->link_video = $request->link_video;
             $product->save();
         } else {
             $product = new Product;
@@ -101,6 +103,7 @@ class AdminProductController extends Controller
             $product->gambar_1 = $imageName_1;
             $product->produsen = $request->produsen;
             $product->nomer_izin = $request->nomer_izin;
+            $product->link_video = $request->link_video;
             $product->save();
         }
 
@@ -160,9 +163,14 @@ class AdminProductController extends Controller
             $imageName_2 = null;
             if(!$request->gambar_2 == null) {
                 $imageName_2 = Auth::id() . '_' . time() . '_' . $request->gambar_2->getClientOriginalName();
-                $request->gambar_2->move(public_path('images'), $imageName_2);
-                
+                $request->gambar_2->move(public_path('images/products'), $imageName_2);
+
                 $product = Product::findOrFail($id);
+                $image_2_path = "public/images/products/". $product->gambar_2;
+                if(File::exists($image_2_path)) {
+                    File::delete($image_2_path);
+                }
+                
                 $product->nama = $request->nama;
                 $product->slug = Str::slug($request->nama, '-');
                 $product->harga = $request->harga;
@@ -172,6 +180,7 @@ class AdminProductController extends Controller
                 $product->gambar_2 = $imageName_2;
                 $product->produsen = $request->produsen;
                 $product->nomer_izin = $request->nomer_izin;
+                $product->link_video = $request->link_video;
                 $product->save();
             } else {
                 $product = Product::findOrFail($id);
@@ -183,17 +192,28 @@ class AdminProductController extends Controller
                 $product->stok = $request->stok;
                 $product->produsen = $request->produsen;
                 $product->nomer_izin = $request->nomer_izin;
+                $product->link_video = $request->link_video;
                 $product->save();
             }
         } else {
             $imageName_1 = Auth::id() . '_' . time() . '_' . $request->gambar_1->getClientOriginalName();
-            $request->gambar_1->move(public_path('images'), $imageName_1);
+            $request->gambar_1->move(public_path('images/products'), $imageName_1);
 
             if(!$request->gambar_2 == null) {
                 $imageName_2 = Auth::id() . '_' . time() . '_' . $request->gambar_2->getClientOriginalName();
-                $request->gambar_2->move(public_path('images'), $imageName_2); 
+                $request->gambar_2->move(public_path('images/products'), $imageName_2); 
 
                 $product = Product::findOrFail($id);
+                $image_1_path = "public/images/products/". $product->gambar_1;
+                if(File::exists($image_1_path)) {
+                    File::delete($image_1_path);
+                }
+
+                $image_2_path = "public/images/products/". $product->gambar_2;
+                if(File::exists($image_2_path)) {
+                    File::delete($image_2_path);
+                }
+
                 $product->nama = $request->nama;
                 $product->slug = Str::slug($request->nama, '-');
                 $product->harga = $request->harga;
@@ -204,9 +224,14 @@ class AdminProductController extends Controller
                 $product->gambar_2 = $imageName_2;
                 $product->produsen = $request->produsen;
                 $product->nomer_izin = $request->nomer_izin;
+                $product->link_video = $request->link_video;
                 $product->save();
             } else {
                 $product = Product::findOrFail($id);
+                $image_1_path = "public/images/products/". $product->gambar_1;
+                if(File::exists($image_1_path)) {
+                    File::delete($image_1_path);
+                }
                 $product->nama = $request->nama;
                 $product->slug = Str::slug($request->nama, '-');
                 $product->harga = $request->harga;
@@ -216,6 +241,7 @@ class AdminProductController extends Controller
                 $product->gambar_1 = $imageName_1;
                 $product->produsen = $request->produsen;
                 $product->nomer_izin = $request->nomer_izin;
+                $product->link_video = $request->link_video;
                 $product->save();
             }
         }
@@ -232,6 +258,15 @@ class AdminProductController extends Controller
     public function destroy($id)
     {
         $product = Product::where('id', $id)->first();
+        $image_1_path = "public/images/products/". $product->gambar_1;
+        if(File::exists($image_1_path)) {
+            File::delete($image_1_path);
+        }
+
+        $image_2_path = "public/images/products/". $product->gambar_2;
+        if(File::exists($image_2_path)) {
+            File::delete($image_2_path);
+        }
         $product->delete();
 
         return redirect()->route('adminProduct.index');

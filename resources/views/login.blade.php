@@ -10,7 +10,7 @@
         <div class="container">
             <div class="logo">
                 <a href="{{ route('home-customer') }}">
-                    <img src="public/images/logo-footer.png" alt="">
+                    <img src="public/images/logo-footer-orange.png" alt="">
                 </a>
                 <h2>Selamat datang di Asmat&excl;</h2>
             </div>

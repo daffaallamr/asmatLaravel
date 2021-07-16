@@ -47,6 +47,10 @@
                     <input type="" class="form-control" id="nomer_izin" name="nomer_izin" value="{{ old('nomer_izin') }}">
                   </div>
                   <div class="form-group">
+                    <label for="link_video">Video Youtube (Link dengan format Embed)</label>
+                    <input type="text" class="form-control" id="link_video" name="link_video" value="{{ old('link_video') }}">
+                  </div>
+                  <div class="form-group">
                     <label>Gambar - 1</label>
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="customFile_1" name="gambar_1">

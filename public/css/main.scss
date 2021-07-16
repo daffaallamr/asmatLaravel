@@ -109,7 +109,7 @@ h2{
     user-select: none;
     text-align: center;
  
-    background-color: #3F2644;
+    background-color: #F7F7E8;
     .container-mobile{
         display: none;
     }
@@ -156,9 +156,6 @@ ul {
         margin: 1em 2.5em;
         font-size: 1em;
         font-weight: 500;
-        a{
-            color: #F7F7E8!important;
-        }
     }
 }
 @media  (max-width:1024px)
@@ -191,9 +188,9 @@ ul {
             margin: 0;
             padding: 3% 7.5% 3% 7.5%;
             justify-content: space-between;
-            border-bottom: 2px solid #3F2644;
+            border-bottom: 2px solid #DF7861;
             position: fixed;
-            background-color: #3F2644;
+            background-color: #F7F7E8;
             a{
                 width: 10%;
                 img{
@@ -247,7 +244,7 @@ ul {
                 top: 15%;
                 right: -100%;
                 transition: 0.5s;
-                color: #F7F7E8;
+                color: var(--primary-color);
             }
             .bg-nav-mob{
                 background-color: black;
@@ -270,7 +267,7 @@ ul {
                 transition: all .5s;
                 opacity: 1;
                 margin-top: 17.3vw;
-                border-top: 2px solid #3F2644;
+                border-top: 2px solid #DF7861;
                 ul{
                     margin-top: 0.4vw;
                     opacity: 1;
@@ -303,7 +300,6 @@ ul {
             margin: 0;
             padding: relative 7.5% 3% 7.5%;
             justify-content: space-between;
-            border-bottom: 2px solid #3F2644;
             a{
                 width: 10%;
                 img{
@@ -340,7 +336,7 @@ ul {
                 content: 'X';
                 font-size: 200%;
                 font-weight: 300;
-                color: #F7F7E8;
+                color: var(--primary-color);
             }
             #check{
                 display: none;
@@ -398,7 +394,7 @@ ul {
     margin-top: 150px;
     color: var(--primary-color);
     z-index: 500;
-    margin-bottom: 30%;
+    margin-bottom: 40%;
     .container{
         display: block;
         text-align: center;
@@ -414,6 +410,10 @@ ul {
                 margin-top: 0;
                 font-size: 40px;
                 font-weight: 400;
+                margin-bottom: 0px;
+            }
+            h2{
+                margin: 0 0 10px 0;
             }
         }
         .cta-belanja{
@@ -572,7 +572,6 @@ ul {
             border-radius: 7px;
             text-align: center;
             cursor: pointer;
-            max-height: 450px;
             height: auto;
             .content-produkbox{
                 position: relative;
@@ -659,7 +658,6 @@ ul {
         overflow: scroll!important;
     }
     .showcase{
-        margin-bottom: 30vw;
         h1{
             margin-top: 20px;   
         }
@@ -756,13 +754,34 @@ ul {
             justify-content: center;
             max-height: fit-content;
             align-content: center;
-            margin-right: -2%;
+            flex-direction: column;
+            .slideArrow{
+                text-align: center;
+                width: 35%;
+                position: absolute;
+                button:first-child{
+                    float: left;
+                    transform: rotate(180deg);
+                }
+                button:last-child{
+                    float: right;
+                }
+                button{
+                    background-image: url(../images/arrow-white.svg);
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    border: 0;
+                    background-color: var(--primary-color);
+                    width: 30px;
+                    height: 25px;
+                }
+            }
             img{
                 height: auto;
-                max-height: 600px;
-                width: 80%;
+                max-height: 450px;
+                width: auto;
+                max-width: 300px;
                 margin-top: 50px;
-                margin-right: auto;
                 align-self: center;
             }
         }
@@ -834,7 +853,6 @@ ul {
     .about{
         .container{
             flex-wrap: wrap;
-            height: 100vw;
             .left-col{
                 flex-basis: 100%!important;
                 justify-content: center;
@@ -843,22 +861,32 @@ ul {
                 height: fit-content;
                 background-color: var(--primary-color);
                 padding-top: 10vw;
+                width: 100%;
+                .slideArrow{
+                    width: 65%;
+                    left: 0;
+                    margin: auto;
+                    margin-left: 17.5%;
+                    display: flex;
+                    justify-content: space-between;
+                    z-index: 100;
+                }
                 img{
                     margin-top: 10vw;
-                    max-height: 500px;
-                    height: auto;
-                    width: 40%;
-                    margin-left: auto;
-                    margin-right: auto;
+                    height: 450px;
+                    width: auto;
                     z-index: 100;
-                    margin-left: 23%;
+                    align-self: auto;
+                    margin: auto;
+                    padding-left: 5%;
                 }
             }
             .left-col::before{
                 content:'Apa itu Asmat \003F';
                 color: white;
-                position: absolute;
+                text-align: center;
                 font-size: 6vw;
+                width: 100%;
             }
             .right-col{
                 flex-basis: 100%;
@@ -897,7 +925,6 @@ ul {
     .about{
         .container{
             flex-wrap: wrap;
-            height: 100vw;
             .left-col{
                 flex-basis: 100%!important;
                 justify-content: center;
@@ -906,17 +933,15 @@ ul {
                 height: fit-content;
                 background-color: var(--primary-color);
                 padding-top: 10vw;
+                .slideArrow{
+                    width: 75%;
+                    margin-left: 12.5%;
+                }
                 img{
                     margin-top: 10vw;
                     max-height: 250px;
                     z-index: 100;
                 }
-            }
-            .left-col::before{
-                content:'Apa itu Asmat \003F';
-                color: white;
-                position: absolute;
-                font-size: 24px;
             }
             .right-col{
                 flex-basis: 100%;
@@ -980,8 +1005,13 @@ ul {
                 font-size: 24px;
                 max-width: 60%;
                 margin-left: 2.4vw;
-                height: 60px;
+                height: 85px;
                 margin-bottom: 60px;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;  
+                overflow: hidden;
+                
             }
             .bot-card{
                 display: flex;
@@ -1050,7 +1080,6 @@ ul {
 }
 @media (max-width:800px){
     .artboard{
-        margin-top: 40%;
         h1{
             margin-bottom: 30px;
             font-size: 5vw;
@@ -1074,6 +1103,7 @@ ul {
                     max-width: 70%;
                     text-align: left;
                     margin-bottom: 20px;
+                    height: 12vw;
                 }
                 .bot-card{
                 display: flex;
@@ -1143,9 +1173,9 @@ ul {
 }
 @media (max-width:425px){
     .artboard{
-        margin-top: 50%!important;
+
         h1{
-            margin-top: 100px;
+            margin-top: 50px;
             margin-bottom: 30px;
             font-size: 22px;
         }
@@ -1164,11 +1194,12 @@ ul {
                     height: 200px;
                 }
                 p{
-                    font-size: 1em;
+                    font-size: 0.9em;
                     margin-left: 7%;
                     max-width: 70%;
                     text-align: left;
                     margin-bottom: 20px;
+                    height: 13.5vw;
                 }
                 .bot-card{
                 display: flex;
@@ -1707,9 +1738,6 @@ footer{
         width: 75%;
         color: var(--primary-color);
         margin: auto;
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
         .penjelasan-produk{
             flex-basis: 100%;
             margin: auto;
@@ -1743,18 +1771,12 @@ footer{
         p{
             text-align: justify;
         }
-        .left-col{
-            flex-basis: 45%;
-            text-align: justify;
-            text-justify: auto;
-            
-            .berbagai-mobile{
-                display: none;
-            }
             h1{
                 font-weight: 400;
                 font-size: 3vw;
                 margin-bottom: 45px;
+                width: 100%;
+                margin-top: 15%;
             }
             p{
                 margin-bottom: 0px;
@@ -1764,6 +1786,10 @@ footer{
             label{
                 font-size: 1.5vw;
             }
+            iframe{
+                width: 45%;
+                height: 200px;
+            }
             .item{
                 display: flex;
                 flex-direction: row;
@@ -1772,20 +1798,20 @@ footer{
                     margin-right: 10px;
                 }
             }
-        }
-        .right-col{
-            flex-basis: 55%;
-            margin-right: -5%;
             img{
-                margin-top: 60px;
-                width: 100%;
-                margin-bottom: 0px;
+                margin-top: 40px;
+                width: 50%;
+                float: right;
+                clear: right;
+                margin-bottom: 10px;
             }
-        }
+            .bannerMobile{
+                display: none;
+            }
         .bot-col{
             flex-basis: 100%;
-    margin: auto;
-    margin-right: -1.2%;
+            margin-right: -1.2%;
+            margin: auto;
             p{
                 margin-top: 0;
                 font-size: 1.5vw;
@@ -1800,6 +1826,12 @@ footer{
             width: 80%;
             margin: auto;
             margin-bottom: -50px;
+            .bannerMobile{
+                display: block;
+            }
+            .bannerDekstop{
+                display: none;
+            }
             .penjelasan-produk{
                 
                 label, p{
@@ -1814,8 +1846,6 @@ footer{
                     margin-bottom: 50px;
                 }
             }
-            .left-col{
-                flex-basis: 100%;
                 .berbagai-mobile{
                     display: block;
                 }
@@ -1827,15 +1857,14 @@ footer{
                 p{
                     font-size: 3vw;
                 }
-            }
-            .right-col{
-            flex-basis: 100%;
-            margin-right: 0!important;
             img{
                 width: 100%;
                 margin-top: 10vw;
             }
         }
+        iframe{
+            width: 100%!important;
+            height: 360px!important;
         }
     }
 }
@@ -1854,7 +1883,6 @@ footer{
                     font-size: 1em!important;
                 }
             }
-            .left-col{
                 h1{
                     font-weight: 400;
                     font-size: 22px;
@@ -1863,13 +1891,13 @@ footer{
                 p{
                     font-size: 1em;
                 }
-            }
-            .right-col{
-            flex-basis: 100%;
             img{
                 width: 100%;
+
             }
-        }
+            iframe{
+                height: 200px!important;
+            }
         }
     }
 }
@@ -2478,16 +2506,24 @@ footer{
         }
         h1{
             font-size: 44px;
-            max-width: 35%;
+            max-width: 85%;
         }
     }
 }
 .paragraf-origin-a{
     width: 80%;
     margin: auto;
-    color: var(--primary-color);
-    margin-bottom: 100px;
-    
+    .paragraf-video{
+        p{
+            width: 100%;
+            margin-top: 0;
+        }
+        iframe{
+            float: right;
+            clear: right;
+            margin-left: 4%;
+        }
+    }
     h1{
         font-weight: 500;
         margin-top: 100px;
@@ -2496,26 +2532,25 @@ footer{
     }
     p{
         font-size: 1.5vw;
+        margin-right: 0;
+        text-align: justify;
     }
+    
 }
 .paragraf-origin-b{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    
-    .left-col{
-        flex-basis: 30%;
-        display: flex;
+    width: 80%;
+    margin: auto;
+    margin-bottom: -7%;
+    .right-col{
+        color: var(--primary-color);
         img{
-            width: 100%;
-            height: auto;
+            width: 30%;
             margin-top: 3vw;
             align-items: flex-end;
+            height: auto;
+            float: left;
+            margin-right: 5%;
         }
-    }
-    .right-col{
-        flex-basis: 40%;
-        color: var(--primary-color);
         h1{
             font-weight: 500;
             font-size: 3vw;
@@ -2523,6 +2558,7 @@ footer{
         }
         p{
             font-size: 1.5vw;
+            text-align: justify;
         }
     }
 }
@@ -2556,6 +2592,12 @@ footer{
     }
     .paragraf-origin-a{
         text-align: left;
+        .paragraf-video{
+            iframe{
+                width: 100%;
+                margin: 0 0 10% 0;
+            }
+        }
         h1{
             font-size: 4vw!important;
             margin-top: 30px!important;
@@ -2566,25 +2608,20 @@ footer{
             margin: 2vw auto 3vw auto ;
         }
     }
+
     .paragraf-origin-b{
         flex-wrap: wrap;
         justify-content: space-between;
         display: flex;
         text-align: left;
-        .left-col{
-            flex-basis: 80%;
-            min-width: 60%;
-            margin: auto;
-            margin-top: 10px!important;
-            margin-bottom: 5vw;
-            img{
-                max-width: 90%;
-                margin: auto;
-            }
-        }
+        margin-bottom: 0;
         .right-col{
-            flex-basis: 80%!important;
+            flex-basis: 100%!important;
             margin: auto;
+                img{
+                    width: 50%;
+                    margin: 5% 25%;
+                }
                 h1{
                     font-size: 4vw!important;
                     margin-top: 0!important;
@@ -2616,6 +2653,9 @@ footer{
     }
     .paragraf-origin-a{
         margin-bottom: 25px;
+        iframe{
+            height: auto;
+        }
         h1{
             margin-bottom: 25px;
         }
@@ -2818,9 +2858,11 @@ footer{
         .tabel{
             display: flex;
             justify-content: center;
-            max-width: 95%;
+            max-width: 85%;
             min-height: 59vh;
             margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: 5%;
             table{
                 border-collapse: collapse;
                 text-align: center;
@@ -3656,26 +3698,50 @@ footer{
         }
     }
 }
+.video{
+    height: auto;
+    background-color: var(--primary-color);
+    color: white;
+    height: 400px;
+    align-items: center;
+    display: flex;
+    .wrapper-video{
+        width: 80%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h1{
+            width: 45%;
+            font-size: 38px;
+        }
+        iframe{
+            float: right;
+            clear: right;
+            width: 50%;
+        }
+    }
+}
 .detail-barang{
     display: flex;
     color: #DF7861;
     width: 90%;
-    margin: 150px auto 100px auto;
+    margin: 150px auto 50px auto;
     justify-content: space-evenly;
-    align-items: stretch;
+    align-items: flex-start;
     .showcase{
         flex-basis: 27%;
         background-color: #ECB390;
         border-radius: 5px;
         padding: 0;
         display: flex;
-        height: auto;
+        
         .slideArrow{
             position: relative;
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-top:-95%;
+            margin-top:-70%;
             height: 0!important;
             button{
                 background-image: url(../images/arrow-white.svg);
@@ -3782,6 +3848,20 @@ footer{
     }
 }
 @media (max-width:800px) and (min-width:426px){
+    .video{
+        height: fit-content;
+        .wrapper-video{
+            flex-wrap: wrap;
+            margin-bottom: 5%;
+            iframe{
+                width: 100%;
+            }
+            h1{
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
     .detail-barang{
         display: flex;
         flex-wrap: wrap;
@@ -3846,6 +3926,22 @@ footer{
 
 }
 @media (max-width:425px){
+    .video{
+        height: fit-content;
+        .wrapper-video{
+            flex-wrap: wrap;
+            margin-bottom: 5%;
+            iframe{
+                width: 100%;
+                height: 200px;
+            }
+            h1{
+                width: 100%;
+                text-align: center;
+                font-size: 28px;
+            }
+        }
+    }
     .detail-barang{
         display: flex;
         flex-wrap: wrap;
@@ -5772,3 +5868,21 @@ footer{
         }
     }
 }
+.detail-barang .detail .bot .cta-submit #stokHabis {
+    border: #0f0f0f 2px solid;
+    background-color: #0f0f0f;
+    text-align: center;
+    width: 203px;
+    font-weight: 500 !important;
+    height: 40px;
+    border-radius: 2px;
+    color: white;
+    font-size: 16px;
+    padding-top: 5px;
+  }
+  
+  .detail-barang .detail .bot .cta-submit #stokHabis:hover {
+    border: 1px solid #0f0f0f;
+    background-color: #F7F7E8;
+    color: #0f0f0f;
+  }

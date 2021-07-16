@@ -27,7 +27,7 @@
         
             <div class="produk-left">
                 <div class="image-produk">
-                    <img src="{{ asset('public/images/' . $detail->product->gambar_1) }}" alt="">
+                    <img src="{{ asset('public/images/products/' . $detail->product->gambar_1) }}" alt="">
                 </div>
                 <div class="info-produk">
                     <label>{{ $detail->product->nama }}</label>

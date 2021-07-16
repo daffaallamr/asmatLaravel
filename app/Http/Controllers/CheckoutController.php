@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminPesananMasuk;
 use App\Mail\PembayaranBerhasil;
 use App\Mail\SelesaikanPembayaran;
 use App\Models\Address;
@@ -337,6 +338,7 @@ class CheckoutController extends RajaOngkirController
 
                 $order->setStatusSuccess($type);
                 Mail::to($emailUser)->send(new PembayaranBerhasil($orderId));
+                Mail::to('tokoasmatpapua@gmail.com')->send(new AdminPesananMasuk($customer, $order, $alamatCustomer));
 
             } elseif($transaction == 'pending'){
 

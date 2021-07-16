@@ -25,7 +25,7 @@
                     <input type="text" class="form-control" id="judul" name="judul" value="{{ $story->judul }}">
                   </div>
                   <div class="form-group">
-                    <label for="link_video">Link Video Youtube</label>
+                    <label for="link_video">Video Youtube (Link dengan format Embed)</label>
                     <input type="text" class="form-control" id="link_video" name="link_video" value="{{ $story->link_video }}">
                   </div>
                   <div class="form-group">

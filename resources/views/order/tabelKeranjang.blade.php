@@ -35,7 +35,7 @@
 
                     <td>
                         <div class="produk">
-                            <img src="{{ asset('public/images/' . $detail->product->gambar_1) }}" alt="">
+                            <img src="{{ asset('public/images/products/' . $detail->product->gambar_1) }}" alt="">
                             <label for="">{{ $detail->product->nama }}</label>
                                 <input type="hidden" name="berat_{{ $loop->iteration }}" value="{{ $detail->product->berat }}">
                         </div>

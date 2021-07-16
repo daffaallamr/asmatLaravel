@@ -9,7 +9,7 @@
     <div class="login-right">
         <div class="logo">
             <a href="{{ route('home-customer') }}" style="margin-top: -10px">
-                <img src="public/images/logo-footer.png" alt="">
+                <img src="public/images/logo-footer-orange.png" alt="">
             </a>
             <h2>Mulai <br> mendaftar&excl;</h2>
         </div>   

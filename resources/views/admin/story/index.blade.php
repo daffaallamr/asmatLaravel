@@ -52,10 +52,10 @@
                                 <td>{{ $story->judul }}</td>
                                 <td>{{ date('d / m / Y', strtotime($story->created_at)) }}</td>
                                 <td>
-                                    <img src="{{ url('public/images/' . $story->gambar_1) }}" alt="" style="width: 300px; height: auto;">
+                                    <img src="{{ url('public/images/stories/' . $story->gambar_1) }}" alt="" style="width: 300px; height: auto;">
                                 </td>
                                 <td>
-                                    <img src="{{ url('public/images/' . $story->gambar_3) }}" alt="" style="width: 200px; height: auto;">
+                                    <img src="{{ url('public/images/stories/' . $story->gambar_3) }}" alt="" style="width: 200px; height: auto;">
                                 </td>
                                 <td>
                                     <span>
@@ -92,7 +92,7 @@
                                             <input readonly type="text" class="form-control" id="judul" name="judul" value="{{ $story->judul }}">
                                           </div>
                                           <div class="form-group">
-                                            <label for="link_video">Link Video Youtube</label>
+                                            <label for="link_video">Video Youtube (Link dengan format Embed)</label>
                                             <input readonly type="text" class="form-control" id="link_video" name="link_video" value="{{ $story->link_video }}">
                                           </div>
                                           <div class="form-group">

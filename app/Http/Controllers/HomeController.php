@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Story;
 use Illuminate\Support\Facades\Cache;
@@ -17,9 +18,12 @@ class HomeController extends Controller
             return Story::all()->sortDesc()->take(2);
         });
 
+        $customer = Customer::find(Auth('customer')->id());
+
         return view('index', [
             'products' => $productsCache,
             'stories' => $storiesCache,
+            'customer' => $customer,
         ]);
     }
 

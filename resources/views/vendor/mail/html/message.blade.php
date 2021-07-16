@@ -21,7 +21,7 @@
 {{-- Footer --}}
 @slot('footer')
 @component('mail::footer')
-copyright &copy; Design by Weirdone | All Right Reserved
+copyright &copy; by ASMAT Papua | All Right Reserved
 @endcomponent
 @endslot
 @endcomponent

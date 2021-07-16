@@ -6,6 +6,11 @@
     <div class="container">
         <div class="header">
             <h1>Selamat Datang</h1>
+            @if (Auth('customer')->check())
+                <h2>{{ $customer->nama_depan }}</h2>
+            @else
+                <h2></h2>
+            @endif
             <p>Advancing Sustainable Market (ASMAT) <br> untuk produk masyarakat adat di sekitar hutan PAPUA</p>
         </div>
         <div class="cta-belanja">
@@ -21,7 +26,7 @@
     <div class="container">
         @foreach ($products as $product)
         <div class="produkbox" onclick="location.href='{{ route('belanja.show', ['belanja' => $product->slug]) }}';">
-            <img src="{{ asset('/public/images/' . $product->gambar_1) }}" alt="">
+            <img src="{{ asset('/public/images/products/' . $product->gambar_1) }}" alt="">
             <div class="content-produkbox">
                 <h2>{{ $product->nama }}</h2>
                 <p>IDR {{ number_format($product->harga, 0, '.', '.') }}</p>
@@ -36,7 +41,18 @@
 <div class="about">
     <div class="container">    
         <div class="left-col">
-            <img src="public/images/sirup a.png" alt="">
+            <img src="public/images/foto-produk-web/c sirup a.png" alt="" class="Slides" >
+            <img src="public/images/foto-produk-web/c tepung keladi.png" alt="" class="Slides">
+            <img src="public/images/foto-produk-web/c balsem cair.png" alt="" class="Slides">
+            <img src="public/images/foto-produk-web/c coklat kecil.png" alt="" class="Slides">
+            <img src="public/images/foto-produk-web/c coklat.png" alt="" class="Slides">
+            <img src="public/images/foto-produk-web/c hand sani.png" alt="" class="Slides">
+            <img src="public/images/foto-produk-web/c keripik keladi.png" alt="" class="Slides">
+            <img src="public/images/foto-produk-web/c teh sereh.png" alt="" class="Slides">
+            <div class="slideArrow">
+                <button style="cursor: pointer" class="w3-button w3-display-right" onclick="plusDivs(+1)"></button>
+                <button style="cursor: pointer" class="w3-button w3-display-left" onclick="plusDivs(-1)"></button>
+            </div>
         </div>
         <div class="right-col">
             <h1>Apa itu Asmat?</h1>
@@ -55,7 +71,7 @@
     <div class="container">
         @foreach ($stories as $story)
         <div class="card-cerita">
-            <div class="img" style="background-image: url({{ asset('public/images/' . $story->gambar_1) }});"></div>
+            <div class="img" style="background-image: url({{ asset('public/images/stories/' . $story->gambar_1) }});"></div>
             <p style="text-overflow: ellipsis;">{{ $story->judul }}</p>
             <div class="bot-card">
                 <label for="">{{ date('d / m / Y', strtotime($story->created_at)) }}</label>
@@ -93,5 +109,8 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="{{ asset('public/js/index.js') }}"></script>
+
 @include('layouts.footer')
 @endsection
