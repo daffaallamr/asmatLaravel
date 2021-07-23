@@ -565,7 +565,6 @@ ul {
         .produkbox{
             flex-basis: 25%;
             color: white;
-            background-color: #ECB390;
             justify-content: space-around;
             margin: 60px 0 0 0;
             padding: 0;
@@ -575,15 +574,19 @@ ul {
             height: auto;
             .content-produkbox{
                 position: relative;
-                margin-top: -28%;
+                margin-top: -38%;
             }
             img{
-                height: auto;
+                height: 500px;
                 width: 100%;
-                margin-top: 40px;
+                border-radius: 2%;
             }
             h2{
                 font-size: 26px;
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+                height: 65px;
             }
             p{
                 margin-top: -20px;
@@ -594,9 +597,7 @@ ul {
         .produkbox-2{
             flex-basis: 22%;
             color: white;
-            background-color: #ECB390;
             margin: 30px 2%;
-            border-radius: 7px;
             text-align: center;
             cursor: pointer;
             height: auto;
@@ -605,8 +606,9 @@ ul {
                 position: relative;
             }
             img{
-                height: auto;
+                height: 100%;
                 width: 100%;
+                border-radius: 2%;
             }
             h2{
                 font-size: 26px;
@@ -643,7 +645,16 @@ ul {
 @media (max-width:1200px){
     .produkbox{
         .content-produkbox{
-            margin-top: -33%!important;
+            margin-top: -45%!important;
+            p{
+                font-size: 14px!important;
+            }
+            h2{
+                font-size: 24px!important;
+            }
+        }
+        img{
+            height: 450px!important;
         }
     }
     .showcase{
@@ -670,6 +681,15 @@ ul {
                 flex-basis: 45%;
                 img{
                     margin: 0;
+                }
+                h2{
+                    font-size: 32px!important;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    height: 80px;
+                }
+                p{
+                    font-size: 22px!important;
                 }
             }
             .produkbox-2{
@@ -712,12 +732,17 @@ ul {
                 margin: 35px 40px 0 40px;
                 flex-basis: 45%;
                 h2{
-                    font-size: 1em;
+                    font-size: 22px!important;
                     font-weight: 400!important;
+                    height: 50px!important;
                 }
                 P{
-                    font-size: 0.9em;
+                    font-size: 16px!important;
                     margin-top: -15px;
+                }
+                img{
+                    height: 300px!important;
+                    width: 230px!important;
                 }
             }
             .produkbox-2{
@@ -755,6 +780,22 @@ ul {
             max-height: fit-content;
             align-content: center;
             flex-direction: column;
+            .fade {
+                -webkit-animation-name: fade;
+                -webkit-animation-duration: 1.5s;
+                animation-name: fade;
+                animation-duration: 1.5s;
+              }
+              
+              @-webkit-keyframes fade {
+                from {opacity: .4}
+                to {opacity: 1}
+              }
+              
+              @keyframes fade {
+                from {opacity: .4}
+                to {opacity: 1}
+              }
             .slideArrow{
                 text-align: center;
                 width: 35%;
@@ -997,7 +1038,7 @@ ul {
             .img{
                 width: 100%;
                 background-image: url("../images/kartu.svg");
-                height: 400px;
+                height: 320px;
                 background-position: center;
                 background-size: cover;
             }
@@ -1696,7 +1737,7 @@ footer{
             }
                 li{
                     color: white;
-                    flex-basis: 20%;
+                    flex-basis: 30%;
                     margin-top: 7px;
                     font-size: 1.1vw;
                     font-weight: 400;
@@ -1711,7 +1752,8 @@ footer{
                     margin-left: 5%;
                 }
                 li:nth-child(4){
-                    margin-left: 16.2%;
+                    margin-left: 16.5%;
+                    flex-basis: 35%;
                 }
                 li:nth-child(3), li:nth-child(4){
                     margin-top: 3.1%;
@@ -2485,7 +2527,7 @@ footer{
 }
 /*Origin*/
 .hero-origin{
-    margin-top: 140px;
+    margin-top: 105px;
     width: 100%;
     height: 560px;
     .container{
@@ -2493,7 +2535,7 @@ footer{
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        height: 80vh;
+        height: 562px;
         h1, label{
             margin: 0 0 0 10%;
             position: absolute;
@@ -2534,6 +2576,12 @@ footer{
         font-size: 1.5vw;
         margin-right: 0;
         text-align: justify;
+    }
+    img{
+        width: 286px;
+        margin-top: 3vw;
+        height: 430px;
+        margin: 0 35%;
     }
     
 }
@@ -3732,7 +3780,7 @@ footer{
     .showcase{
         flex-basis: 27%;
         background-color: #ECB390;
-        border-radius: 5px;
+        border-radius: 2%;
         padding: 0;
         display: flex;
         
@@ -3744,13 +3792,10 @@ footer{
             margin-top:-70%;
             height: 0!important;
             button{
-                background-image: url(../images/arrow-white.svg);
-                background-repeat: no-repeat;
-                background-size: cover;
                 border: 0;
-                background-color: #ECB390;
                 width: 30px;
                 height: 25px;
+                background: none;
             }
             button:first-child{
                 transform: rotate(180deg);
@@ -3759,7 +3804,7 @@ footer{
         }
         img{
             height: auto;
-            max-width: 325px;
+            max-width: 360px;
             width: 100%;
             border-radius: 5px;
         }
@@ -4228,7 +4273,7 @@ footer{
                 display: flex;
                 margin: 10px 20px;
                 img{
-                    width: 45px;
+                    width: 42px;
                     height: 90px;
                     background-color: #ECB390;
                     padding: 0;
@@ -5497,6 +5542,18 @@ footer{
         font-size: 20px;
     }
 }
+@media (max-width:1200px){
+    .faq{
+        .container{
+            .produkbox{
+                margin-bottom: 30px;
+                .content-produkbox{
+                    margin-top: -30%!important;
+                }
+            }
+        }
+    }
+}
 @media (max-width:800px){
     .faq{
         .container{
@@ -5525,15 +5582,16 @@ footer{
                                 flex-basis: 100%!important;
                                 margin-bottom: 20px;
                                 img{
-                                    max-width: 400px!important;
                                     width: 100%;
-                                    height: auto;
-                                    max-height: 500px!important;
+                                    height: 600px!important;
                                 }
                                 .content-produkbox{
                                     margin-top: -65%!important;
+                                    p{
+                                        font-size: 24px!important;
+                                    }
                                     h2{
-                                        font-size: 4.5vw!important;
+                                        font-size: 36px!important;
                                     }
                                 }
                             }
@@ -5582,6 +5640,15 @@ footer{
                                 margin-top: 20px!important;
                                 .content-produkbox{
                                     margin-top: -70%!important;
+                                    h2{
+                                        font-size: 24px!important;
+                                    }
+                                    p{
+                                        font-size: 18px!important;
+                                    }
+                                }
+                                img{
+                                    height: 350px!important;
                                 }
                             }
                         }
@@ -5648,10 +5715,10 @@ footer{
                         text-align: center;
                         margin-top: 80px;
                         img{
-                            max-height: 400px;
-                            height: auto;
-                            max-width: 310px;
+                            height: 500px;
                             width: 100%;
+                            width: 100%;
+                            border-radius: 2%;
                         }
                         .content-produkbox{
                             margin-top: -28%;

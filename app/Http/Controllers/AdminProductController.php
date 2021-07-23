@@ -49,7 +49,8 @@ class AdminProductController extends Controller
             'deskripsi'         => 'required|min:30|max:500',
             'stok'         => 'required|',
             'produsen'         => 'required|',
-            'gambar_1'         => 'required|',
+            'gambar_1'         => 'required|mimes:jpeg,png',
+            'gambar_2'         => 'mimes:jpeg,png',
         ];
  
         $messages = [
@@ -65,6 +66,8 @@ class AdminProductController extends Controller
             'stok.required' => 'Stok wajib diisi',
             'produsen.required' => 'Nama produsen wajib diisi',
             'gambar_1.required' => 'Gambar wajib diisi',
+            'gambar_1.mimes' => 'Gambar - 1 harus berformat JPG/JPEG atau PNG',
+            'gambar_2.mimes' => 'Gambar - 2 harus berformat JPG/JPEG atau PNG',
         ];
  
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -139,6 +142,8 @@ class AdminProductController extends Controller
             'berat'         => 'required|',
             'deskripsi'         => 'required|min:30|max:500',
             'stok'         => 'required|',
+            'gambar_1'         => 'mimes:jpeg,png',
+            'gambar_2'         => 'mimes:jpeg,png',
         ];
  
         $messages = [
@@ -151,6 +156,8 @@ class AdminProductController extends Controller
             'deskripsi.min'      => 'Deskripsi minimal 30 karakter',
             'deskripsi.max'      => 'Deskripsi maksimal 500 karakter',
             'stok.required' => 'Stok wajib diisi',
+            'gambar_1.mimes' => 'Gambar - 1 harus berformat JPG/JPEG atau PNG',
+            'gambar_2.mimes' => 'Gambar - 2 harus berformat JPG/JPEG atau PNG',
         ];
  
         $validator = Validator::make($request->all(), $rules, $messages);

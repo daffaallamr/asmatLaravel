@@ -625,7 +625,6 @@ ul {
   -ms-flex-preferred-size: 25%;
       flex-basis: 25%;
   color: white;
-  background-color: #ECB390;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   margin: 60px 0 0 0;
@@ -638,17 +637,21 @@ ul {
 
 .showcase .container .produkbox .content-produkbox {
   position: relative;
-  margin-top: -28%;
+  margin-top: -38%;
 }
 
 .showcase .container .produkbox img {
-  height: auto;
+  height: 500px;
   width: 100%;
-  margin-top: 40px;
+  border-radius: 2%;
 }
 
 .showcase .container .produkbox h2 {
   font-size: 26px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 65px;
 }
 
 .showcase .container .produkbox p {
@@ -661,9 +664,7 @@ ul {
   -ms-flex-preferred-size: 22%;
       flex-basis: 22%;
   color: white;
-  background-color: #ECB390;
   margin: 30px 2%;
-  border-radius: 7px;
   text-align: center;
   cursor: pointer;
   height: auto;
@@ -675,8 +676,9 @@ ul {
 }
 
 .showcase .container .produkbox-2 img {
-  height: auto;
+  height: 100%;
   width: 100%;
+  border-radius: 2%;
 }
 
 .showcase .container .produkbox-2 h2 {
@@ -714,7 +716,16 @@ ul {
 
 @media (max-width: 1200px) {
   .produkbox .content-produkbox {
-    margin-top: -33% !important;
+    margin-top: -45% !important;
+  }
+  .produkbox .content-produkbox p {
+    font-size: 14px !important;
+  }
+  .produkbox .content-produkbox h2 {
+    font-size: 24px !important;
+  }
+  .produkbox img {
+    height: 450px !important;
   }
   .showcase .cta-lainnya {
     margin-top: 0 !important;
@@ -745,6 +756,15 @@ ul {
   }
   .showcase .container .produkbox img {
     margin: 0;
+  }
+  .showcase .container .produkbox h2 {
+    font-size: 32px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 80px;
+  }
+  .showcase .container .produkbox p {
+    font-size: 22px !important;
   }
   .showcase .container .produkbox-2 {
     -ms-flex-preferred-size: 50%;
@@ -788,12 +808,17 @@ ul {
         flex-basis: 45%;
   }
   .showcase .container .produkbox h2 {
-    font-size: 1em;
+    font-size: 22px !important;
     font-weight: 400 !important;
+    height: 50px !important;
   }
   .showcase .container .produkbox P {
-    font-size: 0.9em;
+    font-size: 16px !important;
     margin-top: -15px;
+  }
+  .showcase .container .produkbox img {
+    height: 300px !important;
+    width: 230px !important;
   }
   .showcase .container .produkbox-2 {
     -ms-flex-preferred-size: 50%;
@@ -853,6 +878,31 @@ ul {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.about .container .left-col .fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: .4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: .4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .about .container .left-col .slideArrow {
@@ -1165,7 +1215,7 @@ ul {
 .artboard .container .card-cerita .img {
   width: 100%;
   background-image: url("../images/kartu.svg");
-  height: 400px;
+  height: 320px;
   background-position: center;
   background-size: cover;
 }
@@ -1992,8 +2042,8 @@ footer .container .contact-footer ul {
 
 footer .container .contact-footer li {
   color: white;
-  -ms-flex-preferred-size: 20%;
-      flex-basis: 20%;
+  -ms-flex-preferred-size: 30%;
+      flex-basis: 30%;
   margin-top: 7px;
   font-size: 1.1vw;
   font-weight: 400;
@@ -2013,7 +2063,9 @@ footer .container .contact-footer li:nth-child(2) {
 }
 
 footer .container .contact-footer li:nth-child(4) {
-  margin-left: 16.2%;
+  margin-left: 16.5%;
+  -ms-flex-preferred-size: 35%;
+      flex-basis: 35%;
 }
 
 footer .container .contact-footer li:nth-child(3), footer .container .contact-footer li:nth-child(4) {
@@ -2939,7 +2991,7 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
 
 /*Origin*/
 .hero-origin {
-  margin-top: 140px;
+  margin-top: 105px;
   width: 100%;
   height: 560px;
 }
@@ -2949,7 +3001,7 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 80vh;
+  height: 562px;
 }
 
 .hero-origin .container h1, .hero-origin .container label {
@@ -2996,6 +3048,13 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
   font-size: 1.5vw;
   margin-right: 0;
   text-align: justify;
+}
+
+.paragraf-origin-a img {
+  width: 286px;
+  margin-top: 3vw;
+  height: 430px;
+  margin: 0 35%;
 }
 
 .paragraf-origin-b {
@@ -4467,7 +4526,7 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
   -ms-flex-preferred-size: 27%;
       flex-basis: 27%;
   background-color: #ECB390;
-  border-radius: 5px;
+  border-radius: 2%;
   padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4488,13 +4547,10 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
 }
 
 .detail-barang .showcase .slideArrow button {
-  background-image: url(../images/arrow-white.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
   border: 0;
-  background-color: #ECB390;
   width: 30px;
   height: 25px;
+  background: none;
 }
 
 .detail-barang .showcase .slideArrow button:first-child {
@@ -4505,7 +4561,7 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
 
 .detail-barang .showcase img {
   height: auto;
-  max-width: 325px;
+  max-width: 360px;
   width: 100%;
   border-radius: 5px;
 }
@@ -5099,7 +5155,7 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
 }
 
 .keranjang-belanja .body table .produk img {
-  width: 45px;
+  width: 42px;
   height: 90px;
   background-color: #ECB390;
   padding: 0;
@@ -6610,6 +6666,15 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
   font-size: 20px;
 }
 
+@media (max-width: 1200px) {
+  .faq .container .produkbox {
+    margin-bottom: 30px;
+  }
+  .faq .container .produkbox .content-produkbox {
+    margin-top: -30% !important;
+  }
+}
+
 @media (max-width: 800px) {
   .faq .container {
     width: 90% !important;
@@ -6638,16 +6703,17 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
     margin-bottom: 20px;
   }
   .faq .container .accordion .contentBx .content .container .produkbox img {
-    max-width: 400px !important;
     width: 100%;
-    height: auto;
-    max-height: 500px !important;
+    height: 600px !important;
   }
   .faq .container .accordion .contentBx .content .container .produkbox .content-produkbox {
     margin-top: -65% !important;
   }
+  .faq .container .accordion .contentBx .content .container .produkbox .content-produkbox p {
+    font-size: 24px !important;
+  }
   .faq .container .accordion .contentBx .content .container .produkbox .content-produkbox h2 {
-    font-size: 4.5vw !important;
+    font-size: 36px !important;
   }
   .faq .container .accordion .contentBx .content .container .produkbox:last-child {
     padding-bottom: 70px !important;
@@ -6680,6 +6746,15 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
   }
   .faq .container .accordion .contentBx .content .container .produkbox .content-produkbox {
     margin-top: -70% !important;
+  }
+  .faq .container .accordion .contentBx .content .container .produkbox .content-produkbox h2 {
+    font-size: 24px !important;
+  }
+  .faq .container .accordion .contentBx .content .container .produkbox .content-produkbox p {
+    font-size: 18px !important;
+  }
+  .faq .container .accordion .contentBx .content .container .produkbox img {
+    height: 350px !important;
   }
 }
 
@@ -6763,10 +6838,10 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
 }
 
 .faq .container .accordion .contentBx .content .container .produkbox img {
-  max-height: 400px;
-  height: auto;
-  max-width: 310px;
+  height: 500px;
   width: 100%;
+  width: 100%;
+  border-radius: 2%;
 }
 
 .faq .container .accordion .contentBx .content .container .produkbox .content-produkbox {

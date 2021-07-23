@@ -41,14 +41,14 @@
 <div class="about">
     <div class="container">    
         <div class="left-col">
-            <img src="public/images/foto-produk-web/c sirup a.png" alt="" class="Slides" >
-            <img src="public/images/foto-produk-web/c tepung keladi.png" alt="" class="Slides">
-            <img src="public/images/foto-produk-web/c balsem cair.png" alt="" class="Slides">
-            <img src="public/images/foto-produk-web/c coklat kecil.png" alt="" class="Slides">
-            <img src="public/images/foto-produk-web/c coklat.png" alt="" class="Slides">
-            <img src="public/images/foto-produk-web/c hand sani.png" alt="" class="Slides">
-            <img src="public/images/foto-produk-web/c keripik keladi.png" alt="" class="Slides">
-            <img src="public/images/foto-produk-web/c teh sereh.png" alt="" class="Slides">
+            <img src="public/images/foto-produk-web/c sirup a.png" alt="" class="Slides fade" >
+            <img src="public/images/foto-produk-web/c tepung keladi.png" alt="" class="Slides fade">
+            <img src="public/images/foto-produk-web/c balsem cair.png" alt="" class="Slides fade">
+            <img src="public/images/foto-produk-web/c coklat kecil.png" alt="" class="Slides fade">
+            <img src="public/images/foto-produk-web/c coklat.png" alt="" class="Slides fade">
+            <img src="public/images/foto-produk-web/c hand sani.png" alt="" class="Slides fade">
+            <img src="public/images/foto-produk-web/c keripik keladi.png" alt="" class="Slides fade">
+            <img src="public/images/foto-produk-web/c teh sereh.png" alt="" class="Slides fade">
             <div class="slideArrow">
                 <button style="cursor: pointer" class="w3-button w3-display-right" onclick="plusDivs(+1)"></button>
                 <button style="cursor: pointer" class="w3-button w3-display-left" onclick="plusDivs(-1)"></button>
@@ -61,7 +61,7 @@
             <p>Sejak 2018 dengan dukungan David and Lucile Packard Foundation, The Asia Foundation bersama Pt PPMA, KIPRa, Perkumpulan Mnuwar Papua, GEMAPALA & PUPUK melakukan pemberdayaan masyarakat adat di Jayapura, Keerom, Manokwari Selatan dan Fakfak.  Berbagai macam potensi komoditas dipilih dan dibudidayakan untuk dapat diolah menjadi produk konsumsi yang layak jual secara berkesinambungan. Website e-Commerce ini digunakan untuk memperkenalkan produk-produk tersebut yang khas akan budaya masyarakat adat dan semangatnya dalam melestarikan hutan Papua.
             </p>
             <div class="cta-video">
-                <a href="http://facebook.com">Video Tentang Kami</a>
+                <a href="{{ route('tentang-kami') }}">Video Tentang Kami</a>
             </div>
         </div>
     </div>
@@ -97,10 +97,10 @@
                 </p>
             <div class="link-sosmed">
                 <div class="cta-sosmed">
-                    <a href="http://instagram.com">Ikuti Instagram Kami</a>
+                    <a href="https://www.instagram.com/asmat.papua/" target="_blank">Ikuti Instagram Kami</a>
                 </div>
                 <div class="cta-sosmed">
-                    <a href="http://facebook.com">Ikuti Facebook Kami</a>
+                    <a href="https://www.facebook.com/Asmat-Papua-103908155290897" target="_blank">Ikuti Facebook Kami</a>
                 </div>
             </div>
         </div>

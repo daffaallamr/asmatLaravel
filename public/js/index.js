@@ -15,3 +15,18 @@ function showDivs(n) {
   }
   x[slideIndex-1].style.display = "block";
 }
+
+var slideIndex = 0;
+showSlides();
+
+function showDivs() {
+  var i;
+  var slides = document.getElementsByClassName("Slides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showDivs, 4000); 
+}

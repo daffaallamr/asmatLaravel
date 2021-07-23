@@ -46,7 +46,8 @@ class AdminStoryController extends Controller
             'judul'                  => 'required|min:5|max:100|unique:stories,judul',
             'judul_paragraf_1'         => 'required',
             'paragraf_1'         => 'required',
-            'gambar_1'         => 'required',
+            'gambar_1'         => 'required|mimes:jpeg,png',
+            'gambar_2'         => 'mimes:jpeg,png',
         ];
  
         $messages = [
@@ -57,6 +58,8 @@ class AdminStoryController extends Controller
             'judul_paragraf_1.required'          => 'Judul Paragraf Pertama belum diisi',
             'paragraf_1.required'          => 'Paragraf Pertama belum diisi',
             'gambar_1.required' => 'Gambar - 1 wajib diisi',
+            'gambar_1.mimes' => 'Gambar - 1 harus berformat JPG/JPEG atau PNG',
+            'gambar_2.mimes' => 'Gambar - 2 harus berformat JPG/JPEG atau PNG',
         ];
  
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -66,7 +69,7 @@ class AdminStoryController extends Controller
         }
 
         if($request->gambar_2 == null) {
-            $imageName_1 = Auth::id() . '_' . time() . '_' . $request->gambar_1->getClientOriginalName();
+            $imageName_1 = Auth::id() . '_' . time() . '_' . preg_replace('/\s+/', '_', $request->gambar_1->getClientOriginalName());
             $request->gambar_1->move(public_path('images/stories'), $imageName_1); 
 
             $story = new Story;
@@ -143,6 +146,8 @@ class AdminStoryController extends Controller
             'judul'                  => 'required|min:5|max:100',
             'judul_paragraf_1'         => 'required',
             'paragraf_1'         => 'required',
+            'gambar_1'         => 'mimes:jpeg,png',
+            'gambar_2'         => 'mimes:jpeg,png',
         ];
  
         $messages = [
@@ -151,6 +156,8 @@ class AdminStoryController extends Controller
             'judul.max'   => 'Judul maksimal 100 karakter',
             'judul_paragraf_1.required'          => 'Judul Paragraf Pertama belum diisi',
             'paragraf_1.required'          => 'Paragraf Pertama belum diisi',
+            'gambar_1.mimes' => 'Gambar - 1 harus berformat JPG/JPEG atau PNG',
+            'gambar_2.mimes' => 'Gambar - 2 harus berformat JPG/JPEG atau PNG',
         ];
  
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -161,25 +168,53 @@ class AdminStoryController extends Controller
 
         if ($request->gambar_1 == null) {
 
-            $story = Story::findOrFail($id);
-            $story->admin_id = $request->admin_id;
+            if (!$request->gambar_2 == null) {
+                $imageName_2 = Auth::id() . '_' . time() . '_' . $request->gambar_2->getClientOriginalName();
+                $request->gambar_2->move(public_path('images/stories'), $imageName_2);
 
-            $story->judul = $request->judul;
-            $story->slug = Str::slug($request->judul, '-');
-            $story->link_video = $request->link_video;
-            $story->judul_paragraf_1 = $request->judul_paragraf_1;
-            $story->paragraf_1 = $request->paragraf_1;
+                $story = Story::findOrFail($id);
+                $image_2_path = "public/images/stories/". $story->gambar_3;
+                if(File::exists($image_2_path)) {
+                    File::delete($image_2_path);
+                }
+                $story->admin_id = $request->admin_id;
 
-            $story->judul_paragraf_2 = $request->judul_paragraf_2;
-            $story->paragraf_2 = $request->paragraf_2;
+                $story->judul = $request->judul;
+                $story->slug = Str::slug($request->judul, '-');
+                $story->link_video = $request->link_video;
+                $story->judul_paragraf_1 = $request->judul_paragraf_1;
+                $story->paragraf_1 = $request->paragraf_1;
 
-            $story->judul_paragraf_3 = $request->judul_paragraf_3;
-            $story->paragraf_3 = $request->paragraf_3;
-            $story->save();
+                $story->judul_paragraf_2 = $request->judul_paragraf_2;
+                $story->paragraf_2 = $request->paragraf_2;
+
+                $story->judul_paragraf_3 = $request->judul_paragraf_3;
+                $story->paragraf_3 = $request->paragraf_3;
+
+                $story->gambar_3 = $imageName_2;
+                $story->save();
+
+            } else {
+                $story = Story::findOrFail($id);
+                $story->admin_id = $request->admin_id;
+
+                $story->judul = $request->judul;
+                $story->slug = Str::slug($request->judul, '-');
+                $story->link_video = $request->link_video;
+                $story->judul_paragraf_1 = $request->judul_paragraf_1;
+                $story->paragraf_1 = $request->paragraf_1;
+
+                $story->judul_paragraf_2 = $request->judul_paragraf_2;
+                $story->paragraf_2 = $request->paragraf_2;
+
+                $story->judul_paragraf_3 = $request->judul_paragraf_3;
+                $story->paragraf_3 = $request->paragraf_3;
+                $story->save();
+            }
 
         } else if($request->gambar_2 == null) {
 
-            $imageName_1 = Auth::id() . '_' . time() . '_' . $request->gambar_1->getClientOriginalName();
+            $imageName_1 = Auth::id() . '_' . time() . '_' . preg_replace('/\s+/', '_', $request->gambar_1->getClientOriginalName());
             $request->gambar_1->move(public_path('images/stories'), $imageName_1); 
 
             $story = Story::findOrFail($id);
@@ -207,7 +242,7 @@ class AdminStoryController extends Controller
 
         } else {
 
-            $imageName_1 = Auth::id() . '_' . time() . '_' . $request->gambar_1->getClientOriginalName();
+            $imageName_1 = Auth::id() . '_' . time() . '_' . preg_replace('/\s+/', '_', $request->gambar_1->getClientOriginalName());
             $imageName_2 = Auth::id() . '_' . time() . '_' . $request->gambar_2->getClientOriginalName();
             $request->gambar_1->move(public_path('images/stories'), $imageName_1); 
             $request->gambar_2->move(public_path('images/stories'), $imageName_2);

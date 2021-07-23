@@ -8,8 +8,8 @@
         @if (!$product->gambar_2 == null)
             <img src="{{ asset('public/images/products/' . $product->gambar_2) }}" alt="" class="Slides">
             <div class="slideArrow">
-                <button class="w3-button w3-display-left" onclick="plusDivs(-1)"></button>
-                <button class="w3-button w3-display-right" onclick="plusDivs(+1)"></button>
+                <button class="w3-button w3-display-left" onclick="plusDivs(-1)"><img src="{{ asset('public/images/arrow-white.svg') }}" alt=""></button>
+                <button class="w3-button w3-display-right" onclick="plusDivs(+1)"><img src="{{ asset('public/images/arrow-white.svg') }}" alt=""></button>
             </div>
         @endif
     </div>

@@ -16,17 +16,25 @@
         <div class="paragraf-video">
             <iframe width="560" height="315" src="{{ $story->link_video }}" title="{{ $story->judul }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p>@nl2br($story->paragraf_1)</p>
+            @if (!$story->gambar_3 == null && $story->paragraf_2 == null)
+                <img src="{{ asset('public/images/stories/' . $story->gambar_3) }}" alt="">
+            @endif
         </div>
     </div>
     @if ($story->gambar_3 == null)
         <div class="paragraf-origin-a">
             <h1>{{ $story->judul_paragraf_2 }}</h1>
             <p>@nl2br($story->paragraf_2)</p>
-        </div>  
+        </div>
         <div class="paragraf-origin-a" style="padding-bottom: 50px">
             <h1>{{ $story->judul_paragraf_3 }}</h1>
             <p>@nl2br($story->paragraf_3)</p>
-        </div>  
+        </div>
+    @elseif ($story->paragraf_2 == null)  
+        <div class="paragraf-origin-a" style="padding-bottom: 50px">
+            {{-- <h1>{{ $story->judul_paragraf_3 }}</h1>
+            <p>@nl2br($story->paragraf_3)</p> --}}
+        </div>
     @else
         <div class="paragraf-origin-b">
             <div class="right-col">

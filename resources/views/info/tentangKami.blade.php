@@ -4,20 +4,14 @@
 @include('layouts.navbar')
 <div class="section-about">
     <div class="container">
-        <div class="left-col">
-            <h1>Tentang Kami</h1>
-            <video src="{{ asset('public/videos/Asmat Baru 2.mp4') }}" controls poster="{{ asset("public/images/thumbnail.jpg") }}" width="100%"></video>
-            <p>ASMAT adalah sebuah Marketplace atau platform perantara yang menghubungkan penjual dan pembeli yang dilakukan secara online (e-Commerce), ASMAT memiliki singkatan Advancing Sustainable Market atau memajukan pasar yang berkelanjutan.  Dibentuk pada tahun</p>
-            
-        </div>
-        <div class="right-col">
-            <img src="{{ asset('public/images/banner-about.svg') }}" alt="">
-        </div>
-        <div class="bot-col">
-            <p>2021 dengan inisiasi yang dilakukan oleh Program Pelestarian Sumber Daya Alam dan Peningkatan Kehidupan Masyarakat Adat melalui Pertanian Berkelanjutan di Tanah Papua atau yang disingkat PAPeDA Papua.</p>
-        </div>
+        <img src="public/images/banner-about.svg" class="bannerDekstop" alt="">
+        <h1>Tentang Kami</h1>
+        <iframe width="560" height="300" src="https://www.youtube.com/embed/c7V0tIzw7t0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>ASMAT adalah sebuah Marketplace atau platform perantara yang menghubungkan penjual dan pembeli yang dilakukan secara online (e-Commerce), ASMAT memiliki singkatan Advancing Sustainable Market atau memajukan pasar yang berkelanjutan.  Dibentuk pada tahun
+        2021 dengan inisiasi yang dilakukan oleh Program Pelestarian Sumber Daya Alam dan Peningkatan Kehidupan Masyarakat Adat melalui Pertanian Berkelanjutan di Tanah Papua atau yang disingkat PAPeDA Papua.</p>
+        <img src="public/images/banner-about.svg" alt="" class="bannerMobile">
         <div class="penjelasan-produk">
-            
+            <br>
             <p class="berbagai"> Sejak 2018 dengan dukungan David and Lucile Packard Foundation, The Asia Foundation bersama Pt PPMA, KIPRa, Perkumpulan Mnuwar Papua, GEMAPALA & PUPUK melakukan pemberdayaan masyarakat adat di Jayapura, Keerom, Manokwari Selatan dan Fakfak. <span class="berbagai-mobile">Berbagai macam potensi komoditas dipilih dan dibudidayakan untuk dapat diolah menjadi produk konsumsi yang layak jual secara berkesinambungan. Website e-Commerce ini digunakan untuk memperkenalkan produk-produk tersebut yang khas akan budaya masyarakat adat dan semangatnya dalam melestarikan hutan Papua.</span> Berbagai macam potensi komoditas dipilih dan dibudidayakan untuk dapat diolah menjadi produk konsumsi yang layak jual secara berkesinambungan. Website e-Commerce ini digunakan untuk memperkenalkan produk-produk tersebut yang khas akan budaya masyarakat adat dan semangatnya dalam melestarikan hutan Papua. </p>
             <p>  <a href="http://www.asmatpapua.com">www.asmatpapua.com</a> diharapkan ke depan bisa menjadi etalase semua produk dari Papua, untuk tahap awal ada beberapa produk yang dihasilkan:</p>
             <div class="item"> <label>(a)</label> <p><strong>Keripik dan Tepung Keladi SUNGGA</strong> berasal dari Tanaman Keladi yang ditanam di Kampung Aryawinmoho & Kampung Wama di Distrik Neney – Kabupaten Manokwari Selatan, Provinsi Papua Barat.  Kedua kampung terletak pada gugusan Pegunungan Arfak dengan ketinggian 2.500 meter dpl dan Daerah Aliran Sungai Dwengrou, Keladi merupakan makanan pokok dari Suku Sough yang dikonsumsi sehari-hari maupun untuk hidangan jamuan acara.  Setiap rumah di kampung memiliki Tanaman Keladi di pekarangan dan kebun. Keladi memiliki manfaat untuk kesehatan yaitu bebas Gluten, rendah Gula, dan ditanam secara organik tanpa bantuan pupuk kimia.</p></div>

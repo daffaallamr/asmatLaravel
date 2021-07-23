@@ -53,16 +53,16 @@
                     <textarea class="form-control" id="paragraf_3" rows="10" name="paragraf_3">{{ $story->paragraf_3 }}</textarea>
                   </div>
                   <div class="form-group">
-                    <label>Gambar - 1 (Utama)</label>
+                    <label>Gambar - 1 (Utama, dengan resolusi 1200x500 pixel atau dengan ratio 12:5 berformat JPG/JPEG atau PNG)</label>
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile" name="gambar_1" value="{{ $story->gambar_1 }}">
+                      <input type="file" accept="image/png, image/jpeg" class="custom-file-input" id="customFile" name="gambar_1" value="{{ $story->gambar_1 }}">
                       <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label>Gambar - 2 (Tambahan dan Tidak wajib, berformat Potrait/Berdiri)</label>
+                    <label>Gambar - 2 (Tambahan dan Tidak wajib, Potrait/Berdiri dengan resolusi 800x1200 pixel berformat JPG/JPEG atau PNG)</label>
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile" name="gambar_2" value="{{ $story->gambar_2 }}">
+                      <input type="file" accept="image/png, image/jpeg" class="custom-file-input" id="customFile" name="gambar_2" value="{{ $story->gambar_2 }}">
                       <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                   </div>

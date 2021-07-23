@@ -51,16 +51,16 @@
                     <input type="text" class="form-control" id="link_video" name="link_video" value="{{ old('link_video') }}">
                   </div>
                   <div class="form-group">
-                    <label>Gambar - 1</label>
+                    <label>Gambar - 1 (Dengan resolusi 1400x2000 pixel berformat JPG/JPEG atau PNG)</label>
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile_1" name="gambar_1">
+                      <input type="file" accept="image/png, image/jpeg" class="custom-file-input" id="customFile_1" name="gambar_1">
                       <label class="custom-file-label" for="customFile_1">Choose file</label>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label>Gambar - 2</label>
+                    <label>Gambar - 2 (Dengan resolusi 1400x2000 pixel berformat JPG/JPEG atau PNG)</label>
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile_2" name="gambar_2">
+                      <input type="file" accept="image/png, image/jpeg" class="custom-file-input" id="customFile_2" name="gambar_2">
                       <label class="custom-file-label" for="customFile_2">Choose file</label>
                     </div>
                   </div>
