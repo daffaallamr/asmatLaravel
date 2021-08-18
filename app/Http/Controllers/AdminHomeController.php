@@ -15,14 +15,14 @@ class AdminHomeController extends Controller
     public function index() {
         
         // pesanan perbulan
-        $perbulan = Order::whereMonth('created_at', Carbon::now()->month)->whereYear('created_at', Carbon::now()->year)->get();
+        $perbulan = Order::where('is_checkout', true)->where('status_payment', 'success')->whereMonth('created_at', Carbon::now()->month)->whereYear('created_at', Carbon::now()->year)->get();
         $pesananPerbulan = $perbulan->count();
 
         // pesanan pertahun
-        $pertahun = Order::whereYear('created_at', Carbon::now()->year)->get();
+        $pertahun = Order::where('is_checkout', true)->where('status_payment', 'success')->whereYear('created_at', Carbon::now()->year)->get();
         $pesananPertahun = $pertahun->count();
 
-        $totalPesanan = Order::all()->count();
+        $totalPesanan = Order::where('is_checkout', true)->where('status_payment', 'success')->count();
         $jumlahCustomer = Customer::all()->count();
 
         return view('admin.index', [

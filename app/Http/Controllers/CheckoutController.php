@@ -325,20 +325,20 @@ class CheckoutController extends RajaOngkirController
 
             if ($transaction == 'capture') {
                 if ($type == 'credit_card') {
-
-                if($fraud == 'challenge') {
-                    $order->setStatusPending();
-                } else {
-                    $order->setStatusSuccess();
-                    Mail::to($emailUser)->send(new PembayaranBerhasil($orderId));
-                }
-
+                    if($fraud == 'challenge') {
+                        $order->setStatusPending();
+                        Mail::to($emailUser)->send(new SelesaikanPembayaran($customer, $order, $alamatCustomer));
+                    } else {
+                        $order->setStatusSuccess($type);
+                        Mail::to($emailUser)->send(new PembayaranBerhasil($orderId));
+                        Mail::to('order.asmatpapua@gmail.com')->send(new AdminPesananMasuk($customer, $order, $alamatCustomer));
+                    }
                 }
             } elseif ($transaction == 'settlement') {
 
                 $order->setStatusSuccess($type);
                 Mail::to($emailUser)->send(new PembayaranBerhasil($orderId));
-                Mail::to('tokoasmatpapua@gmail.com')->send(new AdminPesananMasuk($customer, $order, $alamatCustomer));
+                Mail::to('order.asmatpapua@gmail.com')->send(new AdminPesananMasuk($customer, $order, $alamatCustomer));
 
             } elseif($transaction == 'pending'){
 

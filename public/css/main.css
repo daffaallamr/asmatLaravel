@@ -71,6 +71,26 @@ h2 {
   transition: 0.3s;
 }
 
+@media (max-width: 800px) {
+  .scrollToTopBtn {
+    width: 10% !important;
+    height: 5% !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .scrollToTopBtn img {
+    width: 80%;
+    height: 60%;
+  }
+}
+
 .scrollToTopBtn {
   position: fixed;
   bottom: 30px;
@@ -78,11 +98,12 @@ h2 {
   background-color: var(--primary-color);
   border: 1px solid white;
   right: 30px;
-  width: 60px;
+  width: 5%;
   border-radius: 7%;
-  height: 50px;
+  height: 8%;
   font-size: 1em;
   z-index: 100;
+  cursor: pointer;
   /* hide with opacity */
   opacity: 0;
   /* also add a translate effect */
@@ -1514,7 +1535,6 @@ ul {
 }
 
 .bagaimana .container {
-  height: 650px;
   width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1547,10 +1567,15 @@ ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 5%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 80%;
 }
 
 .bagaimana .container .left-col .link-sosmed .cta-sosmed {
-  width: 35%;
+  width: 50%;
   margin-right: 0;
 }
 
@@ -1558,9 +1583,10 @@ ul {
   background-color: white;
   border: white;
   width: 100%;
-  padding: 10px 25px;
+  padding: 1vw 2vw;
   border-radius: 3px;
   font-weight: 500;
+  font-size: 1.1vw;
 }
 
 .bagaimana .container .left-col .link-sosmed .cta-sosmed a:hover {
@@ -1634,6 +1660,7 @@ ul {
   .bagaimana .container .link-sosmed {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    width: 100% !important;
   }
   .bagaimana .container .link-sosmed .cta-sosmed {
     margin-top: 10vw;
@@ -1641,7 +1668,7 @@ ul {
         flex-basis: 100%;
   }
   .bagaimana .container .link-sosmed .cta-sosmed a {
-    font-size: 3.5vw;
+    font-size: 3.5vw !important;
     padding: 2% 5% !important;
     border-radius: 3% !important;
   }
@@ -1683,7 +1710,6 @@ ul {
     max-height: -webkit-fit-content;
     max-height: -moz-fit-content;
     max-height: fit-content;
-    padding-bottom: 100px;
   }
   .bagaimana .container {
     text-align: center;
@@ -1726,12 +1752,10 @@ ul {
     display: -ms-flexbox;
     display: flex;
     background-color: var(--primary-color);
-    margin-top: 40px;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
     justify-items: center;
-    padding-bottom: 20px;
   }
   .bagaimana .container .right-col img {
     height: auto;
@@ -1868,13 +1892,13 @@ ul {
     margin-top: 5vw;
     border-right: 0 !important;
   }
+  footer .container .nav-footer lI {
+    margin: 20px 0 !important;
+  }
   footer .container .nav-footer ul {
     margin: 0 !important;
     display: block !important;
     margin-left: 0 !important;
-  }
-  footer .container .nav-footer ul li {
-    margin: 20px 0 !important;
   }
   footer .container .nav-footer ul li a {
     margin: 0 !important;
@@ -1885,7 +1909,8 @@ ul {
     -ms-flex-preferred-size: 90% !important;
         flex-basis: 90% !important;
     border: none !important;
-    margin: 5vw 0 !important;
+    margin: 0 0 5vw 0 !important;
+    max-width: 100% !important;
   }
   footer .container .contact-footer ul {
     margin: 0 !important;
@@ -1897,6 +1922,9 @@ ul {
     color: white !important;
     font-size: 3vw !important;
     margin-left: 0 !important;
+    -ms-flex-preferred-size: 100% !important;
+        flex-basis: 100% !important;
+    width: 100% !important;
   }
   footer .container .contact-footer ul li span {
     margin-left: 5px;
@@ -2163,8 +2191,8 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
 }
 
 .section-about .container iframe {
-  width: 45%;
-  height: 200px;
+  width: 50%;
+  height: 20vw;
 }
 
 .section-about .container .item {
@@ -2186,7 +2214,8 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
 
 .section-about .container img {
   margin-top: 40px;
-  width: 50%;
+  width: 47%;
+  margin-left: 3%;
   float: right;
   clear: right;
   margin-bottom: 10px;
@@ -5253,33 +5282,10 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
   justify-self: flex-start;
   float: left;
   margin-right: auto;
-}
-
-.keranjang-belanja .foot .cta-belanja a {
-  color: var(--primary-color);
-  width: 145px;
-  text-align: center;
-  height: 40px;
-  border-radius: 3px;
-  float: right;
-  font-size: 1.2vw;
-  border: 0;
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 0;
-  background-color: #F7F7E8;
-  display: flex;
 }
 
-.keranjang-belanja .foot .cta-belanja a img {
+.keranjang-belanja .foot .cta-belanja img {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
   max-width: 1.4vw;
@@ -5312,11 +5318,10 @@ footer .container .contact-footer li:nth-child(3), footer .container .contact-fo
     margin-right: 5%;
   }
   .keranjang-belanja form .foot .cta-belanja a {
-    font-size: 3vw !important;
-    width: 25vw;
+    font-size: 3.5vw !important;
   }
   .keranjang-belanja form .foot .cta-belanja a img {
-    max-width: 3vw !important;
+    max-width: 3.5vw !important;
     height: auto;
   }
   .keranjang-belanja form .foot .cta-selanjutnya {

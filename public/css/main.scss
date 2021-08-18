@@ -57,6 +57,19 @@ h2{
 #navbar-dekstop-2{
     transition: 0.3s;
 }
+@media (max-width:800px){
+    .scrollToTopBtn{
+        width: 10%!important;
+        height: 5%!important;
+        display: flex;
+        align-items: center;
+            justify-content: center;
+        img{
+            width: 80%;
+            height: 60%;
+        }
+    }
+}
 .scrollToTopBtn{
     position: fixed;
     bottom: 30px;
@@ -64,11 +77,12 @@ h2{
     background-color: var(--primary-color);
     border: 1px solid white;
     right: 30px;
-    width: 60px;
+    width: 5%;
     border-radius: 7%;
-    height: 50px;
+    height: 8%;
     font-size: 1em;
     z-index: 100;
+    cursor: pointer;
     /* hide with opacity */
     opacity: 0;
     /* also add a translate effect */
@@ -1305,7 +1319,7 @@ ul {
     margin-bottom: 0px;
     background-color: #df7861;
     .container{
-        height: 650px;
+        
         width: 90%;
         display: flex;
         margin-left: 10%;
@@ -1328,16 +1342,20 @@ ul {
             }
             .link-sosmed{
                 display: flex;
+                margin-bottom: 5%;
+                justify-content: space-between;
+                width: 80%;
                 .cta-sosmed{
-                    width: 35%;
+                    width: 50%;
                     margin-right: 0;
                     a{
                     background-color: white;
                     border: white;
                     width: 100%;
-                    padding: 10px 25px;
+                    padding: 1vw 2vw;
                     border-radius: 3px;
                     font-weight: 500;
+                    font-size: 1.1vw;
                     }
                     a:hover{
                         background-color: #DF7861;
@@ -1406,11 +1424,12 @@ ul {
             }
             .link-sosmed{
                 flex-wrap: wrap;
+                width: 100%!important;
                 .cta-sosmed{
                     margin-top: 10vw;
                     flex-basis: 100%;
                     a{
-                        font-size: 3.5vw;
+                        font-size: 3.5vw!important;
                         padding: 2% 5%!important;
                         border-radius: 3%!important;
                     }
@@ -1445,7 +1464,6 @@ ul {
     .bagaimana{
         text-align: center;
         max-height: fit-content;
-        padding-bottom: 100px;
         .container{
             text-align: center;
             margin: auto;
@@ -1481,10 +1499,8 @@ ul {
                 flex-basis: 100%;
                 display: flex;
                 background-color: var(--primary-color);
-                margin-top: 40px;
                 justify-content: center;
                 justify-items: center;
-                padding-bottom: 20px;
                 img{
                     height: auto;
                     mAX-width: 80%!important;
@@ -1593,12 +1609,14 @@ ul {
         flex-basis: 90%!important;
         margin-top: 5vw;
         border-right: 0!important;
+        lI{
+            margin: 20px 0!important;
+        }
         ul{
             margin: 0!important;
             display: block!important;
             margin-left: 0!important;
             li{
-                margin: 20px 0!important;
                 a{
                     margin: 0!important;
                     color: white!important;
@@ -1610,7 +1628,8 @@ ul {
     .contact-footer{
         flex-basis: 90%!important;
         border: none!important;
-        margin: 5vw 0!important;
+        margin: 0 0 5vw 0!important;
+        max-width: 100%!important;
         ul{
             margin: 0!important;
             li{
@@ -1618,6 +1637,8 @@ ul {
                 color: white!important;
                 font-size: 3vw!important;
                 margin-left: 0!important;
+                flex-basis: 100%!important;
+                width: 100%!important;
                 span{
                     margin-left: 5px;
                 }
@@ -1829,8 +1850,8 @@ footer{
                 font-size: 1.5vw;
             }
             iframe{
-                width: 45%;
-                height: 200px;
+                width: 50%;
+                height: 20vw;
             }
             .item{
                 display: flex;
@@ -1842,7 +1863,8 @@ footer{
             }
             img{
                 margin-top: 40px;
-                width: 50%;
+                width: 47%;
+                margin-left: 3%;
                 float: right;
                 clear: right;
                 margin-bottom: 10px;
@@ -4353,28 +4375,11 @@ footer{
             justify-self: flex-start;
             float: left;
             margin-right: auto;
-            button{
-                color: var(--primary-color);
-                width: 145px;
-                text-align: center;
-                height: 40px;
-                border-radius: 3px;
-                float: right;
-                font-size: 1.2vw;
-                border: 0;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 0;
-                background-color: #F7F7E8;
-                display: flex;
-                
+            cursor: pointer;
                 img{
                     transform: rotate(180deg);
                     max-width: 1.4vw;
                 }
-            }
         }
     }
 }
@@ -4401,11 +4406,10 @@ footer{
                 margin-right: 5%;
                 .cta-belanja{
                     
-                    button{
-                        font-size: 3vw!important;
-                        width: 25vw;
+                    a{
+                        font-size: 3.5vw!important;
                         img{
-                            max-width: 3vw!important;
+                            max-width: 3.5vw!important;
                             height: auto;
                         }
                     }

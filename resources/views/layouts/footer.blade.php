@@ -13,10 +13,10 @@
         </div>
         <div class="contact-footer">
             <ul>
-                <li>Email:<span style="margin-left: 1%;">support@asmatpapua.com</span></li>
-                <li>Telepon:<span style="margin-left: 1%;">-</span></li>
-                <li>Instagram:<span style="margin-left: 1%;">@asmat.papua</span></li>
-                <li>Facebook:<span style="margin-left: 1%; display:inline-block;">Asmat Papua</span></li>
+                <li>Email:<span style="margin-left: 3%;">support@asmatpapua.com</span></li>
+                <li>Instagram:<span style="margin-left: 3%;">@asmat.papua</span></li>
+                <li>Telepon/WA:<span style="margin-left: 3%;">082134633002, 081333437889</span></li>
+                <li style="margin-left: 14%;">Facebook:<span style="margin-left: 3%;">Asmat Papua</span></li>
             </ul>
         </div>
     </div>

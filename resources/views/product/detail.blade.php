@@ -18,6 +18,13 @@
             <h2>{{ $product->nama }}</h2>
             <h4>IDR {{ number_format($product->harga, 0, '.', '.') }}</h4>
             <p>@nl2br($product->deskripsi)</p>
+            <br>
+            <p for="">
+                <strong>Produsen:</strong> {{ $product->produsen }}
+            </p>
+            <p for="" style="margin-top: -15px">
+                <strong>Nomor izin:</strong> {{ $product->nomer_izin }}
+            </p>
             <p for="">
                 Stok: {{ $product->stok }}
             </p>
